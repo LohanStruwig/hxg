@@ -1,0 +1,82 @@
+---
+interface Props { claims: any[]; sources: any[]; }
+const { claims, sources } = Astro.props;
+const sourceMap = Object.fromEntries(sources.map((source) => [source.id, source]));
+---
+
+<section id="evidence" class="evidence-section" aria-labelledby="evidence-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Evidence register</p>
+      <h2 id="evidence-title">Read the chain, not just the claim.</h2>
+    </div>
+    <p>Every relationship resolves through a versioned claim to at least one source. Vendor statements, inferences, and scenarios remain visibly distinct.</p>
+  </div>
+  <div class="table-tools">
+    <label><span class="sr-only">Search claims</span><input id="claim-search" type="search" placeholder="Search claims, evidence IDs, outcomes…" /></label>
+    <label><span class="sr-only">Filter by evidence class</span><select id="claim-class"><option value="all">All evidence classes</option><option value="fact">Facts</option><option value="supported-inference">Supported inferences</option><option value="modeled-scenario">Modeled scenarios</option></select></label>
+    <p id="claim-count" aria-live="polite">{claims.length} claims</p>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">ID / class</th><th scope="col">Claim</th><th scope="col">Evidence</th><th scope="col">Confidence</th><th scope="col">Limits</th></tr></thead>
+      <tbody id="claim-rows">
+        {claims.map((claim) => (
+          <tr data-classification={claim.classification} data-search={`${claim.id} ${claim.text} ${claim.outcome || ""} ${claim.evidence_ids.join(" ")}`.toLowerCase()}>
+            <td><strong>{claim.id}</strong><span class:list={["class-label", claim.classification]}>{claim.classification}</span></td>
+            <td><p>{claim.text}</p>{claim.metric && <small>{claim.metric}{claim.period ? ` · ${claim.period}` : ""}</small>}</td>
+            <td>{claim.evidence_ids.map((id: string) => <a href={sourceMap[id]?.url} target="_blank" rel="noreferrer">{id}</a>)}</td>
+            <td><meter min="0" max="1" value={claim.confidence}>{Math.round(claim.confidence*100)}%</meter><span>{Math.round(claim.confidence*100)}%</span></td>
+            <td><ul>{claim.limitations.map((limitation: string) => <li>{limitation}</li>)}</ul></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<script>
+  const search = document.querySelector<HTMLInputElement>("#claim-search")!;
+  const select = document.querySelector<HTMLSelectElement>("#claim-class")!;
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>("#claim-rows tr"));
+  const count = document.querySelector<HTMLElement>("#claim-count")!;
+  function filterRows() {
+    const query = search.value.trim().toLowerCase();
+    const classification = select.value;
+    let visible = 0;
+    rows.forEach((row) => {
+      const matchesQuery = !query || (row.dataset.search || "").includes(query);
+      const matchesClass = classification === "all" || row.dataset.classification === classification;
+      row.hidden = !(matchesQuery && matchesClass);
+      if (!row.hidden) visible += 1;
+    });
+    count.textContent = `${visible} claim${visible === 1 ? "" : "s"}`;
+  }
+  search.addEventListener("input", filterRows);
+  select.addEventListener("change", filterRows);
+</script>
+
+<style>
+  .evidence-section { max-width: var(--max); margin: 0 auto; padding: 80px 32px 120px; }
+  .section-heading { display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: end; }
+  h2 { margin: 0; font-size: clamp(2.1rem,4vw,4.2rem); line-height: 1; letter-spacing: -.055em; }
+  .section-heading > p { color: var(--muted); line-height: 1.6; }
+  .table-tools { display: grid; grid-template-columns: minmax(280px,1fr) 240px auto; gap: 10px; align-items: center; margin-top: 36px; }
+  input, select { width: 100%; min-height: 48px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 0 14px; border-radius: 6px; }
+  .table-tools p { color: var(--muted); text-align: right; }
+  .table-wrap { overflow: auto; border: 1px solid var(--line); }
+  table { width: 100%; min-width: 1120px; border-collapse: collapse; background: #081a28; }
+  th { position: sticky; top: 0; z-index: 1; background: #10283a; color: var(--muted); text-align: left; font-size: .7rem; text-transform: uppercase; letter-spacing: .09em; }
+  th, td { padding: 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  td:first-child { width: 175px; } td:nth-child(2) { width: 34%; } td:nth-child(3) { width: 170px; } td:nth-child(4) { width: 125px; }
+  td strong { display: block; font-size: .8rem; }
+  td p { margin: 0; line-height: 1.5; }
+  td small { display: block; margin-top: 8px; color: var(--faint); }
+  td a { display: block; color: var(--cyan); font-size: .74rem; margin-bottom: 5px; }
+  td ul { margin: 0; padding-left: 17px; color: var(--muted); font-size: .8rem; line-height: 1.5; }
+  td meter { width: 85px; accent-color: var(--cyan); } td meter + span { display: block; color: var(--muted); font-size: .75rem; }
+  .class-label { display: inline-block; margin-top: 8px; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); }
+  .class-label.supported-inference { color: var(--violet); } .class-label.modeled-scenario { color: var(--amber); }
+  tr[hidden] { display: none; }
+  @media (max-width: 760px) { .evidence-section { padding: 60px 18px 90px; } .section-heading { grid-template-columns: 1fr; gap: 14px; } .table-tools { grid-template-columns: 1fr; } .table-tools p { text-align: left; margin: 4px 0 10px; } }
+</style>

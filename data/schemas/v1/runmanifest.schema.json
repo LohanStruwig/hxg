@@ -1,0 +1,190 @@
+{
+  "$defs": {
+    "HumanReviewAction": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "title": "Action",
+          "type": "string"
+        },
+        "rationale": {
+          "title": "Rationale",
+          "type": "string"
+        },
+        "record_ids": {
+          "default": [],
+          "items": {
+            "type": "string"
+          },
+          "title": "Record Ids",
+          "type": "array"
+        },
+        "schema_version": {
+          "const": "1.0.0",
+          "default": "1.0.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "timestamp": {
+          "format": "date-time",
+          "title": "Timestamp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "timestamp",
+        "action",
+        "rationale"
+      ],
+      "title": "HumanReviewAction",
+      "type": "object"
+    }
+  },
+  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/runmanifest.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "configuration_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Configuration Hash",
+      "type": "string"
+    },
+    "cost_limit_usd": {
+      "exclusiveMinimum": 0,
+      "title": "Cost Limit Usd",
+      "type": "number"
+    },
+    "cutoff_date": {
+      "format": "date",
+      "title": "Cutoff Date",
+      "type": "string"
+    },
+    "estimated_cost_usd": {
+      "minimum": 0,
+      "title": "Estimated Cost Usd",
+      "type": "number"
+    },
+    "frozen_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Frozen At"
+    },
+    "generated_counts": {
+      "additionalProperties": {
+        "type": "integer"
+      },
+      "title": "Generated Counts",
+      "type": "object"
+    },
+    "human_review_actions": {
+      "items": {
+        "$ref": "#/$defs/HumanReviewAction"
+      },
+      "title": "Human Review Actions",
+      "type": "array"
+    },
+    "id": {
+      "title": "Id",
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "interactive-codex-seed",
+        "agents"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "model_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Model Versions",
+      "type": "object"
+    },
+    "notes": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Notes",
+      "type": "array"
+    },
+    "output_hashes": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "default": {},
+      "title": "Output Hashes",
+      "type": "object"
+    },
+    "prompt_versions": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Prompt Versions",
+      "type": "object"
+    },
+    "release_version": {
+      "title": "Release Version",
+      "type": "string"
+    },
+    "research_start_date": {
+      "format": "date",
+      "title": "Research Start Date",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_hashes": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Source Hashes",
+      "type": "object"
+    },
+    "started_at": {
+      "format": "date-time",
+      "title": "Started At",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "draft",
+        "frozen"
+      ],
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "release_version",
+    "mode",
+    "status",
+    "started_at",
+    "frozen_at",
+    "cutoff_date",
+    "research_start_date",
+    "model_versions",
+    "prompt_versions",
+    "configuration_hash",
+    "estimated_cost_usd",
+    "cost_limit_usd",
+    "source_hashes",
+    "human_review_actions",
+    "generated_counts",
+    "notes"
+  ],
+  "title": "RunManifest",
+  "type": "object"
+}

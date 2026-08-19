@@ -1,0 +1,191 @@
+---
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MetricStrip from "../components/MetricStrip.astro";
+import GraphExplorer from "../components/GraphExplorer.astro";
+import EvidenceTable from "../components/EvidenceTable.astro";
+
+const publicDir = resolve(process.cwd(), "..", "data", "public");
+const load = (name: string) => JSON.parse(readFileSync(resolve(publicDir, name), "utf8"));
+const claims = load("claims.json");
+const sources = load("sources.json");
+const entities = load("entities.json");
+const relationships = load("relationships.json");
+const contradictions = load("contradictions.json");
+const manifest = load("run-manifest.json");
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<BaseLayout title="Hospitality Experience Graph" description="An AI-led, evidence-audited map of connected hospitality experiences.">
+  <header class="site-header">
+    <a class="brand" href={baseUrl} aria-label="Hospitality Experience Graph home"><span>HXG</span><small>Hospitality Experience Graph</small></a>
+    <nav aria-label="Primary navigation">
+      <a href="#graph">Graph</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#limits">Limitations</a>
+      <a href="#downloads">Downloads</a>
+      <a href={`${baseUrl}data/evidence/run-manifest.json`}>Run manifest</a>
+    </nav>
+    <a class="repo-link" href="https://github.com/hospitality-experience-graph/hxg">View repository</a>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Independent research · Release 0.1.0</p>
+        <h1>From screen<br /><em>to stay.</em></h1>
+        <p class="dek">An AI-led, evidence-audited map of connected hospitality experiences.</p>
+        <p class="thesis">The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.</p>
+        <div class="hero-actions">
+          <a href="#graph">Explore the graph</a>
+          <a href="#evidence" class="secondary">Audit the evidence</a>
+        </div>
+      </div>
+      <div class="hero-orbit" aria-label="Six human experience outcomes: feel at home, in control, recognized, included, secure and supported">
+        <span class="center">Human<br />experience</span>
+        <span class="orbit home">Feel at home</span>
+        <span class="orbit control">Feel in control</span>
+        <span class="orbit recognized">Feel recognized</span>
+        <span class="orbit included">Feel included</span>
+        <span class="orbit secure">Feel secure</span>
+        <span class="orbit supported">Feel supported</span>
+      </div>
+    </section>
+
+    <MetricStrip counts={manifest.generated_counts} cutoff={manifest.cutoff_date} />
+
+    <section class="evidence-anchor" aria-labelledby="anchor-title">
+      <div><p class="eyebrow">Independent demand signal</p><h2 id="anchor-title">The screen is already a consequential guest touchpoint.</h2></div>
+      <div class="anchor-stats">
+        <article><strong>74%</strong><p>smart-TV availability in surveyed branded hotel rooms</p><a href="#evidence">CLM-JDP-AVAIL-01</a></article>
+        <article><strong>62%</strong><p>guest usage in the same 2026 study</p><a href="#evidence">CLM-JDP-USAGE-01</a></article>
+        <article><strong>44,787</strong><p>branded hotel guests in the study sample</p><a href="#evidence">CLM-JDP-SAMPLE-01</a></article>
+      </div>
+      <p class="anchor-note">These figures show availability and use—not causal value. That distinction is carried through every HXG relationship.</p>
+    </section>
+
+    <GraphExplorer claims={claims} sources={sources} entities={entities} relationships={relationships} />
+
+    <section class="value-paths" aria-labelledby="value-title">
+      <p class="eyebrow">Value without overclaiming</p>
+      <h2 id="value-title">Four layers. Different proof burdens.</h2>
+      <div class="value-grid">
+        <article><span>01</span><h3>Human value</h3><p>Time, effort, familiarity, comfort, accessibility, control and trust. Kept as human outcomes unless evidence supports monetization.</p></article>
+        <article><span>02</span><h3>Property value</h3><p>Ancillary contribution, remote support and energy efficiency. Modeled only with property-specific inputs and verified performance.</p></article>
+        <article><span>03</span><h3>Ecosystem value</h3><p>Hardware, software, services, integration, support and transactions. Mapped as mechanisms; no vendor revenue estimate is claimed.</p></article>
+        <article><span>04</span><h3>Economic context</h3><p>Nearly $805B in projected 2026 U.S. hotel guest spending. Context only—never attributed to connected screens.</p><a href="#evidence">CLM-AHLA-SPEND-01</a></article>
+      </div>
+    </section>
+
+    <section id="limits" class="limits" aria-labelledby="limits-title">
+      <div class="limits-heading"><p class="eyebrow">Contradiction audit</p><h2 id="limits-title">The friction belongs on the map.</h2><p>A positive-only graph would be marketing. HXG records the conditions that change meaning, confidence, or availability.</p></div>
+      <div class="limits-list">
+        {contradictions.map((item: any) => <article><span>{item.severity}</span><h3>{item.title}</h3><p>{item.assessment}</p><small>{item.id}</small></article>)}
+      </div>
+    </section>
+
+    <EvidenceTable claims={claims} sources={sources} />
+
+    <section id="downloads" class="downloads" aria-labelledby="downloads-title">
+      <div>
+        <p class="eyebrow">Release artifacts</p>
+        <h2 id="downloads-title">One frozen release. Three ways to use it.</h2>
+        <p>Every artifact below is derived from the same evidence register, relationship graph, and run manifest.</p>
+      </div>
+      <div class="download-grid">
+        <a href={`${baseUrl}downloads/hxg-linkedin-carousel.pdf`} download>
+          <span>01 · PDF</span><strong>LinkedIn carousel</strong><small>Eight flattened 1080 × 1350 pages</small>
+        </a>
+        <a href={`${baseUrl}downloads/hxg-poster.pdf`} download>
+          <span>02 · PDF</span><strong>Research poster</strong><small>Downloadable 1800 × 2700 reference artifact</small>
+        </a>
+        <a href={`${baseUrl}data/hospitality-experience-graph.graphml`} download>
+          <span>03 · GraphML</span><strong>Canonical graph</strong><small>Portable nodes, relationships, claims, and source IDs</small>
+        </a>
+      </div>
+    </section>
+
+    <section class="methodology" aria-labelledby="method-title">
+      <div><p class="eyebrow">Methodology</p><h2 id="method-title">AI-led. Evidence-audited. Human-governed.</h2></div>
+      <ol>
+        <li><span>01</span><strong>Discover</strong><p>Independent, primary, government, standards and vendor sources within the charter.</p></li>
+        <li><span>02</span><strong>Extract</strong><p>Atomic claims, dates, geographies, excerpts, locators and limitations.</p></li>
+        <li><span>03</span><strong>Connect</strong><p>Entities and relationships proposed through GraphRAG, then resolved deterministically.</p></li>
+        <li><span>04</span><strong>Challenge</strong><p>Contradiction and citation audits search for friction, overreach and stale context.</p></li>
+        <li><span>05</span><strong>Freeze</strong><p>Counts, graph exports, pages and publications derive from one manifest.</p></li>
+      </ol>
+      <p class="disclosure">This release is an interactive Codex-assisted seed audit with disclosed human governance. The configured local API pipeline uses gpt-5.6-terra for discovery/extraction and gpt-5.6-sol for contradiction/final audit; that unattended run was not executed for v0.1.0.</p>
+    </section>
+  </main>
+
+  <footer><div><strong>HXG</strong><p>Hospitality Experience Graph</p></div><p>Independent research. No Samsung sponsorship or endorsement.</p><p>Code: Apache-2.0 · Original docs/data/visuals: CC BY 4.0</p></footer>
+</BaseLayout>
+
+<style>
+  .site-header { height: 74px; max-width: var(--max); margin: 0 auto; padding: 0 32px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 1px solid var(--line); }
+  .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; width: max-content; }
+  .brand span { font-size: 1.25rem; font-weight: 900; letter-spacing: -.05em; }
+  .brand small { color: var(--muted); }
+  nav { display: flex; gap: 26px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: .85rem; }
+  nav a:hover { color: var(--ink); }
+  .repo-link { justify-self: end; color: var(--canvas); background: var(--ink); text-decoration: none; padding: 10px 14px; font-size: .78rem; font-weight: 800; }
+  .hero { max-width: var(--max); min-height: 760px; margin: 0 auto; padding: 96px 56px 70px; display: grid; grid-template-columns: .95fr 1.05fr; gap: 70px; align-items: center; overflow: hidden; }
+  h1 { margin: 0; font-size: clamp(4.8rem,8.8vw,9.4rem); line-height: .78; letter-spacing: -.085em; }
+  h1 em { color: var(--cyan); font-weight: inherit; font-style: normal; }
+  .dek { max-width: 650px; margin: 35px 0 0; font-size: clamp(1.35rem,2.2vw,2.25rem); line-height: 1.18; letter-spacing: -.03em; }
+  .thesis { max-width: 620px; margin: 24px 0 0; color: var(--muted); font-size: 1rem; line-height: 1.65; }
+  .hero-actions { display: flex; gap: 10px; margin-top: 34px; }
+  .hero-actions a { min-height: 48px; display: inline-flex; align-items: center; padding: 0 18px; background: var(--ink); color: var(--canvas); text-decoration: none; font-weight: 800; }
+  .hero-actions .secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .hero-orbit { position: relative; width: min(620px,44vw); aspect-ratio: 1; justify-self: center; border: 1px solid var(--line); border-radius: 50%; box-shadow: 0 0 90px rgba(76,196,217,.08), inset 0 0 90px rgba(76,196,217,.04); }
+  .hero-orbit::before { content: ""; position: absolute; inset: 17%; border: 1px solid var(--line); border-radius: 50%; }
+  .center, .orbit { position: absolute; display: grid; place-items: center; text-align: center; font-weight: 800; }
+  .center { left: 50%; top: 50%; width: 150px; height: 150px; transform: translate(-50%,-50%); border-radius: 50%; background: var(--ink); color: var(--canvas); font-size: 1.25rem; line-height: 1.05; }
+  .orbit { width: 104px; min-height: 54px; padding: 8px; color: var(--canvas); font-size: .72rem; border: 5px solid var(--canvas); box-shadow: 0 0 0 1px currentColor; }
+  .home { left: 50%; top: -18px; transform: translateX(-50%); background: var(--blue); } .control { right: 1%; top: 23%; background: var(--green); } .recognized { right: 2%; bottom: 20%; background: var(--amber); } .included { left: 50%; bottom: -18px; transform: translateX(-50%); background: var(--violet); } .secure { left: 2%; bottom: 20%; background: var(--cyan); } .supported { left: 1%; top: 23%; background: var(--orange); }
+  .evidence-anchor { max-width: var(--max); margin: 0 auto; padding: 110px 56px; display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; border-bottom: 1px solid var(--line); }
+  .evidence-anchor h2, .value-paths h2, .limits h2, .methodology h2 { margin: 0; font-size: clamp(2.4rem,5vw,5.3rem); line-height: .98; letter-spacing: -.06em; }
+  .anchor-stats { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--line); }
+  .anchor-stats article { padding: 26px; border-right: 1px solid var(--line); }
+  .anchor-stats article:last-child { border-right: 0; }
+  .anchor-stats strong { display: block; color: var(--cyan); font-size: clamp(2rem,3.3vw,3.6rem); letter-spacing: -.06em; }
+  .anchor-stats p { color: var(--muted); line-height: 1.45; }
+  .anchor-stats a, .value-grid a { color: var(--cyan); font-size: .72rem; }
+  .anchor-note { grid-column: 2; margin: -40px 0 0; color: var(--faint); font-size: .8rem; }
+  .value-paths { max-width: var(--max); margin: 0 auto; padding: 100px 32px; }
+  .value-grid { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 50px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .value-grid article { min-height: 330px; padding: 30px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .value-grid span { color: var(--cyan); font-size: .72rem; }
+  .value-grid h3 { margin: 70px 0 14px; font-size: 1.35rem; }
+  .value-grid p { color: var(--muted); line-height: 1.6; }
+  .limits { max-width: var(--max); margin: 0 auto; padding: 100px 32px; display: grid; grid-template-columns: .72fr 1.28fr; gap: 70px; }
+  .limits-heading > p:last-child { color: var(--muted); line-height: 1.65; }
+  .limits-list { border-top: 1px solid var(--line); }
+  .limits-list article { position: relative; padding: 24px 0 24px 108px; border-bottom: 1px solid var(--line); }
+  .limits-list article > span { position: absolute; left: 0; top: 27px; color: var(--red); font-size: .68rem; text-transform: uppercase; letter-spacing: .09em; }
+  .limits-list h3 { margin: 0 0 8px; font-size: 1.1rem; }
+  .limits-list p { margin: 0; color: var(--muted); line-height: 1.55; }
+  .limits-list small { display: block; margin-top: 8px; color: var(--faint); }
+  .downloads { max-width: var(--max); margin: 0 auto; padding: 100px 56px; border-top: 1px solid var(--line); }
+  .downloads > div:first-child { display: grid; grid-template-columns: .65fr 1.35fr; column-gap: 70px; align-items: end; }
+  .downloads h2 { margin: 0; font-size: clamp(2.4rem,5vw,5.3rem); line-height: .98; letter-spacing: -.06em; }
+  .downloads > div:first-child > p:last-child { grid-column: 2; color: var(--muted); line-height: 1.6; }
+  .download-grid { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 44px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .download-grid a { min-height: 230px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-decoration: none; transition: background .2s ease; }
+  .download-grid a:hover { background: var(--surface); }
+  .download-grid span { margin-bottom: auto; color: var(--cyan); font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; }
+  .download-grid strong { font-size: 1.35rem; }
+  .download-grid small { margin-top: 9px; color: var(--muted); line-height: 1.45; }
+  .methodology { border-top: 1px solid var(--line); max-width: var(--max); margin: 0 auto; padding: 100px 56px; display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; }
+  .methodology ol { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .methodology li { display: grid; grid-template-columns: 60px 110px 1fr; gap: 14px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+  .methodology li span { color: var(--cyan); }
+  .methodology li p { margin: 0; color: var(--muted); }
+  .disclosure { grid-column: 2; color: var(--faint); font-size: .82rem; line-height: 1.55; }
+  footer { max-width: var(--max); margin: 0 auto; padding: 40px 32px; display: grid; grid-template-columns: 1fr auto auto; gap: 30px; align-items: center; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; }
+  footer strong { color: var(--ink); font-size: 1.25rem; } footer p { margin: 3px 0; }
+  @media (max-width: 980px) { .site-header { grid-template-columns: 1fr auto; } nav { display: none; } .hero { grid-template-columns: 1fr; } .hero-orbit { width: min(620px,82vw); } .evidence-anchor, .limits, .methodology { grid-template-columns: 1fr; } .anchor-note, .disclosure { grid-column: 1; margin: 0; } .value-grid { grid-template-columns: repeat(2,1fr); } .downloads > div:first-child { grid-template-columns: 1fr; } .downloads > div:first-child > p:last-child { grid-column: 1; } footer { grid-template-columns: 1fr; } }
+  @media (max-width: 620px) { .site-header { padding: 0 18px; } .brand small { display: none; } .repo-link { font-size: .7rem; padding: 9px 10px; } .hero { min-height: auto; padding: 70px 18px 90px; gap: 80px; } h1 { font-size: clamp(4rem,21vw,7rem); } .hero-orbit { width: 86vw; } .center { width: 118px; height: 118px; font-size: 1rem; } .orbit { width: 88px; font-size: .62rem; } .evidence-anchor { padding: 80px 18px; } .anchor-stats { grid-template-columns: 1fr; } .anchor-stats article { border-right: 0; border-bottom: 1px solid var(--line); } .value-paths, .limits, .methodology, .downloads { padding: 80px 18px; } .value-grid, .download-grid { grid-template-columns: 1fr; } .value-grid article { min-height: 250px; } .download-grid a { min-height: 190px; } .methodology li { grid-template-columns: 40px 1fr; } .methodology li p { grid-column: 2; } }
+</style>

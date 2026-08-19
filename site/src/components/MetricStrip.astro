@@ -1,0 +1,38 @@
+---
+interface Props {
+  counts: Record<string, number>;
+  cutoff: string;
+}
+const { counts, cutoff } = Astro.props;
+const metrics = [
+  [counts.sources, "source records"],
+  [counts.claims, "audited claims"],
+  [counts.entities, "entities"],
+  [counts.relationships, "relationships"],
+  [counts.contradictions, "contradictions"],
+];
+---
+
+<section class="metric-strip" aria-label="Frozen release statistics">
+  {metrics.map(([value, label]) => (
+    <div class="metric">
+      <strong>{value}</strong>
+      <span>{label}</span>
+    </div>
+  ))}
+  <div class="metric cutoff">
+    <strong>{cutoff}</strong>
+    <span>evidence cutoff</span>
+  </div>
+</section>
+
+<style>
+  .metric-strip { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); border-block: 1px solid var(--line); background: #081a28; }
+  .metric { min-height: 102px; padding: 22px 24px; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--line); }
+  .metric:last-child { border-right: 0; }
+  strong { font-size: clamp(1.4rem,2.4vw,2.3rem); line-height: 1; letter-spacing: -.04em; }
+  span { margin-top: 9px; color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+  .cutoff strong { font-size: clamp(1.1rem,1.6vw,1.5rem); letter-spacing: -.02em; }
+  @media (max-width: 900px) { .metric-strip { grid-template-columns: repeat(3,1fr); } .metric { border-bottom: 1px solid var(--line); } }
+  @media (max-width: 560px) { .metric-strip { grid-template-columns: repeat(2,1fr); } .metric { min-height: 86px; padding: 18px; } }
+</style>

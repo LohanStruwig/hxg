@@ -1,0 +1,65 @@
+{
+  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/entity.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "aliases": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Aliases",
+      "type": "array"
+    },
+    "canonical_name": {
+      "title": "Canonical Name",
+      "type": "string"
+    },
+    "description": {
+      "title": "Description",
+      "type": "string"
+    },
+    "entity_type": {
+      "title": "Entity Type",
+      "type": "string"
+    },
+    "evidence_ids": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^ENT-[A-Z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outcome"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "canonical_name",
+    "entity_type",
+    "description"
+  ],
+  "title": "Entity",
+  "type": "object"
+}

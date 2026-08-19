@@ -1,0 +1,32 @@
+[release]
+id = "hxg-v0.1.0"
+cutoff_date = "2026-08-19"
+start_date = "2024-01-01"
+historical_context_allowed = true
+minimum_qualifying_sources = 50
+
+[models]
+manager = "gpt-5.6-sol"
+discovery = "gpt-5.6-terra"
+extraction = "gpt-5.6-terra"
+contradiction = "gpt-5.6-sol"
+audit = "gpt-5.6-sol"
+
+[governance]
+description = "AI-led, evidence-audited research with disclosed human governance"
+guest_behavior_requires_independent_source = true
+causal_claims_require_independent_corroboration = true
+vendor_capabilities_are_vendor_stated = true
+publish_full_documents = false
+
+[runtime]
+default_cost_limit_usd = 10.0
+cache_directory = "data/cache"
+public_directory = "data/public"
+graphrag_directory = "data/private/graphrag"
+
+[publication]
+site_base = "/hxg"
+carousel_width = 1080
+carousel_height = 1350
+qr_requires_verified_url = true

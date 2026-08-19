@@ -1,0 +1,231 @@
+---
+interface Props {
+  claims: any[];
+  sources: any[];
+  entities: any[];
+  relationships: any[];
+}
+const { claims, sources, entities, relationships } = Astro.props;
+const sourceMap = Object.fromEntries(sources.map((source) => [source.id, source]));
+const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+---
+
+<section id="graph" class="graph-section" aria-labelledby="graph-title">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Explore the map</p>
+      <h2 id="graph-title">One graph. Three evidence states.</h2>
+    </div>
+    <div class="legend" aria-label="Relationship evidence legend">
+      <span><i class="solid"></i> Direct</span>
+      <span><i class="dashed"></i> Supported inference</span>
+      <span><i class="dotted"></i> Modeled scenario</span>
+    </div>
+  </div>
+
+  <div class="graph-shell">
+    <aside class="filters" aria-label="Graph filters">
+      <h3>Filter the evidence</h3>
+      <label>
+        <span>Find a node</span>
+        <input id="graph-search" type="search" placeholder="Guest, casting, privacy…" />
+      </label>
+      <fieldset>
+        <legend>Relationship type</legend>
+        <label><input type="checkbox" name="edge-status" value="direct" checked /> Direct</label>
+        <label><input type="checkbox" name="edge-status" value="inferred" checked /> Supported inference</label>
+        <label><input type="checkbox" name="edge-status" value="scenario" checked /> Modeled scenario</label>
+      </fieldset>
+      <fieldset>
+        <legend>Node family</legend>
+        <label><input type="checkbox" name="node-family" value="outcome" checked /> Human outcomes</label>
+        <label><input type="checkbox" name="node-family" value="technology" checked /> Technology</label>
+        <label><input type="checkbox" name="node-family" value="stakeholder" checked /> Stakeholders</label>
+        <label><input type="checkbox" name="node-family" value="value" checked /> Value pathways</label>
+        <label><input type="checkbox" name="node-family" value="context" checked /> Context and limits</label>
+        <label><input type="checkbox" name="node-family" value="human-experience" checked /> Center</label>
+      </fieldset>
+      <button id="reset-graph" class="quiet-button" type="button">Reset view</button>
+      <a class="download-link" href={`${baseUrl}data/hospitality-experience-graph.graphml`} download>Download GraphML</a>
+    </aside>
+
+    <div class="canvas-wrap">
+      <div id="cy" role="img" aria-label="Interactive Hospitality Experience Graph. Use the evidence table below for a complete non-graph representation."></div>
+      <p id="graph-status" class="graph-status" aria-live="polite">Select a node or relationship to inspect its evidence.</p>
+    </div>
+
+    <aside id="evidence-drawer" class="drawer" aria-labelledby="drawer-title">
+      <p class="drawer-kicker">Evidence detail</p>
+      <h3 id="drawer-title">Human experience</h3>
+      <p id="drawer-description">The human reason connected hospitality technology exists.</p>
+      <dl id="drawer-meta">
+        <div><dt>Status</dt><dd>Research synthesis</dd></div>
+        <div><dt>Confidence</dt><dd>See linked claims</dd></div>
+      </dl>
+      <div id="drawer-claims"></div>
+    </aside>
+  </div>
+
+  <details class="non-graph">
+    <summary>Browse every relationship without the graph</summary>
+    <div class="relationship-list">
+      {relationships.map((relationship) => {
+        const source = entities.find((entity) => entity.id === relationship.source_entity_id);
+        const target = entities.find((entity) => entity.id === relationship.target_entity_id);
+        return (
+          <article>
+            <span class:list={["status-mark", relationship.evidence_status]}>{relationship.evidence_status}</span>
+            <h3>{source?.canonical_name} <em>{relationship.predicate}</em> {target?.canonical_name}</h3>
+            <p>Claims: {relationship.supporting_claim_ids.join(", ")}</p>
+          </article>
+        );
+      })}
+    </div>
+  </details>
+</section>
+
+<script is:inline type="application/json" id="hxg-claims" set:html={JSON.stringify(claims)}></script>
+<script is:inline type="application/json" id="hxg-sources" set:html={JSON.stringify(sourceMap)}></script>
+
+<script>
+  import cytoscape from "cytoscape";
+
+  const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+  const claims = JSON.parse(document.querySelector<HTMLScriptElement>("#hxg-claims")!.textContent || "[]");
+  const sources = JSON.parse(document.querySelector<HTMLScriptElement>("#hxg-sources")!.textContent || "{}");
+  const claimMap = Object.fromEntries(claims.map((claim: any) => [claim.id, claim]));
+  const graph = await fetch(`${base}data/hospitality-experience-graph.json`).then((response) => response.json());
+
+  const cy = cytoscape({
+    container: document.getElementById("cy"),
+    elements: [...graph.elements.nodes, ...graph.elements.edges],
+    minZoom: .38,
+    maxZoom: 2.2,
+    style: [
+      { selector: "node", style: { "background-color": "data(color)", label: "data(label)", color: "#f7f3ea", "font-size": "12px", "font-weight": 700, "text-wrap": "wrap", "text-max-width": "100px", "text-valign": "bottom", "text-margin-y": 10, width: "34px", height: "34px", "border-width": "3px", "border-color": "#061522", "overlay-opacity": 0 } },
+      { selector: "node[entity_type = 'outcome']", style: { width: "54px", height: "54px", "font-size": "14px" } },
+      { selector: "node[id = 'ENT-HUMAN-EXPERIENCE']", style: { width: "84px", height: "84px", "font-size": "16px", "text-max-width": "130px", "border-width": "5px" } },
+      { selector: "edge", style: { width: 1.8, "line-color": "#5c7383", "target-arrow-color": "#5c7383", "target-arrow-shape": "triangle", "curve-style": "bezier", "arrow-scale": .7, opacity: .72, label: "data(predicate)", color: "#9eb0bc", "font-size": "8px", "text-rotation": "autorotate", "text-background-color": "#061522", "text-background-opacity": .86, "text-background-padding": "2px" } },
+      { selector: "edge[evidence_status = 'inferred']", style: { "line-style": "dashed" } },
+      { selector: "edge[evidence_status = 'scenario']", style: { "line-style": "dotted", "line-color": "#f5bc31", "target-arrow-color": "#f5bc31" } },
+      { selector: ".faded", style: { opacity: .08 } },
+      { selector: ".matched", style: { "border-color": "#f5bc31", "border-width": "6px" } },
+      { selector: ":selected", style: { "border-color": "#f7f3ea", "border-width": "6px", "line-color": "#f7f3ea", "target-arrow-color": "#f7f3ea", opacity: 1 } }
+    ],
+    layout: { name: "cose", animate: false, randomize: true, nodeRepulsion: () => 900000, idealEdgeLength: () => 125, edgeElasticity: () => 100, gravity: .45, numIter: 1500 }
+  });
+
+  const title = document.querySelector<HTMLElement>("#drawer-title")!;
+  const description = document.querySelector<HTMLElement>("#drawer-description")!;
+  const meta = document.querySelector<HTMLElement>("#drawer-meta")!;
+  const claimTarget = document.querySelector<HTMLElement>("#drawer-claims")!;
+  const status = document.querySelector<HTMLElement>("#graph-status")!;
+
+  function claimCards(ids: string[]) {
+    return ids.map((id) => claimMap[id]).filter(Boolean).map((claim: any) => {
+      const sourceLinks = claim.evidence_ids.map((sourceId: string) => {
+        const source = sources[sourceId];
+        return source ? `<a href="${source.url}" target="_blank" rel="noreferrer">${sourceId}</a>` : sourceId;
+      }).join(" · ");
+      return `<article class="drawer-claim"><span>${claim.classification}</span><strong>${claim.id}</strong><p>${claim.text}</p><small>${sourceLinks}</small></article>`;
+    }).join("");
+  }
+
+  cy.on("tap", "node", (event) => {
+    const data = event.target.data();
+    const ids = String(data.evidence_ids || "").split("|").filter(Boolean);
+    title.textContent = data.label;
+    description.textContent = data.description;
+    meta.innerHTML = `<div><dt>Family</dt><dd>${data.entity_type}</dd></div><div><dt>Claims</dt><dd>${ids.length || "See connected edges"}</dd></div>`;
+    claimTarget.innerHTML = claimCards(ids);
+    status.textContent = `${data.label} selected. ${ids.length} linked claim${ids.length === 1 ? "" : "s"}.`;
+  });
+
+  cy.on("tap", "edge", (event) => {
+    const data = event.target.data();
+    const ids = String(data.supporting_claim_ids || "").split("|").filter(Boolean);
+    title.textContent = `${event.target.source().data("label")} → ${event.target.target().data("label")}`;
+    description.textContent = data.predicate;
+    meta.innerHTML = `<div><dt>Status</dt><dd>${data.evidence_status}</dd></div><div><dt>Confidence</dt><dd>${Math.round(Number(data.confidence) * 100)}%</dd></div>`;
+    claimTarget.innerHTML = claimCards(ids);
+    status.textContent = `${data.evidence_status} relationship selected. ${ids.length} supporting claim${ids.length === 1 ? "" : "s"}.`;
+  });
+
+  function applyFilters() {
+    const edgeStatuses = new Set(Array.from(document.querySelectorAll<HTMLInputElement>("input[name='edge-status']:checked")).map((input) => input.value));
+    const families = new Set(Array.from(document.querySelectorAll<HTMLInputElement>("input[name='node-family']:checked")).map((input) => input.value));
+    cy.batch(() => {
+      cy.nodes().forEach((node) => { node.style("display", families.has(node.data("entity_type")) ? "element" : "none"); });
+      cy.edges().forEach((edge) => { edge.style("display", edgeStatuses.has(edge.data("evidence_status")) && edge.source().visible() && edge.target().visible() ? "element" : "none"); });
+    });
+  }
+  document.querySelectorAll<HTMLInputElement>("input[name='edge-status'], input[name='node-family']").forEach((input) => input.addEventListener("change", applyFilters));
+
+  document.querySelector<HTMLInputElement>("#graph-search")!.addEventListener("input", (event) => {
+    const query = (event.target as HTMLInputElement).value.trim().toLowerCase();
+    cy.nodes().removeClass("matched faded");
+    cy.edges().removeClass("faded");
+    if (!query) return;
+    const matches = cy.nodes().filter((node) => `${node.data("label")} ${node.data("description")}`.toLowerCase().includes(query));
+    cy.elements().addClass("faded");
+    matches.removeClass("faded").addClass("matched");
+    matches.connectedEdges().removeClass("faded");
+    matches.neighborhood("node").removeClass("faded");
+    if (matches.length) cy.animate({ fit: { eles: matches, padding: 100 }, duration: 260 });
+  });
+
+  document.querySelector<HTMLButtonElement>("#reset-graph")!.addEventListener("click", () => {
+    document.querySelector<HTMLInputElement>("#graph-search")!.value = "";
+    document.querySelectorAll<HTMLInputElement>("input[type='checkbox']").forEach((input) => input.checked = true);
+    cy.elements().removeClass("matched faded").style("display", "element");
+    cy.fit(undefined, 70);
+  });
+</script>
+
+<style>
+  .graph-section { max-width: var(--max); margin: 0 auto; padding: 110px 32px 70px; }
+  .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 32px; }
+  h2 { margin: 0; max-width: 720px; font-size: clamp(2.2rem,4vw,4.4rem); line-height: .98; letter-spacing: -.055em; }
+  .legend { display: flex; flex-wrap: wrap; gap: 16px; color: var(--muted); font-size: .8rem; }
+  .legend span { display: inline-flex; align-items: center; gap: 8px; }
+  .legend i { width: 30px; height: 0; border-top: 2px solid var(--muted); }
+  .legend .dashed { border-top-style: dashed; }
+  .legend .dotted { border-top: 3px dotted var(--amber); }
+  .graph-shell { min-height: 720px; display: grid; grid-template-columns: 230px minmax(0,1fr) 300px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 22px 80px rgba(0,0,0,.26); }
+  .filters, .drawer { padding: 24px; background: #081a28; }
+  .filters { border-right: 1px solid var(--line); }
+  .drawer { border-left: 1px solid var(--line); overflow: auto; max-height: 720px; }
+  .filters h3, .drawer h3 { margin: 0 0 20px; font-size: 1.05rem; }
+  .filters label > span, legend { display: block; color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 9px; }
+  input[type="search"] { width: 100%; min-height: 42px; border: 1px solid var(--line); background: var(--canvas); color: var(--ink); padding: 0 12px; border-radius: 6px; }
+  fieldset { border: 0; padding: 0; margin: 28px 0; }
+  fieldset label { display: flex; gap: 9px; align-items: center; color: var(--muted); font-size: .86rem; margin: 11px 0; }
+  input[type="checkbox"] { accent-color: var(--cyan); width: 16px; height: 16px; }
+  .quiet-button, .download-link { width: 100%; min-height: 42px; display: grid; place-items: center; border: 1px solid var(--line); background: transparent; color: var(--ink); text-decoration: none; cursor: pointer; }
+  .download-link { margin-top: 10px; background: var(--ink); color: var(--canvas); font-weight: 800; }
+  .canvas-wrap { position: relative; min-width: 0; }
+  #cy { position: absolute; inset: 0 0 42px; }
+  .graph-status { position: absolute; inset: auto 0 0; min-height: 42px; margin: 0; padding: 12px 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; background: #081a28; }
+  .drawer-kicker { margin: 0 0 10px; color: var(--amber); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .drawer > p:not(.drawer-kicker) { color: var(--muted); line-height: 1.55; }
+  dl { margin: 24px 0; border-block: 1px solid var(--line); }
+  dl div { display: grid; grid-template-columns: 90px 1fr; gap: 10px; padding: 12px 0; }
+  dt { color: var(--faint); }
+  dd { margin: 0; }
+  :global(.drawer-claim) { padding: 16px 0; border-top: 1px solid var(--line); }
+  :global(.drawer-claim span) { color: var(--cyan); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
+  :global(.drawer-claim strong) { display: block; margin-top: 4px; font-size: .82rem; }
+  :global(.drawer-claim p) { color: var(--muted); font-size: .86rem; line-height: 1.5; }
+  :global(.drawer-claim small) { display: flex; flex-wrap: wrap; gap: 4px; color: var(--cyan); }
+  .non-graph { margin-top: 22px; border: 1px solid var(--line); }
+  .non-graph summary { cursor: pointer; padding: 18px; font-weight: 750; }
+  .relationship-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); border-top: 1px solid var(--line); }
+  .relationship-list article { padding: 18px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .relationship-list h3 { margin: 8px 0; font-size: .95rem; }
+  .relationship-list em { color: var(--muted); font-weight: 500; }
+  .relationship-list p { margin: 0; color: var(--faint); font-size: .76rem; }
+  .status-mark { font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
+  .status-mark.direct { color: var(--cyan); } .status-mark.inferred { color: var(--violet); } .status-mark.scenario { color: var(--amber); }
+  @media (max-width: 1100px) { .graph-shell { grid-template-columns: 210px minmax(0,1fr); } .drawer { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); max-height: none; } }
+  @media (max-width: 760px) { .graph-section { padding: 80px 18px 50px; } .section-heading { align-items: start; flex-direction: column; } .graph-shell { display: block; } .filters { border-right: 0; border-bottom: 1px solid var(--line); } .canvas-wrap { height: 590px; } .drawer { border-left: 0; } .relationship-list { grid-template-columns: 1fr; } }
+</style>

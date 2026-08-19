@@ -1,0 +1,63 @@
+from __future__ import annotations
+
+import hashlib
+from pathlib import Path
+
+import pymupdf
+
+from hxg.graph import export_graphs
+from hxg.io import GRAPH_DIR, PUBLIC_DIR, load_records, read_json
+from hxg.models import Claim, Relationship, RunManifest, Source
+from hxg.validation import validate_graph_parity, validate_public_release
+
+
+def digest(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def test_release_integrity() -> None:
+    counts = validate_public_release()
+    assert counts["sources"] >= 50
+    assert counts["relationships"] > 0
+
+
+def test_every_relationship_resolves_to_claim_and_source() -> None:
+    sources = {record.id for record in load_records(PUBLIC_DIR / "sources.json", Source)}
+    claims = {record.id: record for record in load_records(PUBLIC_DIR / "claims.json", Claim)}
+    relationships = load_records(PUBLIC_DIR / "relationships.json", Relationship)
+    for relationship in relationships:
+        for claim_id in relationship.supporting_claim_ids:
+            assert claim_id in claims
+            assert set(claims[claim_id].evidence_ids) <= sources
+
+
+def test_manifest_cutoff() -> None:
+    manifest = RunManifest.model_validate(read_json(PUBLIC_DIR / "run-manifest.json"))
+    for source in load_records(PUBLIC_DIR / "sources.json", Source):
+        assert source.publication_date <= manifest.cutoff_date
+
+
+def test_graphml_json_parity() -> None:
+    validate_graph_parity()
+
+
+def test_graph_exports_are_deterministic() -> None:
+    export_graphs()
+    first = {
+        path.name: digest(path)
+        for path in (
+            GRAPH_DIR / "hospitality-experience-graph.graphml",
+            GRAPH_DIR / "hospitality-experience-graph.json",
+            GRAPH_DIR / "hospitality-experience-map.svg",
+        )
+    }
+    export_graphs()
+    second = {path.name: digest(path) for path in GRAPH_DIR.iterdir() if path.name in first}
+    assert first == second
+
+
+def test_flattened_carousel_page_count_and_size() -> None:
+    document = pymupdf.open(Path("reports/linkedin-carousel.pdf"))
+    assert len(document) == 8
+    assert {(page.rect.width, page.rect.height) for page in document} == {(1080.0, 1350.0)}
+    assert all(len(page.get_images(full=True)) == 1 for page in document)

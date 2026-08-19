@@ -1,0 +1,124 @@
+{
+  "$defs": {
+    "AuthorityTier": {
+      "enum": [
+        "primary",
+        "independent-research",
+        "standard-or-government",
+        "vendor-primary",
+        "historical-context"
+      ],
+      "title": "AuthorityTier",
+      "type": "string"
+    }
+  },
+  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/source.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "access_status": {
+      "enum": [
+        "accessible",
+        "limited",
+        "archived"
+      ],
+      "title": "Access Status",
+      "type": "string"
+    },
+    "accessed_date": {
+      "format": "date",
+      "title": "Accessed Date",
+      "type": "string"
+    },
+    "authority_tier": {
+      "$ref": "#/$defs/AuthorityTier"
+    },
+    "content_hash": {
+      "pattern": "^sha256:[0-9a-f]{64}$",
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "geography": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Geography",
+      "type": "array"
+    },
+    "hash_basis": {
+      "enum": [
+        "retrieved-content",
+        "metadata-record"
+      ],
+      "title": "Hash Basis",
+      "type": "string"
+    },
+    "historical_context": {
+      "default": false,
+      "title": "Historical Context",
+      "type": "boolean"
+    },
+    "id": {
+      "pattern": "^SRC-[A-Z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "licensing_status": {
+      "title": "Licensing Status",
+      "type": "string"
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notes"
+    },
+    "publication_date": {
+      "format": "date",
+      "title": "Publication Date",
+      "type": "string"
+    },
+    "publisher": {
+      "title": "Publisher",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    },
+    "url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "publisher",
+    "url",
+    "publication_date",
+    "accessed_date",
+    "geography",
+    "authority_tier",
+    "licensing_status",
+    "content_hash",
+    "hash_basis",
+    "access_status"
+  ],
+  "title": "Source",
+  "type": "object"
+}

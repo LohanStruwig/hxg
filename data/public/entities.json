@@ -1,0 +1,485 @@
+[
+  {
+    "aliases": [
+      "guest experience"
+    ],
+    "canonical_name": "Human experience",
+    "description": "The human reason connected hospitality technology exists.",
+    "entity_type": "human-experience",
+    "evidence_ids": [
+      "CLM-ORCHESTRATION-THESIS-01"
+    ],
+    "id": "ENT-HUMAN-EXPERIENCE",
+    "outcome": "human-experience",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "familiarity",
+      "continuity"
+    ],
+    "canonical_name": "Feel at home",
+    "description": "Use familiar content and devices with less relearning.",
+    "entity_type": "outcome",
+    "evidence_ids": [
+      "CLM-JDP-USAGE-01",
+      "CLM-CAST-CROSSVENDOR-01"
+    ],
+    "id": "ENT-FEEL-HOME",
+    "outcome": "feel-at-home",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "comfort",
+      "autonomy"
+    ],
+    "canonical_name": "Feel in control",
+    "description": "Adjust room conditions and connected functions.",
+    "entity_type": "outcome",
+    "evidence_ids": [
+      "CLM-SAM-SMARTTHINGS-01",
+      "CLM-ENERGY-HVAC-01"
+    ],
+    "id": "ENT-FEEL-CONTROL",
+    "outcome": "feel-in-control",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "relevance",
+      "personalization"
+    ],
+    "canonical_name": "Feel recognized",
+    "description": "Receive contextually relevant information and services.",
+    "entity_type": "outcome",
+    "evidence_ids": [
+      "CLM-SAM-BI-01",
+      "CLM-ORACLE-INTEGRATION-01"
+    ],
+    "id": "ENT-FEEL-RECOGNIZED",
+    "outcome": "feel-recognized",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "accessibility",
+      "language inclusion"
+    ],
+    "canonical_name": "Feel included",
+    "description": "Reduce language, sensory, and interface barriers.",
+    "entity_type": "outcome",
+    "evidence_ids": [
+      "CLM-SAM-LIVE-TRANSLATE-01",
+      "CLM-WCAG-NONGRAPH-01"
+    ],
+    "id": "ENT-FEEL-INCLUDED",
+    "outcome": "feel-included",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "privacy",
+      "trust"
+    ],
+    "canonical_name": "Feel secure",
+    "description": "Pair, use, and leave without exposing personal sessions.",
+    "entity_type": "outcome",
+    "evidence_ids": [
+      "CLM-SAM-PRIVACY-01",
+      "CLM-NIST-PMS-RISK-01"
+    ],
+    "id": "ENT-FEEL-SECURE",
+    "outcome": "feel-secure",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "service convenience",
+      "responsiveness"
+    ],
+    "canonical_name": "Feel supported",
+    "description": "Access services and resolve problems with less friction.",
+    "entity_type": "outcome",
+    "evidence_ids": [
+      "CLM-SAM-CONCIERGE-01",
+      "CLM-JDP-FRICTION-01"
+    ],
+    "id": "ENT-FEEL-SUPPORTED",
+    "outcome": "feel-supported",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "hotel TV",
+      "in-room screen"
+    ],
+    "canonical_name": "Connected hospitality display",
+    "description": "A managed display that connects content, guest devices, property systems, and services.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-ORCHESTRATION-THESIS-01"
+    ],
+    "id": "ENT-CONNECTED-DISPLAY",
+    "outcome": "technology",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "Google Cast",
+      "Apple AirPlay"
+    ],
+    "canonical_name": "Guest-device casting",
+    "description": "Short-lived pairing from a guest device to an in-room display.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-CAST-CROSSVENDOR-01",
+      "CLM-SAM-PRIVACY-01"
+    ],
+    "id": "ENT-CASTING",
+    "outcome": "feel-at-home",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "HVAC integration",
+      "room automation"
+    ],
+    "canonical_name": "IoT room controls",
+    "description": "Connected control of compatible room and building devices.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-SAM-SMARTTHINGS-01"
+    ],
+    "id": "ENT-IOT-CONTROLS",
+    "outcome": "feel-in-control",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "property-management integration"
+    ],
+    "canonical_name": "PMS integration",
+    "description": "Exchange of stay, checkout, service, and guest-context events with property systems.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-ORACLE-INTEGRATION-01",
+      "CLM-SAM-PRIVACY-01"
+    ],
+    "id": "ENT-PMS-INTEGRATION",
+    "outcome": "feel-recognized",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "translation",
+      "captioning",
+      "non-graph navigation"
+    ],
+    "canonical_name": "Language and accessible presentation",
+    "description": "Language support plus interfaces whose meaning does not rely on one visual channel.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-SAM-LIVE-TRANSLATE-01",
+      "CLM-WCAG-NONGRAPH-01"
+    ],
+    "id": "ENT-LANGUAGE-ACCESS",
+    "outcome": "feel-included",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "checkout deletion",
+      "access control"
+    ],
+    "canonical_name": "Privacy and security controls",
+    "description": "Controls for pairing lifecycle, credentials, access, and monitoring.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-SAM-PRIVACY-01",
+      "CLM-NIST-PMS-RISK-01"
+    ],
+    "id": "ENT-PRIVACY-CONTROLS",
+    "outcome": "feel-secure",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "room-service ordering",
+      "service booking"
+    ],
+    "canonical_name": "Digital concierge and service channel",
+    "description": "Guest-facing access to property information, orders, bookings, and requests.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-SAM-CONCIERGE-01",
+      "CLM-ORACLE-INTEGRATION-01"
+    ],
+    "id": "ENT-DIGITAL-CONCIERGE",
+    "outcome": "feel-supported",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "LYNK Cloud",
+      "Pro:Centric"
+    ],
+    "canonical_name": "Cloud content and device management",
+    "description": "Central status, configuration, content, and service management.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-SAM-LYNK-MANAGE-01",
+      "CLM-REMOTE-SUPPORT-INFERENCE-01"
+    ],
+    "id": "ENT-CLOUD-MANAGEMENT",
+    "outcome": "technology",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "Samsung hospitality ecosystem"
+    ],
+    "canonical_name": "Samsung reference architecture",
+    "description": "A clearly labeled vendor-stated example, not HXG ownership or endorsement.",
+    "entity_type": "technology",
+    "evidence_ids": [
+      "CLM-SAM-ARCH-01"
+    ],
+    "id": "ENT-SAMSUNG-REFERENCE",
+    "outcome": "technology",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "traveler"
+    ],
+    "canonical_name": "Guest",
+    "description": "Receives comfort, familiarity, control, accessibility, privacy, information, and service convenience.",
+    "entity_type": "stakeholder",
+    "evidence_ids": [
+      "CLM-JDP-SAMPLE-01"
+    ],
+    "id": "ENT-GUEST",
+    "outcome": "stakeholder",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "hotel operator"
+    ],
+    "canonical_name": "Property owner and operator",
+    "description": "Operates the property and carries revenue, cost, service, and risk outcomes.",
+    "entity_type": "stakeholder",
+    "evidence_ids": [
+      "CLM-AHLA-GOPPAR-01"
+    ],
+    "id": "ENT-PROPERTY-OPERATOR",
+    "outcome": "stakeholder",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "hotel brand",
+      "management company"
+    ],
+    "canonical_name": "Brand and management company",
+    "description": "Governs portfolio consistency, standards, content, and scalable experience.",
+    "entity_type": "stakeholder",
+    "evidence_ids": [
+      "CLM-JDP-FRICTION-01"
+    ],
+    "id": "ENT-BRAND",
+    "outcome": "stakeholder",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "display manufacturer",
+      "platform provider"
+    ],
+    "canonical_name": "OEM and platform owner",
+    "description": "Provides hardware, software, cloud services, support, and upgrades.",
+    "entity_type": "stakeholder",
+    "evidence_ids": [
+      "CLM-SAM-ARCH-01"
+    ],
+    "id": "ENT-OEM-PLATFORM",
+    "outcome": "stakeholder",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "reseller",
+      "installer"
+    ],
+    "canonical_name": "Dealer and system integrator",
+    "description": "Designs, installs, configures, integrates, trains, and supports the system.",
+    "entity_type": "stakeholder",
+    "evidence_ids": [
+      "CLM-ORCHESTRATION-THESIS-01"
+    ],
+    "id": "ENT-INTEGRATOR",
+    "outcome": "stakeholder",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "ecosystem partners"
+    ],
+    "canonical_name": "PMS, POS, IoT, content and service partners",
+    "description": "Provide interoperable systems, content, transactions, and services.",
+    "entity_type": "stakeholder",
+    "evidence_ids": [
+      "CLM-ORACLE-INTEGRATION-01"
+    ],
+    "id": "ENT-TECH-PARTNERS",
+    "outcome": "stakeholder",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "comfort",
+      "reduced effort",
+      "trust"
+    ],
+    "canonical_name": "Human value",
+    "description": "Time, effort, familiarity, comfort, accessibility, control, and trust.",
+    "entity_type": "value",
+    "evidence_ids": [
+      "CLM-ORCHESTRATION-THESIS-01"
+    ],
+    "id": "ENT-HUMAN-VALUE",
+    "outcome": "value",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "property economics"
+    ],
+    "canonical_name": "Property value",
+    "description": "Ancillary contribution, operating efficiency, support, energy, and experience indicators.",
+    "entity_type": "value",
+    "evidence_ids": [
+      "CLM-AHLA-GOPPAR-01"
+    ],
+    "id": "ENT-PROPERTY-VALUE",
+    "outcome": "value",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "ecosystem revenue"
+    ],
+    "canonical_name": "Ecosystem value",
+    "description": "Hardware, software, services, integration, support, subscriptions, and transactions.",
+    "entity_type": "value",
+    "evidence_ids": [
+      "CLM-SAM-ARCH-01",
+      "CLM-ORACLE-INTEGRATION-01"
+    ],
+    "id": "ENT-ECOSYSTEM-VALUE",
+    "outcome": "value",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "industry scale"
+    ],
+    "canonical_name": "Economic context",
+    "description": "Industry scale that is explicitly not attributable to connected screens.",
+    "entity_type": "context",
+    "evidence_ids": [
+      "CLM-AHLA-SPEND-01",
+      "CLM-WTTC-GDP-01"
+    ],
+    "id": "ENT-MACRO-CONTEXT",
+    "outcome": "context",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "service revenue"
+    ],
+    "canonical_name": "Ancillary contribution",
+    "description": "Property-specific contribution from service discovery and conversion.",
+    "entity_type": "value",
+    "evidence_ids": [
+      "CLM-ANCILLARY-SCENARIO-01"
+    ],
+    "id": "ENT-ANCILLARY-REVENUE",
+    "outcome": "value",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "energy savings"
+    ],
+    "canonical_name": "Energy efficiency",
+    "description": "Property-specific avoided energy expense supported by verified performance.",
+    "entity_type": "value",
+    "evidence_ids": [
+      "CLM-ENERGY-SCENARIO-01"
+    ],
+    "id": "ENT-ENERGY-EFFICIENCY",
+    "outcome": "value",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "remote support"
+    ],
+    "canonical_name": "Operational support efficiency",
+    "description": "Potential avoidance of selected on-site interventions through remote visibility.",
+    "entity_type": "value",
+    "evidence_ids": [
+      "CLM-REMOTE-SUPPORT-INFERENCE-01"
+    ],
+    "id": "ENT-OPERATIONAL-SUPPORT",
+    "outcome": "value",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "gateway dependency"
+    ],
+    "canonical_name": "Network and integration dependency",
+    "description": "Capabilities may fail or be unavailable without compatible networks and integrations.",
+    "entity_type": "risk",
+    "evidence_ids": [
+      "CLM-CAST-CROSSVENDOR-01"
+    ],
+    "id": "ENT-NETWORK-DEPENDENCY",
+    "outcome": "context",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "privacy governance"
+    ],
+    "canonical_name": "Data governance",
+    "description": "Lawful, secure, limited use of guest, device, and property data.",
+    "entity_type": "risk",
+    "evidence_ids": [
+      "CLM-NIST-PMS-RISK-01"
+    ],
+    "id": "ENT-DATA-GOVERNANCE",
+    "outcome": "context",
+    "schema_version": "1.0.0"
+  },
+  {
+    "aliases": [
+      "regional availability",
+      "separate licensing"
+    ],
+    "canonical_name": "Availability and licensing limits",
+    "description": "Model, region, language, channel, software, and licensing constraints disclosed by vendors.",
+    "entity_type": "risk",
+    "evidence_ids": [
+      "CLM-SAM-LIVE-TRANSLATE-01",
+      "CLM-SAM-LYNK-MANAGE-01"
+    ],
+    "id": "ENT-AVAILABILITY-LIMITS",
+    "outcome": "context",
+    "schema_version": "1.0.0"
+  }
+]

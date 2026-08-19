@@ -1,0 +1,183 @@
+{
+  "$defs": {
+    "ClaimClass": {
+      "enum": [
+        "fact",
+        "supported-inference",
+        "modeled-scenario"
+      ],
+      "title": "ClaimClass",
+      "type": "string"
+    },
+    "ReviewState": {
+      "enum": [
+        "audited",
+        "vendor-stated",
+        "limited",
+        "draft"
+      ],
+      "title": "ReviewState",
+      "type": "string"
+    }
+  },
+  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/claim.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "classification": {
+      "$ref": "#/$defs/ClaimClass"
+    },
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Evidence Ids",
+      "type": "array"
+    },
+    "excerpt": {
+      "maxLength": 320,
+      "title": "Excerpt",
+      "type": "string"
+    },
+    "geography": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Geography",
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^CLM-[A-Z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "limitations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "locator": {
+      "title": "Locator",
+      "type": "string"
+    },
+    "metric": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Metric"
+    },
+    "outcome": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outcome"
+    },
+    "period": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Period"
+    },
+    "review_state": {
+      "$ref": "#/$defs/ReviewState"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "stakeholder": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Stakeholder"
+    },
+    "text": {
+      "title": "Text",
+      "type": "string"
+    },
+    "unit": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Unit"
+    },
+    "value": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Value"
+    },
+    "value_type": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Value Type"
+    }
+  },
+  "required": [
+    "id",
+    "text",
+    "classification",
+    "evidence_ids",
+    "geography",
+    "confidence",
+    "limitations",
+    "review_state",
+    "excerpt",
+    "locator"
+  ],
+  "title": "Claim",
+  "type": "object"
+}

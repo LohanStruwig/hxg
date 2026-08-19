@@ -1,0 +1,63 @@
+{
+  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/contradiction.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "assessment": {
+      "title": "Assessment",
+      "type": "string"
+    },
+    "claim_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Claim Ids",
+      "type": "array"
+    },
+    "id": {
+      "pattern": "^CON-[A-Z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "resolution": {
+      "title": "Resolution",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "severity": {
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "source_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Source Ids",
+      "type": "array"
+    },
+    "title": {
+      "title": "Title",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "claim_ids",
+    "source_ids",
+    "assessment",
+    "resolution",
+    "severity"
+  ],
+  "title": "Contradiction",
+  "type": "object"
+}

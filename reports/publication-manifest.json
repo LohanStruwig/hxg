@@ -1,0 +1,33 @@
+{
+  "alt_text": {
+    "1": "HXG title slide introducing the thesis that the in-room display is becoming an experience-orchestration layer.",
+    "2": "Three statistics from J.D. Power: 74 percent availability, 62 percent usage, and a 44,787-person sample.",
+    "3": "A six-spoke wheel places human experience at the center of feeling at home, in control, recognized, included, secure, and supported.",
+    "4": "Human value and property value are separated, with property-specific formulas for ancillary contribution, energy, and support savings.",
+    "5": "Six stakeholder groups surround the connected display ecosystem, with their distinct value mechanisms and an economic-context caveat.",
+    "6": "A clearly labeled vendor-stated Samsung reference architecture with seven components and availability limitations.",
+    "7": "Three evidence states—direct fact, supported inference, and modeled scenario—plus four major contradiction-audit findings.",
+    "8": "Methodology slide lists eight research stages, generated release counts, the public explorer URL, and a QR code only after live verification."
+  },
+  "carousel_pages": 8,
+  "carousel_size": [
+    1080,
+    1350
+  ],
+  "evidence_cutoff": "2026-08-19",
+  "generated_counts": {
+    "claims": 29,
+    "contradictions": 6,
+    "countries": 3,
+    "entities": 32,
+    "relationships": 42,
+    "sources": 56
+  },
+  "poster_size": [
+    1800,
+    2700
+  ],
+  "qr_included": false,
+  "release": "hxg-v0.1.0",
+  "verified_url": null
+}

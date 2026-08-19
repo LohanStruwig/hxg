@@ -1,0 +1,76 @@
+{
+  "$defs": {
+    "EvidenceStatus": {
+      "enum": [
+        "direct",
+        "inferred",
+        "scenario"
+      ],
+      "title": "EvidenceStatus",
+      "type": "string"
+    }
+  },
+  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/relationship.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Confidence",
+      "type": "number"
+    },
+    "evidence_status": {
+      "$ref": "#/$defs/EvidenceStatus"
+    },
+    "id": {
+      "pattern": "^REL-[A-Z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "limitations": {
+      "default": [],
+      "items": {
+        "type": "string"
+      },
+      "title": "Limitations",
+      "type": "array"
+    },
+    "predicate": {
+      "title": "Predicate",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_entity_id": {
+      "title": "Source Entity Id",
+      "type": "string"
+    },
+    "supporting_claim_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "title": "Supporting Claim Ids",
+      "type": "array"
+    },
+    "target_entity_id": {
+      "title": "Target Entity Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "source_entity_id",
+    "predicate",
+    "target_entity_id",
+    "supporting_claim_ids",
+    "evidence_status",
+    "confidence"
+  ],
+  "title": "Relationship",
+  "type": "object"
+}

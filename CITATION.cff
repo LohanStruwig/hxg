@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use HXG, please cite this release."
+title: "Hospitality Experience Graph (HXG)"
+type: dataset
+version: 0.1.0
+date-released: 2026-08-19
+license: CC-BY-4.0
+repository-code: "https://github.com/hospitality-experience-graph/hxg"
+url: "https://hospitality-experience-graph.github.io/hxg/"
+abstract: "An AI-led, evidence-audited map of connected hospitality experiences with disclosed human governance."
+authors:
+  - family-names: Struwig
+    given-names: Lohan
+keywords:
+  - hospitality
+  - knowledge graph
+  - evidence audit
+  - connected experience
+  - GraphRAG

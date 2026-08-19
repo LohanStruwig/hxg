@@ -1,0 +1,110 @@
+{
+  "schema_version": "1.0.0",
+  "release": "hxg-v0.1.0",
+  "slides": [
+    {
+      "number": 1,
+      "eyebrow": "HXG · INDEPENDENT RESEARCH",
+      "title": "From Screen\nto Stay",
+      "subtitle": "An AI-led, evidence-audited map of connected hospitality experiences.",
+      "body": "The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.",
+      "evidence_ids": ["CLM-ORCHESTRATION-THESIS-01"],
+      "alt_text": "HXG title slide introducing the thesis that the in-room display is becoming an experience-orchestration layer."
+    },
+    {
+      "number": 2,
+      "eyebrow": "INDEPENDENT GUEST EVIDENCE",
+      "title": "The screen is already a consequential touchpoint.",
+      "subtitle": "J.D. Power · 2026 North America Hotel Guest Satisfaction Index Study",
+      "stats": [
+        {"value": "74%", "label": "smart-TV availability", "evidence_id": "CLM-JDP-AVAIL-01"},
+        {"value": "62%", "label": "guest usage", "evidence_id": "CLM-JDP-USAGE-01"},
+        {"value": "44,787", "label": "branded hotel guests", "evidence_id": "CLM-JDP-SAMPLE-01"}
+      ],
+      "body": "Availability and use establish relevance—not causal satisfaction, loyalty, or revenue.",
+      "evidence_ids": ["CLM-JDP-AVAIL-01", "CLM-JDP-USAGE-01", "CLM-JDP-SAMPLE-01"],
+      "alt_text": "Three statistics from J.D. Power: 74 percent availability, 62 percent usage, and a 44,787-person sample."
+    },
+    {
+      "number": 3,
+      "eyebrow": "THE EXPERIENCE MAP",
+      "title": "Six outcomes. One human center.",
+      "outcomes": [
+        {"name": "Feel at home", "detail": "Familiar content and devices", "color": "blue"},
+        {"name": "Feel in control", "detail": "Comfort and autonomy", "color": "green"},
+        {"name": "Feel recognized", "detail": "Relevant services", "color": "amber"},
+        {"name": "Feel included", "detail": "Less language and access friction", "color": "violet"},
+        {"name": "Feel secure", "detail": "Privacy and trust", "color": "cyan"},
+        {"name": "Feel supported", "detail": "Convenient, responsive service", "color": "orange"}
+      ],
+      "evidence_ids": ["CLM-CAST-CROSSVENDOR-01", "CLM-SAM-SMARTTHINGS-01", "CLM-SAM-BI-01", "CLM-SAM-LIVE-TRANSLATE-01", "CLM-SAM-PRIVACY-01", "CLM-SAM-CONCIERGE-01"],
+      "alt_text": "A six-spoke wheel places human experience at the center of feeling at home, in control, recognized, included, secure, and supported."
+    },
+    {
+      "number": 4,
+      "eyebrow": "VALUE PATHWAYS",
+      "title": "Value starts human.\nProperty value must be measured.",
+      "columns": [
+        {"heading": "Human value", "body": "Time saved · reduced effort · familiarity · comfort · accessibility · control · trust"},
+        {"heading": "Property value", "body": "Ancillary contribution · remote support · energy efficiency · experience indicators"}
+      ],
+      "formulae": [
+        "Ancillary contribution = occupied room nights × engagement × conversion × margin",
+        "Energy savings = baseline spend × controllable share × verified reduction",
+        "Support savings = remotely resolved incidents × avoided dispatch cost"
+      ],
+      "context": "ENERGY STAR: about 6% of lodging operating costs are energy; heating and cooling account for almost 40% of electricity use. Current agency guidance—not new 2026 measurement.",
+      "evidence_ids": ["CLM-ENERGY-COST-01", "CLM-ENERGY-HVAC-01", "CLM-ENERGY-SCENARIO-01", "CLM-ANCILLARY-SCENARIO-01", "CLM-REMOTE-SUPPORT-INFERENCE-01"],
+      "alt_text": "Human value and property value are separated, with property-specific formulas for ancillary contribution, energy, and support savings."
+    },
+    {
+      "number": 5,
+      "eyebrow": "ECOSYSTEM VALUE",
+      "title": "The screen succeeds through relationships—not specifications alone.",
+      "stakeholders": [
+        {"name": "Guest", "value": "Comfort · control · inclusion · privacy · service"},
+        {"name": "Owner / operator", "value": "Revenue pathways · cost visibility · consistency"},
+        {"name": "Brand / manager", "value": "Standards · content · portfolio scale"},
+        {"name": "OEM / platform", "value": "Hardware · software · cloud · support"},
+        {"name": "Dealer / integrator", "value": "Design · install · integrate · train"},
+        {"name": "Technology partners", "value": "PMS · POS · IoT · content · services"}
+      ],
+      "context": "Nearly $805B projected U.S. hotel guest spending in 2026 is economic context—not screen-attributable revenue.",
+      "evidence_ids": ["CLM-AHLA-SPEND-01", "CLM-SAM-ARCH-01", "CLM-ORACLE-INTEGRATION-01"],
+      "alt_text": "Six stakeholder groups surround the connected display ecosystem, with their distinct value mechanisms and an economic-context caveat."
+    },
+    {
+      "number": 6,
+      "eyebrow": "VENDOR-STATED REFERENCE ARCHITECTURE",
+      "title": "Samsung is one reference case—not the owner of the research.",
+      "architecture": ["Hospitality display", "Google Cast + Apple AirPlay", "LYNK Cloud", "SmartThings Pro", "PMS / POS integration", "Security + checkout deletion", "Analytics + service channel"],
+      "body": "Samsung documentation shows how display hardware, cloud management, casting, IoT, PMS-connected services, security controls and analytics can form one hybrid stack.",
+      "limitations": "Availability varies by model, region, language, channel, device, software and licensing. Capability evidence does not establish guest or financial outcomes.",
+      "evidence_ids": ["CLM-SAM-ARCH-01", "CLM-SAM-PRIVACY-01", "CLM-SAM-LYNK-MANAGE-01", "CLM-SAM-SMARTTHINGS-01"],
+      "alt_text": "A clearly labeled vendor-stated Samsung reference architecture with seven components and availability limitations."
+    },
+    {
+      "number": 7,
+      "eyebrow": "CONFIDENCE + CONTRADICTION AUDIT",
+      "title": "Confidence is part of the finding.",
+      "states": [
+        {"name": "Direct fact", "style": "solid", "example": "LYNK Cloud supports central device management."},
+        {"name": "Supported inference", "style": "dashed", "example": "Remote visibility may reduce some on-site interventions."},
+        {"name": "Modeled scenario", "style": "dotted", "example": "Avoided visits × local dispatch cost = potential savings."}
+      ],
+      "contradictions": ["Usage ≠ satisfaction or causal value", "Announcement ≠ universal availability", "Translation ≠ complete accessibility", "Industry scale ≠ attributable revenue"],
+      "evidence_ids": ["CLM-SAM-LYNK-MANAGE-01", "CLM-REMOTE-SUPPORT-INFERENCE-01", "CLM-WCAG-NONGRAPH-01", "CLM-WTTC-GDP-01"],
+      "alt_text": "Three evidence states—direct fact, supported inference, and modeled scenario—plus four major contradiction-audit findings."
+    },
+    {
+      "number": 8,
+      "eyebrow": "METHOD + OPEN EVIDENCE",
+      "title": "Audit the chain.\nReuse the graph.",
+      "method": ["Discover", "Extract", "Resolve", "Connect", "Challenge", "Audit", "Freeze", "Publish"],
+      "counts": ["sources", "claims", "entities", "relationships", "contradictions", "countries"],
+      "body": "Release 0.1.0 is an interactive Codex-assisted seed audit with disclosed human governance. The configured local pipeline uses manager-led specialist agents and Microsoft GraphRAG; deterministic Python owns validation, counts and exports.",
+      "evidence_ids": ["CLM-OPENAI-MANAGER-01", "CLM-GRAPHRAG-01"],
+      "alt_text": "Methodology slide lists eight research stages, generated release counts, the public explorer URL, and a QR code only after live verification."
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+[
+  {
+    "schema_version": "1.0.0",
+    "id": "CON-USAGE-OUTCOME-01",
+    "title": "Usage is not satisfaction or causal value",
+    "claim_ids": ["CLM-JDP-USAGE-01", "CLM-ORCHESTRATION-THESIS-01"],
+    "source_ids": ["SRC-JDP-2026-NAGSI"],
+    "assessment": "High smart-TV usage supports relevance of the touchpoint but does not establish that the screen caused satisfaction, loyalty, or revenue.",
+    "resolution": "Keep 62% as a direct fact and show value pathways as supported inferences or property-specific scenarios.",
+    "severity": "high"
+  },
+  {
+    "schema_version": "1.0.0",
+    "id": "CON-VENDOR-AVAILABILITY-01",
+    "title": "Announced capability is not universal availability",
+    "claim_ids": ["CLM-SAM-PRIVACY-01", "CLM-SAM-LIVE-TRANSLATE-01", "CLM-SAM-LYNK-MANAGE-01"],
+    "source_ids": ["SRC-SAM-FRAME-2026", "SRC-SAM-HITEC-2025"],
+    "assessment": "Samsung disclosures specify model, region, language, channel, software, device, and separate-licensing limitations.",
+    "resolution": "Label all capabilities vendor-stated, surface limitations in the explorer, and avoid universal wording.",
+    "severity": "high"
+  },
+  {
+    "schema_version": "1.0.0",
+    "id": "CON-ENERGY-DATE-01",
+    "title": "Current guidance is not new 2026 measurement",
+    "claim_ids": ["CLM-ENERGY-COST-01", "CLM-ENERGY-HVAC-01", "CLM-ENERGY-SCENARIO-01"],
+    "source_ids": ["SRC-ENERGYSTAR-LODGING", "SRC-ENERGYSTAR-SMALL-LODGING"],
+    "assessment": "The ENERGY STAR page is current, but the benchmark context should not be described as newly measured in 2026.",
+    "resolution": "Describe the figures as current agency guidance and require verified property baselines for savings scenarios.",
+    "severity": "medium"
+  },
+  {
+    "schema_version": "1.0.0",
+    "id": "CON-MACRO-ATTRIBUTION-01",
+    "title": "Industry scale is not screen-attributable value",
+    "claim_ids": ["CLM-AHLA-SPEND-01", "CLM-WTTC-GDP-01", "CLM-ANCILLARY-SCENARIO-01"],
+    "source_ids": ["SRC-AHLA-2026-SOTI", "SRC-WTTC-2025-IMPACT"],
+    "assessment": "Hotel spending and global Travel and Tourism GDP describe the surrounding economy, not the revenue created by connected displays.",
+    "resolution": "Use $805B only as economic context in the carousel and keep $11.6T in the explorer or a small note.",
+    "severity": "high"
+  },
+  {
+    "schema_version": "1.0.0",
+    "id": "CON-AUTONOMY-GOVERNANCE-01",
+    "title": "Autonomous does not mean no human governance",
+    "claim_ids": ["CLM-OPENAI-MANAGER-01", "CLM-GRAPHRAG-01"],
+    "source_ids": ["SRC-OPENAI-ORCHESTRATION", "SRC-MS-GRAPHRAG-REPO"],
+    "assessment": "Humans establish the charter, approve publication, and govern risk even when agents conduct bounded research stages.",
+    "resolution": "Use ‘AI-led, evidence-audited research with disclosed human governance’ and record review actions in the run manifest.",
+    "severity": "medium"
+  },
+  {
+    "schema_version": "1.0.0",
+    "id": "CON-ACCESSIBILITY-01",
+    "title": "Translation is not full accessibility",
+    "claim_ids": ["CLM-SAM-LIVE-TRANSLATE-01", "CLM-WCAG-NONGRAPH-01"],
+    "source_ids": ["SRC-SAM-FRAME-2026", "SRC-W3C-WCAG22"],
+    "assessment": "Live translation can reduce language friction but does not satisfy the broader needs of captions, text alternatives, programmatic relationships, focus, contrast, and input accessibility.",
+    "resolution": "Keep translation as one vendor-stated example and provide accessible non-graph navigation in HXG itself.",
+    "severity": "medium"
+  }
+]

@@ -1,0 +1,34 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.py[cod]
+.env
+.env.*
+!.env.example
+
+# Retrieved third-party documents are never published.
+data/cache/
+data/private/
+artifacts/work/
+
+# Front-end build and package caches.
+node_modules/
+site/node_modules/
+site/dist/
+site/.astro/
+site/public/data/
+site/public/downloads/
+
+# Generated publication intermediates.
+reports/rendered/
+reports/*.png
+reports/*.pdf
+!reports/executive-summary.pdf
+!reports/linkedin-carousel.pdf
+!reports/hxg-poster.pdf
+
+# Local system files.
+.DS_Store
+Thumbs.db

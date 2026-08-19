@@ -1,0 +1,118 @@
+from __future__ import annotations
+
+import html
+
+import networkx as nx
+
+from hxg.io import GRAPH_DIR, PUBLIC_DIR, load_records, write_json
+from hxg.models import Claim, Entity, Relationship
+
+OUTCOME_COLORS = {
+    "human-experience": "#f6f1e8",
+    "feel-at-home": "#4cb3ff",
+    "feel-in-control": "#78d35d",
+    "feel-recognized": "#f4bd32",
+    "feel-included": "#a986ef",
+    "feel-secure": "#49c5ca",
+    "feel-supported": "#f29138",
+    "stakeholder": "#8aa2b8",
+    "value": "#57d6a7",
+    "technology": "#7994ff",
+    "context": "#c7a86b",
+}
+
+
+def build_graph() -> nx.DiGraph:
+    entities = load_records(PUBLIC_DIR / "entities.json", Entity)
+    relationships = load_records(PUBLIC_DIR / "relationships.json", Relationship)
+    claims = {record.id: record for record in load_records(PUBLIC_DIR / "claims.json", Claim)}
+
+    graph = nx.DiGraph(id="hxg-v0.1.0", label="Hospitality Experience Graph")
+    for entity in entities:
+        graph.add_node(
+            entity.id,
+            label=entity.canonical_name,
+            entity_type=entity.entity_type,
+            description=entity.description,
+            outcome=entity.outcome or entity.entity_type,
+            color=OUTCOME_COLORS.get(entity.outcome or entity.entity_type, "#8aa2b8"),
+            evidence_ids="|".join(entity.evidence_ids),
+        )
+    for relationship in relationships:
+        evidence_ids = sorted({
+            evidence_id
+            for claim_id in relationship.supporting_claim_ids
+            for evidence_id in claims[claim_id].evidence_ids
+        })
+        graph.add_edge(
+            relationship.source_entity_id,
+            relationship.target_entity_id,
+            id=relationship.id,
+            predicate=relationship.predicate,
+            evidence_status=relationship.evidence_status.value,
+            confidence=relationship.confidence,
+            supporting_claim_ids="|".join(relationship.supporting_claim_ids),
+            evidence_ids="|".join(evidence_ids),
+            limitations="|".join(relationship.limitations),
+        )
+    return graph
+
+
+def _cytoscape_json(graph: nx.DiGraph) -> dict:
+    return {
+        "schema_version": "1.0.0",
+        "release": "hxg-v0.1.0",
+        "elements": {
+            "nodes": [
+                {"data": {"id": node_id, **attributes}}
+                for node_id, attributes in sorted(graph.nodes(data=True))
+            ],
+            "edges": [
+                {"data": {"source": source, "target": target, **attributes}}
+                for source, target, attributes in sorted(
+                    graph.edges(data=True), key=lambda edge: edge[2]["id"]
+                )
+            ],
+        },
+    }
+
+
+def _svg(graph: nx.DiGraph, width: int = 1600, height: int = 1000) -> str:
+    positions = nx.spring_layout(graph, seed=42, k=2.1, iterations=200)
+    scale_x, scale_y = width * 0.42, height * 0.40
+    cx, cy = width / 2, height / 2
+    points = {node: (cx + x * scale_x, cy + y * scale_y) for node, (x, y) in positions.items()}
+    lines = []
+    for source, target, data in graph.edges(data=True):
+        x1, y1 = points[source]
+        x2, y2 = points[target]
+        dash = "" if data["evidence_status"] == "direct" else ("10 8" if data["evidence_status"] == "inferred" else "2 8")
+        lines.append(
+            f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
+            f'stroke="#526879" stroke-width="2" stroke-dasharray="{dash}" marker-end="url(#arrow)" />'
+        )
+    nodes = []
+    for node_id, data in graph.nodes(data=True):
+        x, y = points[node_id]
+        label = html.escape(data["label"])
+        radius = 45 if node_id != "ENT-HUMAN-EXPERIENCE" else 68
+        nodes.append(
+            f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{radius}" fill="{data["color"]}" stroke="#071827" stroke-width="4" />'
+            f'<text x="{x:.1f}" y="{y + radius + 22:.1f}" text-anchor="middle" fill="#f6f1e8" font-size="16" font-weight="650">{label}</text>'
+        )
+    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">
+<title id="title">Hospitality Experience Graph</title>
+<desc id="desc">Evidence-linked entities and relationships centered on human experience. Solid edges are direct evidence, dashed edges are supported inferences, and dotted edges are scenarios.</desc>
+<rect width="100%" height="100%" fill="#071827" />
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526879" /></marker></defs>
+{''.join(lines)}
+{''.join(nodes)}
+</svg>'''
+
+
+def export_graphs() -> None:
+    graph = build_graph()
+    GRAPH_DIR.mkdir(parents=True, exist_ok=True)
+    nx.write_graphml(graph, GRAPH_DIR / "hospitality-experience-graph.graphml")
+    write_json(GRAPH_DIR / "hospitality-experience-graph.json", _cytoscape_json(graph))
+    (GRAPH_DIR / "hospitality-experience-map.svg").write_text(_svg(graph), encoding="utf-8")
