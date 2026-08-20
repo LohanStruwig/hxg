@@ -126,6 +126,9 @@ def validate_graph_parity(graphml_path: Path | None = None, json_path: Path | No
         raise ValidationError("GraphML/JSON relationship ID parity failed")
     for node in browser_graph["elements"]["nodes"]:
         node_id = node["data"]["id"]
+        for field in ("core_view", "label_priority", "layout_ring"):
+            if graph.nodes[node_id].get(field) != node["data"].get(field):
+                raise ValidationError(f"GraphML/JSON {field} parity failed for {node_id}")
         position = node.get("position", {})
         if "x" not in position or "y" not in position:
             raise ValidationError(f"Browser graph node {node_id} has no preset position")

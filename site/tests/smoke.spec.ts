@@ -17,8 +17,15 @@ test("loads the frozen release without runtime errors", async ({ page }) => {
   await expect(page).toHaveTitle("Hospitality Experience Graph");
   await expect(page.getByRole("heading", { level: 1, name: /From screen to stay/i })).toBeVisible();
   await expect(page.locator("astro-dev-toolbar, vite-error-overlay, #webpack-dev-server-client-overlay")).toHaveCount(0);
-  await expect(page.locator("#cy")).toHaveAttribute("data-node-count", "32");
-  await expect(page.locator("#cy")).toHaveAttribute("data-relationship-count", "42");
+  await expect(page.locator("#cy")).toHaveAttribute("data-scope", "core");
+  await expect(page.locator("#cy")).toHaveAttribute("data-node-count", "13");
+  await expect(page.locator("#cy")).toHaveAttribute("data-relationship-count", "12");
+  await expect(page.locator("#cy")).toHaveAttribute("data-total-node-count", "32");
+  await expect(page.locator("#cy")).toHaveAttribute("data-total-relationship-count", "42");
+  await expect(page.locator("#cy")).toHaveAttribute("data-edge-label-count", "0");
+  await expect(page.locator("#cy")).toHaveAttribute("data-label-collision-count", "0");
+  await expect(page.locator('meta[name="referrer"]')).toHaveAttribute("content", "no-referrer");
+  await expect(page.locator('meta[http-equiv="content-security-policy"]')).toHaveAttribute("content", /object-src 'none'/);
   expect(errors).toEqual([]);
 });
 
@@ -70,14 +77,27 @@ test("searches, filters, zooms, resets, and exposes list parity", async ({ page 
     await expect(page.locator("#graph-filters")).toHaveAttribute("open", "");
   }
   const search = page.getByLabel("Find a node");
-  await search.fill("privacy");
-  await expect(page.locator("#graph-status")).toContainText("Search “privacy”");
-  await expect(page.locator("#graph-status")).not.toContainText("0 nodes");
+  await search.fill("Data governance");
+  await expect(page.locator("#graph-status")).toContainText("Search “data governance”");
+  await expect(page.locator("#cy")).toHaveAttribute("data-node-count", "14");
+  await expect(page.locator("#cy")).toHaveAttribute("data-relationship-count", "13");
+  await expect(page.locator("#cy")).toHaveAttribute("data-label-collision-count", "0");
+  expect(Number(await page.locator("#cy").getAttribute("data-edge-label-count"))).toBeGreaterThan(0);
+  await search.fill("");
+  await expect(page.locator("#cy")).toHaveAttribute("data-node-count", "13");
+  await expect(page.locator("#cy")).toHaveAttribute("data-relationship-count", "12");
+  await expect(page.locator("#cy")).toHaveAttribute("data-edge-label-count", "0");
   await search.fill("nothing-matches-this-query");
   await expect(page.locator("#graph-status")).toContainText("No results");
   await expect(page.locator("#graph-status")).toContainText("0 nodes · 0 relationships");
   await page.getByRole("button", { name: "Reset graph" }).click();
+  await expect(page.locator("#cy")).toHaveAttribute("data-relationship-count", "12");
+  await page.getByRole("button", { name: "Full graph" }).click();
+  await expect(page.locator("#cy")).toHaveAttribute("data-scope", "full");
+  await expect(page.locator("#cy")).toHaveAttribute("data-node-count", "32");
   await expect(page.locator("#cy")).toHaveAttribute("data-relationship-count", "42");
+  await expect(page.locator("#cy")).toHaveAttribute("data-edge-label-count", "0");
+  await expect(page.locator("#cy")).toHaveAttribute("data-label-collision-count", "0");
   await page.getByRole("checkbox", { name: "Modeled scenario" }).uncheck();
   const filteredCount = Number(await page.locator("#cy").getAttribute("data-relationship-count"));
   expect(filteredCount).toBeLessThan(42);
@@ -87,11 +107,12 @@ test("searches, filters, zooms, resets, and exposes list parity", async ({ page 
   await expect(page.locator("#graph-status")).toContainText("fitted");
   await page.getByRole("button", { name: "Relationship list" }).click();
   await expect(page.locator("#relationship-list article")).toHaveCount(42);
-  await page.getByLabel("Search relationships").fill("privacy");
-  await expect(page.locator("#relationship-count")).not.toHaveText("0 relationships");
+  await page.getByLabel("Search relationships").fill("REL-OEM-ECOSYSTEM");
+  await expect(page.locator("#relationship-count")).toHaveText("1 relationship");
   await page.locator("#relationship-list article:visible").first().getByRole("button", { name: "Inspect linked evidence" }).click();
   await expect(page.getByRole("button", { name: "Interactive graph" })).toHaveAttribute("aria-pressed", "true");
   await expect(page.locator("#drawer-title")).not.toHaveText("Human experience");
+  await expect(page.locator("#cy")).toHaveAttribute("data-label-collision-count", "0");
   if ((page.viewportSize()?.width || 1440) > 760) {
     const inspectionGeometry = await page.evaluate(() => {
       const header = document.querySelector(".site-header")!.getBoundingClientRect();
@@ -135,7 +156,7 @@ test("reflows at release widths with 44px primary touch targets", async ({ page 
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     expect(overflow, `${width}px viewport overflow`).toBeLessThanOrEqual(1);
     if (width <= 760) {
-      const targets = page.locator(".mobile-nav summary, .repo-link, .view-switch button, .graph-controls button, #graph-filters summary");
+      const targets = page.locator(".mobile-nav summary, .repo-link, .view-switch button, .scope-switch button, .graph-controls button, #graph-filters summary");
       for (const box of await targets.evaluateAll((elements) => elements.filter((element) => (element as HTMLElement).offsetParent !== null).map((element) => element.getBoundingClientRect().toJSON()))) {
         expect(box.height, `${width}px touch-target height`).toBeGreaterThanOrEqual(44);
         expect(box.width, `${width}px touch-target width`).toBeGreaterThanOrEqual(44);
@@ -144,7 +165,7 @@ test("reflows at release widths with 44px primary touch targets", async ({ page 
   }
 });
 
-test("serves release downloads and stable graph coordinates", async ({ request }) => {
+test("serves hardened release downloads and stable graph coordinates", async ({ page, request }) => {
   const assets = [
     ["data/hospitality-experience-graph.json", /application\/json/],
     ["data/hospitality-experience-graph.graphml", /(application|text)\//],
@@ -157,7 +178,15 @@ test("serves release downloads and stable graph coordinates", async ({ request }
     expect(response.headers()["content-type"], path).toMatch(type);
   }
   const graph = await (await request.get("data/hospitality-experience-graph.json")).json();
-  expect(graph.layout).toMatchObject({ name: "preset", seed: 42 });
+  expect(graph.layout).toMatchObject({ name: "preset", algorithm: "semantic-rings", seed: 42 });
   expect(graph.elements.nodes).toHaveLength(32);
+  expect(graph.elements.edges).toHaveLength(42);
   expect(graph.elements.nodes.every((node: any) => Number.isFinite(node.position.x) && Number.isFinite(node.position.y))).toBeTruthy();
+  expect(graph.elements.nodes.every((node: any) => ["center", "outcome", "capability", "outer"].includes(node.data.layout_ring))).toBeTruthy();
+  expect(graph.elements.nodes.filter((node: any) => node.data.core_view)).toHaveLength(13);
+  const scriptSources = await page.locator("script[src]").evaluateAll((scripts) => scripts.map((script) => (script as HTMLScriptElement).src));
+  for (const source of scriptSources) {
+    const response = await request.get(`${source}.map`);
+    expect(response.status(), `${source}.map should not be deployed`).toBe(404);
+  }
 });

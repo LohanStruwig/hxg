@@ -26,9 +26,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   </div>
 
   <div class="view-toolbar">
-    <div class="view-switch" role="group" aria-label="Graph display">
-      <button id="show-graph" type="button" aria-pressed="true">Interactive graph</button>
-      <button id="show-list" type="button" aria-pressed="false">Relationship list</button>
+    <div class="toolbar-modes">
+      <div class="view-switch" role="group" aria-label="Graph display">
+        <button id="show-graph" type="button" aria-pressed="true">Interactive graph</button>
+        <button id="show-list" type="button" aria-pressed="false">Relationship list</button>
+      </div>
+      <div id="scope-switch" class="scope-switch" role="group" aria-label="Graph scope">
+        <button id="show-core" type="button" aria-pressed="true">Core map</button>
+        <button id="show-full" type="button" aria-pressed="false">Full graph</button>
+      </div>
     </div>
     <div class="graph-controls" role="group" aria-label="Graph zoom controls">
       <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
@@ -72,8 +78,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
           role="img"
           aria-label="Interactive Hospitality Experience Graph. Use the relationship list for complete keyboard and assistive-technology access."
           data-ready="false"
+          data-scope="core"
           data-node-count="0"
           data-relationship-count="0"
+          data-total-node-count="0"
+          data-total-relationship-count="0"
+          data-visible-label-count="0"
+          data-node-label-count="0"
+          data-edge-label-count="0"
+          data-label-collision-count="0"
         ></div>
         <p id="graph-status" class="graph-status" aria-live="polite">Loading the evidence graph…</p>
       </div>
@@ -138,7 +151,12 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   const claimTarget = document.querySelector<HTMLElement>("#drawer-claims")!;
   const evidenceAction = document.querySelector<HTMLButtonElement>("#view-linked-evidence")!;
   const filterSummary = document.querySelector<HTMLElement>("#filter-summary")!;
+  const search = document.querySelector<HTMLInputElement>("#graph-search")!;
+  const mobile = window.matchMedia("(max-width: 760px)");
   let selectedClaimIds: string[] = [];
+  let selectedScope: "core" | "full" = "core";
+  let inspectionEdgeId = "";
+  let hoveredId = "";
 
   const cy = cytoscape({
     container: cyElement,
@@ -147,17 +165,19 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     maxZoom: 2.4,
     boxSelectionEnabled: false,
     style: [
-      { selector: "node", style: { "background-color": "data(color)", label: "data(label)", color: "#f7f3ea", "font-size": "12px", "font-weight": 700, "text-wrap": "wrap", "text-max-width": "100px", "text-valign": "bottom", "text-margin-y": 10, width: "34px", height: "34px", "border-width": "3px", "border-color": "#061522", "overlay-opacity": 0 } },
-      { selector: "node[entity_type = 'outcome']", style: { width: "54px", height: "54px", "font-size": "14px" } },
-      { selector: "node[id = 'ENT-HUMAN-EXPERIENCE']", style: { width: "84px", height: "84px", "font-size": "16px", "text-max-width": "130px", "border-width": "5px" } },
+      { selector: "node", style: { "background-color": "data(color)", label: "", color: "#f7f3ea", "font-size": "14px", "font-weight": 700, "text-wrap": "wrap", "text-max-width": "116px", "text-valign": "bottom", "text-margin-y": 10, width: "38px", height: "38px", "border-width": "3px", "border-color": "#061522", "overlay-opacity": 0 } },
+      { selector: "node[label_priority = 'primary']", style: { label: "data(label)" } },
+      { selector: "node.labels-visible", style: { label: "data(label)" } },
+      { selector: "node[entity_type = 'outcome']", style: { width: "58px", height: "58px", "font-size": "16px" } },
+      { selector: "node[id = 'ENT-HUMAN-EXPERIENCE']", style: { width: "88px", height: "88px", "font-size": "18px", "text-max-width": "138px", "border-width": "5px" } },
       { selector: "edge", style: { width: 1.8, "line-color": "#5c7383", "target-arrow-color": "#5c7383", "target-arrow-shape": "triangle", "curve-style": "bezier", "arrow-scale": .7, opacity: .72, label: "", color: "#c5d1d8", "font-size": "9px", "text-rotation": "autorotate", "text-background-color": "#061522", "text-background-opacity": .92, "text-background-padding": "3px" } },
-      { selector: "edge.labels-visible", style: { label: "data(predicate)" } },
+      { selector: "edge.labels-visible", style: { label: "data(predicate)", "text-margin-y": -18 } },
       { selector: "edge[evidence_status = 'inferred']", style: { "line-style": "dashed" } },
       { selector: "edge[evidence_status = 'scenario']", style: { "line-style": "dotted", "line-color": "#f5bc31", "target-arrow-color": "#f5bc31" } },
       { selector: ".faded", style: { opacity: .09 } },
       { selector: ".matched", style: { "border-color": "#f5bc31", "border-width": "6px" } },
       { selector: "node:selected", style: { "border-color": "#f7f3ea", "border-width": "6px", opacity: 1 } },
-      { selector: "edge:selected", style: { label: "data(predicate)", "line-color": "#f7f3ea", "target-arrow-color": "#f7f3ea", opacity: 1, width: 3 } }
+      { selector: "edge:selected", style: { label: "data(predicate)", "text-margin-y": -18, "line-color": "#f7f3ea", "target-arrow-color": "#f7f3ea", opacity: 1, width: 3 } }
     ],
     layout: { name: "preset", fit: true, padding: 68 }
   });
@@ -165,11 +185,132 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   const plural = (count: number, singular: string) => `${count} ${singular}${count === 1 ? "" : "s"}`;
   const shownNodes = () => cy.nodes().filter((node) => node.style("display") !== "none");
   const shownEdges = () => cy.edges().filter((edge) => edge.style("display") !== "none");
+  let searchFocusNodes = cy.collection();
+  let searchFocusEdges = cy.collection();
+
+  function updateTestState() {
+    const nodeLabels: cytoscape.SingularElementReturnValue[] = [];
+    const edgeLabels: cytoscape.SingularElementReturnValue[] = [];
+    shownNodes().forEach((node) => {
+      if (String(node.style("label") || "").trim()) nodeLabels.push(node);
+    });
+    shownEdges().forEach((edge) => {
+      if (String(edge.style("label") || "").trim()) edgeLabels.push(edge);
+    });
+    const boxes = [...nodeLabels, ...edgeLabels].map((element) => element.renderedBoundingBox({
+      includeNodes: false,
+      includeEdges: false,
+      includeLabels: true,
+      includeOverlays: false,
+    }));
+    let collisions = 0;
+    for (let left = 0; left < boxes.length; left += 1) {
+      for (let right = left + 1; right < boxes.length; right += 1) {
+        const a = boxes[left];
+        const b = boxes[right];
+        if (a.x1 < b.x2 - 1 && a.x2 > b.x1 + 1 && a.y1 < b.y2 - 1 && a.y2 > b.y1 + 1) collisions += 1;
+      }
+    }
+    cyElement.dataset.scope = selectedScope;
+    cyElement.dataset.nodeCount = String(shownNodes().length);
+    cyElement.dataset.relationshipCount = String(shownEdges().length);
+    cyElement.dataset.totalNodeCount = String(cy.nodes().length);
+    cyElement.dataset.totalRelationshipCount = String(cy.edges().length);
+    cyElement.dataset.nodeLabelCount = String(nodeLabels.length);
+    cyElement.dataset.edgeLabelCount = String(edgeLabels.length);
+    cyElement.dataset.visibleLabelCount = String(nodeLabels.length + edgeLabels.length);
+    cyElement.dataset.labelCollisionCount = String(collisions);
+  }
+
+  function scheduleTestState() {
+    requestAnimationFrame(() => requestAnimationFrame(updateTestState));
+  }
+
   const setStatus = (message: string, nodeCount = shownNodes().length, edgeCount = shownEdges().length) => {
     status.textContent = `${message} · ${plural(nodeCount, "node")} · ${plural(edgeCount, "relationship")}`;
     cyElement.dataset.nodeCount = String(nodeCount);
     cyElement.dataset.relationshipCount = String(edgeCount);
+    scheduleTestState();
   };
+
+  const familyKey = (node: cytoscape.NodeSingular) => node.data("entity_type") === "risk" ? "context" : node.data("entity_type");
+  const checkedValues = (name: string) => new Set(
+    Array.from(document.querySelectorAll<HTMLInputElement>(`input[name='${name}']:checked`)).map((input) => input.value)
+  );
+
+  function updateLabelVisibility() {
+    cy.elements().removeClass("labels-visible");
+    if (!mobile.matches && selectedScope === "core" && !search.value.trim()) {
+      shownNodes().filter((node) => node.data("label_priority") === "secondary").addClass("labels-visible");
+    }
+    if (search.value.trim()) {
+      searchFocusNodes.addClass("labels-visible");
+      searchFocusEdges.addClass("labels-visible");
+    }
+    cy.$(":selected").addClass("labels-visible");
+    if (hoveredId) cy.getElementById(hoveredId).addClass("labels-visible");
+    scheduleTestState();
+  }
+
+  function fitVisible(padding = mobile.matches ? 42 : 68) {
+    const visible = shownNodes().union(shownEdges());
+    if (visible.length) cy.fit(visible, padding);
+    scheduleTestState();
+  }
+
+  function applyVisibility(message: string, fit = false) {
+    const edgeStatuses = checkedValues("edge-status");
+    const families = checkedValues("node-family");
+    const query = search.value.trim().toLowerCase();
+    const baseNodes = cy.nodes().filter((node) =>
+      (selectedScope === "full" || node.data("core_view") === true) && families.has(familyKey(node))
+    );
+    let visibleNodes = baseNodes;
+    searchFocusNodes = cy.collection();
+    searchFocusEdges = cy.collection();
+
+    if (query) {
+      const matches = cy.nodes().filter((node) =>
+        families.has(familyKey(node)) && `${node.data("label")} ${node.data("description")}`.toLowerCase().includes(query)
+      );
+      if (!matches.length) {
+        visibleNodes = cy.collection();
+      } else {
+        searchFocusEdges = matches.connectedEdges().filter((edge) => edgeStatuses.has(edge.data("evidence_status")));
+        searchFocusNodes = matches.union(searchFocusEdges.connectedNodes());
+        visibleNodes = baseNodes.union(searchFocusNodes);
+        matches.addClass("matched");
+      }
+    } else if (inspectionEdgeId) {
+      const inspected = cy.getElementById(inspectionEdgeId);
+      if (!inspected.empty()) visibleNodes = baseNodes.union(inspected.connectedNodes());
+    }
+
+    cy.batch(() => {
+      cy.elements().removeClass("matched faded labels-visible").style("display", "none");
+      visibleNodes.style("display", "element");
+      cy.edges().forEach((edge) => {
+        const visible = edgeStatuses.has(edge.data("evidence_status"))
+          && edge.source().style("display") !== "none"
+          && edge.target().style("display") !== "none";
+        edge.style("display", visible ? "element" : "none");
+      });
+      if (inspectionEdgeId) cy.getElementById(inspectionEdgeId).style("display", "element");
+      if (query && searchFocusNodes.length) {
+        shownNodes().addClass("faded");
+        shownEdges().addClass("faded");
+        searchFocusNodes.removeClass("faded");
+        searchFocusEdges.removeClass("faded");
+        cy.nodes().filter((node) => `${node.data("label")} ${node.data("description")}`.toLowerCase().includes(query)).addClass("matched");
+      }
+    });
+
+    updateLabelVisibility();
+    filterSummary.textContent = `${selectedScope === "core" ? "Core" : "Full"} · ${shownNodes().length} nodes · ${shownEdges().length} relationships`;
+    if (query && !searchFocusNodes.length) setStatus(`No results for “${query}”`, 0, 0);
+    else setStatus(message);
+    if (fit) requestAnimationFrame(() => fitVisible());
+  }
 
   function appendMeta(label: string, value: string) {
     const row = document.createElement("div");
@@ -235,6 +376,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     appendMeta("Claims", ids.length ? String(ids.length) : "See connected edges");
     renderClaims(ids);
     setStatus(`${data.label} selected · ${plural(ids.length, "linked claim")}`);
+    updateLabelVisibility();
   }
 
   function renderEdge(edge: cytoscape.EdgeSingular) {
@@ -247,58 +389,63 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     appendMeta("Confidence", `${Math.round(Number(data.confidence) * 100)}%`);
     renderClaims(ids);
     setStatus(`${data.evidence_status} relationship selected · ${plural(ids.length, "supporting claim")}`);
+    updateLabelVisibility();
   }
 
-  cy.on("tap", "node", (event) => renderNode(event.target.data()));
-  cy.on("tap", "edge", (event) => renderEdge(event.target));
+  cy.on("tap", "node", (event) => {
+    inspectionEdgeId = "";
+    renderNode(event.target.data());
+  });
+  cy.on("tap", "edge", (event) => {
+    inspectionEdgeId = event.target.id();
+    renderEdge(event.target);
+  });
+  cy.on("mouseover", "node, edge", (event) => {
+    hoveredId = event.target.id();
+    updateLabelVisibility();
+  });
+  cy.on("mouseout", "node, edge", () => {
+    hoveredId = "";
+    updateLabelVisibility();
+  });
+  cy.on("select unselect", "node, edge", updateLabelVisibility);
 
   function applySearch() {
-    const query = document.querySelector<HTMLInputElement>("#graph-search")!.value.trim().toLowerCase();
-    cy.nodes().removeClass("matched faded");
-    cy.edges().removeClass("faded");
-    if (!query) {
-      setStatus("Search cleared");
-      return;
-    }
-    const candidates = shownNodes();
-    const matches = candidates.filter((node) => `${node.data("label")} ${node.data("description")}`.toLowerCase().includes(query));
-    shownNodes().addClass("faded");
-    shownEdges().addClass("faded");
-    matches.removeClass("faded").addClass("matched");
-    const connected = matches.connectedEdges().filter((edge) => edge.style("display") !== "none");
-    connected.removeClass("faded");
-    connected.connectedNodes().removeClass("faded");
-    if (matches.length) {
-      cy.animate({ fit: { eles: matches.union(connected), padding: 90 }, duration: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 220 });
-      setStatus(`Search “${query}”`, matches.length, connected.length);
-    } else {
-      setStatus(`No results for “${query}”`, 0, 0);
-    }
+    inspectionEdgeId = "";
+    const query = search.value.trim().toLowerCase();
+    applyVisibility(query ? `Search “${query}”` : "Search cleared", true);
   }
 
   function applyFilters() {
-    const edgeStatuses = new Set(Array.from(document.querySelectorAll<HTMLInputElement>("input[name='edge-status']:checked")).map((input) => input.value));
-    const families = new Set(Array.from(document.querySelectorAll<HTMLInputElement>("input[name='node-family']:checked")).map((input) => input.value));
-    cy.batch(() => {
-      cy.nodes().forEach((node) => { node.style("display", families.has(node.data("entity_type")) ? "element" : "none"); });
-      cy.edges().forEach((edge) => { edge.style("display", edgeStatuses.has(edge.data("evidence_status")) && edge.source().style("display") !== "none" && edge.target().style("display") !== "none" ? "element" : "none"); });
-    });
-    filterSummary.textContent = `${shownNodes().length} nodes · ${shownEdges().length} relationships`;
-    document.querySelector<HTMLInputElement>("#graph-search")!.value = "";
-    cy.elements().removeClass("matched faded");
-    setStatus("Filters updated");
+    search.value = "";
+    inspectionEdgeId = "";
+    cy.elements().unselect();
+    applyVisibility("Filters updated", true);
   }
 
   document.querySelectorAll<HTMLInputElement>("input[name='edge-status'], input[name='node-family']").forEach((input) => input.addEventListener("change", applyFilters));
-  document.querySelector<HTMLInputElement>("#graph-search")!.addEventListener("input", applySearch);
+  search.addEventListener("input", applySearch);
+
+  const showCore = document.querySelector<HTMLButtonElement>("#show-core")!;
+  const showFull = document.querySelector<HTMLButtonElement>("#show-full")!;
+  function setScope(scope: "core" | "full") {
+    selectedScope = scope;
+    inspectionEdgeId = "";
+    search.value = "";
+    cy.elements().unselect();
+    showCore.setAttribute("aria-pressed", String(scope === "core"));
+    showFull.setAttribute("aria-pressed", String(scope === "full"));
+    applyVisibility(scope === "core" ? "Core map" : "Full graph", true);
+  }
+  showCore.addEventListener("click", () => setScope("core"));
+  showFull.addEventListener("click", () => setScope("full"));
 
   function resetGraph() {
-    document.querySelector<HTMLInputElement>("#graph-search")!.value = "";
+    search.value = "";
+    inspectionEdgeId = "";
     document.querySelectorAll<HTMLInputElement>("#graph-filters input[type='checkbox']").forEach((input) => input.checked = true);
-    cy.elements().removeClass("matched faded").style("display", "element").unselect();
-    filterSummary.textContent = "All evidence shown";
-    cy.fit(undefined, 68);
-    setStatus("Graph reset");
+    cy.elements().unselect();
+    applyVisibility(`${selectedScope === "core" ? "Core map" : "Full graph"} reset`, true);
   }
 
   document.querySelector<HTMLButtonElement>("#reset-graph")!.addEventListener("click", resetGraph);
@@ -311,7 +458,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     setStatus("Zoomed out");
   });
   document.querySelector<HTMLButtonElement>("#fit-graph")!.addEventListener("click", () => {
-    cy.fit(shownNodes().union(shownEdges()), 68);
+    fitVisible();
     setStatus("Graph fitted to view");
   });
 
@@ -319,6 +466,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   const listPanel = document.querySelector<HTMLElement>("#list-panel")!;
   const showGraph = document.querySelector<HTMLButtonElement>("#show-graph")!;
   const showList = document.querySelector<HTMLButtonElement>("#show-list")!;
+  const scopeSwitch = document.querySelector<HTMLElement>("#scope-switch")!;
   function setView(view: "graph" | "list") {
     const graphVisible = view === "graph";
     graphPanel.hidden = !graphVisible;
@@ -326,8 +474,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     showGraph.setAttribute("aria-pressed", String(graphVisible));
     showList.setAttribute("aria-pressed", String(!graphVisible));
     document.querySelector<HTMLElement>(".graph-controls")!.hidden = !graphVisible;
+    scopeSwitch.hidden = !graphVisible;
     if (graphVisible) {
-      requestAnimationFrame(() => { cy.resize(); cy.fit(shownNodes().union(shownEdges()), 68); });
+      requestAnimationFrame(() => { cy.resize(); fitVisible(); });
       setStatus("Interactive graph view");
     } else {
       document.querySelector<HTMLInputElement>("#relationship-search")!.focus();
@@ -353,9 +502,13 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
       const edge = cy.getElementById(button.dataset.inspectRelationship || "");
       if (!edge.empty()) {
         setView("graph");
+        inspectionEdgeId = edge.id();
+        search.value = "";
+        applyVisibility("Relationship revealed", false);
         edge.select();
         renderEdge(edge as cytoscape.EdgeSingular);
         requestAnimationFrame(() => {
+          cy.fit(edge.connectedNodes().union(edge), mobile.matches ? 72 : 110);
           const target = mobile.matches ? document.querySelector("#evidence-drawer") : document.querySelector(".section-heading");
           target?.scrollIntoView({ block: "start" });
         });
@@ -367,11 +520,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     window.dispatchEvent(new CustomEvent("hxg:view-evidence", { detail: { claimIds: selectedClaimIds } }));
   });
 
-  const mobile = window.matchMedia("(max-width: 760px)");
   const filters = document.querySelector<HTMLDetailsElement>("#graph-filters")!;
   const applyResponsiveGraph = () => {
     filters.open = !mobile.matches;
-    cy.edges().toggleClass("labels-visible", !mobile.matches);
+    updateLabelVisibility();
+    requestAnimationFrame(() => fitVisible());
   };
   applyResponsiveGraph();
   mobile.addEventListener("change", applyResponsiveGraph);
@@ -381,19 +534,17 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     window.clearTimeout(resizeTimer);
     resizeTimer = window.setTimeout(() => {
       cy.resize();
-      if (!graphPanel.hidden) cy.fit(shownNodes().union(shownEdges()), 68);
+      if (!graphPanel.hidden) fitVisible();
     }, 140);
   });
   observer.observe(cyElement);
 
   requestAnimationFrame(() => {
     cy.resize();
+    applyVisibility("Core map ready", false);
     cyElement.dataset.ready = "true";
-    cyElement.dataset.nodeCount = String(cy.nodes().length);
-    cyElement.dataset.relationshipCount = String(cy.edges().length);
-    filterSummary.textContent = "All evidence shown";
-    cy.fit(undefined, 68);
-    setStatus("Graph ready", cy.nodes().length, cy.edges().length);
+    fitVisible();
+    setStatus("Core map ready");
   });
 </script>
 
@@ -407,9 +558,11 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   .legend .dashed { border-top-style: dashed; }
   .legend .dotted { border-top: 3px dotted var(--amber); }
   .view-toolbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 10px; border: 1px solid var(--line); border-bottom: 0; background: #081a28; scroll-margin-top: calc(var(--header-height) + 16px); }
-  .view-switch, .graph-controls { display: flex; gap: 6px; }
-  .view-switch button, .graph-controls button { min-height: 44px; border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 0 14px; cursor: pointer; }
-  .view-switch button[aria-pressed="true"] { background: var(--ink); color: var(--canvas); border-color: var(--ink); font-weight: 800; }
+  .toolbar-modes, .view-switch, .scope-switch, .graph-controls { display: flex; gap: 6px; }
+  .toolbar-modes { flex-wrap: wrap; gap: 14px; }
+  .scope-switch { padding-left: 14px; border-left: 1px solid var(--line); }
+  .view-switch button, .scope-switch button, .graph-controls button { min-height: 44px; border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 0 14px; cursor: pointer; }
+  .view-switch button[aria-pressed="true"], .scope-switch button[aria-pressed="true"] { background: var(--ink); color: var(--canvas); border-color: var(--ink); font-weight: 800; }
   .graph-controls button { min-width: 44px; color: var(--ink); }
   .graph-shell { min-height: 720px; display: grid; grid-template-columns: 232px minmax(0,1fr) 310px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 22px 80px rgba(0,0,0,.26); }
   .filters, .drawer { background: #081a28; }
@@ -460,7 +613,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     .graph-section { padding-top: 76px; padding-bottom: 50px; }
     .section-heading { align-items: start; flex-direction: column; }
     .view-toolbar { align-items: stretch; flex-direction: column; }
-    .view-switch button { flex: 1; }
+    .toolbar-modes { display: grid; gap: 8px; }
+    .view-switch button, .scope-switch button { flex: 1; }
+    .scope-switch { padding: 8px 0 0; border-left: 0; border-top: 1px solid var(--line); }
     .graph-controls { justify-content: flex-end; }
     .graph-shell { display: block; min-height: 0; }
     .filters { border-right: 0; border-bottom: 1px solid var(--line); }
@@ -475,7 +630,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   @media (max-width: 420px) {
     .legend { gap: 10px; }
     .legend i { width: 22px; }
-    .view-switch button { padding-inline: 10px; font-size: .83rem; }
+    .view-switch button, .scope-switch button { padding-inline: 10px; font-size: .83rem; }
     .canvas-wrap { height: 540px; }
   }
 </style>

@@ -48,13 +48,34 @@ def test_graph_exports_include_preset_layout() -> None:
     browser_graph = read_json(GRAPH_DIR / "hospitality-experience-graph.json")
     assert browser_graph["layout"] == {
         "name": "preset",
-        "algorithm": "spring",
+        "algorithm": "semantic-rings",
         "seed": 42,
-        "width": 1000,
-        "height": 680,
+        "width": 1400,
+        "height": 1040,
     }
-    assert all("layout_x" in data and "layout_y" in data for _, data in graph.nodes(data=True))
+    assert all(
+        {
+            "layout_x",
+            "layout_y",
+            "core_view",
+            "label_priority",
+            "layout_ring",
+        }
+        <= data.keys()
+        for _, data in graph.nodes(data=True)
+    )
     assert all("position" in node for node in browser_graph["elements"]["nodes"])
+    core_nodes = [
+        node for node in browser_graph["elements"]["nodes"] if node["data"]["core_view"]
+    ]
+    core_ids = {node["data"]["id"] for node in core_nodes}
+    core_edges = [
+        edge
+        for edge in browser_graph["elements"]["edges"]
+        if edge["data"]["source"] in core_ids and edge["data"]["target"] in core_ids
+    ]
+    assert len(core_nodes) == 13
+    assert len(core_edges) == 12
 
 
 def test_graph_exports_are_deterministic() -> None:

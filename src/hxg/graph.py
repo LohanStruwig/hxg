@@ -22,8 +22,72 @@ OUTCOME_COLORS = {
 }
 
 LAYOUT_SEED = 42
-LAYOUT_WIDTH = 1000
-LAYOUT_HEIGHT = 680
+LAYOUT_WIDTH = 1400
+LAYOUT_HEIGHT = 1040
+
+CORE_NODE_IDS = {
+    "ENT-HUMAN-EXPERIENCE",
+    "ENT-FEEL-HOME",
+    "ENT-FEEL-CONTROL",
+    "ENT-FEEL-RECOGNIZED",
+    "ENT-FEEL-INCLUDED",
+    "ENT-FEEL-SECURE",
+    "ENT-FEEL-SUPPORTED",
+    "ENT-CASTING",
+    "ENT-IOT-CONTROLS",
+    "ENT-PMS-INTEGRATION",
+    "ENT-LANGUAGE-ACCESS",
+    "ENT-PRIVACY-CONTROLS",
+    "ENT-DIGITAL-CONCIERGE",
+}
+
+PRIMARY_NODE_IDS = {
+    "ENT-HUMAN-EXPERIENCE",
+    "ENT-FEEL-HOME",
+    "ENT-FEEL-CONTROL",
+    "ENT-FEEL-RECOGNIZED",
+    "ENT-FEEL-INCLUDED",
+    "ENT-FEEL-SECURE",
+    "ENT-FEEL-SUPPORTED",
+}
+
+# Semantic positions make the map reproducible and legible: the center and six
+# outcomes form the first ring, their aligned capabilities form the second ring,
+# and the complete explorer occupies separated outer sectors.
+SEMANTIC_POSITIONS = {
+    "ENT-HUMAN-EXPERIENCE": (700, 520),
+    "ENT-FEEL-HOME": (475, 390),
+    "ENT-FEEL-CONTROL": (700, 260),
+    "ENT-FEEL-RECOGNIZED": (925, 390),
+    "ENT-FEEL-INCLUDED": (925, 650),
+    "ENT-FEEL-SECURE": (700, 780),
+    "ENT-FEEL-SUPPORTED": (475, 650),
+    "ENT-CASTING": (300, 290),
+    "ENT-IOT-CONTROLS": (700, 60),
+    "ENT-PMS-INTEGRATION": (1100, 290),
+    "ENT-LANGUAGE-ACCESS": (1100, 750),
+    "ENT-PRIVACY-CONTROLS": (700, 980),
+    "ENT-DIGITAL-CONCIERGE": (300, 750),
+    "ENT-CONNECTED-DISPLAY": (90, 115),
+    "ENT-CLOUD-MANAGEMENT": (1310, 115),
+    "ENT-SAMSUNG-REFERENCE": (1280, 510),
+    "ENT-GUEST": (80, 430),
+    "ENT-BRAND": (80, 570),
+    "ENT-PROPERTY-OPERATOR": (80, 710),
+    "ENT-OEM-PLATFORM": (175, 850),
+    "ENT-INTEGRATOR": (175, 215),
+    "ENT-TECH-PARTNERS": (175, 980),
+    "ENT-HUMAN-VALUE": (1315, 280),
+    "ENT-PROPERTY-VALUE": (1315, 640),
+    "ENT-ECOSYSTEM-VALUE": (1315, 780),
+    "ENT-ENERGY-EFFICIENCY": (1190, 860),
+    "ENT-ANCILLARY-REVENUE": (1315, 930),
+    "ENT-OPERATIONAL-SUPPORT": (1090, 965),
+    "ENT-NETWORK-DEPENDENCY": (360, 985),
+    "ENT-DATA-GOVERNANCE": (930, 985),
+    "ENT-AVAILABILITY-LIMITS": (1190, 1010),
+    "ENT-MACRO-CONTEXT": (1310, 490),
+}
 
 
 def build_graph() -> nx.DiGraph:
@@ -41,6 +105,17 @@ def build_graph() -> nx.DiGraph:
             outcome=entity.outcome or entity.entity_type,
             color=OUTCOME_COLORS.get(entity.outcome or entity.entity_type, "#8aa2b8"),
             evidence_ids="|".join(entity.evidence_ids),
+            core_view=entity.id in CORE_NODE_IDS,
+            label_priority="primary" if entity.id in PRIMARY_NODE_IDS else "secondary",
+            layout_ring=(
+                "center"
+                if entity.id == "ENT-HUMAN-EXPERIENCE"
+                else "outcome"
+                if entity.id in PRIMARY_NODE_IDS
+                else "capability"
+                if entity.id in CORE_NODE_IDS
+                else "outer"
+            ),
         )
     for relationship in sorted(relationships, key=lambda record: record.id):
         evidence_ids = sorted(
@@ -65,18 +140,15 @@ def build_graph() -> nx.DiGraph:
 
 
 def _apply_layout(graph: nx.DiGraph) -> None:
-    """Attach one seeded layout to every public graph representation."""
-    positions = nx.spring_layout(
-        graph,
-        seed=LAYOUT_SEED,
-        k=2.1,
-        iterations=200,
-        scale=1.0,
-    )
+    """Attach the curated semantic layout to every public graph representation."""
+    if set(graph.nodes) != set(SEMANTIC_POSITIONS):
+        missing = sorted(set(graph.nodes) - set(SEMANTIC_POSITIONS))
+        extra = sorted(set(SEMANTIC_POSITIONS) - set(graph.nodes))
+        raise ValueError(f"Semantic layout mismatch; missing={missing}, extra={extra}")
     for node_id in sorted(graph.nodes):
-        x, y = positions[node_id]
-        graph.nodes[node_id]["layout_x"] = round((float(x) + 1.0) * LAYOUT_WIDTH / 2, 4)
-        graph.nodes[node_id]["layout_y"] = round((float(y) + 1.0) * LAYOUT_HEIGHT / 2, 4)
+        x, y = SEMANTIC_POSITIONS[node_id]
+        graph.nodes[node_id]["layout_x"] = float(x)
+        graph.nodes[node_id]["layout_y"] = float(y)
 
 
 def _cytoscape_json(graph: nx.DiGraph) -> dict:
@@ -85,7 +157,7 @@ def _cytoscape_json(graph: nx.DiGraph) -> dict:
         "release": "hxg-v0.1.0",
         "layout": {
             "name": "preset",
-            "algorithm": "spring",
+            "algorithm": "semantic-rings",
             "seed": LAYOUT_SEED,
             "width": LAYOUT_WIDTH,
             "height": LAYOUT_HEIGHT,
