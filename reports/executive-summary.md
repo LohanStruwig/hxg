@@ -10,4 +10,4 @@ The graph separates three levels of proof. Direct facts are drawn as solid relat
 
 Samsung appears as one vendor-stated reference architecture showing how display hardware, casting, LYNK Cloud, SmartThings Pro, PMS-connected services, security controls, analytics, and a service channel can operate as a hybrid stack. Model, region, language, channel, software, integration, and licensing limitations remain attached to those records. HXG is independent and does not imply Samsung sponsorship or endorsement.
 
-Release 0.1.0 contains generated statistics from one frozen manifest: see `data/public/run-manifest.json`. The explorer, GraphML/JSON exports, poster, carousel, and LinkedIn copy use the same evidence cutoff of August 19, 2026.
+Release 0.2.0 contains generated statistics from one frozen manifest: see `data/public/run-manifest.json`. The explorer, GraphML/JSON exports, poster, carousel, and LinkedIn copy use the same evidence cutoff of August 19, 2026.

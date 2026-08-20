@@ -97,7 +97,7 @@ def freeze_seed_release(
     source_hashes = {source["id"]: source["content_hash"] for source in sources}
     manifest = RunManifest(
         id="RUN-HXG-2026-08-19-SEED",
-        release_version="0.1.0",
+        release_version="0.2.0",
         mode="interactive-codex-seed",
         status="frozen",
         started_at="2026-08-19T09:00:00-05:00",

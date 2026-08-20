@@ -1,6 +1,6 @@
 # Data and provenance
 
-- `seed/` contains the governed seed evidence register used for release 0.1.0.
+- `seed/` contains the governed seed evidence register used for release 0.2.0.
 - `public/` contains the frozen, schema-valid release consumed by the graph, explorer, and publication pipeline.
 - `schemas/v1/` contains generated JSON Schemas.
 - `cache/` stores retrieved third-party documents locally and is never committed.

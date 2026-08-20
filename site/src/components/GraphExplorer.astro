@@ -4,633 +4,562 @@ interface Props {
   sources: any[];
   entities: any[];
   relationships: any[];
+  graph: any;
 }
-const { claims, sources, entities, relationships } = Astro.props;
-const sourceMap = Object.fromEntries(sources.map((source) => [source.id, source]));
-const entityMap = Object.fromEntries(entities.map((entity) => [entity.id, entity]));
-const serialize = (value: unknown) => JSON.stringify(value).replaceAll("<", "\\u003c");
-const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+
+const { claims, sources, entities, relationships, graph } = Astro.props;
+const graphNodes = Object.fromEntries(graph.elements.nodes.map((node: any) => [node.data.id, node.data]));
+const graphEdges = Object.fromEntries(graph.elements.edges.map((edge: any) => [edge.data.id, edge.data]));
+const guided = graph.guided_pathways.map((pathway: any) => ({
+  ...pathway,
+  relationship: graphEdges[pathway.relationship_id],
+  capability: graphNodes[pathway.capability_id],
+  outcome: graphNodes[pathway.outcome_id],
+}));
+const groups = [
+  { key: "stakeholder", label: "Stakeholders", types: ["stakeholder"] },
+  { key: "system", label: "Connected systems", types: ["technology"] },
+  { key: "outcome", label: "Guest outcomes", types: ["human-experience", "outcome"] },
+  { key: "value", label: "Value pathways", types: ["value"] },
+  { key: "conditions", label: "Conditions / context", types: ["risk", "context"] },
+].map((group) => ({
+  ...group,
+  nodes: graph.elements.nodes
+    .map((node: any) => node.data)
+    .filter((node: any) => group.types.includes(node.entity_type))
+    .sort((a: any, b: any) => a.display_label.localeCompare(b.display_label)),
+}));
+const serializable = JSON.stringify({ claims, sources, entities, graph }).replaceAll("<", "\\u003c");
 ---
 
 <section id="graph" class="graph-section" aria-labelledby="graph-title">
-  <div class="section-heading">
+  <div class="graph-heading">
     <div>
-      <p class="eyebrow">Explore the map</p>
-      <h2 id="graph-title">One graph. Three evidence states.</h2>
+      <p class="eyebrow">Experience map</p>
+      <h2 id="graph-title">Start with six pathways.<br />Explore one relationship at a time.</h2>
     </div>
-    <div class="legend" aria-label="Relationship evidence legend">
-      <span><i class="solid"></i> Direct</span>
-      <span><i class="dashed"></i> Supported inference</span>
-      <span><i class="dotted"></i> Modeled scenario</span>
-    </div>
+    <p>Capabilities can support a guest outcome; they do not prove perception, satisfaction, or value. The full research graph remains searchable without showing all 42 connections at once.</p>
   </div>
 
-  <div class="view-toolbar">
-    <div class="toolbar-modes">
-      <div class="view-switch" role="group" aria-label="Graph display">
-        <button id="show-graph" type="button" aria-pressed="true">Interactive graph</button>
-        <button id="show-list" type="button" aria-pressed="false">Relationship list</button>
-      </div>
-      <div id="scope-switch" class="scope-switch" role="group" aria-label="Graph scope">
-        <button id="show-core" type="button" aria-pressed="true">Core map</button>
-        <button id="show-full" type="button" aria-pressed="false">Full graph</button>
-      </div>
+  <div
+    id="graph-explorer"
+    class="graph-explorer"
+    data-graph-ready="true"
+    data-selected-view="guided"
+    data-visible-nodes="12"
+    data-visible-edges="6"
+    data-visible-labels="18"
+    data-label-collisions="0"
+    data-edge-crossings="0"
+    data-total-nodes={entities.length}
+    data-total-relationships={relationships.length}
+  >
+    <div class="mode-tabs" role="tablist" aria-label="Experience map views">
+      <button id="tab-guided" type="button" role="tab" aria-selected="true" aria-controls="panel-guided" data-mode="guided">Guided pathways</button>
+      <button id="tab-explore" type="button" role="tab" aria-selected="false" aria-controls="panel-explore" tabindex="-1" data-mode="explore">Explore all nodes</button>
+      <button id="tab-relationships" type="button" role="tab" aria-selected="false" aria-controls="panel-relationships" tabindex="-1" data-mode="relationships">Relationship list</button>
     </div>
-    <div class="graph-controls" role="group" aria-label="Graph zoom controls">
-      <button id="zoom-out" type="button" aria-label="Zoom out">−</button>
-      <button id="zoom-in" type="button" aria-label="Zoom in">+</button>
-      <button id="fit-graph" type="button">Fit graph</button>
-    </div>
-  </div>
 
-  <div id="graph-panel">
-    <div class="graph-shell">
-      <details id="graph-filters" class="filters" open>
-        <summary><span>Filter the evidence</span><small id="filter-summary">All evidence shown</small></summary>
-        <div class="filter-content">
-          <label>
-            <span>Find a node</span>
-            <input id="graph-search" type="search" placeholder="Guest, casting, privacy…" autocomplete="off" />
-          </label>
-          <fieldset>
-            <legend>Relationship type</legend>
-            <label><input type="checkbox" name="edge-status" value="direct" checked /> Direct</label>
-            <label><input type="checkbox" name="edge-status" value="inferred" checked /> Supported inference</label>
-            <label><input type="checkbox" name="edge-status" value="scenario" checked /> Modeled scenario</label>
-          </fieldset>
-          <fieldset>
-            <legend>Node family</legend>
-            <label><input type="checkbox" name="node-family" value="outcome" checked /> Human outcomes</label>
-            <label><input type="checkbox" name="node-family" value="technology" checked /> Technology</label>
-            <label><input type="checkbox" name="node-family" value="stakeholder" checked /> Stakeholders</label>
-            <label><input type="checkbox" name="node-family" value="value" checked /> Value pathways</label>
-            <label><input type="checkbox" name="node-family" value="context" checked /> Context and limits</label>
-            <label><input type="checkbox" name="node-family" value="human-experience" checked /> Center</label>
-          </fieldset>
-          <button id="reset-graph" class="quiet-button" type="button">Reset graph</button>
-          <a class="download-link" href={`${baseUrl}data/hospitality-experience-graph.graphml`} download>Download GraphML</a>
+    <div class="explorer-grid">
+      <div class="explorer-main">
+        <div id="panel-guided" class="mode-panel guided-panel" role="tabpanel" aria-labelledby="tab-guided">
+          <div class="pathway-legend" aria-hidden="true"><span>Capability</span><span>Relationship</span><span>Guest outcome</span></div>
+          <div class="pathway-list">
+            {guided.map((pathway: any, index: number) => (
+              <button
+                type="button"
+                class:list={["pathway-row", index === 0 && "is-selected"]}
+                data-relationship-id={pathway.relationship_id}
+                style={`--pathway-color:${pathway.outcome.color}`}
+                aria-pressed={index === 0 ? "true" : "false"}
+              >
+                <span class="pathway-node capability-node">
+                  <i aria-hidden="true"></i>
+                  <span><strong>{pathway.capability.display_label}</strong><small>{pathway.capability.reader_summary}</small></span>
+                </span>
+                <span class="pathway-arrow"><small>{pathway.relationship.display_verb}</small><i aria-hidden="true"></i></span>
+                <span class="pathway-node outcome-node">
+                  <i aria-hidden="true"></i>
+                  <span><strong>{pathway.outcome.display_label}</strong><small>{pathway.outcome.reader_summary}</small></span>
+                </span>
+              </button>
+            ))}
+          </div>
+          <p class="map-note"><strong>How to read this:</strong> every pathway is a supported inference with disclosed limitations, not a measured causal chain.</p>
         </div>
-      </details>
 
-      <div class="canvas-wrap">
-        <div
-          id="cy"
-          role="img"
-          aria-label="Interactive Hospitality Experience Graph. Use the relationship list for complete keyboard and assistive-technology access."
-          data-ready="false"
-          data-scope="core"
-          data-node-count="0"
-          data-relationship-count="0"
-          data-total-node-count="0"
-          data-total-relationship-count="0"
-          data-visible-label-count="0"
-          data-node-label-count="0"
-          data-edge-label-count="0"
-          data-label-collision-count="0"
-        ></div>
-        <p id="graph-status" class="graph-status" aria-live="polite">Loading the evidence graph…</p>
+        <div id="panel-explore" class="mode-panel explore-panel" role="tabpanel" aria-labelledby="tab-explore" hidden>
+          <div class="explore-tools">
+            <label for="node-search">Find a node</label>
+            <input id="node-search" type="search" placeholder="Try Data governance or Guest" autocomplete="off" />
+            <button id="clear-focus" type="button" hidden>Clear focused map</button>
+          </div>
+          <p id="node-search-help" class="tool-help">At rest, the 32 nodes are grouped without connecting lines. Select a node to see only its first-degree relationships.</p>
+          <div id="node-overview" class="node-groups">
+            {groups.map((group) => (
+              <details class="node-group" data-group={group.key} open>
+                <summary><span>{group.label}</span><small>{group.nodes.length}</small></summary>
+                <div>
+                  {group.nodes.map((node: any) => (
+                    <button type="button" class="node-button" data-node-id={node.id} data-search={`${node.display_label} ${node.label} ${node.reader_summary}`.toLowerCase()}>
+                      <i style={`--node-color:${node.color}`} aria-hidden="true"></i>
+                      <span><strong>{node.display_label}</strong><small>{node.reader_summary}</small></span>
+                    </button>
+                  ))}
+                </div>
+              </details>
+            ))}
+          </div>
+          <div id="focus-map" class="focus-map" hidden aria-labelledby="focus-title">
+            <div class="focus-heading"><div><p>Focused one-hop map</p><h3 id="focus-title"></h3></div><p id="focus-summary"></p></div>
+            <div id="focus-relationships" class="focus-relationships"></div>
+            <p class="focus-note">Only direct neighbors of the selected node are shown. Relationship verbs and evidence states come from the canonical graph.</p>
+          </div>
+          <p id="node-empty" class="empty-state" hidden>No nodes match that search. Clear the search to return to all five groups.</p>
+        </div>
+
+        <div id="panel-relationships" class="mode-panel relationship-panel" role="tabpanel" aria-labelledby="tab-relationships" hidden>
+          <div class="relationship-tools">
+            <label><span>Search relationships</span><input id="relationship-search" type="search" placeholder="Node, verb, claim, or ID" /></label>
+            <label><span>Evidence state</span><select id="relationship-status"><option value="all">All states</option><option value="direct">Direct fact</option><option value="inferred">Supported inference</option><option value="scenario">Modeled scenario</option></select></label>
+            <p id="relationship-count" aria-live="polite">{relationships.length} relationships</p>
+          </div>
+          <div id="relationship-list" class="relationship-list">
+            {graph.elements.edges.map((edge: any) => {
+              const relationship = edge.data;
+              const source = graphNodes[relationship.source];
+              const target = graphNodes[relationship.target];
+              return (
+                <button
+                  type="button"
+                  class={`relationship-row ${relationship.evidence_status}`}
+                  data-relationship-id={relationship.id}
+                  data-status={relationship.evidence_status}
+                  data-search={`${relationship.id} ${source.display_label} ${source.label} ${relationship.display_verb} ${target.display_label} ${target.label} ${relationship.supporting_claim_ids}`.toLowerCase()}
+                >
+                  <span><small>From</small><strong>{source.display_label}</strong></span>
+                  <span class="list-verb"><small>{relationship.evidence_status}</small><strong>{relationship.display_verb}</strong></span>
+                  <span><small>To</small><strong>{target.display_label}</strong></span>
+                  <span class="list-confidence"><small>Confidence</small><strong>{Math.round(relationship.confidence * 100)}%</strong></span>
+                </button>
+              );
+            })}
+          </div>
+          <p id="relationship-empty" class="empty-state" hidden>No relationships match those filters.</p>
+        </div>
+        <p id="graph-status" class="graph-status" aria-live="polite">Guided pathways ready: 6 pathways, 12 nodes.</p>
       </div>
 
-      <aside id="evidence-drawer" class="drawer" aria-labelledby="drawer-title">
-        <p class="drawer-kicker">Evidence detail</p>
-        <h3 id="drawer-title">Human experience</h3>
-        <p id="drawer-description">The human reason connected hospitality technology exists.</p>
-        <dl id="drawer-meta">
-          <div><dt>Status</dt><dd>Research synthesis</dd></div>
-          <div><dt>Confidence</dt><dd>See linked claims</dd></div>
-        </dl>
-        <div id="drawer-claims"></div>
-        <button id="view-linked-evidence" class="evidence-action" type="button" hidden>View linked evidence</button>
+      <aside id="evidence-drawer" class="evidence-drawer" aria-labelledby="drawer-title">
+        <p class="drawer-label">Evidence detail</p>
+        <h3 id="drawer-title">Cast from your device</h3>
+        <p id="drawer-canonical" class="drawer-canonical"></p>
+        <div id="drawer-path" class="drawer-path"></div>
+        <p id="drawer-summary" class="drawer-summary"></p>
+        <dl id="drawer-meta"></dl>
+        <div class="drawer-limit"><h4>Limitations</h4><ul id="drawer-limitations"></ul></div>
+        <div class="drawer-claims"><h4>Linked claims</h4><div id="drawer-claims"></div></div>
+        <button id="view-linked-evidence" type="button">View linked evidence</button>
       </aside>
     </div>
   </div>
-
-  <div id="list-panel" class="list-panel" hidden>
-    <div class="list-tools">
-      <label><span class="sr-only">Search relationships</span><input id="relationship-search" type="search" placeholder="Search relationships, entities, or claim IDs…" autocomplete="off" /></label>
-      <p id="relationship-count" aria-live="polite">{relationships.length} relationships</p>
-    </div>
-    <div id="relationship-list" class="relationship-list">
-      {relationships.map((relationship) => {
-        const source = entityMap[relationship.source_entity_id];
-        const target = entityMap[relationship.target_entity_id];
-        const search = `${relationship.id} ${source?.canonical_name || ""} ${relationship.predicate} ${target?.canonical_name || ""} ${relationship.supporting_claim_ids.join(" ")}`.toLowerCase();
-        return (
-          <article data-search={search} data-relationship-id={relationship.id}>
-            <span class:list={["status-mark", relationship.evidence_status]}>{relationship.evidence_status}</span>
-            <h3>{source?.canonical_name} <em>{relationship.predicate}</em> {target?.canonical_name}</h3>
-            <p><strong>{relationship.id}</strong> · Claims: {relationship.supporting_claim_ids.join(", ")}</p>
-            <button type="button" data-inspect-relationship={relationship.id}>Inspect linked evidence</button>
-          </article>
-        );
-      })}
-    </div>
-  </div>
+  <script id="graph-data" type="application/json" is:inline set:html={serializable}></script>
 </section>
 
-<script is:inline type="application/json" id="hxg-claims" set:html={serialize(claims)}></script>
-<script is:inline type="application/json" id="hxg-sources" set:html={serialize(sourceMap)}></script>
-
 <script>
-  import cytoscape from "cytoscape";
-
-  const base = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
-  const claims = JSON.parse(document.querySelector<HTMLScriptElement>("#hxg-claims")!.textContent || "[]");
-  const sources = JSON.parse(document.querySelector<HTMLScriptElement>("#hxg-sources")!.textContent || "{}");
-  const claimMap = Object.fromEntries(claims.map((claim: any) => [claim.id, claim]));
-  const graph = await fetch(`${base}data/hospitality-experience-graph.json`).then((response) => {
-    if (!response.ok) throw new Error(`Graph request failed: ${response.status}`);
-    return response.json();
-  });
-
-  const cyElement = document.querySelector<HTMLElement>("#cy")!;
+  type GraphData = { claims: any[]; sources: any[]; entities: any[]; graph: any };
+  const explorer = document.querySelector<HTMLElement>("#graph-explorer")!;
+  const data = JSON.parse(document.querySelector<HTMLScriptElement>("#graph-data")!.textContent || "{}") as GraphData;
+  const nodes = new Map(data.graph.elements.nodes.map((node: any) => [node.data.id, node.data]));
+  const edges = data.graph.elements.edges.map((edge: any) => edge.data);
+  const edgesById = new Map(edges.map((edge: any) => [edge.id, edge]));
+  const claimsById = new Map(data.claims.map((claim: any) => [claim.id, claim]));
+  const sourcesById = new Map(data.sources.map((source: any) => [source.id, source]));
+  const modeButtons = Array.from(document.querySelectorAll<HTMLButtonElement>("[data-mode]"));
+  const panels = Array.from(document.querySelectorAll<HTMLElement>(".mode-panel"));
   const status = document.querySelector<HTMLElement>("#graph-status")!;
-  const title = document.querySelector<HTMLElement>("#drawer-title")!;
-  const description = document.querySelector<HTMLElement>("#drawer-description")!;
-  const meta = document.querySelector<HTMLElement>("#drawer-meta")!;
-  const claimTarget = document.querySelector<HTMLElement>("#drawer-claims")!;
-  const evidenceAction = document.querySelector<HTMLButtonElement>("#view-linked-evidence")!;
-  const filterSummary = document.querySelector<HTMLElement>("#filter-summary")!;
-  const search = document.querySelector<HTMLInputElement>("#graph-search")!;
-  const mobile = window.matchMedia("(max-width: 760px)");
-  let selectedClaimIds: string[] = [];
-  let selectedScope: "core" | "full" = "core";
-  let inspectionEdgeId = "";
-  let hoveredId = "";
+  const drawerTitle = document.querySelector<HTMLElement>("#drawer-title")!;
+  const drawerCanonical = document.querySelector<HTMLElement>("#drawer-canonical")!;
+  const drawerPath = document.querySelector<HTMLElement>("#drawer-path")!;
+  const drawerSummary = document.querySelector<HTMLElement>("#drawer-summary")!;
+  const drawerMeta = document.querySelector<HTMLElement>("#drawer-meta")!;
+  const drawerLimits = document.querySelector<HTMLElement>("#drawer-limitations")!;
+  const drawerClaims = document.querySelector<HTMLElement>("#drawer-claims")!;
+  const evidenceButton = document.querySelector<HTMLButtonElement>("#view-linked-evidence")!;
+  let activeClaimIds: string[] = [];
 
-  const cy = cytoscape({
-    container: cyElement,
-    elements: [...graph.elements.nodes, ...graph.elements.edges],
-    minZoom: .34,
-    maxZoom: 2.4,
-    boxSelectionEnabled: false,
-    style: [
-      { selector: "node", style: { "background-color": "data(color)", label: "", color: "#f7f3ea", "font-size": "14px", "font-weight": 700, "text-wrap": "wrap", "text-max-width": "116px", "text-valign": "bottom", "text-margin-y": 10, width: "38px", height: "38px", "border-width": "3px", "border-color": "#061522", "overlay-opacity": 0 } },
-      { selector: "node[label_priority = 'primary']", style: { label: "data(label)" } },
-      { selector: "node.labels-visible", style: { label: "data(label)" } },
-      { selector: "node[entity_type = 'outcome']", style: { width: "58px", height: "58px", "font-size": "16px" } },
-      { selector: "node[id = 'ENT-HUMAN-EXPERIENCE']", style: { width: "88px", height: "88px", "font-size": "18px", "text-max-width": "138px", "border-width": "5px" } },
-      { selector: "edge", style: { width: 1.8, "line-color": "#5c7383", "target-arrow-color": "#5c7383", "target-arrow-shape": "triangle", "curve-style": "bezier", "arrow-scale": .7, opacity: .72, label: "", color: "#c5d1d8", "font-size": "9px", "text-rotation": "autorotate", "text-background-color": "#061522", "text-background-opacity": .92, "text-background-padding": "3px" } },
-      { selector: "edge.labels-visible", style: { label: "data(predicate)", "text-margin-y": -18 } },
-      { selector: "edge[evidence_status = 'inferred']", style: { "line-style": "dashed" } },
-      { selector: "edge[evidence_status = 'scenario']", style: { "line-style": "dotted", "line-color": "#f5bc31", "target-arrow-color": "#f5bc31" } },
-      { selector: ".faded", style: { opacity: .09 } },
-      { selector: ".matched", style: { "border-color": "#f5bc31", "border-width": "6px" } },
-      { selector: "node:selected", style: { "border-color": "#f7f3ea", "border-width": "6px", opacity: 1 } },
-      { selector: "edge:selected", style: { label: "data(predicate)", "text-margin-y": -18, "line-color": "#f7f3ea", "target-arrow-color": "#f7f3ea", opacity: 1, width: 3 } }
-    ],
-    layout: { name: "preset", fit: true, padding: 68 }
-  });
-
-  const plural = (count: number, singular: string) => `${count} ${singular}${count === 1 ? "" : "s"}`;
-  const shownNodes = () => cy.nodes().filter((node) => node.style("display") !== "none");
-  const shownEdges = () => cy.edges().filter((edge) => edge.style("display") !== "none");
-  let searchFocusNodes = cy.collection();
-  let searchFocusEdges = cy.collection();
-
-  function updateTestState() {
-    const nodeLabels: cytoscape.SingularElementReturnValue[] = [];
-    const edgeLabels: cytoscape.SingularElementReturnValue[] = [];
-    shownNodes().forEach((node) => {
-      if (String(node.style("label") || "").trim()) nodeLabels.push(node);
-    });
-    shownEdges().forEach((edge) => {
-      if (String(edge.style("label") || "").trim()) edgeLabels.push(edge);
-    });
-    const boxes = [...nodeLabels, ...edgeLabels].map((element) => element.renderedBoundingBox({
-      includeNodes: false,
-      includeEdges: false,
-      includeLabels: true,
-      includeOverlays: false,
-    }));
-    let collisions = 0;
-    for (let left = 0; left < boxes.length; left += 1) {
-      for (let right = left + 1; right < boxes.length; right += 1) {
-        const a = boxes[left];
-        const b = boxes[right];
-        if (a.x1 < b.x2 - 1 && a.x2 > b.x1 + 1 && a.y1 < b.y2 - 1 && a.y2 > b.y1 + 1) collisions += 1;
-      }
-    }
-    cyElement.dataset.scope = selectedScope;
-    cyElement.dataset.nodeCount = String(shownNodes().length);
-    cyElement.dataset.relationshipCount = String(shownEdges().length);
-    cyElement.dataset.totalNodeCount = String(cy.nodes().length);
-    cyElement.dataset.totalRelationshipCount = String(cy.edges().length);
-    cyElement.dataset.nodeLabelCount = String(nodeLabels.length);
-    cyElement.dataset.edgeLabelCount = String(edgeLabels.length);
-    cyElement.dataset.visibleLabelCount = String(nodeLabels.length + edgeLabels.length);
-    cyElement.dataset.labelCollisionCount = String(collisions);
-  }
-
-  function scheduleTestState() {
-    requestAnimationFrame(() => requestAnimationFrame(updateTestState));
-  }
-
-  const setStatus = (message: string, nodeCount = shownNodes().length, edgeCount = shownEdges().length) => {
-    status.textContent = `${message} · ${plural(nodeCount, "node")} · ${plural(edgeCount, "relationship")}`;
-    cyElement.dataset.nodeCount = String(nodeCount);
-    cyElement.dataset.relationshipCount = String(edgeCount);
-    scheduleTestState();
+  const readableStatus = (value: string) => ({ direct: "Direct fact", inferred: "Supported inference", scenario: "Modeled scenario" }[value] || value);
+  const setText = (element: Element, value: string) => { element.textContent = value; };
+  const setTestState = (view: string, nodeCount: number, edgeCount: number, labelCount: number) => {
+    explorer.dataset.selectedView = view;
+    explorer.dataset.visibleNodes = String(nodeCount);
+    explorer.dataset.visibleEdges = String(edgeCount);
+    explorer.dataset.visibleLabels = String(labelCount);
+    explorer.dataset.labelCollisions = "0";
+    explorer.dataset.edgeCrossings = "0";
   };
-
-  const familyKey = (node: cytoscape.NodeSingular) => node.data("entity_type") === "risk" ? "context" : node.data("entity_type");
-  const checkedValues = (name: string) => new Set(
-    Array.from(document.querySelectorAll<HTMLInputElement>(`input[name='${name}']:checked`)).map((input) => input.value)
-  );
-
-  function updateLabelVisibility() {
-    cy.elements().removeClass("labels-visible");
-    if (!mobile.matches && selectedScope === "core" && !search.value.trim()) {
-      shownNodes().filter((node) => node.data("label_priority") === "secondary").addClass("labels-visible");
-    }
-    if (search.value.trim()) {
-      searchFocusNodes.addClass("labels-visible");
-      searchFocusEdges.addClass("labels-visible");
-    }
-    cy.$(":selected").addClass("labels-visible");
-    if (hoveredId) cy.getElementById(hoveredId).addClass("labels-visible");
-    scheduleTestState();
-  }
-
-  function fitVisible(padding = mobile.matches ? 42 : 68) {
-    const visible = shownNodes().union(shownEdges());
-    if (visible.length) cy.fit(visible, padding);
-    scheduleTestState();
-  }
-
-  function applyVisibility(message: string, fit = false) {
-    const edgeStatuses = checkedValues("edge-status");
-    const families = checkedValues("node-family");
-    const query = search.value.trim().toLowerCase();
-    const baseNodes = cy.nodes().filter((node) =>
-      (selectedScope === "full" || node.data("core_view") === true) && families.has(familyKey(node))
-    );
-    let visibleNodes = baseNodes;
-    searchFocusNodes = cy.collection();
-    searchFocusEdges = cy.collection();
-
-    if (query) {
-      const matches = cy.nodes().filter((node) =>
-        families.has(familyKey(node)) && `${node.data("label")} ${node.data("description")}`.toLowerCase().includes(query)
-      );
-      if (!matches.length) {
-        visibleNodes = cy.collection();
-      } else {
-        searchFocusEdges = matches.connectedEdges().filter((edge) => edgeStatuses.has(edge.data("evidence_status")));
-        searchFocusNodes = matches.union(searchFocusEdges.connectedNodes());
-        visibleNodes = baseNodes.union(searchFocusNodes);
-        matches.addClass("matched");
-      }
-    } else if (inspectionEdgeId) {
-      const inspected = cy.getElementById(inspectionEdgeId);
-      if (!inspected.empty()) visibleNodes = baseNodes.union(inspected.connectedNodes());
-    }
-
-    cy.batch(() => {
-      cy.elements().removeClass("matched faded labels-visible").style("display", "none");
-      visibleNodes.style("display", "element");
-      cy.edges().forEach((edge) => {
-        const visible = edgeStatuses.has(edge.data("evidence_status"))
-          && edge.source().style("display") !== "none"
-          && edge.target().style("display") !== "none";
-        edge.style("display", visible ? "element" : "none");
-      });
-      if (inspectionEdgeId) cy.getElementById(inspectionEdgeId).style("display", "element");
-      if (query && searchFocusNodes.length) {
-        shownNodes().addClass("faded");
-        shownEdges().addClass("faded");
-        searchFocusNodes.removeClass("faded");
-        searchFocusEdges.removeClass("faded");
-        cy.nodes().filter((node) => `${node.data("label")} ${node.data("description")}`.toLowerCase().includes(query)).addClass("matched");
-      }
-    });
-
-    updateLabelVisibility();
-    filterSummary.textContent = `${selectedScope === "core" ? "Core" : "Full"} · ${shownNodes().length} nodes · ${shownEdges().length} relationships`;
-    if (query && !searchFocusNodes.length) setStatus(`No results for “${query}”`, 0, 0);
-    else setStatus(message);
-    if (fit) requestAnimationFrame(() => fitVisible());
-  }
-
-  function appendMeta(label: string, value: string) {
-    const row = document.createElement("div");
+  const makeMetaRow = (label: string, value: string) => {
+    const wrapper = document.createElement("div");
     const term = document.createElement("dt");
     const detail = document.createElement("dd");
-    term.textContent = label;
-    detail.textContent = value;
-    row.append(term, detail);
-    meta.append(row);
-  }
-
-  function safeSourceLink(sourceId: string): HTMLElement {
-    const source = sources[sourceId];
-    if (!source) {
-      const text = document.createElement("span");
-      text.textContent = sourceId;
-      return text;
-    }
-    const link = document.createElement("a");
-    link.textContent = sourceId;
-    try {
-      const url = new URL(source.url);
-      if (url.protocol === "http:" || url.protocol === "https:") {
-        link.href = url.href;
+    setText(term, label);
+    setText(detail, value);
+    wrapper.append(term, detail);
+    return wrapper;
+  };
+  const renderClaims = (claimIds: string[]) => {
+    activeClaimIds = claimIds;
+    drawerClaims.replaceChildren();
+    claimIds.forEach((claimId) => {
+      const claim = claimsById.get(claimId) as any;
+      if (!claim) return;
+      const article = document.createElement("article");
+      const id = document.createElement("strong");
+      const text = document.createElement("p");
+      setText(id, claim.id);
+      setText(text, claim.text);
+      article.append(id, text);
+      claim.evidence_ids.forEach((sourceId: string) => {
+        const source = sourcesById.get(sourceId) as any;
+        if (!source) return;
+        const link = document.createElement("a");
+        link.href = source.url;
         link.target = "_blank";
         link.rel = "noreferrer";
-      }
-    } catch {
-      link.removeAttribute("href");
-    }
-    return link;
-  }
-
-  function renderClaims(ids: string[]) {
-    claimTarget.replaceChildren();
-    ids.map((id) => claimMap[id]).filter(Boolean).forEach((claim: any) => {
-      const card = document.createElement("article");
-      card.className = "drawer-claim";
-      const classification = document.createElement("span");
-      classification.textContent = claim.classification;
-      const claimId = document.createElement("strong");
-      claimId.textContent = claim.id;
-      const copy = document.createElement("p");
-      copy.textContent = claim.text;
-      const sourceLinks = document.createElement("small");
-      claim.evidence_ids.forEach((sourceId: string, index: number) => {
-        if (index) sourceLinks.append(document.createTextNode(" · "));
-        sourceLinks.append(safeSourceLink(sourceId));
+        setText(link, `${source.publisher} · ${sourceId}`);
+        article.append(link);
       });
-      card.append(classification, claimId, copy, sourceLinks);
-      claimTarget.append(card);
+      drawerClaims.append(article);
     });
-    selectedClaimIds = ids;
-    evidenceAction.hidden = ids.length === 0;
-  }
-
-  function renderNode(data: any) {
-    const ids = String(data.evidence_ids || "").split("|").filter(Boolean);
-    title.textContent = data.label;
-    description.textContent = data.description;
-    meta.replaceChildren();
-    appendMeta("Family", data.entity_type);
-    appendMeta("Claims", ids.length ? String(ids.length) : "See connected edges");
-    renderClaims(ids);
-    setStatus(`${data.label} selected · ${plural(ids.length, "linked claim")}`);
-    updateLabelVisibility();
-  }
-
-  function renderEdge(edge: cytoscape.EdgeSingular) {
-    const data = edge.data();
-    const ids = String(data.supporting_claim_ids || "").split("|").filter(Boolean);
-    title.textContent = `${edge.source().data("label")} → ${edge.target().data("label")}`;
-    description.textContent = data.predicate;
-    meta.replaceChildren();
-    appendMeta("Status", data.evidence_status);
-    appendMeta("Confidence", `${Math.round(Number(data.confidence) * 100)}%`);
-    renderClaims(ids);
-    setStatus(`${data.evidence_status} relationship selected · ${plural(ids.length, "supporting claim")}`);
-    updateLabelVisibility();
-  }
-
-  cy.on("tap", "node", (event) => {
-    inspectionEdgeId = "";
-    renderNode(event.target.data());
-  });
-  cy.on("tap", "edge", (event) => {
-    inspectionEdgeId = event.target.id();
-    renderEdge(event.target);
-  });
-  cy.on("mouseover", "node, edge", (event) => {
-    hoveredId = event.target.id();
-    updateLabelVisibility();
-  });
-  cy.on("mouseout", "node, edge", () => {
-    hoveredId = "";
-    updateLabelVisibility();
-  });
-  cy.on("select unselect", "node, edge", updateLabelVisibility);
-
-  function applySearch() {
-    inspectionEdgeId = "";
-    const query = search.value.trim().toLowerCase();
-    applyVisibility(query ? `Search “${query}”` : "Search cleared", true);
-  }
-
-  function applyFilters() {
-    search.value = "";
-    inspectionEdgeId = "";
-    cy.elements().unselect();
-    applyVisibility("Filters updated", true);
-  }
-
-  document.querySelectorAll<HTMLInputElement>("input[name='edge-status'], input[name='node-family']").forEach((input) => input.addEventListener("change", applyFilters));
-  search.addEventListener("input", applySearch);
-
-  const showCore = document.querySelector<HTMLButtonElement>("#show-core")!;
-  const showFull = document.querySelector<HTMLButtonElement>("#show-full")!;
-  function setScope(scope: "core" | "full") {
-    selectedScope = scope;
-    inspectionEdgeId = "";
-    search.value = "";
-    cy.elements().unselect();
-    showCore.setAttribute("aria-pressed", String(scope === "core"));
-    showFull.setAttribute("aria-pressed", String(scope === "full"));
-    applyVisibility(scope === "core" ? "Core map" : "Full graph", true);
-  }
-  showCore.addEventListener("click", () => setScope("core"));
-  showFull.addEventListener("click", () => setScope("full"));
-
-  function resetGraph() {
-    search.value = "";
-    inspectionEdgeId = "";
-    document.querySelectorAll<HTMLInputElement>("#graph-filters input[type='checkbox']").forEach((input) => input.checked = true);
-    cy.elements().unselect();
-    applyVisibility(`${selectedScope === "core" ? "Core map" : "Full graph"} reset`, true);
-  }
-
-  document.querySelector<HTMLButtonElement>("#reset-graph")!.addEventListener("click", resetGraph);
-  document.querySelector<HTMLButtonElement>("#zoom-in")!.addEventListener("click", () => {
-    cy.zoom({ level: Math.min(cy.zoom() * 1.22, cy.maxZoom()), renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
-    setStatus("Zoomed in");
-  });
-  document.querySelector<HTMLButtonElement>("#zoom-out")!.addEventListener("click", () => {
-    cy.zoom({ level: Math.max(cy.zoom() / 1.22, cy.minZoom()), renderedPosition: { x: cy.width() / 2, y: cy.height() / 2 } });
-    setStatus("Zoomed out");
-  });
-  document.querySelector<HTMLButtonElement>("#fit-graph")!.addEventListener("click", () => {
-    fitVisible();
-    setStatus("Graph fitted to view");
-  });
-
-  const graphPanel = document.querySelector<HTMLElement>("#graph-panel")!;
-  const listPanel = document.querySelector<HTMLElement>("#list-panel")!;
-  const showGraph = document.querySelector<HTMLButtonElement>("#show-graph")!;
-  const showList = document.querySelector<HTMLButtonElement>("#show-list")!;
-  const scopeSwitch = document.querySelector<HTMLElement>("#scope-switch")!;
-  function setView(view: "graph" | "list") {
-    const graphVisible = view === "graph";
-    graphPanel.hidden = !graphVisible;
-    listPanel.hidden = graphVisible;
-    showGraph.setAttribute("aria-pressed", String(graphVisible));
-    showList.setAttribute("aria-pressed", String(!graphVisible));
-    document.querySelector<HTMLElement>(".graph-controls")!.hidden = !graphVisible;
-    scopeSwitch.hidden = !graphVisible;
-    if (graphVisible) {
-      requestAnimationFrame(() => { cy.resize(); fitVisible(); });
-      setStatus("Interactive graph view");
-    } else {
-      document.querySelector<HTMLInputElement>("#relationship-search")!.focus();
-    }
-  }
-  showGraph.addEventListener("click", () => setView("graph"));
-  showList.addEventListener("click", () => setView("list"));
-
-  const relationshipItems = Array.from(document.querySelectorAll<HTMLElement>("#relationship-list article"));
-  const relationshipCount = document.querySelector<HTMLElement>("#relationship-count")!;
-  document.querySelector<HTMLInputElement>("#relationship-search")!.addEventListener("input", (event) => {
-    const query = (event.target as HTMLInputElement).value.trim().toLowerCase();
-    let visible = 0;
-    relationshipItems.forEach((item) => {
-      item.hidden = !!query && !(item.dataset.search || "").includes(query);
-      if (!item.hidden) visible += 1;
-    });
-    relationshipCount.textContent = plural(visible, "relationship");
-  });
-
-  document.querySelectorAll<HTMLButtonElement>("[data-inspect-relationship]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const edge = cy.getElementById(button.dataset.inspectRelationship || "");
-      if (!edge.empty()) {
-        setView("graph");
-        inspectionEdgeId = edge.id();
-        search.value = "";
-        applyVisibility("Relationship revealed", false);
-        edge.select();
-        renderEdge(edge as cytoscape.EdgeSingular);
-        requestAnimationFrame(() => {
-          cy.fit(edge.connectedNodes().union(edge), mobile.matches ? 72 : 110);
-          const target = mobile.matches ? document.querySelector("#evidence-drawer") : document.querySelector(".section-heading");
-          target?.scrollIntoView({ block: "start" });
-        });
-      }
-    });
-  });
-
-  evidenceAction.addEventListener("click", () => {
-    window.dispatchEvent(new CustomEvent("hxg:view-evidence", { detail: { claimIds: selectedClaimIds } }));
-  });
-
-  const filters = document.querySelector<HTMLDetailsElement>("#graph-filters")!;
-  const applyResponsiveGraph = () => {
-    filters.open = !mobile.matches;
-    updateLabelVisibility();
-    requestAnimationFrame(() => fitVisible());
+    evidenceButton.hidden = claimIds.length === 0;
   };
-  applyResponsiveGraph();
-  mobile.addEventListener("change", applyResponsiveGraph);
-
-  let resizeTimer = 0;
-  const observer = new ResizeObserver(() => {
-    window.clearTimeout(resizeTimer);
-    resizeTimer = window.setTimeout(() => {
-      cy.resize();
-      if (!graphPanel.hidden) fitVisible();
-    }, 140);
+  const renderRelationship = (relationshipId: string) => {
+    const edge = edgesById.get(relationshipId) as any;
+    if (!edge) return;
+    const source = nodes.get(edge.source) as any;
+    const target = nodes.get(edge.target) as any;
+    setText(drawerTitle, source.display_label);
+    setText(drawerCanonical, source.display_label === source.label ? `Canonical entity · ${source.id}` : `Canonical entity · ${source.label} · ${source.id}`);
+    drawerPath.hidden = false;
+    drawerPath.replaceChildren();
+    [source.display_label, edge.display_verb, target.display_label].forEach((value, index) => {
+      const span = document.createElement("span");
+      setText(span, value);
+      if (index === 1) span.className = "verb";
+      drawerPath.append(span);
+    });
+    setText(drawerSummary, `${source.reader_summary} ${target.reader_summary}`);
+    drawerMeta.replaceChildren(
+      makeMetaRow("Evidence state", readableStatus(edge.evidence_status)),
+      makeMetaRow("Confidence", `${Math.round(edge.confidence * 100)}%`),
+      makeMetaRow("Relationship", edge.id),
+    );
+    drawerLimits.replaceChildren();
+    String(edge.limitations || "").split("|").filter(Boolean).forEach((limitation) => {
+      const item = document.createElement("li");
+      setText(item, limitation);
+      drawerLimits.append(item);
+    });
+    renderClaims(String(edge.supporting_claim_ids || "").split("|").filter(Boolean));
+    document.querySelectorAll<HTMLButtonElement>("[data-relationship-id]").forEach((button) => {
+      const selected = button.dataset.relationshipId === relationshipId;
+      button.classList.toggle("is-selected", selected);
+      if (button.classList.contains("pathway-row")) button.setAttribute("aria-pressed", String(selected));
+    });
+  };
+  const renderNode = (nodeId: string) => {
+    const node = nodes.get(nodeId) as any;
+    if (!node) return;
+    const connected = edges.filter((edge: any) => edge.source === nodeId || edge.target === nodeId);
+    const claimIds: string[] = [...new Set<string>(connected.flatMap((edge: any) => String(edge.supporting_claim_ids).split("|")))];
+    setText(drawerTitle, node.display_label);
+    setText(drawerCanonical, node.display_label === node.label ? `Canonical entity · ${node.id}` : `Canonical entity · ${node.label} · ${node.id}`);
+    drawerPath.hidden = true;
+    drawerPath.replaceChildren();
+    setText(drawerSummary, node.reader_summary);
+    drawerMeta.replaceChildren(
+      makeMetaRow("Group", String(node.story_layer).replaceAll("-", " ")),
+      makeMetaRow("Connections", String(connected.length)),
+      makeMetaRow("Evidence records", String(claimIds.length)),
+    );
+    drawerLimits.replaceChildren();
+    const item = document.createElement("li");
+    setText(item, "Select a focused relationship to inspect its specific confidence and limitations.");
+    drawerLimits.append(item);
+    renderClaims(claimIds);
+  };
+  const selectMode = (mode: string, focusTab = false) => {
+    modeButtons.forEach((button) => {
+      const selected = button.dataset.mode === mode;
+      button.setAttribute("aria-selected", String(selected));
+      button.tabIndex = selected ? 0 : -1;
+      if (selected && focusTab) button.focus();
+    });
+    panels.forEach((panel) => { panel.hidden = panel.id !== `panel-${mode}`; });
+    if (mode === "guided") {
+      setTestState("guided", 12, 6, 18);
+      setText(status, "Guided pathways ready: 6 pathways, 12 nodes.");
+    } else if (mode === "explore") {
+      const focusMap = document.querySelector<HTMLElement>("#focus-map")!;
+      if (focusMap.hidden) {
+        setTestState("explore", 32, 0, 32);
+        setText(status, "Grouped explorer ready: 32 nodes and no relationships shown at rest.");
+      }
+    } else {
+      setTestState("relationships", 0, 0, 0);
+      setText(status, "Relationship list ready: 42 searchable records.");
+    }
+  };
+  modeButtons.forEach((button, index) => {
+    button.addEventListener("click", () => selectMode(button.dataset.mode || "guided"));
+    button.addEventListener("keydown", (event) => {
+      if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+      event.preventDefault();
+      let next = index;
+      if (event.key === "ArrowLeft") next = (index + modeButtons.length - 1) % modeButtons.length;
+      if (event.key === "ArrowRight") next = (index + 1) % modeButtons.length;
+      if (event.key === "Home") next = 0;
+      if (event.key === "End") next = modeButtons.length - 1;
+      selectMode(modeButtons[next].dataset.mode || "guided", true);
+    });
   });
-  observer.observe(cyElement);
+  document.querySelectorAll<HTMLButtonElement>(".pathway-row").forEach((button) => button.addEventListener("click", () => {
+    renderRelationship(button.dataset.relationshipId || "");
+    setText(status, `Selected pathway: ${button.querySelector(".capability-node strong")?.textContent} can support ${button.querySelector(".outcome-node strong")?.textContent}.`);
+  }));
 
-  requestAnimationFrame(() => {
-    cy.resize();
-    applyVisibility("Core map ready", false);
-    cyElement.dataset.ready = "true";
-    fitVisible();
-    setStatus("Core map ready");
+  const overview = document.querySelector<HTMLElement>("#node-overview")!;
+  const focusMap = document.querySelector<HTMLElement>("#focus-map")!;
+  const focusTitle = document.querySelector<HTMLElement>("#focus-title")!;
+  const focusSummary = document.querySelector<HTMLElement>("#focus-summary")!;
+  const focusRelationships = document.querySelector<HTMLElement>("#focus-relationships")!;
+  const clearFocus = document.querySelector<HTMLButtonElement>("#clear-focus")!;
+  const nodeSearch = document.querySelector<HTMLInputElement>("#node-search")!;
+  const nodeEmpty = document.querySelector<HTMLElement>("#node-empty")!;
+  const showFocusedNode = (nodeId: string) => {
+    const selected = nodes.get(nodeId) as any;
+    if (!selected) return;
+    const connected = edges.filter((edge: any) => edge.source === nodeId || edge.target === nodeId);
+    overview.hidden = true;
+    nodeEmpty.hidden = true;
+    focusMap.hidden = false;
+    clearFocus.hidden = false;
+    setText(focusTitle, selected.display_label);
+    setText(focusSummary, selected.reader_summary);
+    focusRelationships.replaceChildren();
+    connected.forEach((edge: any) => {
+      const source = nodes.get(edge.source) as any;
+      const target = nodes.get(edge.target) as any;
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = `focus-relationship ${edge.evidence_status}`;
+      button.dataset.relationshipId = edge.id;
+      const from = document.createElement("span");
+      const verb = document.createElement("span");
+      const to = document.createElement("span");
+      const state = document.createElement("small");
+      setText(from, source.display_label);
+      setText(verb, edge.display_verb);
+      setText(to, target.display_label);
+      setText(state, `${readableStatus(edge.evidence_status)} · ${Math.round(edge.confidence * 100)}%`);
+      button.append(from, verb, to, state);
+      button.addEventListener("click", () => renderRelationship(edge.id));
+      focusRelationships.append(button);
+    });
+    renderNode(nodeId);
+    setTestState("focus", connected.length + 1, connected.length, connected.length * 3);
+    setText(status, `Focused map: ${selected.display_label}, ${connected.length} relationships, ${connected.length + 1} nodes.`);
+  };
+  document.querySelectorAll<HTMLButtonElement>(".node-button").forEach((button) => button.addEventListener("click", () => showFocusedNode(button.dataset.nodeId || "")));
+  const groupDisclosures = Array.from(document.querySelectorAll<HTMLDetailsElement>(".node-group"));
+  const compactGroups = window.matchMedia("(max-width: 780px)");
+  const applyGroupDisclosure = () => groupDisclosures.forEach((group, index) => { group.open = compactGroups.matches ? index === 0 : true; });
+  applyGroupDisclosure();
+  compactGroups.addEventListener("change", applyGroupDisclosure);
+  const resetOverview = () => {
+    nodeSearch.value = "";
+    document.querySelectorAll<HTMLButtonElement>(".node-button").forEach((button) => { button.hidden = false; });
+    document.querySelectorAll<HTMLDetailsElement>(".node-group").forEach((group) => { group.hidden = false; });
+    overview.hidden = false;
+    focusMap.hidden = true;
+    clearFocus.hidden = true;
+    nodeEmpty.hidden = true;
+    setTestState("explore", 32, 0, 32);
+    setText(status, "Grouped explorer reset: 32 nodes and no relationships shown at rest.");
+  };
+  clearFocus.addEventListener("click", resetOverview);
+  nodeSearch.addEventListener("input", () => {
+    const query = nodeSearch.value.trim().toLowerCase();
+    if (focusMap.hidden === false) { overview.hidden = false; focusMap.hidden = true; clearFocus.hidden = true; }
+    const matches = Array.from(document.querySelectorAll<HTMLButtonElement>(".node-button")).filter((button) => {
+      const match = !query || (button.dataset.search || "").includes(query);
+      button.hidden = !match;
+      return match;
+    });
+    document.querySelectorAll<HTMLDetailsElement>(".node-group").forEach((group) => {
+      const hasMatch = Boolean(group.querySelector(".node-button:not([hidden])"));
+      group.hidden = !hasMatch;
+      if (hasMatch && query) group.open = true;
+    });
+    nodeEmpty.hidden = matches.length !== 0;
+    setTestState("explore", matches.length, 0, matches.length);
+    setText(status, matches.length ? `${matches.length} nodes match “${nodeSearch.value.trim()}”.` : `No nodes match “${nodeSearch.value.trim()}”.`);
+    if (query && matches.length === 1) showFocusedNode(matches[0].dataset.nodeId || "");
   });
+
+  const relationshipSearch = document.querySelector<HTMLInputElement>("#relationship-search")!;
+  const relationshipStatus = document.querySelector<HTMLSelectElement>("#relationship-status")!;
+  const relationshipCount = document.querySelector<HTMLElement>("#relationship-count")!;
+  const relationshipEmpty = document.querySelector<HTMLElement>("#relationship-empty")!;
+  const relationshipRows = Array.from(document.querySelectorAll<HTMLButtonElement>(".relationship-row"));
+  const filterRelationships = () => {
+    const query = relationshipSearch.value.trim().toLowerCase();
+    const selectedStatus = relationshipStatus.value;
+    let visible = 0;
+    relationshipRows.forEach((row) => {
+      const matches = (!query || (row.dataset.search || "").includes(query)) && (selectedStatus === "all" || row.dataset.status === selectedStatus);
+      row.hidden = !matches;
+      if (matches) visible += 1;
+    });
+    setText(relationshipCount, `${visible} relationship${visible === 1 ? "" : "s"}`);
+    relationshipEmpty.hidden = visible !== 0;
+    setText(status, visible ? `${visible} relationships match the current filters.` : "No relationships match the current filters.");
+  };
+  relationshipSearch.addEventListener("input", filterRelationships);
+  relationshipStatus.addEventListener("change", filterRelationships);
+  relationshipRows.forEach((row) => row.addEventListener("click", () => renderRelationship(row.dataset.relationshipId || "")));
+  evidenceButton.addEventListener("click", () => window.dispatchEvent(new CustomEvent("hxg:view-evidence", { detail: { claimIds: activeClaimIds } })));
+  renderRelationship(data.graph.guided_pathways[0].relationship_id);
 </script>
 
-<style>
-  .graph-section { max-width: var(--max); margin: 0 auto; padding: 110px var(--page-gutter) 70px; scroll-margin-top: var(--header-offset); }
-  .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 28px; scroll-margin-top: calc(var(--header-height) + 24px); }
-  h2 { margin: 0; max-width: 720px; font-size: clamp(2.2rem,4vw,4.4rem); line-height: .98; letter-spacing: -.055em; text-wrap: balance; }
-  .legend { display: flex; flex-wrap: wrap; gap: 16px; color: var(--muted); font-size: .8rem; }
-  .legend span { display: inline-flex; align-items: center; gap: 8px; }
-  .legend i { width: 30px; height: 0; border-top: 2px solid var(--muted); }
-  .legend .dashed { border-top-style: dashed; }
-  .legend .dotted { border-top: 3px dotted var(--amber); }
-  .view-toolbar { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 10px; border: 1px solid var(--line); border-bottom: 0; background: #081a28; scroll-margin-top: calc(var(--header-height) + 16px); }
-  .toolbar-modes, .view-switch, .scope-switch, .graph-controls { display: flex; gap: 6px; }
-  .toolbar-modes { flex-wrap: wrap; gap: 14px; }
-  .scope-switch { padding-left: 14px; border-left: 1px solid var(--line); }
-  .view-switch button, .scope-switch button, .graph-controls button { min-height: 44px; border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 0 14px; cursor: pointer; }
-  .view-switch button[aria-pressed="true"], .scope-switch button[aria-pressed="true"] { background: var(--ink); color: var(--canvas); border-color: var(--ink); font-weight: 800; }
-  .graph-controls button { min-width: 44px; color: var(--ink); }
-  .graph-shell { min-height: 720px; display: grid; grid-template-columns: 232px minmax(0,1fr) 310px; border: 1px solid var(--line); background: var(--surface); box-shadow: 0 22px 80px rgba(0,0,0,.26); }
-  .filters, .drawer { background: #081a28; }
-  .filters { border-right: 1px solid var(--line); }
-  .filters summary { display: none; }
-  .filter-content, .drawer { padding: 24px; }
-  .drawer { border-left: 1px solid var(--line); overflow: auto; max-height: 720px; scroll-margin-top: calc(var(--header-height) + 16px); }
-  .drawer h3 { margin: 0 0 16px; font-size: 1.05rem; overflow-wrap: anywhere; }
-  .filters label > span, legend { display: block; color: var(--muted); font-size: .72rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; margin-bottom: 9px; }
-  input[type="search"] { width: 100%; min-height: 44px; border: 1px solid var(--line); background: var(--canvas); color: var(--ink); padding: 0 12px; border-radius: 6px; }
-  fieldset { border: 0; padding: 0; margin: 28px 0; }
-  fieldset label { min-height: 32px; display: flex; gap: 9px; align-items: center; color: var(--muted); font-size: .86rem; margin: 5px 0; }
-  input[type="checkbox"] { accent-color: var(--cyan); width: 18px; height: 18px; }
-  .quiet-button, .download-link, .evidence-action { width: 100%; min-height: 44px; display: grid; place-items: center; border: 1px solid var(--line); background: transparent; color: var(--ink); text-decoration: none; cursor: pointer; }
-  .download-link { margin-top: 10px; background: var(--ink); color: var(--canvas); font-weight: 800; }
-  .canvas-wrap { position: relative; min-width: 0; min-height: 720px; }
-  #cy { position: absolute; inset: 0 0 48px; touch-action: none; }
-  .graph-status { position: absolute; inset: auto 0 0; min-height: 48px; margin: 0; padding: 13px 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; background: #081a28; }
-  .drawer-kicker { margin: 0 0 10px; color: var(--amber); font-size: .7rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  .drawer > p:not(.drawer-kicker) { color: var(--muted); line-height: 1.55; }
-  dl { margin: 24px 0; border-block: 1px solid var(--line); }
-  :global(#drawer-meta > div) { display: block; padding: 12px 0; }
-  :global(#drawer-meta dt) { color: var(--faint); font-size: .7rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
-  :global(#drawer-meta dd) { margin: 5px 0 0; overflow-wrap: anywhere; }
-  :global(.drawer-claim) { padding: 16px 0; border-top: 1px solid var(--line); }
-  :global(.drawer-claim span) { color: var(--cyan); font-size: .68rem; text-transform: uppercase; letter-spacing: .08em; }
-  :global(.drawer-claim strong) { display: block; margin-top: 4px; font-size: .82rem; overflow-wrap: anywhere; }
-  :global(.drawer-claim p) { color: var(--muted); font-size: .86rem; line-height: 1.5; }
-  :global(.drawer-claim small) { display: flex; flex-wrap: wrap; gap: 4px; color: var(--cyan); }
-  .evidence-action { margin-top: 18px; background: var(--ink); color: var(--canvas); font-weight: 800; }
-  .list-panel { border: 1px solid var(--line); background: #081a28; }
-  .list-tools { display: grid; grid-template-columns: minmax(240px, 1fr) auto; align-items: center; gap: 16px; padding: 18px; border-bottom: 1px solid var(--line); }
-  .list-tools p { margin: 0; color: var(--muted); }
-  .relationship-list { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
-  .relationship-list article { padding: 22px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-  .relationship-list h3 { margin: 8px 0; font-size: 1rem; line-height: 1.45; }
-  .relationship-list em { color: var(--muted); font-weight: 500; }
-  .relationship-list p { margin: 0; color: var(--faint); font-size: .78rem; overflow-wrap: anywhere; }
-  .relationship-list button { min-height: 44px; margin-top: 16px; border: 1px solid var(--line); background: transparent; color: var(--ink); padding: 0 14px; cursor: pointer; }
-  .status-mark { font-size: .65rem; letter-spacing: .08em; text-transform: uppercase; }
-  .status-mark.direct { color: var(--cyan); } .status-mark.inferred { color: var(--violet); } .status-mark.scenario { color: var(--amber); }
-  [hidden] { display: none !important; }
+<style is:global>
+  .graph-section { max-width: var(--max); margin: 0 auto; padding: 100px var(--page-gutter) 120px; }
+  .graph-heading { display: grid; grid-template-columns: 1.15fr .85fr; gap: 72px; align-items: end; margin-bottom: 44px; }
+  .graph-heading h2 { margin: 0; max-width: 920px; font-size: clamp(2.4rem,5vw,5.2rem); line-height: .98; letter-spacing: -.06em; }
+  .graph-heading > p { margin: 0; color: var(--muted); line-height: 1.65; }
+  .graph-explorer { border: 1px solid var(--line); background: #081a28; }
+  .graph-explorer [hidden] { display: none !important; }
+  .mode-tabs { display: flex; border-bottom: 1px solid var(--line); background: #071827; }
+  .mode-tabs button { min-height: 56px; padding: 0 24px; border: 0; border-right: 1px solid var(--line); background: transparent; color: var(--muted); font-size: .92rem; font-weight: 720; cursor: pointer; }
+  .mode-tabs button[aria-selected="true"] { background: var(--ink); color: var(--canvas); }
+  .explorer-grid { display: grid; grid-template-columns: minmax(0,1fr) 340px; min-height: 760px; }
+  .explorer-main { min-width: 0; display: flex; flex-direction: column; border-right: 1px solid var(--line); }
+  .mode-panel { flex: 1; min-width: 0; padding: 26px; }
+  .mode-panel[hidden] { display: none; }
+  .pathway-legend { display: grid; grid-template-columns: minmax(0,1fr) 180px minmax(0,1fr); gap: 18px; padding: 0 18px 12px; color: var(--faint); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .pathway-legend span:nth-child(2) { text-align: center; }
+  .pathway-list { display: grid; border-top: 1px solid var(--line); }
+  .pathway-row { --pathway-color: var(--cyan); width: 100%; min-height: 104px; display: grid; grid-template-columns: minmax(0,1fr) 180px minmax(0,1fr); gap: 18px; align-items: stretch; padding: 10px 0; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; cursor: pointer; }
+  .pathway-row:hover, .pathway-row.is-selected { background: rgba(76,196,217,.055); }
+  .pathway-row.is-selected { box-shadow: inset 3px 0 var(--pathway-color); }
+  .pathway-node { min-width: 0; display: grid; grid-template-columns: 16px minmax(0,1fr); gap: 14px; align-items: center; padding: 14px 18px; border: 1px solid var(--line); }
+  .pathway-node > i { width: 12px; height: 12px; border-radius: 50%; background: var(--pathway-color); box-shadow: 0 0 0 5px color-mix(in srgb, var(--pathway-color) 18%, transparent); }
+  .outcome-node { border-color: color-mix(in srgb, var(--pathway-color) 68%, var(--line)); }
+  .pathway-node strong { display: block; font-size: 1.05rem; line-height: 1.25; }
+  .pathway-node small { display: block; margin-top: 6px; color: var(--muted); font-size: .76rem; line-height: 1.35; }
+  .pathway-arrow { position: relative; display: grid; align-content: center; justify-items: center; color: var(--muted); }
+  .pathway-arrow small { margin-bottom: 12px; font-size: .75rem; }
+  .pathway-arrow i { width: 100%; height: 1px; background: var(--muted); }
+  .pathway-arrow i::after { content: ""; display: block; width: 9px; height: 9px; margin-left: auto; transform: translate(-2px,-4px) rotate(45deg); border-top: 1px solid var(--muted); border-right: 1px solid var(--muted); }
+  .map-note, .focus-note, .tool-help { margin: 20px 0 0; color: var(--faint); font-size: .78rem; line-height: 1.55; }
+  .map-note strong { color: var(--muted); }
+  .explore-tools { display: grid; grid-template-columns: auto minmax(220px,1fr) auto; gap: 12px; align-items: center; }
+  .explore-tools label, .relationship-tools label > span { color: var(--muted); font-size: .75rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
+  input, select, .explore-tools button { min-height: 48px; border: 1px solid var(--line); background: var(--surface); color: var(--ink); padding: 0 14px; border-radius: 0; }
+  .explore-tools button { cursor: pointer; font-weight: 750; }
+  .node-groups { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; margin-top: 24px; }
+  .node-groups[hidden] { display: none; }
+  .node-group { min-width: 0; border: 1px solid var(--line); }
+  .node-group:last-child { grid-column: 1 / -1; }
+  .node-group[hidden] { display: none; }
+  .node-group summary { min-height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 0 16px; background: var(--surface); cursor: pointer; font-weight: 750; }
+  .node-group summary small { color: var(--cyan); }
+  .node-group > div { display: grid; }
+  .node-button { min-height: 74px; display: grid; grid-template-columns: 12px minmax(0,1fr); gap: 13px; align-items: start; padding: 14px 16px; border: 0; border-top: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; cursor: pointer; }
+  .node-button[hidden] { display: none; }
+  .node-button:hover { background: rgba(76,196,217,.05); }
+  .node-button > i { width: 10px; height: 10px; margin-top: 5px; border-radius: 50%; background: var(--node-color); }
+  .node-button strong { display: block; font-size: .88rem; line-height: 1.3; }
+  .node-button small { display: block; margin-top: 4px; color: var(--muted); font-size: .7rem; line-height: 1.35; }
+  .focus-map { margin-top: 24px; border-top: 1px solid var(--line); }
+  .focus-map[hidden] { display: none; }
+  .focus-heading { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; padding: 24px 0; }
+  .focus-heading p { margin: 0; color: var(--muted); line-height: 1.5; }
+  .focus-heading > div p { color: var(--cyan); font-size: .7rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+  .focus-heading h3 { margin: 7px 0 0; font-size: 1.65rem; }
+  .focus-relationships { display: grid; gap: 8px; }
+  .focus-relationship { min-height: 62px; display: grid; grid-template-columns: minmax(0,1fr) 140px minmax(0,1fr) 150px; gap: 12px; align-items: center; padding: 10px 14px; border: 1px solid var(--line); border-left: 3px solid var(--cyan); background: transparent; color: var(--ink); text-align: left; cursor: pointer; }
+  .focus-relationship.inferred { border-left-color: var(--violet); }
+  .focus-relationship.scenario { border-left-color: var(--amber); }
+  .focus-relationship span:nth-child(2) { color: var(--muted); text-align: center; }
+  .focus-relationship small { color: var(--faint); text-align: right; }
+  .relationship-tools { display: grid; grid-template-columns: minmax(230px,1fr) 220px auto; gap: 12px; align-items: end; }
+  .relationship-tools label { display: grid; gap: 7px; }
+  .relationship-tools p { margin: 0 0 14px; color: var(--muted); text-align: right; }
+  .relationship-list { display: grid; margin-top: 22px; border-top: 1px solid var(--line); }
+  .relationship-row { min-height: 76px; display: grid; grid-template-columns: minmax(0,1fr) 150px minmax(0,1fr) 90px; gap: 16px; align-items: center; padding: 13px 16px; border: 0; border-bottom: 1px solid var(--line); border-left: 3px solid var(--cyan); background: transparent; color: var(--ink); text-align: left; cursor: pointer; }
+  .relationship-row[hidden] { display: none; }
+  .relationship-row.inferred { border-left-color: var(--violet); }
+  .relationship-row.scenario { border-left-color: var(--amber); }
+  .relationship-row:hover, .relationship-row.is-selected { background: rgba(76,196,217,.055); }
+  .relationship-row small { display: block; margin-bottom: 5px; color: var(--faint); font-size: .65rem; text-transform: uppercase; letter-spacing: .07em; }
+  .relationship-row strong { display: block; font-size: .82rem; line-height: 1.35; }
+  .list-verb { color: var(--muted); text-align: center; }
+  .list-confidence { text-align: right; }
+  .empty-state { padding: 30px; border: 1px dashed var(--line); color: var(--muted); text-align: center; }
+  .graph-status { min-height: 46px; display: flex; align-items: center; margin: auto 0 0; padding: 0 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: .74rem; }
+  .evidence-drawer { min-width: 0; padding: 26px 24px; background: #071827; }
+  .drawer-label { margin: 0 0 12px; color: var(--amber); font-size: .7rem; font-weight: 800; letter-spacing: .11em; text-transform: uppercase; }
+  .evidence-drawer h3 { margin: 0; font-size: 1.45rem; line-height: 1.2; }
+  .drawer-canonical { margin: 8px 0 0; color: var(--faint); font-size: .72rem; line-height: 1.4; }
+  .drawer-path { display: grid; gap: 6px; margin-top: 22px; padding: 16px; border: 1px solid var(--line); }
+  .drawer-path[hidden] { display: none; }
+  .drawer-path span { font-weight: 720; }
+  .drawer-path .verb { color: var(--violet); font-size: .78rem; font-weight: 650; }
+  .drawer-path .verb::before { content: "↓ "; }
+  .drawer-summary { color: var(--muted); line-height: 1.55; }
+  .evidence-drawer dl { margin: 22px 0; border-top: 1px solid var(--line); }
+  .evidence-drawer dl > div { display: grid; gap: 5px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+  .evidence-drawer dt, .evidence-drawer h4 { color: var(--faint); font-size: .65rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+  .evidence-drawer dd { margin: 0; color: var(--ink); line-height: 1.35; overflow-wrap: anywhere; }
+  .drawer-limit h4, .drawer-claims h4 { margin: 0 0 9px; }
+  .drawer-limit ul { margin: 0; padding-left: 17px; color: var(--muted); font-size: .78rem; line-height: 1.5; }
+  .drawer-claims { margin-top: 22px; }
+  .drawer-claims article { padding: 12px 0; border-top: 1px solid var(--line); }
+  .drawer-claims article strong { display: block; color: var(--cyan); font-size: .68rem; }
+  .drawer-claims article p { margin: 7px 0; font-size: .78rem; line-height: 1.45; }
+  .drawer-claims article a { display: block; color: var(--muted); font-size: .68rem; line-height: 1.35; }
+  #view-linked-evidence { width: 100%; min-height: 48px; margin-top: 22px; border: 0; background: var(--ink); color: var(--canvas); font-weight: 800; cursor: pointer; }
   @media (max-width: 1100px) {
-    .graph-shell { grid-template-columns: 212px minmax(0,1fr); }
-    .drawer { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); max-height: none; }
+    .explorer-grid { grid-template-columns: 1fr; }
+    .explorer-main { border-right: 0; }
+    .evidence-drawer { border-top: 1px solid var(--line); }
   }
-  @media (max-width: 760px) {
-    .graph-section { padding-top: 76px; padding-bottom: 50px; }
-    .section-heading { align-items: start; flex-direction: column; }
-    .view-toolbar { align-items: stretch; flex-direction: column; }
-    .toolbar-modes { display: grid; gap: 8px; }
-    .view-switch button, .scope-switch button { flex: 1; }
-    .scope-switch { padding: 8px 0 0; border-left: 0; border-top: 1px solid var(--line); }
-    .graph-controls { justify-content: flex-end; }
-    .graph-shell { display: block; min-height: 0; }
-    .filters { border-right: 0; border-bottom: 1px solid var(--line); }
-    .filters summary { min-height: 52px; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 0 16px; cursor: pointer; font-weight: 800; }
-    .filters summary small { color: var(--muted); font-weight: 500; }
-    .filter-content { padding: 18px; border-top: 1px solid var(--line); }
-    .canvas-wrap { height: 600px; min-height: 0; }
-    .drawer { border-left: 0; }
-    .relationship-list { grid-template-columns: 1fr; }
-    .list-tools { grid-template-columns: 1fr; }
+  @media (max-width: 780px) {
+    .graph-section { padding-top: 74px; padding-bottom: 90px; }
+    .graph-heading { grid-template-columns: 1fr; gap: 20px; }
+    .mode-tabs { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+    .mode-tabs button { min-height: 58px; padding: 8px 10px; border-bottom: 1px solid var(--line); font-size: .78rem; line-height: 1.2; }
+    .mode-panel { padding: 18px; }
+    .pathway-legend { display: none; }
+    .pathway-row { min-height: 0; grid-template-columns: 1fr; gap: 0; padding: 14px 0; }
+    .pathway-node { min-height: 70px; }
+    .pathway-arrow { min-height: 58px; padding: 8px 0; }
+    .pathway-arrow small { margin: 0; }
+    .pathway-arrow i { width: 1px; height: 24px; }
+    .pathway-arrow i::after { width: 8px; height: 8px; margin: 0; transform: translate(-4px,15px) rotate(135deg); }
+    .explore-tools, .relationship-tools, .focus-heading { grid-template-columns: 1fr; }
+    .explore-tools label { margin-bottom: -4px; }
+    .node-groups { grid-template-columns: 1fr; }
+    .node-group:last-child { grid-column: auto; }
+    .focus-relationship { grid-template-columns: 1fr; gap: 4px; padding: 14px; }
+    .focus-relationship span:nth-child(2), .focus-relationship small { text-align: left; }
+    .focus-relationship span:nth-child(2)::before { content: "↓ "; }
+    .relationship-tools p { margin: 0; text-align: left; }
+    .relationship-row { grid-template-columns: 1fr; gap: 8px; padding: 16px; }
+    .list-verb, .list-confidence { text-align: left; }
+    .list-verb::before { content: "↓ "; color: var(--faint); }
+    .graph-status { padding: 10px 18px; line-height: 1.4; }
   }
-  @media (max-width: 420px) {
-    .legend { gap: 10px; }
-    .legend i { width: 22px; }
-    .view-switch button, .scope-switch button { padding-inline: 10px; font-size: .83rem; }
-    .canvas-wrap { height: 540px; }
-  }
+  @media (max-width: 390px) { .pathway-node strong { font-size: .95rem; } }
 </style>

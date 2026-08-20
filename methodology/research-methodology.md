@@ -6,7 +6,7 @@ HXG is **AI-led, evidence-audited research with disclosed human governance**.
 
 That wording is deliberate. A human defines the research charter, evidence policy, budget, risk controls, and publication decision. The research pipeline performs bounded discovery, extraction, entity resolution, graph proposal, contradiction review, citation audit, and publication preparation. Deterministic Python remains authoritative for identifiers, validation, counts, and exports.
 
-Version 0.1.0 is an interactive Codex-assisted seed audit. It demonstrates the schemas, evidence register, graph, explorer, and publication pipeline without claiming that the standalone model-backed API workflow was executed.
+Version 0.2.0 is an interactive Codex-assisted seed audit. It demonstrates the schemas, evidence register, graph, explorer, and publication pipeline without claiming that the standalone model-backed API workflow was executed.
 
 ## Research question
 

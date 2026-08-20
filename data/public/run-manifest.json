@@ -1,9 +1,9 @@
 {
-  "configuration_hash": "sha256:be5994aaab8fdade7615ba1a0b38f107a1a777ac4e0372f92250e1564ace16b9",
+  "configuration_hash": "sha256:274a7db542b3cf666d86654b48e9a3778e2819e3d126b56ba91e401b8dd64719",
   "cost_limit_usd": 10.0,
   "cutoff_date": "2026-08-19",
   "estimated_cost_usd": 0.0,
-  "frozen_at": "2026-08-19T17:00:00-05:00",
+  "frozen_at": "2026-08-20T17:00:00-05:00",
   "generated_counts": {
     "claims": 29,
     "contradictions": 6,
@@ -30,6 +30,21 @@
       ],
       "schema_version": "1.0.0",
       "timestamp": "2026-08-19T16:30:00-05:00"
+    },
+    {
+      "action": "Guided-pathway semantic and publication audit",
+      "rationale": "Replaced causal-sounding technology-to-outcome relationships with bounded can-support inferences and aligned the explorer, graph exports, carousel, and poster to one six-pathway model.",
+      "record_ids": [
+        "REL-CASTING-HOME",
+        "REL-IOT-CONTROL",
+        "REL-PMS-RECOGNIZED",
+        "REL-LANGUAGE-INCLUDED",
+        "REL-PRIVACY-SECURE",
+        "REL-CONCIERGE-SUPPORTED",
+        "REL-OPERATOR-PROPERTY"
+      ],
+      "schema_version": "1.0.0",
+      "timestamp": "2026-08-20T16:45:00-05:00"
     }
   ],
   "id": "RUN-HXG-2026-08-19-SEED",
@@ -46,14 +61,20 @@
     "Sources with metadata-record hashes should be refreshed with --retrieve before a later release.",
     "Product capabilities remain vendor-stated unless a claim record names independent corroboration."
   ],
-  "output_hashes": {},
+  "output_hashes": {
+    "carousel_pdf": "sha256:6612fe5eb1893a671ed94ebedc85c18b5c47a812e94fd82b6d6a5fa27767823c",
+    "graph_graphml": "sha256:cccdd814575c7c1cdc6d3533bdb7174bada4c174d4b31aac48129281fdd68b59",
+    "graph_json": "sha256:4b58454c8528109ffcc5087cccfc9ca470a5c5e8f0c498b43904c0847defc3c3",
+    "guided_map_svg": "sha256:fb2b9223fc999e9f02e39d5400a26a460282757f35399c8d040ce12fb747f0bc",
+    "poster_pdf": "sha256:f2e6b68dce04187791901c1904bbc0434db54f4ca4944f425348445c384cd15d"
+  },
   "prompt_versions": {
     "contradiction-audit": "1.0.0",
     "evidence-extraction": "1.0.0",
     "publisher": "1.0.0",
     "research-charter": "1.0.0"
   },
-  "release_version": "0.1.0",
+  "release_version": "0.2.0",
   "research_start_date": "2024-01-01",
   "schema_version": "1.0.0",
   "source_hashes": {

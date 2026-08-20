@@ -1,15 +1,20 @@
 from __future__ import annotations
 
-import math
+import hashlib
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 
 import httpx
 import qrcode
-from PIL import Image, ImageDraw, ImageFont
+from reportlab.lib.colors import HexColor
+from reportlab.lib.utils import ImageReader
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.pdfgen import canvas
 
-from hxg.io import PUBLIC_DIR, REPORT_DIR, ROOT, load_records, read_json, write_json
+from hxg.graph import GUIDED_PATHWAYS
+from hxg.io import GRAPH_DIR, PUBLIC_DIR, REPORT_DIR, ROOT, load_records, read_json, write_json
 from hxg.models import Claim, RunManifest
 from hxg.validation import validate_public_release
 
@@ -29,25 +34,54 @@ AMBER = "#f5bc31"
 VIOLET = "#aa87ee"
 ORANGE = "#f28e37"
 RED = "#ff786c"
-COLORS = {"blue": BLUE, "green": GREEN, "amber": AMBER, "violet": VIOLET, "cyan": CYAN, "orange": ORANGE}
+RELEASE = "hxg-v0.2.0"
+LIVE_URL = "https://lohanstruwig.github.io/hxg/"
+FONT_REGULAR = "HXG-Regular"
+FONT_BOLD = "HXG-Bold"
+
+PATHWAY_COLORS = {
+    "home": BLUE,
+    "control": GREEN,
+    "recognized": AMBER,
+    "included": VIOLET,
+    "secure": CYAN,
+    "supported": ORANGE,
+}
 
 
-def _font_path(bold: bool = False) -> str:
+def _font_path(bold: bool = False) -> Path | None:
     candidates = [
         Path("C:/Windows/Fonts/segoeuib.ttf" if bold else "C:/Windows/Fonts/segoeui.ttf"),
-        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"),
+        Path(
+            "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
+            if bold
+            else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+        ),
     ]
-    for candidate in candidates:
-        if candidate.exists():
-            return str(candidate)
-    return "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf"
+    return next((candidate for candidate in candidates if candidate.exists()), None)
 
 
-def font(size: int, bold: bool = False) -> ImageFont.FreeTypeFont:
-    return ImageFont.truetype(_font_path(bold), size=size)
+def _register_fonts() -> None:
+    regular = _font_path()
+    bold = _font_path(True)
+    if regular and FONT_REGULAR not in pdfmetrics.getRegisteredFontNames():
+        pdfmetrics.registerFont(TTFont(FONT_REGULAR, str(regular)))
+    if bold and FONT_BOLD not in pdfmetrics.getRegisteredFontNames():
+        pdfmetrics.registerFont(TTFont(FONT_BOLD, str(bold)))
 
 
-def wrap(draw: ImageDraw.ImageDraw, text: str, face: ImageFont.FreeTypeFont, width: int) -> list[str]:
+def _font(bold: bool = False) -> str:
+    preferred = FONT_BOLD if bold else FONT_REGULAR
+    if preferred in pdfmetrics.getRegisteredFontNames():
+        return preferred
+    return "Helvetica-Bold" if bold else "Helvetica"
+
+
+def _color(value: str) -> HexColor:
+    return HexColor(value)
+
+
+def _wrap_lines(text: str, font_name: str, size: float, width: float) -> list[str]:
     lines: list[str] = []
     for paragraph in text.split("\n"):
         words = paragraph.split()
@@ -57,7 +91,7 @@ def wrap(draw: ImageDraw.ImageDraw, text: str, face: ImageFont.FreeTypeFont, wid
         line = words[0]
         for word in words[1:]:
             proposal = f"{line} {word}"
-            if draw.textbbox((0, 0), proposal, font=face)[2] <= width:
+            if pdfmetrics.stringWidth(proposal, font_name, size) <= width:
                 line = proposal
             else:
                 lines.append(line)
@@ -66,246 +100,392 @@ def wrap(draw: ImageDraw.ImageDraw, text: str, face: ImageFont.FreeTypeFont, wid
     return lines
 
 
-def paragraph(
-    draw: ImageDraw.ImageDraw,
-    xy: tuple[int, int],
+def _text(
+    pdf: canvas.Canvas,
+    page_height: float,
+    x: float,
+    top: float,
     text: str,
     *,
-    size: int,
-    width: int,
+    size: float,
+    width: float,
     color: str = MUTED,
     bold: bool = False,
-    spacing: int | None = None,
-) -> int:
-    face = font(size, bold)
-    line_spacing = spacing or int(size * 1.35)
-    x, y = xy
-    for line in wrap(draw, text, face, width):
-        draw.text((x, y), line, font=face, fill=color)
-        y += line_spacing
-    return y
+    leading: float | None = None,
+    max_lines: int | None = None,
+) -> float:
+    font_name = _font(bold)
+    line_height = leading or size * 1.34
+    lines = _wrap_lines(text, font_name, size, width)
+    if max_lines is not None and len(lines) > max_lines:
+        lines = lines[:max_lines]
+        last = lines[-1]
+        while last and pdfmetrics.stringWidth(f"{last}...", font_name, size) > width:
+            last = last[:-1]
+        lines[-1] = f"{last.rstrip()}..."
+    text_object = pdf.beginText(x, page_height - top - size)
+    text_object.setFont(font_name, size)
+    text_object.setFillColor(_color(color))
+    text_object.setLeading(line_height)
+    for line in lines:
+        text_object.textLine(line)
+    pdf.drawText(text_object)
+    return top + len(lines) * line_height
 
 
-def header(draw: ImageDraw.ImageDraw, slide: dict[str, Any]) -> int:
-    draw.text((64, 48), "HXG", font=font(30, True), fill=INK)
-    draw.text((146, 57), "HOSPITALITY EXPERIENCE GRAPH", font=font(13, True), fill=MUTED)
-    draw.text((952, 54), f"{slide['number']:02d} / 08", font=font(14, True), fill=MUTED)
-    draw.line((64, 98, 1016, 98), fill=LINE, width=2)
-    draw.text((64, 132), slide["eyebrow"], font=font(15, True), fill=CYAN)
-    return 178
+def _rect(
+    pdf: canvas.Canvas,
+    page_height: float,
+    x: float,
+    top: float,
+    width: float,
+    height: float,
+    *,
+    fill: str | None = None,
+    stroke: str | None = None,
+    radius: float = 0,
+    line_width: float = 1,
+) -> None:
+    pdf.setLineWidth(line_width)
+    pdf.setFillColor(_color(fill or BG))
+    pdf.setStrokeColor(_color(stroke or fill or BG))
+    draw = pdf.roundRect if radius else pdf.rect
+    draw(x, page_height - top - height, width, height, radius, fill=bool(fill), stroke=bool(stroke)) if radius else draw(
+        x, page_height - top - height, width, height, fill=bool(fill), stroke=bool(stroke)
+    )
 
 
-def footer(draw: ImageDraw.ImageDraw, slide: dict[str, Any]) -> None:
-    evidence = " · ".join(slide["evidence_ids"])
-    draw.line((64, 1250, 1016, 1250), fill=LINE, width=2)
-    paragraph(draw, (64, 1268), evidence, size=14, width=820, color=CYAN, bold=True, spacing=18)
-    draw.text((925, 1270), "hxg-v0.1.0", font=font(13, True), fill=FAINT)
+def _line(
+    pdf: canvas.Canvas,
+    page_height: float,
+    x1: float,
+    top1: float,
+    x2: float,
+    top2: float,
+    *,
+    color: str = LINE,
+    width: float = 1,
+    dash: tuple[int, ...] | None = None,
+) -> None:
+    pdf.setStrokeColor(_color(color))
+    pdf.setLineWidth(width)
+    pdf.setDash(dash or ())
+    pdf.line(x1, page_height - top1, x2, page_height - top2)
+    pdf.setDash()
 
 
-def base_slide(slide: dict[str, Any]) -> tuple[Image.Image, ImageDraw.ImageDraw]:
-    image = Image.new("RGB", (W, H), BG)
-    draw = ImageDraw.Draw(image)
-    header(draw, slide)
-    return image, draw
+def _dot(pdf: canvas.Canvas, page_height: float, x: float, top: float, radius: float, color: str) -> None:
+    pdf.setFillColor(_color(color))
+    pdf.circle(x, page_height - top, radius, fill=1, stroke=0)
 
 
-def title(draw: ImageDraw.ImageDraw, text: str, y: int, size: int = 70, width: int = 930) -> int:
-    return paragraph(draw, (64, y), text, size=size, width=width, color=INK, bold=True, spacing=int(size * 1.02))
+def _arrow(pdf: canvas.Canvas, page_height: float, x1: float, x2: float, top: float, color: str) -> None:
+    _line(pdf, page_height, x1, top, x2, top, color=color, width=1.4, dash=(8, 6))
+    _line(pdf, page_height, x2 - 9, top - 6, x2, top, color=color, width=1.4)
+    _line(pdf, page_height, x2 - 9, top + 6, x2, top, color=color, width=1.4)
 
 
-def _render_slide(slide: dict[str, Any], manifest: RunManifest, verified_url: str | None) -> Image.Image:
-    image, draw = base_slide(slide)
+def _header(pdf: canvas.Canvas, slide: dict[str, Any]) -> None:
+    _text(pdf, H, 64, 43, "HXG", size=30, width=80, color=INK, bold=True)
+    _text(pdf, H, 146, 52, "HOSPITALITY EXPERIENCE GRAPH", size=12, width=380, color=MUTED, bold=True)
+    _text(pdf, H, 950, 52, f"{slide['number']:02d} / 08", size=13, width=70, color=MUTED, bold=True)
+    _line(pdf, H, 64, 98, 1016, 98, width=1.4)
+    _text(pdf, H, 64, 126, slide["eyebrow"], size=13, width=900, color=CYAN, bold=True)
+
+
+def _footer(pdf: canvas.Canvas, slide: dict[str, Any]) -> None:
+    _line(pdf, H, 64, 1248, 1016, 1248, width=1.2)
+    _text(pdf, H, 64, 1260, "  |  ".join(slide["evidence_ids"]), size=14, width=820, color=CYAN, bold=True, leading=17, max_lines=3)
+    _text(pdf, H, 930, 1262, RELEASE, size=13, width=86, color=FAINT, bold=True)
+
+
+def _title(pdf: canvas.Canvas, text: str, *, top: float = 180, size: float = 64, width: float = 950) -> float:
+    return _text(pdf, H, 64, top, text, size=size, width=width, color=INK, bold=True, leading=size * 1.02)
+
+
+def _pathway_row(
+    pdf: canvas.Canvas,
+    page_height: float,
+    *,
+    top: float,
+    left: float,
+    width: float,
+    height: float,
+    capability: str,
+    outcome: str,
+    color: str,
+    relationship_id: str | None = None,
+    summary: str | None = None,
+    compact: bool = False,
+) -> None:
+    gap = width * 0.19
+    card_width = (width - gap) / 2
+    _rect(pdf, page_height, left, top, card_width, height, fill=SURFACE, stroke=LINE, radius=5)
+    _rect(pdf, page_height, left + card_width + gap, top, card_width, height, fill=SURFACE, stroke=color, radius=5)
+    _dot(pdf, page_height, left + 24, top + height / 2, 6 if compact else 8, color)
+    text_size = 14 if compact else 18
+    _text(pdf, page_height, left + 43, top + (height - text_size) / 2 - 2, capability, size=text_size, width=card_width - 58, color=INK, bold=True, leading=text_size * 1.2, max_lines=2)
+    _dot(pdf, page_height, left + card_width + gap + 24, top + height / 2, 6 if compact else 8, color)
+    _text(pdf, page_height, left + card_width + gap + 43, top + (height - text_size) / 2 - 2, outcome, size=text_size, width=card_width - 58, color=INK, bold=True, leading=text_size * 1.2, max_lines=2)
+    arrow_y = top + height / 2 + 4
+    _text(pdf, page_height, left + card_width + 8, top + 14, "can support", size=11 if compact else 12, width=gap - 16, color=MUTED, bold=True)
+    _arrow(pdf, page_height, left + card_width + 12, left + card_width + gap - 12, arrow_y, MUTED)
+    if relationship_id:
+        id_size = 12 if page_height > H else 9
+        _text(pdf, page_height, left + 8, top + height + 5, relationship_id, size=id_size, width=260, color=FAINT, bold=True)
+    if summary:
+        _text(pdf, page_height, left + card_width + gap + 43, top + height - 27, summary, size=9, width=card_width - 58, color=MUTED, max_lines=1)
+
+
+def _draw_slide(pdf: canvas.Canvas, slide: dict[str, Any], manifest: RunManifest, url: str) -> None:
+    pdf.setFillColor(_color(BG))
+    pdf.rect(0, 0, W, H, fill=1, stroke=0)
+    _header(pdf, slide)
     number = slide["number"]
 
     if number == 1:
-        y = title(draw, slide["title"], 205, size=118, width=820)
-        y += 36
-        y = paragraph(draw, (64, y), slide["subtitle"], size=38, width=880, color=INK, spacing=48)
-        y += 32
-        paragraph(draw, (64, y), slide["body"], size=25, width=575, color=MUTED, spacing=36)
-        cx, cy = 830, 880
-        draw.ellipse((cx - 98, cy - 98, cx + 98, cy + 98), fill=INK)
-        paragraph(draw, (cx - 65, cy - 34), "HUMAN\nEXPERIENCE", size=21, width=132, color=BG, bold=True, spacing=26)
-        points = [(830, 650, BLUE), (1010, 770, GREEN), (1000, 995, AMBER), (830, 1105, VIOLET), (660, 995, CYAN), (650, 770, ORANGE)]
-        for px, py, color in points:
-            dx, dy = px - cx, py - cy
-            distance = math.hypot(dx, dy)
-            ux, uy = dx / distance, dy / distance
-            draw.line((cx + ux * 98, cy + uy * 98, px - ux * 23, py - uy * 23), fill=LINE, width=3)
-            draw.ellipse((px - 23, py - 23, px + 23, py + 23), fill=color, outline=BG, width=5)
-        draw.text((64, 1134), "Independent research · No Samsung sponsorship or endorsement", font=font(18, True), fill=AMBER)
+        y = _title(pdf, slide["title"], top=185, size=104, width=820)
+        y = _text(pdf, H, 64, y + 20, slide["subtitle"], size=29, width=850, color=INK, bold=True, leading=37)
+        _text(pdf, H, 64, y + 22, slide["body"], size=18, width=850, color=MUTED, leading=27)
+        _text(pdf, H, 64, 570, "SIX GUIDED PATHWAYS", size=12, width=320, color=CYAN, bold=True)
+        for index, pathway in enumerate(GUIDED_PATHWAYS):
+            _pathway_row(
+                pdf,
+                H,
+                top=605 + index * 95,
+                left=64,
+                width=952,
+                height=66,
+                capability=pathway.capability_label,
+                outcome=pathway.outcome_label,
+                color=PATHWAY_COLORS[pathway.lane],
+                compact=True,
+            )
+        _text(pdf, H, 64, 1190, "Independent research. No Samsung sponsorship or endorsement.", size=13, width=700, color=AMBER, bold=True)
 
     elif number == 2:
-        y = title(draw, slide["title"], 204, size=66, width=920)
-        paragraph(draw, (64, y + 22), slide["subtitle"], size=18, width=900, color=MUTED)
-        x_positions = [64, 378, 692]
-        for x, stat in zip(x_positions, slide["stats"], strict=True):
-            draw.rectangle((x, 520, x + 280, 870), fill=SURFACE, outline=LINE, width=2)
-            draw.text((x + 24, 565), stat["value"], font=font(70, True), fill=CYAN)
-            paragraph(draw, (x + 24, 670), stat["label"], size=25, width=230, color=INK, bold=True, spacing=32)
-            draw.text((x + 24, 813), stat["evidence_id"], font=font(13, True), fill=CYAN)
-        draw.rectangle((64, 930, 1016, 1122), fill=SURFACE_2)
-        paragraph(draw, (92, 966), slide["body"], size=29, width=880, color=INK, bold=True, spacing=39)
+        y = _title(pdf, slide["title"], top=185, size=62, width=930)
+        _text(pdf, H, 64, y + 16, slide["subtitle"], size=16, width=930, color=MUTED)
+        for x, stat in zip((64, 382, 700), slide["stats"], strict=True):
+            _rect(pdf, H, x, 430, 286, 250, fill=SURFACE, stroke=LINE, radius=5)
+            _text(pdf, H, x + 22, 464, stat["value"], size=58, width=240, color=CYAN, bold=True)
+            _text(pdf, H, x + 22, 555, stat["label"], size=20, width=238, color=INK, bold=True, leading=27, max_lines=3)
+            _text(pdf, H, x + 22, 642, stat["evidence_id"], size=10, width=240, color=CYAN, bold=True)
+        _rect(pdf, H, 64, 730, 952, 145, fill=SURFACE_2, stroke=LINE, radius=5)
+        _text(pdf, H, 88, 760, "SOURCE SCOPE", size=11, width=180, color=CYAN, bold=True)
+        _text(pdf, H, 88, 794, slide["scope"], size=18, width=880, color=INK, leading=27)
+        _rect(pdf, H, 64, 925, 952, 170, fill=SURFACE, stroke=AMBER, radius=5)
+        _text(pdf, H, 88, 955, "CAUSATION CAVEAT", size=11, width=220, color=AMBER, bold=True)
+        _text(pdf, H, 88, 994, slide["body"], size=24, width=875, color=INK, bold=True, leading=33)
 
     elif number == 3:
-        title(draw, slide["title"], 204, size=70)
-        cx, cy = 540, 740
-        draw.ellipse((cx - 126, cy - 126, cx + 126, cy + 126), fill=INK)
-        paragraph(draw, (cx - 86, cy - 38), "HUMAN\nEXPERIENCE", size=26, width=172, color=BG, bold=True, spacing=31)
-        radius = 350
-        for idx, outcome in enumerate(slide["outcomes"]):
-            angle = -math.pi / 2 + idx * math.pi / 3
-            ox = int(cx + math.cos(angle) * radius)
-            oy = int(cy + math.sin(angle) * radius)
-            color = COLORS[outcome["color"]]
-            dx, dy = ox - cx, oy - cy
-            distance = math.hypot(dx, dy)
-            ux, uy = dx / distance, dy / distance
-            draw.line((cx + ux * 126, cy + uy * 126, ox - ux * 76, oy - uy * 76), fill=LINE, width=4)
-            draw.ellipse((ox - 76, oy - 76, ox + 76, oy + 76), fill=color, outline=BG, width=6)
-            paragraph(draw, (ox - 59, oy - 31), outcome["name"], size=18, width=118, color=BG, bold=True, spacing=22)
-            tx = max(45, min(835, ox - 90))
-            ty = oy + 88 if oy <= cy else oy - 132
-            paragraph(draw, (tx, ty), outcome["detail"], size=14, width=180, color=MUTED, spacing=19)
+        _title(pdf, slide["title"], top=185, size=61, width=930)
+        _text(pdf, H, 64, 324, slide["body"], size=17, width=900, color=MUTED, leading=25)
+        for index, pathway in enumerate(GUIDED_PATHWAYS):
+            _pathway_row(
+                pdf,
+                H,
+                top=390 + index * 132,
+                left=64,
+                width=952,
+                height=96,
+                capability=pathway.capability_label,
+                outcome=pathway.outcome_label,
+                color=PATHWAY_COLORS[pathway.lane],
+                relationship_id=pathway.relationship_id,
+            )
 
     elif number == 4:
-        y = title(draw, slide["title"], 204, size=62)
-        for idx, column in enumerate(slide["columns"]):
-            x = 64 + idx * 486
-            draw.rectangle((x, y + 28, x + 458, y + 300), fill=SURFACE, outline=LINE, width=2)
-            draw.text((x + 26, y + 58), column["heading"], font=font(30, True), fill=CYAN if idx == 0 else AMBER)
-            paragraph(draw, (x + 26, y + 118), column["body"], size=21, width=398, color=INK, spacing=31)
-        fy = y + 350
-        draw.text((64, fy), "PROPERTY-SPECIFIC MODELS", font=font(15, True), fill=CYAN)
-        for formula in slide["formulae"]:
-            draw.rectangle((64, fy + 42, 1016, fy + 118), fill=SURFACE_2)
-            paragraph(draw, (88, fy + 62), formula, size=18, width=880, color=INK, bold=True, spacing=24)
-            fy += 96
-        paragraph(draw, (64, fy + 54), slide["context"], size=17, width=930, color=MUTED, spacing=24)
+        _title(pdf, slide["title"], top=185, size=58, width=930)
+        labels = [("Human outcomes", CYAN), ("Measurement", VIOLET), ("Property scenarios", AMBER)]
+        for index, (label, color) in enumerate(labels):
+            x = 64 + index * 318
+            _rect(pdf, H, x, 375, 286, 130, fill=SURFACE, stroke=color, radius=5)
+            _text(pdf, H, x + 22, 410, label, size=23, width=240, color=INK, bold=True, leading=28)
+            if index < 2:
+                _arrow(pdf, H, x + 286, x + 318, 440, MUTED)
+        _text(pdf, H, 64, 545, "PROPERTY-SPECIFIC VALUE MODELS", size=12, width=440, color=CYAN, bold=True)
+        for index, formula in enumerate(slide["formulae"]):
+            top = 585 + index * 158
+            _rect(pdf, H, 64, top, 952, 130, fill=SURFACE, stroke=LINE, radius=5)
+            _text(pdf, H, 88, top + 24, formula["heading"], size=22, width=280, color=INK, bold=True)
+            _text(pdf, H, 380, top + 23, formula["body"], size=17, width=590, color=MUTED, leading=25)
+        _rect(pdf, H, 64, 1082, 952, 106, fill=SURFACE_2, stroke=LINE, radius=5)
+        _text(pdf, H, 88, 1109, slide["context"], size=15, width=875, color=MUTED, leading=22)
 
     elif number == 5:
-        y = title(draw, slide["title"], 204, size=61)
-        y += 32
-        for idx, stakeholder in enumerate(slide["stakeholders"]):
-            row, col = divmod(idx, 2)
-            x, sy = 64 + col * 486, y + row * 176
-            draw.rectangle((x, sy, x + 458, sy + 150), fill=SURFACE, outline=LINE, width=2)
-            draw.text((x + 24, sy + 22), stakeholder["name"], font=font(25, True), fill=COLORS[list(COLORS)[idx]])
-            paragraph(draw, (x + 24, sy + 68), stakeholder["value"], size=17, width=400, color=MUTED, spacing=23)
-        draw.rectangle((64, 1050, 1016, 1178), fill=SURFACE_2)
-        paragraph(draw, (88, 1080), slide["context"], size=20, width=880, color=INK, bold=True, spacing=28)
+        _title(pdf, slide["title"], top=185, size=58, width=930)
+        for index, group in enumerate(slide["groups"]):
+            row, col = divmod(index, 2)
+            x, top = 64 + col * 486, 420 + row * 310
+            _rect(pdf, H, x, top, 458, 276, fill=SURFACE, stroke=LINE, radius=5)
+            _text(pdf, H, x + 24, top + 25, group["heading"], size=13, width=400, color=CYAN if index < 2 else AMBER, bold=True)
+            _text(pdf, H, x + 24, top + 68, group["title"], size=25, width=400, color=INK, bold=True, leading=30)
+            for item_index, item in enumerate(group["items"]):
+                _dot(pdf, H, x + 31, top + 133 + item_index * 38, 4, CYAN if index < 2 else AMBER)
+                _text(pdf, H, x + 48, top + 120 + item_index * 38, item, size=16, width=365, color=MUTED, leading=21, max_lines=2)
+        _rect(pdf, H, 64, 1066, 952, 116, fill=SURFACE_2, stroke=LINE, radius=5)
+        _text(pdf, H, 88, 1094, slide["context"], size=16, width=875, color=INK, bold=True, leading=23)
 
     elif number == 6:
-        y = title(draw, slide["title"], 204, size=58)
-        paragraph(draw, (64, y + 18), slide["body"], size=22, width=930, color=MUTED, spacing=31)
-        ay = y + 164
-        for idx, item in enumerate(slide["architecture"]):
-            x = 64 + (idx % 2) * 486
-            sy = ay + (idx // 2) * 112
-            draw.rectangle((x, sy, x + 458, sy + 88), fill=SURFACE, outline=LINE, width=2)
-            draw.text((x + 22, sy + 29), item, font=font(21, True), fill=INK)
-        draw.rectangle((64, 1086, 1016, 1188), fill=SURFACE_2)
-        paragraph(draw, (86, 1106), slide["limitations"], size=17, width=886, color=AMBER, bold=True, spacing=23)
+        _title(pdf, slide["title"], top=185, size=54, width=930)
+        _rect(pdf, H, 64, 330, 952, 58, fill=AMBER, radius=4)
+        _text(pdf, H, 86, 347, "VENDOR-STATED REFERENCE ARCHITECTURE", size=13, width=700, color=BG, bold=True)
+        for index, layer in enumerate(slide["layers"]):
+            top = 420 + index * 165
+            _rect(pdf, H, 64, top, 952, 138, fill=SURFACE, stroke=LINE, radius=5)
+            _text(pdf, H, 86, top + 22, f"0{index + 1}", size=13, width=44, color=CYAN, bold=True)
+            _text(pdf, H, 142, top + 19, layer["name"], size=23, width=230, color=INK, bold=True)
+            x = 394
+            for item in layer["items"]:
+                item_width = min(260, max(155, pdfmetrics.stringWidth(item, _font(True), 14) + 32))
+                _rect(pdf, H, x, top + 32, item_width, 58, fill=SURFACE_2, stroke=LINE, radius=4)
+                _text(pdf, H, x + 14, top + 48, item, size=14, width=item_width - 28, color=MUTED, bold=True, leading=18, max_lines=2)
+                x += item_width + 12
+        _rect(pdf, H, 64, 1096, 952, 90, fill=SURFACE_2, stroke=AMBER, radius=5)
+        _text(pdf, H, 86, 1118, slide["limitations"], size=14, width=890, color=AMBER, bold=True, leading=20)
 
     elif number == 7:
-        y = title(draw, slide["title"], 204, size=70)
-        sy = y + 38
-        for state in slide["states"]:
-            draw.rectangle((64, sy, 1016, sy + 142), fill=SURFACE, outline=LINE, width=2)
-            if state["style"] == "solid":
-                draw.line((90, sy + 46, 230, sy + 46), fill=CYAN, width=5)
-            elif state["style"] == "dashed":
-                for x in range(90, 230, 24):
-                    draw.line((x, sy + 46, x + 12, sy + 46), fill=VIOLET, width=5)
-            else:
-                for x in range(90, 230, 18):
-                    draw.ellipse((x, sy + 42, x + 7, sy + 49), fill=AMBER)
-            draw.text((260, sy + 25), state["name"], font=font(25, True), fill=INK)
-            paragraph(draw, (260, sy + 73), state["example"], size=18, width=720, color=MUTED, spacing=24)
-            sy += 164
-        draw.text((64, sy + 18), "CONTRADICTIONS RECORDED", font=font(15, True), fill=RED)
-        for idx, item in enumerate(slide["contradictions"]):
-            x = 64 + (idx % 2) * 486
-            yy = sy + 62 + (idx // 2) * 88
-            draw.text((x, yy), "×", font=font(24, True), fill=RED)
-            paragraph(draw, (x + 34, yy + 2), item, size=18, width=404, color=INK, bold=True, spacing=24)
+        _title(pdf, slide["title"], top=185, size=62, width=930)
+        for index, state in enumerate(slide["states"]):
+            x = 64 + index * 318
+            color = (CYAN, VIOLET, AMBER)[index]
+            _rect(pdf, H, x, 350, 286, 238, fill=SURFACE, stroke=color, radius=5)
+            _text(pdf, H, x + 22, 380, state["name"], size=22, width=240, color=INK, bold=True)
+            _line(pdf, H, x + 22, 430, x + 130, 430, color=color, width=4, dash=None if index == 0 else (10, 7) if index == 1 else (2, 8))
+            _text(pdf, H, x + 22, 466, state["example"], size=15, width=240, color=MUTED, leading=22)
+        _text(pdf, H, 64, 640, "CONTRADICTIONS AND LIMITATIONS", size=12, width=420, color=RED, bold=True)
+        for index, item in enumerate(slide["contradictions"]):
+            row, col = divmod(index, 2)
+            x, top = 64 + col * 486, 685 + row * 140
+            _rect(pdf, H, x, top, 458, 112, fill=SURFACE, stroke=LINE, radius=5)
+            _text(pdf, H, x + 22, top + 25, item, size=17, width=410, color=INK, bold=True, leading=23)
+        _rect(pdf, H, 64, 1000, 952, 160, fill=SURFACE_2, stroke=LINE, radius=5)
+        _text(pdf, H, 88, 1027, "MAJOR LIMIT", size=11, width=180, color=AMBER, bold=True)
+        _text(pdf, H, 88, 1064, slide["limitations"], size=19, width=875, color=MUTED, leading=27)
 
     elif number == 8:
-        y = title(draw, slide["title"], 204, size=70)
-        y += 28
-        method_text = "  →  ".join(slide["method"])
-        paragraph(draw, (64, y), method_text, size=18, width=930, color=CYAN, bold=True, spacing=27)
+        _title(pdf, slide["title"], top=185, size=62, width=930)
+        for index, step in enumerate(slide["method"]):
+            row, col = divmod(index, 4)
+            x, top = 64 + col * 238, 355 + row * 78
+            _text(pdf, H, x, top, f"{index + 1:02d}", size=11, width=30, color=CYAN, bold=True)
+            _text(pdf, H, x + 34, top - 1, step, size=16, width=182, color=INK, bold=True)
         counts = manifest.generated_counts
-        cy = y + 112
-        for idx, key in enumerate(slide["counts"]):
-            row, col = divmod(idx, 3)
-            x, sy = 64 + col * 318, cy + row * 142
-            draw.rectangle((x, sy, x + 290, sy + 116), fill=SURFACE, outline=LINE, width=2)
-            draw.text((x + 20, sy + 16), str(counts[key]), font=font(45, True), fill=INK)
-            draw.text((x + 20, sy + 78), key.upper(), font=font(13, True), fill=MUTED)
-        body_y = cy + 320
-        paragraph(draw, (64, body_y), slide["body"], size=19, width=670, color=MUTED, spacing=27)
-        if verified_url:
-            qr = qrcode.make(verified_url).convert("RGB").resize((218, 218))
-            image.paste(qr, (798, body_y))
-            paragraph(draw, (64, body_y + 184), verified_url, size=20, width=700, color=CYAN, bold=True, spacing=27)
-        else:
-            draw.rectangle((798, body_y, 1016, body_y + 218), outline=LINE, width=2)
-            paragraph(draw, (824, body_y + 50), "QR added only\nafter live URL\nverification", size=17, width=166, color=FAINT, bold=True, spacing=25)
-            paragraph(draw, (64, body_y + 184), "Live explorer URL is inserted after deployment verification.", size=18, width=690, color=AMBER, bold=True, spacing=25)
+        for index, key in enumerate(slide["counts"]):
+            row, col = divmod(index, 3)
+            x, top = 64 + col * 318, 550 + row * 128
+            _rect(pdf, H, x, top, 286, 104, fill=SURFACE, stroke=LINE, radius=5)
+            _text(pdf, H, x + 18, top + 17, str(counts[key]), size=38, width=120, color=INK, bold=True)
+            _text(pdf, H, x + 18, top + 72, key.upper(), size=10, width=220, color=MUTED, bold=True)
+        _rect(pdf, H, 64, 835, 952, 244, fill=SURFACE_2, stroke=LINE, radius=5)
+        _text(pdf, H, 88, 866, "LIVE EVIDENCE EXPLORER", size=11, width=320, color=CYAN, bold=True)
+        _text(pdf, H, 88, 913, url, size=21, width=650, color=INK, bold=True)
+        _text(pdf, H, 88, 960, slide["body"], size=14, width=650, color=MUTED, leading=21)
+        pdf.drawImage(_qr_reader(url), 790, H - 1049, 190, 190, preserveAspectRatio=True, mask="auto")
+        _text(pdf, H, 64, 1120, "Evidence cutoff: 2026-08-19  |  Audit the IDs, sources, limitations, and code.", size=14, width=930, color=AMBER, bold=True)
 
-    footer(draw, slide)
-    return image
+    _footer(pdf, slide)
+    pdf.showPage()
 
 
-def _write_raster_pdf(images: list[Path], output: Path, size: tuple[int, int]) -> None:
-    output.parent.mkdir(parents=True, exist_ok=True)
-    pdf = canvas.Canvas(str(output), pagesize=size, pageCompression=1, invariant=1)
-    for image_path in images:
-        pdf.drawImage(str(image_path), 0, 0, width=size[0], height=size[1])
-        pdf.showPage()
+def _qr_reader(url: str) -> ImageReader:
+    code = qrcode.QRCode(version=None, error_correction=qrcode.constants.ERROR_CORRECT_M, box_size=8, border=4)
+    code.add_data(url)
+    code.make(fit=True)
+    image = code.make_image(fill_color="black", back_color="white")
+    stream = BytesIO()
+    image.save(stream, format="PNG")
+    stream.seek(0)
+    return ImageReader(stream)
+
+
+def _create_carousel(path: Path, content: dict[str, Any], manifest: RunManifest, url: str) -> None:
+    pdf = canvas.Canvas(str(path), pagesize=(W, H), pageCompression=1, invariant=1)
+    pdf.setTitle("From Screen to Stay - HXG LinkedIn Carousel")
+    pdf.setSubject("An AI-led, evidence-audited map of connected hospitality experiences")
+    pdf.setAuthor("Hospitality Experience Graph (HXG)")
+    pdf.setCreator("HXG deterministic Python publication pipeline")
+    for slide in content["slides"]:
+        _draw_slide(pdf, slide, manifest, url)
     pdf.save()
 
 
-def _render_poster(manifest: RunManifest, verified_url: str | None) -> Image.Image:
-    image = Image.new("RGB", (POSTER_W, POSTER_H), BG)
-    draw = ImageDraw.Draw(image)
-    draw.text((90, 80), "HXG", font=font(58, True), fill=INK)
-    draw.text((90, 168), "FROM SCREEN TO STAY", font=font(30, True), fill=CYAN)
-    paragraph(draw, (90, 245), "An AI-led, evidence-audited map of connected hospitality experiences.", size=62, width=1510, color=INK, bold=True, spacing=74)
-    paragraph(draw, (90, 455), "The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.", size=31, width=1510, color=MUTED, spacing=44)
-    cx, cy = 900, 1160
-    draw.ellipse((cx - 165, cy - 165, cx + 165, cy + 165), fill=INK)
-    paragraph(draw, (cx - 115, cy - 55), "HUMAN\nEXPERIENCE", size=37, width=230, color=BG, bold=True, spacing=44)
-    outcomes = [("FEEL AT HOME", BLUE), ("FEEL IN CONTROL", GREEN), ("FEEL RECOGNIZED", AMBER), ("FEEL INCLUDED", VIOLET), ("FEEL SECURE", CYAN), ("FEEL SUPPORTED", ORANGE)]
-    for idx, (name, color) in enumerate(outcomes):
-        angle = -math.pi / 2 + idx * math.pi / 3
-        ox, oy = int(cx + math.cos(angle) * 470), int(cy + math.sin(angle) * 470)
-        dx, dy = ox - cx, oy - cy
-        distance = math.hypot(dx, dy)
-        ux, uy = dx / distance, dy / distance
-        draw.line((cx + ux * 165, cy + uy * 165, ox - ux * 108, oy - uy * 108), fill=LINE, width=6)
-        draw.ellipse((ox - 108, oy - 108, ox + 108, oy + 108), fill=color, outline=BG, width=9)
-        paragraph(draw, (ox - 78, oy - 28), name, size=23, width=156, color=BG, bold=True, spacing=28)
-    draw.rectangle((90, 1770, 1710, 2070), fill=SURFACE, outline=LINE, width=3)
-    metrics = [("74%", "smart-TV availability"), ("62%", "guest usage"), ("44,787", "survey respondents"), ("$805B", "2026 U.S. hotel guest spending context")]
-    for idx, (value, label) in enumerate(metrics):
-        x = 125 + idx * 400
-        draw.text((x, 1830), value, font=font(56, True), fill=CYAN if idx < 3 else AMBER)
-        paragraph(draw, (x, 1910), label, size=21, width=330, color=MUTED, spacing=29)
+def _create_poster(path: Path, manifest: RunManifest, url: str) -> None:
+    pdf = canvas.Canvas(str(path), pagesize=(POSTER_W, POSTER_H), pageCompression=1, invariant=1)
+    pdf.setTitle("From Screen to Stay - HXG Research Poster")
+    pdf.setSubject("Six evidence-linked capability-to-outcome pathways for connected hospitality")
+    pdf.setAuthor("Hospitality Experience Graph (HXG)")
+    pdf.setCreator("HXG deterministic Python publication pipeline")
+    pdf.setFillColor(_color(BG))
+    pdf.rect(0, 0, POSTER_W, POSTER_H, fill=1, stroke=0)
+
+    _text(pdf, POSTER_H, 90, 72, "HXG", size=54, width=180, color=INK, bold=True)
+    _text(pdf, POSTER_H, 275, 91, "HOSPITALITY EXPERIENCE GRAPH", size=18, width=520, color=MUTED, bold=True)
+    _text(pdf, POSTER_H, 90, 178, "From Screen to Stay", size=78, width=1500, color=INK, bold=True, leading=86)
+    _text(pdf, POSTER_H, 90, 286, "An AI-led, evidence-audited map of connected hospitality experiences.", size=34, width=1510, color=CYAN, bold=True, leading=44)
+    _text(pdf, POSTER_H, 90, 360, "The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.", size=25, width=1510, color=MUTED, leading=36)
+
+    _text(pdf, POSTER_H, 90, 510, "VERIFIED GUEST EVIDENCE", size=16, width=400, color=CYAN, bold=True)
+    evidence = [
+        ("74%", "smart-TV availability", "CLM-JDP-AVAIL-01"),
+        ("62%", "guest usage", "CLM-JDP-USAGE-01"),
+        ("44,787", "branded hotel guests", "CLM-JDP-SAMPLE-01"),
+    ]
+    for index, (value, label, claim_id) in enumerate(evidence):
+        x = 90 + index * 540
+        _rect(pdf, POSTER_H, x, 558, 500, 220, fill=SURFACE, stroke=LINE, radius=7)
+        _text(pdf, POSTER_H, x + 28, 593, value, size=54, width=430, color=CYAN, bold=True)
+        _text(pdf, POSTER_H, x + 28, 672, label, size=22, width=430, color=INK, bold=True)
+        _text(pdf, POSTER_H, x + 28, 730, claim_id, size=16, width=430, color=MUTED, bold=True)
+    _text(pdf, POSTER_H, 90, 812, "Availability and use establish relevance - not causal satisfaction, loyalty, revenue, or a universal guest outcome.", size=20, width=1550, color=AMBER, bold=True)
+    _line(pdf, POSTER_H, 90, 878, 1710, 878, width=2)
+
+    _text(pdf, POSTER_H, 90, 925, "SIX GUIDED PATHWAYS", size=16, width=420, color=CYAN, bold=True)
+    _text(pdf, POSTER_H, 90, 968, "Capabilities can support guest outcomes; they do not prove perception or value.", size=23, width=1450, color=INK, bold=True)
+    for index, pathway in enumerate(GUIDED_PATHWAYS):
+        _pathway_row(
+            pdf,
+            POSTER_H,
+            top=1040 + index * 180,
+            left=90,
+            width=1620,
+            height=126,
+            capability=pathway.capability_label,
+            outcome=pathway.outcome_label,
+            color=PATHWAY_COLORS[pathway.lane],
+            relationship_id=pathway.relationship_id,
+        )
+
+    _line(pdf, POSTER_H, 90, 2140, 1710, 2140, width=2)
+    _rect(pdf, POSTER_H, 90, 2190, 760, 310, fill=SURFACE, stroke=LINE, radius=7)
+    _text(pdf, POSTER_H, 120, 2225, "VALUE WITH DIFFERENT PROOF BURDENS", size=15, width=660, color=CYAN, bold=True)
+    _text(pdf, POSTER_H, 120, 2272, "Human value", size=26, width=260, color=INK, bold=True)
+    _text(pdf, POSTER_H, 120, 2315, "Comfort, control, familiarity, inclusion, security, and support.", size=18, width=660, color=MUTED, leading=27)
+    _text(pdf, POSTER_H, 120, 2390, "Property value", size=26, width=260, color=INK, bold=True)
+    _text(pdf, POSTER_H, 120, 2433, "Energy, support, and ancillary scenarios require local baselines, attribution, and verification.", size=18, width=660, color=MUTED, leading=27)
+
+    _rect(pdf, POSTER_H, 890, 2190, 500, 310, fill=SURFACE, stroke=LINE, radius=7)
+    _text(pdf, POSTER_H, 920, 2225, "EVIDENCE STATES", size=15, width=400, color=CYAN, bold=True)
+    for index, (label, color, description) in enumerate(
+        [
+            ("Direct fact", CYAN, "Solid"),
+            ("Supported inference", VIOLET, "Dashed"),
+            ("Modeled scenario", AMBER, "Dotted"),
+        ]
+    ):
+        top = 2280 + index * 66
+        _line(pdf, POSTER_H, 920, top + 12, 1040, top + 12, color=color, width=5, dash=None if index == 0 else (12, 8) if index == 1 else (2, 10))
+        _text(pdf, POSTER_H, 1070, top, label, size=18, width=270, color=INK, bold=True)
+        _text(pdf, POSTER_H, 1070, top + 29, description, size=12, width=200, color=MUTED)
+
     counts = manifest.generated_counts
-    draw.text((90, 2160), "FROZEN RELEASE", font=font(20, True), fill=CYAN)
-    count_text = "  ·  ".join(f"{counts[key]} {key}" for key in ("sources", "claims", "entities", "relationships", "contradictions", "countries"))
-    paragraph(draw, (90, 2204), count_text, size=28, width=1520, color=INK, bold=True, spacing=40)
-    paragraph(draw, (90, 2324), "Solid = direct fact  ·  Dashed = supported inference  ·  Dotted = modeled scenario", size=25, width=1500, color=MUTED, spacing=34)
-    if verified_url:
-        qr = qrcode.make(verified_url).convert("RGB").resize((230, 230))
-        image.paste(qr, (1450, 2370))
-        paragraph(draw, (90, 2450), verified_url, size=28, width=1280, color=CYAN, bold=True, spacing=38)
-    else:
-        paragraph(draw, (90, 2450), "Public URL and QR are added only after live deployment verification.", size=28, width=1250, color=AMBER, bold=True, spacing=38)
-    draw.text((90, 2630), "Independent research · No Samsung sponsorship or endorsement · Cutoff 2026-08-19", font=font(20, True), fill=FAINT)
-    return image
+    count_text = "  |  ".join(f"{counts[key]} {key}" for key in ("sources", "claims", "entities", "relationships", "contradictions", "countries"))
+    _text(pdf, POSTER_H, 90, 2540, count_text, size=17, width=1300, color=INK, bold=True)
+    _text(pdf, POSTER_H, 90, 2590, url, size=22, width=1260, color=CYAN, bold=True)
+    _text(pdf, POSTER_H, 90, 2630, "Independent research  |  Evidence cutoff 2026-08-19  |  No Samsung sponsorship or endorsement", size=15, width=1300, color=FAINT, bold=True)
+    pdf.drawImage(_qr_reader(url), 1460, POSTER_H - 2630, 190, 190, preserveAspectRatio=True, mask="auto")
+    pdf.save()
 
 
 def _verify_live_url(url: str) -> None:
@@ -315,42 +495,56 @@ def _verify_live_url(url: str) -> None:
         raise RuntimeError("Live URL did not return the HXG explorer")
 
 
+def _sha256(path: Path) -> str:
+    return f"sha256:{hashlib.sha256(path.read_bytes()).hexdigest()}"
+
+
 def build_publication(*, verified_url: str | None = None) -> None:
     validate_public_release()
+    url = verified_url or LIVE_URL
     if verified_url:
         _verify_live_url(verified_url)
-    manifest = RunManifest.model_validate(read_json(PUBLIC_DIR / "run-manifest.json"))
+    _register_fonts()
+    manifest_path = PUBLIC_DIR / "run-manifest.json"
+    manifest_data = read_json(manifest_path)
+    manifest = RunManifest.model_validate(manifest_data)
     claims = {record.id for record in load_records(PUBLIC_DIR / "claims.json", Claim)}
     content = read_json(ROOT / "reports" / "content" / "carousel.json")
+    if content["release"] != RELEASE:
+        raise RuntimeError(f"Publication content release must be {RELEASE}")
     for slide in content["slides"]:
         missing = set(slide["evidence_ids"]) - claims
         if missing:
             raise RuntimeError(f"Slide {slide['number']} has missing evidence IDs: {sorted(missing)}")
 
-    rendered = REPORT_DIR / "rendered"
-    rendered.mkdir(parents=True, exist_ok=True)
-    pages: list[Path] = []
-    for slide in content["slides"]:
-        page = rendered / f"carousel-{slide['number']:02d}.png"
-        _render_slide(slide, manifest, verified_url).save(page, format="PNG", optimize=True)
-        pages.append(page)
-    _write_raster_pdf(pages, REPORT_DIR / "linkedin-carousel.pdf", (W, H))
+    REPORT_DIR.mkdir(parents=True, exist_ok=True)
+    carousel_path = REPORT_DIR / "linkedin-carousel.pdf"
+    poster_path = REPORT_DIR / "hxg-poster.pdf"
+    _create_carousel(carousel_path, content, manifest, url)
+    _create_poster(poster_path, manifest, url)
 
-    poster_path = rendered / "hxg-poster.png"
-    _render_poster(manifest, verified_url).save(poster_path, format="PNG", optimize=True)
-    _write_raster_pdf([poster_path], REPORT_DIR / "hxg-poster.pdf", (POSTER_W, POSTER_H))
-
+    output_paths = {
+        "carousel_pdf": carousel_path,
+        "poster_pdf": poster_path,
+        "graph_json": GRAPH_DIR / "hospitality-experience-graph.json",
+        "graph_graphml": GRAPH_DIR / "hospitality-experience-graph.graphml",
+        "guided_map_svg": GRAPH_DIR / "hospitality-experience-map.svg",
+    }
+    output_hashes = {name: _sha256(path) for name, path in output_paths.items()}
+    manifest_data["output_hashes"] = output_hashes
+    write_json(manifest_path, manifest_data)
     write_json(
         REPORT_DIR / "publication-manifest.json",
         {
             "release": content["release"],
-            "verified_url": verified_url,
-            "qr_included": bool(verified_url),
-            "carousel_pages": len(pages),
+            "verified_url": url,
+            "qr_included": True,
+            "carousel_pages": len(content["slides"]),
             "carousel_size": [W, H],
             "poster_size": [POSTER_W, POSTER_H],
             "evidence_cutoff": manifest.cutoff_date.isoformat(),
             "generated_counts": manifest.generated_counts,
+            "output_hashes": output_hashes,
             "alt_text": {str(slide["number"]): slide["alt_text"] for slide in content["slides"]},
         },
     )

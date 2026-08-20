@@ -1,110 +1,103 @@
 {
   "schema_version": "1.0.0",
-  "release": "hxg-v0.1.0",
+  "release": "hxg-v0.2.0",
   "slides": [
     {
       "number": 1,
-      "eyebrow": "HXG · INDEPENDENT RESEARCH",
+      "eyebrow": "HXG | INDEPENDENT RESEARCH",
       "title": "From Screen\nto Stay",
       "subtitle": "An AI-led, evidence-audited map of connected hospitality experiences.",
       "body": "The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.",
       "evidence_ids": ["CLM-ORCHESTRATION-THESIS-01"],
-      "alt_text": "HXG title slide introducing the thesis that the in-room display is becoming an experience-orchestration layer."
+      "alt_text": "HXG title slide with a preview of six capability-to-guest-outcome pathways."
     },
     {
       "number": 2,
       "eyebrow": "INDEPENDENT GUEST EVIDENCE",
       "title": "The screen is already a consequential touchpoint.",
-      "subtitle": "J.D. Power · 2026 North America Hotel Guest Satisfaction Index Study",
+      "subtitle": "J.D. Power | 2026 North America Hotel Guest Satisfaction Index Study",
       "stats": [
         {"value": "74%", "label": "smart-TV availability", "evidence_id": "CLM-JDP-AVAIL-01"},
         {"value": "62%", "label": "guest usage", "evidence_id": "CLM-JDP-USAGE-01"},
         {"value": "44,787", "label": "branded hotel guests", "evidence_id": "CLM-JDP-SAMPLE-01"}
       ],
-      "body": "Availability and use establish relevance—not causal satisfaction, loyalty, or revenue.",
+      "scope": "North America, branded hotels, stays from May 2025 through May 2026. The sample is not every hotel room or every guest segment.",
+      "body": "Availability and use establish relevance - not causal satisfaction, loyalty, revenue, or a universal guest outcome.",
       "evidence_ids": ["CLM-JDP-AVAIL-01", "CLM-JDP-USAGE-01", "CLM-JDP-SAMPLE-01"],
-      "alt_text": "Three statistics from J.D. Power: 74 percent availability, 62 percent usage, and a 44,787-person sample."
+      "alt_text": "J.D. Power evidence: 74 percent availability, 62 percent usage, and 44,787 branded hotel guests, with source scope and a causation caveat."
     },
     {
       "number": 3,
-      "eyebrow": "THE EXPERIENCE MAP",
-      "title": "Six outcomes. One human center.",
-      "outcomes": [
-        {"name": "Feel at home", "detail": "Familiar content and devices", "color": "blue"},
-        {"name": "Feel in control", "detail": "Comfort and autonomy", "color": "green"},
-        {"name": "Feel recognized", "detail": "Relevant services", "color": "amber"},
-        {"name": "Feel included", "detail": "Less language and access friction", "color": "violet"},
-        {"name": "Feel secure", "detail": "Privacy and trust", "color": "cyan"},
-        {"name": "Feel supported", "detail": "Convenient, responsive service", "color": "orange"}
-      ],
+      "eyebrow": "THE GUIDED EXPERIENCE MAP",
+      "title": "Six capabilities. Six guest outcomes.",
+      "body": "Each one-to-one pathway uses the deliberately bounded verb can support. Select the evidence IDs in the live explorer to inspect confidence and limitations.",
       "evidence_ids": ["CLM-CAST-CROSSVENDOR-01", "CLM-SAM-SMARTTHINGS-01", "CLM-SAM-BI-01", "CLM-SAM-LIVE-TRANSLATE-01", "CLM-SAM-PRIVACY-01", "CLM-SAM-CONCIERGE-01"],
-      "alt_text": "A six-spoke wheel places human experience at the center of feeling at home, in control, recognized, included, secure, and supported."
+      "alt_text": "Six rows connect Cast from your device to Feel at home, Control room settings to Feel in control, Connect stay context to Feel recognized, Present content accessibly to Feel included, Protect sessions and data to Feel secure, and Request services and help to Feel supported."
     },
     {
       "number": 4,
       "eyebrow": "VALUE PATHWAYS",
-      "title": "Value starts human.\nProperty value must be measured.",
-      "columns": [
-        {"heading": "Human value", "body": "Time saved · reduced effort · familiarity · comfort · accessibility · control · trust"},
-        {"heading": "Property value", "body": "Ancillary contribution · remote support · energy efficiency · experience indicators"}
-      ],
+      "title": "Human value first. Property value must be measured.",
       "formulae": [
-        "Ancillary contribution = occupied room nights × engagement × conversion × margin",
-        "Energy savings = baseline spend × controllable share × verified reduction",
-        "Support savings = remotely resolved incidents × avoided dispatch cost"
+        {"heading": "Ancillary contribution", "body": "Occupied room nights x engagement x conversion x margin. Incrementality must be tested locally."},
+        {"heading": "Energy savings", "body": "Baseline spend x controllable share x verified reduction. No universal savings rate is claimed."},
+        {"heading": "Support savings", "body": "Remotely resolved incidents x avoided dispatch cost. Avoided visits must be measured."}
       ],
-      "context": "ENERGY STAR: about 6% of lodging operating costs are energy; heating and cooling account for almost 40% of electricity use. Current agency guidance—not new 2026 measurement.",
+      "context": "ENERGY STAR reports energy at about 6% of lodging operating costs and heating/cooling at almost 40% of electricity use. This is current agency guidance, not new 2026 measurement.",
       "evidence_ids": ["CLM-ENERGY-COST-01", "CLM-ENERGY-HVAC-01", "CLM-ENERGY-SCENARIO-01", "CLM-ANCILLARY-SCENARIO-01", "CLM-REMOTE-SUPPORT-INFERENCE-01"],
-      "alt_text": "Human value and property value are separated, with property-specific formulas for ancillary contribution, energy, and support savings."
+      "alt_text": "Human outcomes flow through measurement into three property-specific value scenarios for ancillary contribution, energy, and remote support."
     },
     {
       "number": 5,
-      "eyebrow": "ECOSYSTEM VALUE",
-      "title": "The screen succeeds through relationships—not specifications alone.",
-      "stakeholders": [
-        {"name": "Guest", "value": "Comfort · control · inclusion · privacy · service"},
-        {"name": "Owner / operator", "value": "Revenue pathways · cost visibility · consistency"},
-        {"name": "Brand / manager", "value": "Standards · content · portfolio scale"},
-        {"name": "OEM / platform", "value": "Hardware · software · cloud · support"},
-        {"name": "Dealer / integrator", "value": "Design · install · integrate · train"},
-        {"name": "Technology partners", "value": "PMS · POS · IoT · content · services"}
+      "eyebrow": "STAKEHOLDER AND ECOSYSTEM VALUE",
+      "title": "Value changes depending on who is looking.",
+      "groups": [
+        {"heading": "WHO EXPERIENCES", "title": "Guest", "items": ["Comfort and control", "Inclusion and privacy", "Convenient access to help"]},
+        {"heading": "WHO OPERATES", "title": "Owner, operator, brand", "items": ["Experience consistency", "Cost and support visibility", "Measured property scenarios"]},
+        {"heading": "WHO ENABLES", "title": "Technology ecosystem", "items": ["OEM and platform", "Dealer and integrator", "PMS, POS, IoT, content, services"]},
+        {"heading": "WHO CAPTURES VALUE", "title": "Different mechanisms", "items": ["Human outcomes", "Property-specific economics", "Hardware, software, service, support"]}
       ],
-      "context": "Nearly $805B projected U.S. hotel guest spending in 2026 is economic context—not screen-attributable revenue.",
+      "context": "Nearly $805B in projected 2026 U.S. hotel guest spending is economic context - not revenue attributable to in-room screens.",
       "evidence_ids": ["CLM-AHLA-SPEND-01", "CLM-SAM-ARCH-01", "CLM-ORACLE-INTEGRATION-01"],
-      "alt_text": "Six stakeholder groups surround the connected display ecosystem, with their distinct value mechanisms and an economic-context caveat."
+      "alt_text": "Stakeholders are grouped by who experiences, operates, enables, and captures value, with an economic-context caveat."
     },
     {
       "number": 6,
-      "eyebrow": "VENDOR-STATED REFERENCE ARCHITECTURE",
-      "title": "Samsung is one reference case—not the owner of the research.",
-      "architecture": ["Hospitality display", "Google Cast + Apple AirPlay", "LYNK Cloud", "SmartThings Pro", "PMS / POS integration", "Security + checkout deletion", "Analytics + service channel"],
-      "body": "Samsung documentation shows how display hardware, cloud management, casting, IoT, PMS-connected services, security controls and analytics can form one hybrid stack.",
-      "limitations": "Availability varies by model, region, language, channel, device, software and licensing. Capability evidence does not establish guest or financial outcomes.",
+      "eyebrow": "SAMSUNG REFERENCE CASE",
+      "title": "One vendor-stated architecture. Four clear layers.",
+      "layers": [
+        {"name": "Display", "items": ["Hospitality display"]},
+        {"name": "Experience", "items": ["Google Cast / AirPlay", "Content and apps", "Digital concierge"]},
+        {"name": "Integration", "items": ["LYNK Cloud", "SmartThings Pro", "PMS / POS"]},
+        {"name": "Governance", "items": ["Security controls", "Checkout deletion", "Analytics and limits"]}
+      ],
+      "limitations": "Availability varies by model, region, language, channel, device, software, integration, and licensing. Capability evidence does not establish guest or financial outcomes.",
       "evidence_ids": ["CLM-SAM-ARCH-01", "CLM-SAM-PRIVACY-01", "CLM-SAM-LYNK-MANAGE-01", "CLM-SAM-SMARTTHINGS-01"],
-      "alt_text": "A clearly labeled vendor-stated Samsung reference architecture with seven components and availability limitations."
+      "alt_text": "Samsung is shown as a vendor-stated reference architecture organized into display, experience, integration, and governance layers."
     },
     {
       "number": 7,
-      "eyebrow": "CONFIDENCE + CONTRADICTION AUDIT",
+      "eyebrow": "CONFIDENCE AND CONTRADICTION AUDIT",
       "title": "Confidence is part of the finding.",
       "states": [
-        {"name": "Direct fact", "style": "solid", "example": "LYNK Cloud supports central device management."},
-        {"name": "Supported inference", "style": "dashed", "example": "Remote visibility may reduce some on-site interventions."},
-        {"name": "Modeled scenario", "style": "dotted", "example": "Avoided visits × local dispatch cost = potential savings."}
+        {"name": "Direct fact", "example": "LYNK Cloud supports central device management."},
+        {"name": "Supported inference", "example": "Room controls can support a sense of control."},
+        {"name": "Modeled scenario", "example": "Avoided visits x local dispatch cost = potential savings."}
       ],
-      "contradictions": ["Usage ≠ satisfaction or causal value", "Announcement ≠ universal availability", "Translation ≠ complete accessibility", "Industry scale ≠ attributable revenue"],
+      "contradictions": ["Usage is not satisfaction or causal value", "Announcement is not universal availability", "Translation is not complete accessibility", "Industry scale is not attributable revenue"],
+      "limitations": "Vendor capability evidence can support a bounded pathway, but it does not prove the guest's perception or the property's financial result.",
       "evidence_ids": ["CLM-SAM-LYNK-MANAGE-01", "CLM-REMOTE-SUPPORT-INFERENCE-01", "CLM-WCAG-NONGRAPH-01", "CLM-WTTC-GDP-01"],
-      "alt_text": "Three evidence states—direct fact, supported inference, and modeled scenario—plus four major contradiction-audit findings."
+      "alt_text": "Three evidence states, four contradiction findings, and the major limit that capability evidence does not prove perception or financial outcomes."
     },
     {
       "number": 8,
-      "eyebrow": "METHOD + OPEN EVIDENCE",
-      "title": "Audit the chain.\nReuse the graph.",
+      "eyebrow": "METHOD AND OPEN EVIDENCE",
+      "title": "Audit the chain. Reuse the graph.",
       "method": ["Discover", "Extract", "Resolve", "Connect", "Challenge", "Audit", "Freeze", "Publish"],
       "counts": ["sources", "claims", "entities", "relationships", "contradictions", "countries"],
-      "body": "Release 0.1.0 is an interactive Codex-assisted seed audit with disclosed human governance. The configured local pipeline uses manager-led specialist agents and Microsoft GraphRAG; deterministic Python owns validation, counts and exports.",
+      "body": "Release 0.2.0 is an interactive Codex-assisted seed audit with disclosed human governance. Deterministic Python owns validation, counts, graph exports, and publication files.",
       "evidence_ids": ["CLM-OPENAI-MANAGER-01", "CLM-GRAPHRAG-01"],
-      "alt_text": "Methodology slide lists eight research stages, generated release counts, the public explorer URL, and a QR code only after live verification."
+      "alt_text": "Eight research stages, frozen release counts, the live HXG explorer URL, QR code, and an invitation to audit the evidence."
     }
   ]
 }
