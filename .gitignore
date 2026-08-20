@@ -20,6 +20,8 @@ site/dist/
 site/.astro/
 site/public/data/
 site/public/downloads/
+site/playwright-report/
+site/test-results/
 
 # Generated publication intermediates.
 reports/rendered/

@@ -3,6 +3,7 @@ from __future__ import annotations
 import hashlib
 from pathlib import Path
 
+import networkx as nx
 import pymupdf
 
 from hxg.graph import export_graphs
@@ -39,6 +40,21 @@ def test_manifest_cutoff() -> None:
 
 def test_graphml_json_parity() -> None:
     validate_graph_parity()
+
+
+def test_graph_exports_include_preset_layout() -> None:
+    export_graphs()
+    graph = nx.read_graphml(GRAPH_DIR / "hospitality-experience-graph.graphml")
+    browser_graph = read_json(GRAPH_DIR / "hospitality-experience-graph.json")
+    assert browser_graph["layout"] == {
+        "name": "preset",
+        "algorithm": "spring",
+        "seed": 42,
+        "width": 1000,
+        "height": 680,
+    }
+    assert all("layout_x" in data and "layout_y" in data for _, data in graph.nodes(data=True))
+    assert all("position" in node for node in browser_graph["elements"]["nodes"])
 
 
 def test_graph_exports_are_deterministic() -> None:

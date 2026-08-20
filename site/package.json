@@ -7,7 +7,9 @@
     "sync-data": "node scripts/sync-data.mjs",
     "dev": "npm run sync-data && astro dev",
     "build": "npm run sync-data && astro build",
-    "check": "astro check"
+    "check": "astro check",
+    "preview": "node scripts/serve-e2e.mjs",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -17,6 +19,8 @@
     "typescript": "^5.9.2"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.62.1",
     "@types/node": "^24.3.0"
   }
 }

@@ -21,6 +21,10 @@ OUTCOME_COLORS = {
     "context": "#c7a86b",
 }
 
+LAYOUT_SEED = 42
+LAYOUT_WIDTH = 1000
+LAYOUT_HEIGHT = 680
+
 
 def build_graph() -> nx.DiGraph:
     entities = load_records(PUBLIC_DIR / "entities.json", Entity)
@@ -28,7 +32,7 @@ def build_graph() -> nx.DiGraph:
     claims = {record.id: record for record in load_records(PUBLIC_DIR / "claims.json", Claim)}
 
     graph = nx.DiGraph(id="hxg-v0.1.0", label="Hospitality Experience Graph")
-    for entity in entities:
+    for entity in sorted(entities, key=lambda record: record.id):
         graph.add_node(
             entity.id,
             label=entity.canonical_name,
@@ -38,12 +42,14 @@ def build_graph() -> nx.DiGraph:
             color=OUTCOME_COLORS.get(entity.outcome or entity.entity_type, "#8aa2b8"),
             evidence_ids="|".join(entity.evidence_ids),
         )
-    for relationship in relationships:
-        evidence_ids = sorted({
-            evidence_id
-            for claim_id in relationship.supporting_claim_ids
-            for evidence_id in claims[claim_id].evidence_ids
-        })
+    for relationship in sorted(relationships, key=lambda record: record.id):
+        evidence_ids = sorted(
+            {
+                evidence_id
+                for claim_id in relationship.supporting_claim_ids
+                for evidence_id in claims[claim_id].evidence_ids
+            }
+        )
         graph.add_edge(
             relationship.source_entity_id,
             relationship.target_entity_id,
@@ -58,13 +64,41 @@ def build_graph() -> nx.DiGraph:
     return graph
 
 
+def _apply_layout(graph: nx.DiGraph) -> None:
+    """Attach one seeded layout to every public graph representation."""
+    positions = nx.spring_layout(
+        graph,
+        seed=LAYOUT_SEED,
+        k=2.1,
+        iterations=200,
+        scale=1.0,
+    )
+    for node_id in sorted(graph.nodes):
+        x, y = positions[node_id]
+        graph.nodes[node_id]["layout_x"] = round((float(x) + 1.0) * LAYOUT_WIDTH / 2, 4)
+        graph.nodes[node_id]["layout_y"] = round((float(y) + 1.0) * LAYOUT_HEIGHT / 2, 4)
+
+
 def _cytoscape_json(graph: nx.DiGraph) -> dict:
     return {
         "schema_version": "1.0.0",
         "release": "hxg-v0.1.0",
+        "layout": {
+            "name": "preset",
+            "algorithm": "spring",
+            "seed": LAYOUT_SEED,
+            "width": LAYOUT_WIDTH,
+            "height": LAYOUT_HEIGHT,
+        },
         "elements": {
             "nodes": [
-                {"data": {"id": node_id, **attributes}}
+                {
+                    "data": {"id": node_id, **attributes},
+                    "position": {
+                        "x": attributes["layout_x"],
+                        "y": attributes["layout_y"],
+                    },
+                }
                 for node_id, attributes in sorted(graph.nodes(data=True))
             ],
             "edges": [
@@ -78,15 +112,24 @@ def _cytoscape_json(graph: nx.DiGraph) -> dict:
 
 
 def _svg(graph: nx.DiGraph, width: int = 1600, height: int = 1000) -> str:
-    positions = nx.spring_layout(graph, seed=42, k=2.1, iterations=200)
-    scale_x, scale_y = width * 0.42, height * 0.40
-    cx, cy = width / 2, height / 2
-    points = {node: (cx + x * scale_x, cy + y * scale_y) for node, (x, y) in positions.items()}
+    pad_x, pad_y = width * 0.08, height * 0.08
+    usable_width, usable_height = width - pad_x * 2, height - pad_y * 2
+    points = {
+        node_id: (
+            pad_x + float(data["layout_x"]) / LAYOUT_WIDTH * usable_width,
+            pad_y + float(data["layout_y"]) / LAYOUT_HEIGHT * usable_height,
+        )
+        for node_id, data in graph.nodes(data=True)
+    }
     lines = []
     for source, target, data in graph.edges(data=True):
         x1, y1 = points[source]
         x2, y2 = points[target]
-        dash = "" if data["evidence_status"] == "direct" else ("10 8" if data["evidence_status"] == "inferred" else "2 8")
+        dash = (
+            ""
+            if data["evidence_status"] == "direct"
+            else ("10 8" if data["evidence_status"] == "inferred" else "2 8")
+        )
         lines.append(
             f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
             f'stroke="#526879" stroke-width="2" stroke-dasharray="{dash}" marker-end="url(#arrow)" />'
@@ -100,18 +143,19 @@ def _svg(graph: nx.DiGraph, width: int = 1600, height: int = 1000) -> str:
             f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{radius}" fill="{data["color"]}" stroke="#071827" stroke-width="4" />'
             f'<text x="{x:.1f}" y="{y + radius + 22:.1f}" text-anchor="middle" fill="#f6f1e8" font-size="16" font-weight="650">{label}</text>'
         )
-    return f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" role="img" aria-labelledby="title desc">
 <title id="title">Hospitality Experience Graph</title>
 <desc id="desc">Evidence-linked entities and relationships centered on human experience. Solid edges are direct evidence, dashed edges are supported inferences, and dotted edges are scenarios.</desc>
 <rect width="100%" height="100%" fill="#071827" />
 <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#526879" /></marker></defs>
-{''.join(lines)}
-{''.join(nodes)}
-</svg>'''
+{"".join(lines)}
+{"".join(nodes)}
+</svg>"""
 
 
 def export_graphs() -> None:
     graph = build_graph()
+    _apply_layout(graph)
     GRAPH_DIR.mkdir(parents=True, exist_ok=True)
     nx.write_graphml(graph, GRAPH_DIR / "hospitality-experience-graph.graphml")
     write_json(GRAPH_DIR / "hospitality-experience-graph.json", _cytoscape_json(graph))

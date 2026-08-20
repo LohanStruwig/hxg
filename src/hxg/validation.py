@@ -54,8 +54,10 @@ def validate_public_release(public_dir: Path = PUBLIC_DIR) -> dict[str, int]:
             raise ValidationError(f"{claim.id} has missing sources: {sorted(missing)}")
         if claim.stakeholder == "guest-behavior":
             independent = [
-                source for source in sources
-                if source.id in claim.evidence_ids and source.authority_tier.value == "independent-research"
+                source
+                for source in sources
+                if source.id in claim.evidence_ids
+                and source.authority_tier.value == "independent-research"
             ]
             if not independent:
                 raise ValidationError(f"Guest behavior claim {claim.id} lacks independent evidence")
@@ -66,7 +68,9 @@ def validate_public_release(public_dir: Path = PUBLIC_DIR) -> dict[str, int]:
             relationship.target_entity_id,
         } - entity_ids
         if missing_entities:
-            raise ValidationError(f"{relationship.id} has missing entities: {sorted(missing_entities)}")
+            raise ValidationError(
+                f"{relationship.id} has missing entities: {sorted(missing_entities)}"
+            )
         missing_claims = set(relationship.supporting_claim_ids) - claim_ids
         if missing_claims:
             raise ValidationError(f"{relationship.id} has missing claims: {sorted(missing_claims)}")
@@ -91,7 +95,9 @@ def validate_public_release(public_dir: Path = PUBLIC_DIR) -> dict[str, int]:
         "entities": len(entities),
         "relationships": len(relationships),
         "contradictions": len(contradictions),
-        "countries": len({geo for source in sources for geo in source.geography if geo != "Global"}),
+        "countries": len(
+            {geo for source in sources for geo in source.geography if geo != "Global"}
+        ),
     }
     if counts["sources"] < 50:
         raise ValidationError("Release requires at least 50 source records")
@@ -118,3 +124,14 @@ def validate_graph_parity(graphml_path: Path | None = None, json_path: Path | No
         raise ValidationError("GraphML/JSON edge parity failed")
     if {data["id"] for _, _, data in graph.edges(data=True)} != json_edges:
         raise ValidationError("GraphML/JSON relationship ID parity failed")
+    for node in browser_graph["elements"]["nodes"]:
+        node_id = node["data"]["id"]
+        position = node.get("position", {})
+        if "x" not in position or "y" not in position:
+            raise ValidationError(f"Browser graph node {node_id} has no preset position")
+        if "layout_x" not in graph.nodes[node_id] or "layout_y" not in graph.nodes[node_id]:
+            raise ValidationError(f"GraphML node {node_id} has no layout coordinates")
+        if abs(float(graph.nodes[node_id]["layout_x"]) - float(position["x"])) > 0.0001:
+            raise ValidationError(f"GraphML/JSON X coordinate parity failed for {node_id}")
+        if abs(float(graph.nodes[node_id]["layout_y"]) - float(position["y"])) > 0.0001:
+            raise ValidationError(f"GraphML/JSON Y coordinate parity failed for {node_id}")

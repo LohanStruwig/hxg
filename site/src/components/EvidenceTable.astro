@@ -22,12 +22,12 @@ const sourceMap = Object.fromEntries(sources.map((source) => [source.id, source]
       <thead><tr><th scope="col">ID / class</th><th scope="col">Claim</th><th scope="col">Evidence</th><th scope="col">Confidence</th><th scope="col">Limits</th></tr></thead>
       <tbody id="claim-rows">
         {claims.map((claim) => (
-          <tr data-classification={claim.classification} data-search={`${claim.id} ${claim.text} ${claim.outcome || ""} ${claim.evidence_ids.join(" ")}`.toLowerCase()}>
-            <td><strong>{claim.id}</strong><span class:list={["class-label", claim.classification]}>{claim.classification}</span></td>
-            <td><p>{claim.text}</p>{claim.metric && <small>{claim.metric}{claim.period ? ` · ${claim.period}` : ""}</small>}</td>
-            <td>{claim.evidence_ids.map((id: string) => <a href={sourceMap[id]?.url} target="_blank" rel="noreferrer">{id}</a>)}</td>
-            <td><meter min="0" max="1" value={claim.confidence}>{Math.round(claim.confidence*100)}%</meter><span>{Math.round(claim.confidence*100)}%</span></td>
-            <td><ul>{claim.limitations.map((limitation: string) => <li>{limitation}</li>)}</ul></td>
+          <tr data-claim-id={claim.id} data-classification={claim.classification} data-search={`${claim.id} ${claim.text} ${claim.outcome || ""} ${claim.evidence_ids.join(" ")}`.toLowerCase()}>
+            <td data-label="ID / class"><strong>{claim.id}</strong><span class:list={["class-label", claim.classification]}>{claim.classification}</span></td>
+            <td data-label="Claim"><p>{claim.text}</p>{claim.metric && <small>{claim.metric}{claim.period ? ` · ${claim.period}` : ""}</small>}</td>
+            <td data-label="Evidence">{claim.evidence_ids.map((id: string) => <a href={sourceMap[id]?.url} target="_blank" rel="noreferrer">{id}</a>)}</td>
+            <td data-label="Confidence"><meter min="0" max="1" value={claim.confidence}>{Math.round(claim.confidence*100)}%</meter><span>{Math.round(claim.confidence*100)}%</span></td>
+            <td data-label="Limits"><ul>{claim.limitations.map((limitation: string) => <li>{limitation}</li>)}</ul></td>
           </tr>
         ))}
       </tbody>
@@ -40,24 +40,34 @@ const sourceMap = Object.fromEntries(sources.map((source) => [source.id, source]
   const select = document.querySelector<HTMLSelectElement>("#claim-class")!;
   const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>("#claim-rows tr"));
   const count = document.querySelector<HTMLElement>("#claim-count")!;
+  let activeClaimIds: Set<string> | null = null;
   function filterRows() {
     const query = search.value.trim().toLowerCase();
     const classification = select.value;
     let visible = 0;
     rows.forEach((row) => {
-      const matchesQuery = !query || (row.dataset.search || "").includes(query);
+      const matchesLinkedClaims = !activeClaimIds || activeClaimIds.has(row.dataset.claimId || "");
+      const matchesQuery = matchesLinkedClaims && (!query || (row.dataset.search || "").includes(query));
       const matchesClass = classification === "all" || row.dataset.classification === classification;
       row.hidden = !(matchesQuery && matchesClass);
       if (!row.hidden) visible += 1;
     });
     count.textContent = `${visible} claim${visible === 1 ? "" : "s"}`;
   }
-  search.addEventListener("input", filterRows);
+  search.addEventListener("input", () => { activeClaimIds = null; filterRows(); });
   select.addEventListener("change", filterRows);
+  window.addEventListener("hxg:view-evidence", ((event: CustomEvent<{claimIds: string[]}>) => {
+    activeClaimIds = new Set(event.detail.claimIds);
+    search.value = "";
+    select.value = "all";
+    filterRows();
+    document.querySelector("#evidence")?.scrollIntoView({ block: "start" });
+    search.focus();
+  }) as EventListener);
 </script>
 
 <style>
-  .evidence-section { max-width: var(--max); margin: 0 auto; padding: 80px 32px 120px; }
+  .evidence-section { max-width: var(--max); margin: 0 auto; padding: 80px var(--page-gutter) 120px; scroll-margin-top: var(--header-offset); }
   .section-heading { display: grid; grid-template-columns: 1.35fr .65fr; gap: 60px; align-items: end; }
   h2 { margin: 0; font-size: clamp(2.1rem,4vw,4.2rem); line-height: 1; letter-spacing: -.055em; }
   .section-heading > p { color: var(--muted); line-height: 1.6; }
@@ -78,5 +88,20 @@ const sourceMap = Object.fromEntries(sources.map((source) => [source.id, source]
   .class-label { display: inline-block; margin-top: 8px; font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cyan); }
   .class-label.supported-inference { color: var(--violet); } .class-label.modeled-scenario { color: var(--amber); }
   tr[hidden] { display: none; }
-  @media (max-width: 760px) { .evidence-section { padding: 60px 18px 90px; } .section-heading { grid-template-columns: 1fr; gap: 14px; } .table-tools { grid-template-columns: 1fr; } .table-tools p { text-align: left; margin: 4px 0 10px; } }
+  @media (max-width: 760px) {
+    .evidence-section { padding-top: 60px; padding-bottom: 90px; }
+    .section-heading { grid-template-columns: 1fr; gap: 14px; }
+    .table-tools { grid-template-columns: 1fr; }
+    .table-tools p { text-align: left; margin: 4px 0 10px; }
+    .table-wrap { overflow: visible; border: 0; }
+    table { min-width: 0; background: transparent; }
+    thead { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    tbody { display: grid; gap: 14px; }
+    tr { display: grid; border: 1px solid var(--line); background: #081a28; }
+    td, td:first-child, td:nth-child(2), td:nth-child(3), td:nth-child(4) { width: auto; display: block; padding: 14px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    td:last-child { border-bottom: 0; }
+    td::before { content: attr(data-label); display: block; margin-bottom: 9px; color: var(--faint); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    td > * { min-width: 0; }
+    td ul { padding-left: 17px; }
+  }
 </style>
