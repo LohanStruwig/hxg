@@ -28,6 +28,36 @@ test("loads v0.2.0 without runtime errors", async ({ page }) => {
   expect(errors).toEqual([]);
 });
 
+test("reads the landing introduction top to bottom on the shared content grid", async ({ page }) => {
+  const geometry = await page.evaluate(() => {
+    const rect = (selector: string) => document.querySelector(selector)!.getBoundingClientRect();
+    const copy = rect(".hero-copy");
+    const pathways = rect(".hero-pathways");
+    const metrics = rect(".metric-strip");
+    const anchor = rect(".evidence-anchor");
+    const anchorStyle = getComputedStyle(document.querySelector(".evidence-anchor")!);
+    return {
+      clientWidth: document.documentElement.clientWidth,
+      copyCenter: copy.left + copy.width / 2,
+      pathwaysCenter: pathways.left + pathways.width / 2,
+      copyBottom: copy.bottom,
+      pathwaysTop: pathways.top,
+      metricsLeft: metrics.left,
+      metricsRight: metrics.right,
+      contentLeft: anchor.left + Number.parseFloat(anchorStyle.paddingLeft),
+      contentRight: anchor.right - Number.parseFloat(anchorStyle.paddingRight),
+      textAlign: getComputedStyle(document.querySelector(".hero-copy")!).textAlign,
+    };
+  });
+  const pageCenter = geometry.clientWidth / 2;
+  expect(Math.abs(geometry.copyCenter - pageCenter)).toBeLessThanOrEqual(1);
+  expect(Math.abs(geometry.pathwaysCenter - pageCenter)).toBeLessThanOrEqual(1);
+  expect(geometry.pathwaysTop).toBeGreaterThan(geometry.copyBottom);
+  expect(Math.abs(geometry.metricsLeft - geometry.contentLeft)).toBeLessThanOrEqual(1);
+  expect(Math.abs(geometry.metricsRight - geometry.contentRight)).toBeLessThanOrEqual(1);
+  expect(geometry.textAlign).toBe("center");
+});
+
 test("keeps navigation sticky and anchors clear", async ({ page }, testInfo) => {
   const skipLink = page.getByRole("link", { name: "Skip to evidence" });
   if (testInfo.project.name === "desktop-webkit" || testInfo.project.name === "iphone-14") await skipLink.focus();
@@ -142,7 +172,7 @@ test("filters the evidence register to five J.D. Power facts", async ({ page }) 
 });
 
 test("has no page overflow or serious and critical axe findings", async ({ page }) => {
-  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
   expect(overflow).toBeLessThanOrEqual(1);
   const results = await new AxeBuilder({ page }).withTags(seriousAxeTags).analyze();
   const blocking = results.violations.filter((violation) => violation.impact === "serious" || violation.impact === "critical");
@@ -154,7 +184,7 @@ test("reflows at release widths with 44px controls", async ({ page }, testInfo) 
   for (const width of [320, 390, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 });
     await page.waitForTimeout(160);
-    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
     expect(overflow, `${width}px viewport overflow`).toBeLessThanOrEqual(1);
     if (width <= 780) {
       const targets = page.locator(".mobile-nav summary, .repo-link, .mode-tabs button, .pathway-row, .node-button, #view-linked-evidence");
