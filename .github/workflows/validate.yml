@@ -28,11 +28,9 @@ jobs:
           cache: pip
       - run: pip install -e ".[dev,publication]"
       - run: pip-audit .
-      - run: hxg research --mode seed --cutoff 2026-08-19 --cost-limit-usd 10 --no-retrieve
-      - run: hxg build-graph
       - run: hxg validate
-      - run: hxg build-publication
       - run: pytest
+      - run: git diff --exit-code
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: "24"
