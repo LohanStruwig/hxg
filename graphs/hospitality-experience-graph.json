@@ -4,12 +4,16 @@
       {
         "data": {
           "confidence": 0.94,
+          "display_verb": "operates within",
           "evidence_ids": "SRC-AHLA-2026-ONEPAGER|SRC-AHLA-2026-SOTI|SRC-WTTC-2025-IMPACT",
           "evidence_status": "direct",
           "id": "REL-AHLA-CONTEXT",
           "limitations": "Economic context is not attributable value.",
           "predicate": "operates-within",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-PROPERTY-VALUE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01",
           "target": "ENT-MACRO-CONTEXT"
         }
@@ -17,12 +21,16 @@
       {
         "data": {
           "confidence": 0.62,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "scenario",
           "id": "REL-ANCILLARY-PROPERTY",
           "limitations": "No universal uplift is claimed.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "modeled-scenario",
           "source": "ENT-ANCILLARY-REVENUE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ANCILLARY-SCENARIO-01",
           "target": "ENT-PROPERTY-VALUE"
         }
@@ -30,12 +38,16 @@
       {
         "data": {
           "confidence": 0.84,
+          "display_verb": "can support",
           "evidence_ids": "SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-CASTING-HOME",
           "limitations": "Usage supports relevance; the emotional label is an HXG interpretation.",
-          "predicate": "enables",
+          "predicate": "can-support",
+          "primary_path": true,
+          "relationship_role": "guest-pathway",
           "source": "ENT-CASTING",
+          "story_lane": "home",
           "supporting_claim_ids": "CLM-CAST-CROSSVENDOR-01|CLM-JDP-USAGE-01",
           "target": "ENT-FEEL-HOME"
         }
@@ -43,12 +55,16 @@
       {
         "data": {
           "confidence": 0.72,
+          "display_verb": "supports",
           "evidence_ids": "SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026",
           "evidence_status": "inferred",
           "id": "REL-CLOUD-SUPPORT",
           "limitations": "Avoided dispatches are not quantified.",
           "predicate": "supports",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-CLOUD-MANAGEMENT",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01",
           "target": "ENT-OPERATIONAL-SUPPORT"
         }
@@ -56,25 +72,33 @@
       {
         "data": {
           "confidence": 0.62,
+          "display_verb": "may create",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG",
           "evidence_status": "scenario",
           "id": "REL-CONCIERGE-ANCILLARY",
           "limitations": "Conversion and incrementality require property data.",
           "predicate": "may-create",
+          "primary_path": false,
+          "relationship_role": "modeled-scenario",
           "source": "ENT-DIGITAL-CONCIERGE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ANCILLARY-SCENARIO-01|CLM-SAM-CONCIERGE-01",
           "target": "ENT-ANCILLARY-REVENUE"
         }
       },
       {
         "data": {
-          "confidence": 0.89,
+          "confidence": 0.8,
+          "display_verb": "can support",
           "evidence_ids": "SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG",
-          "evidence_status": "direct",
+          "evidence_status": "inferred",
           "id": "REL-CONCIERGE-SUPPORTED",
-          "limitations": "Vendor-stated capability; service quality is not measured.",
-          "predicate": "enables",
+          "limitations": "Vendor-stated service capability; the evidence does not measure service quality or whether guests feel supported.",
+          "predicate": "can-support",
+          "primary_path": true,
+          "relationship_role": "guest-pathway",
           "source": "ENT-DIGITAL-CONCIERGE",
+          "story_lane": "supported",
           "supporting_claim_ids": "CLM-SAM-CONCIERGE-01",
           "target": "ENT-FEEL-SUPPORTED"
         }
@@ -82,12 +106,16 @@
       {
         "data": {
           "confidence": 0.69,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "inferred",
           "id": "REL-CONTROL-HUMAN",
           "limitations": "No guest outcome estimate in cited vendor evidence.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-FEEL-CONTROL",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-SMARTTHINGS-01",
           "target": "ENT-HUMAN-VALUE"
         }
@@ -95,12 +123,16 @@
       {
         "data": {
           "confidence": 0.95,
+          "display_verb": "supports",
           "evidence_ids": "SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "direct",
           "id": "REL-DISPLAY-CASTING",
           "limitations": "Support varies by product and deployment.",
           "predicate": "supports",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-CONNECTED-DISPLAY",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-CAST-CROSSVENDOR-01",
           "target": "ENT-CASTING"
         }
@@ -108,12 +140,16 @@
       {
         "data": {
           "confidence": 0.66,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-ENERGYSTAR-LODGING|SRC-ENERGYSTAR-SMALL-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "scenario",
           "id": "REL-ENERGY-PROPERTY",
           "limitations": "No universal savings rate is claimed.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "modeled-scenario",
           "source": "ENT-ENERGY-EFFICIENCY",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ENERGY-COST-01|CLM-ENERGY-HVAC-01|CLM-ENERGY-SCENARIO-01",
           "target": "ENT-PROPERTY-VALUE"
         }
@@ -121,12 +157,16 @@
       {
         "data": {
           "confidence": 0.84,
+          "display_verb": "conditions",
           "evidence_ids": "SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG",
           "evidence_status": "inferred",
           "id": "REL-GOVERNANCE-PMS",
           "limitations": "Compliance depends on jurisdiction and implementation.",
           "predicate": "conditions",
+          "primary_path": false,
+          "relationship_role": "condition",
           "source": "ENT-DATA-GOVERNANCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-NIST-PMS-RISK-01|CLM-SAM-BI-01",
           "target": "ENT-PMS-INTEGRATION"
         }
@@ -134,12 +174,16 @@
       {
         "data": {
           "confidence": 0.79,
+          "display_verb": "receives",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-GUEST-HUMAN",
           "limitations": "Human value is not monetized in this release.",
           "predicate": "receives",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-GUEST",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-JDP-USAGE-01|CLM-ORCHESTRATION-THESIS-01",
           "target": "ENT-HUMAN-VALUE"
         }
@@ -147,12 +191,16 @@
       {
         "data": {
           "confidence": 0.77,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-HOME-HUMAN",
           "limitations": "Usage does not measure perceived value directly.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-FEEL-HOME",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01",
           "target": "ENT-HUMAN-VALUE"
         }
@@ -160,12 +208,16 @@
       {
         "data": {
           "confidence": 0.83,
+          "display_verb": "includes",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-HXG-CONTROL",
           "limitations": "Research synthesis, not a measured construct.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "research-relationship",
           "source": "ENT-HUMAN-EXPERIENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORCHESTRATION-THESIS-01",
           "target": "ENT-FEEL-CONTROL"
         }
@@ -173,12 +225,16 @@
       {
         "data": {
           "confidence": 0.83,
+          "display_verb": "includes",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-HXG-HOME",
           "limitations": "Research synthesis, not a measured construct.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "research-relationship",
           "source": "ENT-HUMAN-EXPERIENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORCHESTRATION-THESIS-01",
           "target": "ENT-FEEL-HOME"
         }
@@ -186,12 +242,16 @@
       {
         "data": {
           "confidence": 0.83,
+          "display_verb": "includes",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-HXG-INCLUDED",
           "limitations": "Research synthesis, not a measured construct.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "research-relationship",
           "source": "ENT-HUMAN-EXPERIENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORCHESTRATION-THESIS-01",
           "target": "ENT-FEEL-INCLUDED"
         }
@@ -199,12 +259,16 @@
       {
         "data": {
           "confidence": 0.83,
+          "display_verb": "includes",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-HXG-RECOGNIZED",
           "limitations": "Research synthesis, not a measured construct.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "research-relationship",
           "source": "ENT-HUMAN-EXPERIENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORCHESTRATION-THESIS-01",
           "target": "ENT-FEEL-RECOGNIZED"
         }
@@ -212,12 +276,16 @@
       {
         "data": {
           "confidence": 0.83,
+          "display_verb": "includes",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-HXG-SECURE",
           "limitations": "Research synthesis, not a measured construct.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "research-relationship",
           "source": "ENT-HUMAN-EXPERIENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORCHESTRATION-THESIS-01",
           "target": "ENT-FEEL-SECURE"
         }
@@ -225,12 +293,16 @@
       {
         "data": {
           "confidence": 0.83,
+          "display_verb": "includes",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-HXG-SUPPORTED",
           "limitations": "Research synthesis, not a measured construct.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "research-relationship",
           "source": "ENT-HUMAN-EXPERIENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORCHESTRATION-THESIS-01",
           "target": "ENT-FEEL-SUPPORTED"
         }
@@ -238,12 +310,16 @@
       {
         "data": {
           "confidence": 0.8,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22",
           "evidence_status": "inferred",
           "id": "REL-INCLUDED-HUMAN",
           "limitations": "Accessible outcomes require conformance testing.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-FEEL-INCLUDED",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-WCAG-NONGRAPH-01|CLM-SAM-LIVE-TRANSLATE-01",
           "target": "ENT-HUMAN-VALUE"
         }
@@ -251,25 +327,33 @@
       {
         "data": {
           "confidence": 0.71,
+          "display_verb": "participates in",
           "evidence_ids": "SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026",
           "evidence_status": "inferred",
           "id": "REL-INTEGRATOR-ECOSYSTEM",
           "limitations": "Commercial terms are property- and partner-specific.",
           "predicate": "participates-in",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-INTEGRATOR",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORCHESTRATION-THESIS-01|CLM-ORACLE-INTEGRATION-01",
           "target": "ENT-ECOSYSTEM-VALUE"
         }
       },
       {
         "data": {
-          "confidence": 0.91,
+          "confidence": 0.82,
+          "display_verb": "can support",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO",
-          "evidence_status": "direct",
+          "evidence_status": "inferred",
           "id": "REL-IOT-CONTROL",
-          "limitations": "Vendor-stated capability.",
-          "predicate": "enables",
+          "limitations": "Vendor-stated room-control capability; the evidence does not measure whether guests feel in control.",
+          "predicate": "can-support",
+          "primary_path": true,
+          "relationship_role": "guest-pathway",
           "source": "ENT-IOT-CONTROLS",
+          "story_lane": "control",
           "supporting_claim_ids": "CLM-SAM-SMARTTHINGS-01",
           "target": "ENT-FEEL-CONTROL"
         }
@@ -277,12 +361,16 @@
       {
         "data": {
           "confidence": 0.66,
+          "display_verb": "may create",
           "evidence_ids": "SRC-ENERGYSTAR-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "scenario",
           "id": "REL-IOT-ENERGY",
           "limitations": "Requires measured property baselines and verified reduction.",
           "predicate": "may-create",
+          "primary_path": false,
+          "relationship_role": "modeled-scenario",
           "source": "ENT-IOT-CONTROLS",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ENERGY-SCENARIO-01",
           "target": "ENT-ENERGY-EFFICIENCY"
         }
@@ -290,12 +378,16 @@
       {
         "data": {
           "confidence": 0.82,
+          "display_verb": "can support",
           "evidence_ids": "SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22",
           "evidence_status": "inferred",
           "id": "REL-LANGUAGE-INCLUDED",
           "limitations": "Translation is only one part of accessibility.",
-          "predicate": "enables",
+          "predicate": "can-support",
+          "primary_path": true,
+          "relationship_role": "guest-pathway",
           "source": "ENT-LANGUAGE-ACCESS",
+          "story_lane": "included",
           "supporting_claim_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01",
           "target": "ENT-FEEL-INCLUDED"
         }
@@ -303,12 +395,16 @@
       {
         "data": {
           "confidence": 0.92,
+          "display_verb": "conditions",
           "evidence_ids": "SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026",
           "evidence_status": "direct",
           "id": "REL-LIMITS-SAMSUNG",
           "limitations": "Feature availability varies by model, region, language, software and licensing.",
           "predicate": "conditions",
+          "primary_path": false,
+          "relationship_role": "condition",
           "source": "ENT-AVAILABILITY-LIMITS",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01|CLM-SAM-PRIVACY-01",
           "target": "ENT-SAMSUNG-REFERENCE"
         }
@@ -316,12 +412,16 @@
       {
         "data": {
           "confidence": 0.88,
+          "display_verb": "conditions",
           "evidence_ids": "SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026",
           "evidence_status": "direct",
           "id": "REL-NETWORK-CASTING",
           "limitations": "Gateway, network and PMS requirements vary.",
           "predicate": "conditions",
+          "primary_path": false,
+          "relationship_role": "condition",
           "source": "ENT-NETWORK-DEPENDENCY",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-CAST-CROSSVENDOR-01|CLM-LG-IHG-DEPLOYMENT-01",
           "target": "ENT-CASTING"
         }
@@ -329,25 +429,33 @@
       {
         "data": {
           "confidence": 0.79,
+          "display_verb": "participates in",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "inferred",
           "id": "REL-OEM-ECOSYSTEM",
           "limitations": "No vendor revenue is estimated.",
           "predicate": "participates-in",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-OEM-PLATFORM",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01",
           "target": "ENT-ECOSYSTEM-VALUE"
         }
       },
       {
         "data": {
-          "confidence": 0.9,
+          "confidence": 0.82,
+          "display_verb": "receives",
           "evidence_ids": "SRC-AHLA-2026-SOTI",
-          "evidence_status": "direct",
+          "evidence_status": "inferred",
           "id": "REL-OPERATOR-PROPERTY",
-          "limitations": "Value pathways differ by property.",
+          "limitations": "Industry operating performance provides context; it does not prove that a specific operator receives property value from this technology. Value pathways differ by property.",
           "predicate": "receives",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-PROPERTY-OPERATOR",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-AHLA-GOPPAR-01",
           "target": "ENT-PROPERTY-VALUE"
         }
@@ -355,12 +463,16 @@
       {
         "data": {
           "confidence": 0.78,
+          "display_verb": "participates in",
           "evidence_ids": "SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "inferred",
           "id": "REL-PARTNERS-ECOSYSTEM",
           "limitations": "No partner revenue is estimated.",
           "predicate": "participates-in",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-TECH-PARTNERS",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-ORACLE-INTEGRATION-01|CLM-SAM-ARCH-01",
           "target": "ENT-ECOSYSTEM-VALUE"
         }
@@ -368,12 +480,16 @@
       {
         "data": {
           "confidence": 0.8,
+          "display_verb": "can support",
           "evidence_ids": "SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG",
           "evidence_status": "inferred",
           "id": "REL-PMS-RECOGNIZED",
           "limitations": "Integration capability does not prove guest perception.",
-          "predicate": "enables",
+          "predicate": "can-support",
+          "primary_path": true,
+          "relationship_role": "guest-pathway",
           "source": "ENT-PMS-INTEGRATION",
+          "story_lane": "recognized",
           "supporting_claim_ids": "CLM-ORACLE-INTEGRATION-01|CLM-SAM-BI-01",
           "target": "ENT-FEEL-RECOGNIZED"
         }
@@ -381,12 +497,16 @@
       {
         "data": {
           "confidence": 0.84,
+          "display_verb": "can support",
           "evidence_ids": "SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025",
           "evidence_status": "inferred",
           "id": "REL-PRIVACY-SECURE",
           "limitations": "Controls reduce risk but do not eliminate it.",
-          "predicate": "supports",
+          "predicate": "can-support",
+          "primary_path": true,
+          "relationship_role": "guest-pathway",
           "source": "ENT-PRIVACY-CONTROLS",
+          "story_lane": "secure",
           "supporting_claim_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
           "target": "ENT-FEEL-SECURE"
         }
@@ -394,12 +514,16 @@
       {
         "data": {
           "confidence": 0.67,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG",
           "evidence_status": "inferred",
           "id": "REL-RECOGNIZED-HUMAN",
           "limitations": "Personalization capability is not proof of positive reception.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-FEEL-RECOGNIZED",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01",
           "target": "ENT-HUMAN-VALUE"
         }
@@ -407,12 +531,16 @@
       {
         "data": {
           "confidence": 0.91,
+          "display_verb": "includes",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-CASTING",
           "limitations": "Model and regional availability vary.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01",
           "target": "ENT-CASTING"
         }
@@ -420,12 +548,16 @@
       {
         "data": {
           "confidence": 0.92,
+          "display_verb": "includes",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-CLOUD",
           "limitations": "LYNK Cloud is sold separately.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01|CLM-SAM-LYNK-MANAGE-01",
           "target": "ENT-CLOUD-MANAGEMENT"
         }
@@ -433,12 +565,16 @@
       {
         "data": {
           "confidence": 0.89,
+          "display_verb": "includes",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-CONCIERGE",
           "limitations": "Property integrations and licensing required.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01|CLM-SAM-CONCIERGE-01",
           "target": "ENT-DIGITAL-CONCIERGE"
         }
@@ -446,12 +582,16 @@
       {
         "data": {
           "confidence": 0.91,
+          "display_verb": "includes",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-DISPLAY",
           "limitations": "Vendor-stated reference case.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01",
           "target": "ENT-CONNECTED-DISPLAY"
         }
@@ -459,12 +599,16 @@
       {
         "data": {
           "confidence": 0.9,
+          "display_verb": "includes",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-IOT",
           "limitations": "Compatible devices and integrations vary.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01|CLM-SAM-SMARTTHINGS-01",
           "target": "ENT-IOT-CONTROLS"
         }
@@ -472,12 +616,16 @@
       {
         "data": {
           "confidence": 0.89,
+          "display_verb": "includes",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-LANGUAGE",
           "limitations": "Supported languages, channels and content are limited.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01|CLM-SAM-LIVE-TRANSLATE-01",
           "target": "ENT-LANGUAGE-ACCESS"
         }
@@ -485,12 +633,16 @@
       {
         "data": {
           "confidence": 0.88,
+          "display_verb": "connects to",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-PMS",
           "limitations": "Property-specific integration required.",
           "predicate": "connects-to",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01",
           "target": "ENT-PMS-INTEGRATION"
         }
@@ -498,12 +650,16 @@
       {
         "data": {
           "confidence": 0.9,
+          "display_verb": "includes",
           "evidence_ids": "SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO",
           "evidence_status": "direct",
           "id": "REL-SAM-PRIVACY",
           "limitations": "Security depends on full system configuration.",
           "predicate": "includes",
+          "primary_path": false,
+          "relationship_role": "system-connection",
           "source": "ENT-SAMSUNG-REFERENCE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01",
           "target": "ENT-PRIVACY-CONTROLS"
         }
@@ -511,12 +667,16 @@
       {
         "data": {
           "confidence": 0.78,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025",
           "evidence_status": "inferred",
           "id": "REL-SECURE-HUMAN",
           "limitations": "Trust was not measured in cited sources.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-FEEL-SECURE",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
           "target": "ENT-HUMAN-VALUE"
         }
@@ -524,12 +684,16 @@
       {
         "data": {
           "confidence": 0.72,
+          "display_verb": "may contribute to",
           "evidence_ids": "SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025",
           "evidence_status": "inferred",
           "id": "REL-SUPPORT-PROPERTY",
           "limitations": "Avoided dispatch cost must be measured locally.",
           "predicate": "may-contribute-to",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-OPERATIONAL-SUPPORT",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-REMOTE-SUPPORT-INFERENCE-01",
           "target": "ENT-PROPERTY-VALUE"
         }
@@ -537,12 +701,16 @@
       {
         "data": {
           "confidence": 0.74,
+          "display_verb": "contributes to",
           "evidence_ids": "SRC-JDP-2025-NAGSI|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG",
           "evidence_status": "inferred",
           "id": "REL-SUPPORTED-HUMAN",
           "limitations": "General hotel-problem evidence is not specific to display service channels.",
           "predicate": "contributes-to",
+          "primary_path": false,
+          "relationship_role": "value-pathway",
           "source": "ENT-FEEL-SUPPORTED",
+          "story_lane": "shared",
           "supporting_claim_ids": "CLM-JDP-FRICTION-01|CLM-SAM-CONCIERGE-01",
           "target": "ENT-HUMAN-VALUE"
         }
@@ -552,652 +720,754 @@
       {
         "data": {
           "color": "#57d6a7",
-          "core_view": false,
           "description": "Property-specific contribution from service discovery and conversion.",
+          "display_label": "Ancillary contribution",
           "entity_type": "value",
           "evidence_ids": "CLM-ANCILLARY-SCENARIO-01",
           "id": "ENT-ANCILLARY-REVENUE",
           "label": "Ancillary contribution",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1315.0,
-          "layout_y": 930.0,
-          "outcome": "value"
+          "label_priority": "tertiary",
+          "layout_x": 1090.0,
+          "layout_y": 735.0,
+          "outcome": "value",
+          "reader_summary": "Property-specific contribution from service discovery and conversion.",
+          "story_lane": "shared",
+          "story_layer": "value-pathway"
         },
         "position": {
-          "x": 1315.0,
-          "y": 930.0
+          "x": 1090.0,
+          "y": 735.0
         }
       },
       {
         "data": {
           "color": "#c7a86b",
-          "core_view": false,
           "description": "Model, region, language, channel, software, and licensing constraints disclosed by vendors.",
+          "display_label": "Availability and licensing limits",
           "entity_type": "risk",
           "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01",
           "id": "ENT-AVAILABILITY-LIMITS",
           "label": "Availability and licensing limits",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1190.0,
-          "layout_y": 1010.0,
-          "outcome": "context"
+          "label_priority": "tertiary",
+          "layout_x": 1380.0,
+          "layout_y": 655.0,
+          "outcome": "context",
+          "reader_summary": "Model, region, language, channel, software, and licensing constraints disclosed by vendors.",
+          "story_lane": "shared",
+          "story_layer": "condition-context"
         },
         "position": {
-          "x": 1190.0,
-          "y": 1010.0
+          "x": 1380.0,
+          "y": 655.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
-          "core_view": false,
           "description": "Governs portfolio consistency, standards, content, and scalable experience.",
+          "display_label": "Brand and management company",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-JDP-FRICTION-01",
           "id": "ENT-BRAND",
           "label": "Brand and management company",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 80.0,
-          "layout_y": 570.0,
-          "outcome": "stakeholder"
+          "label_priority": "tertiary",
+          "layout_x": 100.0,
+          "layout_y": 450.0,
+          "outcome": "stakeholder",
+          "reader_summary": "Governs portfolio consistency, standards, content, and scalable experience.",
+          "story_lane": "shared",
+          "story_layer": "stakeholder"
         },
         "position": {
-          "x": 80.0,
-          "y": 570.0
+          "x": 100.0,
+          "y": 450.0
         }
       },
       {
         "data": {
           "color": "#4cb3ff",
-          "core_view": true,
           "description": "Short-lived pairing from a guest device to an in-room display.",
+          "display_label": "Cast from your device",
           "entity_type": "technology",
           "evidence_ids": "CLM-CAST-CROSSVENDOR-01|CLM-SAM-PRIVACY-01",
           "id": "ENT-CASTING",
           "label": "Guest-device casting",
           "label_priority": "secondary",
-          "layout_ring": "capability",
-          "layout_x": 300.0,
-          "layout_y": 290.0,
-          "outcome": "feel-at-home"
-        },
-        "position": {
-          "x": 300.0,
-          "y": 290.0
-        }
-      },
-      {
-        "data": {
-          "color": "#7994ff",
-          "core_view": false,
-          "description": "Central status, configuration, content, and service management.",
-          "entity_type": "technology",
-          "evidence_ids": "CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01",
-          "id": "ENT-CLOUD-MANAGEMENT",
-          "label": "Cloud content and device management",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1310.0,
-          "layout_y": 115.0,
-          "outcome": "technology"
-        },
-        "position": {
-          "x": 1310.0,
-          "y": 115.0
-        }
-      },
-      {
-        "data": {
-          "color": "#7994ff",
-          "core_view": false,
-          "description": "A managed display that connects content, guest devices, property systems, and services.",
-          "entity_type": "technology",
-          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
-          "id": "ENT-CONNECTED-DISPLAY",
-          "label": "Connected hospitality display",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 90.0,
-          "layout_y": 115.0,
-          "outcome": "technology"
-        },
-        "position": {
-          "x": 90.0,
-          "y": 115.0
-        }
-      },
-      {
-        "data": {
-          "color": "#c7a86b",
-          "core_view": false,
-          "description": "Lawful, secure, limited use of guest, device, and property data.",
-          "entity_type": "risk",
-          "evidence_ids": "CLM-NIST-PMS-RISK-01",
-          "id": "ENT-DATA-GOVERNANCE",
-          "label": "Data governance",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 930.0,
-          "layout_y": 985.0,
-          "outcome": "context"
-        },
-        "position": {
-          "x": 930.0,
-          "y": 985.0
-        }
-      },
-      {
-        "data": {
-          "color": "#f29138",
-          "core_view": true,
-          "description": "Guest-facing access to property information, orders, bookings, and requests.",
-          "entity_type": "technology",
-          "evidence_ids": "CLM-SAM-CONCIERGE-01|CLM-ORACLE-INTEGRATION-01",
-          "id": "ENT-DIGITAL-CONCIERGE",
-          "label": "Digital concierge and service channel",
-          "label_priority": "secondary",
-          "layout_ring": "capability",
-          "layout_x": 300.0,
-          "layout_y": 750.0,
-          "outcome": "feel-supported"
-        },
-        "position": {
-          "x": 300.0,
-          "y": 750.0
-        }
-      },
-      {
-        "data": {
-          "color": "#57d6a7",
-          "core_view": false,
-          "description": "Hardware, software, services, integration, support, subscriptions, and transactions.",
-          "entity_type": "value",
-          "evidence_ids": "CLM-SAM-ARCH-01|CLM-ORACLE-INTEGRATION-01",
-          "id": "ENT-ECOSYSTEM-VALUE",
-          "label": "Ecosystem value",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1315.0,
-          "layout_y": 780.0,
-          "outcome": "value"
-        },
-        "position": {
-          "x": 1315.0,
-          "y": 780.0
-        }
-      },
-      {
-        "data": {
-          "color": "#57d6a7",
-          "core_view": false,
-          "description": "Property-specific avoided energy expense supported by verified performance.",
-          "entity_type": "value",
-          "evidence_ids": "CLM-ENERGY-SCENARIO-01",
-          "id": "ENT-ENERGY-EFFICIENCY",
-          "label": "Energy efficiency",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1190.0,
-          "layout_y": 860.0,
-          "outcome": "value"
-        },
-        "position": {
-          "x": 1190.0,
-          "y": 860.0
-        }
-      },
-      {
-        "data": {
-          "color": "#78d35d",
-          "core_view": true,
-          "description": "Adjust room conditions and connected functions.",
-          "entity_type": "outcome",
-          "evidence_ids": "CLM-SAM-SMARTTHINGS-01|CLM-ENERGY-HVAC-01",
-          "id": "ENT-FEEL-CONTROL",
-          "label": "Feel in control",
-          "label_priority": "primary",
-          "layout_ring": "outcome",
-          "layout_x": 700.0,
-          "layout_y": 260.0,
-          "outcome": "feel-in-control"
-        },
-        "position": {
-          "x": 700.0,
-          "y": 260.0
-        }
-      },
-      {
-        "data": {
-          "color": "#4cb3ff",
-          "core_view": true,
-          "description": "Use familiar content and devices with less relearning.",
-          "entity_type": "outcome",
-          "evidence_ids": "CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01",
-          "id": "ENT-FEEL-HOME",
-          "label": "Feel at home",
-          "label_priority": "primary",
-          "layout_ring": "outcome",
-          "layout_x": 475.0,
-          "layout_y": 390.0,
-          "outcome": "feel-at-home"
-        },
-        "position": {
-          "x": 475.0,
-          "y": 390.0
-        }
-      },
-      {
-        "data": {
-          "color": "#a986ef",
-          "core_view": true,
-          "description": "Reduce language, sensory, and interface barriers.",
-          "entity_type": "outcome",
-          "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01",
-          "id": "ENT-FEEL-INCLUDED",
-          "label": "Feel included",
-          "label_priority": "primary",
-          "layout_ring": "outcome",
-          "layout_x": 925.0,
-          "layout_y": 650.0,
-          "outcome": "feel-included"
-        },
-        "position": {
-          "x": 925.0,
-          "y": 650.0
-        }
-      },
-      {
-        "data": {
-          "color": "#f4bd32",
-          "core_view": true,
-          "description": "Receive contextually relevant information and services.",
-          "entity_type": "outcome",
-          "evidence_ids": "CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01",
-          "id": "ENT-FEEL-RECOGNIZED",
-          "label": "Feel recognized",
-          "label_priority": "primary",
-          "layout_ring": "outcome",
-          "layout_x": 925.0,
-          "layout_y": 390.0,
-          "outcome": "feel-recognized"
-        },
-        "position": {
-          "x": 925.0,
-          "y": 390.0
-        }
-      },
-      {
-        "data": {
-          "color": "#49c5ca",
-          "core_view": true,
-          "description": "Pair, use, and leave without exposing personal sessions.",
-          "entity_type": "outcome",
-          "evidence_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
-          "id": "ENT-FEEL-SECURE",
-          "label": "Feel secure",
-          "label_priority": "primary",
-          "layout_ring": "outcome",
-          "layout_x": 700.0,
-          "layout_y": 780.0,
-          "outcome": "feel-secure"
-        },
-        "position": {
-          "x": 700.0,
-          "y": 780.0
-        }
-      },
-      {
-        "data": {
-          "color": "#f29138",
-          "core_view": true,
-          "description": "Access services and resolve problems with less friction.",
-          "entity_type": "outcome",
-          "evidence_ids": "CLM-SAM-CONCIERGE-01|CLM-JDP-FRICTION-01",
-          "id": "ENT-FEEL-SUPPORTED",
-          "label": "Feel supported",
-          "label_priority": "primary",
-          "layout_ring": "outcome",
-          "layout_x": 475.0,
-          "layout_y": 650.0,
-          "outcome": "feel-supported"
-        },
-        "position": {
-          "x": 475.0,
-          "y": 650.0
-        }
-      },
-      {
-        "data": {
-          "color": "#8aa2b8",
-          "core_view": false,
-          "description": "Receives comfort, familiarity, control, accessibility, privacy, information, and service convenience.",
-          "entity_type": "stakeholder",
-          "evidence_ids": "CLM-JDP-SAMPLE-01",
-          "id": "ENT-GUEST",
-          "label": "Guest",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 80.0,
-          "layout_y": 430.0,
-          "outcome": "stakeholder"
-        },
-        "position": {
-          "x": 80.0,
-          "y": 430.0
-        }
-      },
-      {
-        "data": {
-          "color": "#f6f1e8",
-          "core_view": true,
-          "description": "The human reason connected hospitality technology exists.",
-          "entity_type": "human-experience",
-          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
-          "id": "ENT-HUMAN-EXPERIENCE",
-          "label": "Human experience",
-          "label_priority": "primary",
-          "layout_ring": "center",
-          "layout_x": 700.0,
-          "layout_y": 520.0,
-          "outcome": "human-experience"
-        },
-        "position": {
-          "x": 700.0,
-          "y": 520.0
-        }
-      },
-      {
-        "data": {
-          "color": "#57d6a7",
-          "core_view": false,
-          "description": "Time, effort, familiarity, comfort, accessibility, control, and trust.",
-          "entity_type": "value",
-          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
-          "id": "ENT-HUMAN-VALUE",
-          "label": "Human value",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1315.0,
-          "layout_y": 280.0,
-          "outcome": "value"
-        },
-        "position": {
-          "x": 1315.0,
-          "y": 280.0
-        }
-      },
-      {
-        "data": {
-          "color": "#8aa2b8",
-          "core_view": false,
-          "description": "Designs, installs, configures, integrates, trains, and supports the system.",
-          "entity_type": "stakeholder",
-          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
-          "id": "ENT-INTEGRATOR",
-          "label": "Dealer and system integrator",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 175.0,
+          "layout_x": 405.0,
           "layout_y": 215.0,
-          "outcome": "stakeholder"
+          "outcome": "feel-at-home",
+          "reader_summary": "Familiar personal content can reduce friction in the room.",
+          "story_lane": "home",
+          "story_layer": "connected-system"
         },
         "position": {
-          "x": 175.0,
+          "x": 405.0,
           "y": 215.0
         }
       },
       {
         "data": {
-          "color": "#78d35d",
-          "core_view": true,
-          "description": "Connected control of compatible room and building devices.",
+          "color": "#7994ff",
+          "description": "Central status, configuration, content, and service management.",
+          "display_label": "Cloud content and device management",
           "entity_type": "technology",
-          "evidence_ids": "CLM-SAM-SMARTTHINGS-01",
-          "id": "ENT-IOT-CONTROLS",
-          "label": "IoT room controls",
-          "label_priority": "secondary",
-          "layout_ring": "capability",
-          "layout_x": 700.0,
-          "layout_y": 60.0,
-          "outcome": "feel-in-control"
+          "evidence_ids": "CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01",
+          "id": "ENT-CLOUD-MANAGEMENT",
+          "label": "Cloud content and device management",
+          "label_priority": "tertiary",
+          "layout_x": 405.0,
+          "layout_y": 815.0,
+          "outcome": "technology",
+          "reader_summary": "Central status, configuration, content, and service management.",
+          "story_lane": "shared",
+          "story_layer": "connected-system"
         },
         "position": {
-          "x": 700.0,
-          "y": 60.0
-        }
-      },
-      {
-        "data": {
-          "color": "#a986ef",
-          "core_view": true,
-          "description": "Language support plus interfaces whose meaning does not rely on one visual channel.",
-          "entity_type": "technology",
-          "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01",
-          "id": "ENT-LANGUAGE-ACCESS",
-          "label": "Language and accessible presentation",
-          "label_priority": "secondary",
-          "layout_ring": "capability",
-          "layout_x": 1100.0,
-          "layout_y": 750.0,
-          "outcome": "feel-included"
-        },
-        "position": {
-          "x": 1100.0,
-          "y": 750.0
-        }
-      },
-      {
-        "data": {
-          "color": "#c7a86b",
-          "core_view": false,
-          "description": "Industry scale that is explicitly not attributable to connected screens.",
-          "entity_type": "context",
-          "evidence_ids": "CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01",
-          "id": "ENT-MACRO-CONTEXT",
-          "label": "Economic context",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1310.0,
-          "layout_y": 490.0,
-          "outcome": "context"
-        },
-        "position": {
-          "x": 1310.0,
-          "y": 490.0
-        }
-      },
-      {
-        "data": {
-          "color": "#c7a86b",
-          "core_view": false,
-          "description": "Capabilities may fail or be unavailable without compatible networks and integrations.",
-          "entity_type": "risk",
-          "evidence_ids": "CLM-CAST-CROSSVENDOR-01",
-          "id": "ENT-NETWORK-DEPENDENCY",
-          "label": "Network and integration dependency",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 360.0,
-          "layout_y": 985.0,
-          "outcome": "context"
-        },
-        "position": {
-          "x": 360.0,
-          "y": 985.0
-        }
-      },
-      {
-        "data": {
-          "color": "#8aa2b8",
-          "core_view": false,
-          "description": "Provides hardware, software, cloud services, support, and upgrades.",
-          "entity_type": "stakeholder",
-          "evidence_ids": "CLM-SAM-ARCH-01",
-          "id": "ENT-OEM-PLATFORM",
-          "label": "OEM and platform owner",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 175.0,
-          "layout_y": 850.0,
-          "outcome": "stakeholder"
-        },
-        "position": {
-          "x": 175.0,
-          "y": 850.0
-        }
-      },
-      {
-        "data": {
-          "color": "#57d6a7",
-          "core_view": false,
-          "description": "Potential avoidance of selected on-site interventions through remote visibility.",
-          "entity_type": "value",
-          "evidence_ids": "CLM-REMOTE-SUPPORT-INFERENCE-01",
-          "id": "ENT-OPERATIONAL-SUPPORT",
-          "label": "Operational support efficiency",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1090.0,
-          "layout_y": 965.0,
-          "outcome": "value"
-        },
-        "position": {
-          "x": 1090.0,
-          "y": 965.0
-        }
-      },
-      {
-        "data": {
-          "color": "#f4bd32",
-          "core_view": true,
-          "description": "Exchange of stay, checkout, service, and guest-context events with property systems.",
-          "entity_type": "technology",
-          "evidence_ids": "CLM-ORACLE-INTEGRATION-01|CLM-SAM-PRIVACY-01",
-          "id": "ENT-PMS-INTEGRATION",
-          "label": "PMS integration",
-          "label_priority": "secondary",
-          "layout_ring": "capability",
-          "layout_x": 1100.0,
-          "layout_y": 290.0,
-          "outcome": "feel-recognized"
-        },
-        "position": {
-          "x": 1100.0,
-          "y": 290.0
-        }
-      },
-      {
-        "data": {
-          "color": "#49c5ca",
-          "core_view": true,
-          "description": "Controls for pairing lifecycle, credentials, access, and monitoring.",
-          "entity_type": "technology",
-          "evidence_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
-          "id": "ENT-PRIVACY-CONTROLS",
-          "label": "Privacy and security controls",
-          "label_priority": "secondary",
-          "layout_ring": "capability",
-          "layout_x": 700.0,
-          "layout_y": 980.0,
-          "outcome": "feel-secure"
-        },
-        "position": {
-          "x": 700.0,
-          "y": 980.0
-        }
-      },
-      {
-        "data": {
-          "color": "#8aa2b8",
-          "core_view": false,
-          "description": "Operates the property and carries revenue, cost, service, and risk outcomes.",
-          "entity_type": "stakeholder",
-          "evidence_ids": "CLM-AHLA-GOPPAR-01",
-          "id": "ENT-PROPERTY-OPERATOR",
-          "label": "Property owner and operator",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 80.0,
-          "layout_y": 710.0,
-          "outcome": "stakeholder"
-        },
-        "position": {
-          "x": 80.0,
-          "y": 710.0
-        }
-      },
-      {
-        "data": {
-          "color": "#57d6a7",
-          "core_view": false,
-          "description": "Ancillary contribution, operating efficiency, support, energy, and experience indicators.",
-          "entity_type": "value",
-          "evidence_ids": "CLM-AHLA-GOPPAR-01",
-          "id": "ENT-PROPERTY-VALUE",
-          "label": "Property value",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1315.0,
-          "layout_y": 640.0,
-          "outcome": "value"
-        },
-        "position": {
-          "x": 1315.0,
-          "y": 640.0
+          "x": 405.0,
+          "y": 815.0
         }
       },
       {
         "data": {
           "color": "#7994ff",
-          "core_view": false,
-          "description": "A clearly labeled vendor-stated example, not HXG ownership or endorsement.",
+          "description": "A managed display that connects content, guest devices, property systems, and services.",
+          "display_label": "Connected hospitality display",
           "entity_type": "technology",
-          "evidence_ids": "CLM-SAM-ARCH-01",
-          "id": "ENT-SAMSUNG-REFERENCE",
-          "label": "Samsung reference architecture",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 1280.0,
-          "layout_y": 510.0,
-          "outcome": "technology"
+          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
+          "id": "ENT-CONNECTED-DISPLAY",
+          "label": "Connected hospitality display",
+          "label_priority": "tertiary",
+          "layout_x": 405.0,
+          "layout_y": 115.0,
+          "outcome": "technology",
+          "reader_summary": "A managed display that connects content, guest devices, property systems, and services.",
+          "story_lane": "shared",
+          "story_layer": "connected-system"
         },
         "position": {
-          "x": 1280.0,
-          "y": 510.0
+          "x": 405.0,
+          "y": 115.0
+        }
+      },
+      {
+        "data": {
+          "color": "#c7a86b",
+          "description": "Lawful, secure, limited use of guest, device, and property data.",
+          "display_label": "Data governance",
+          "entity_type": "risk",
+          "evidence_ids": "CLM-NIST-PMS-RISK-01",
+          "id": "ENT-DATA-GOVERNANCE",
+          "label": "Data governance",
+          "label_priority": "tertiary",
+          "layout_x": 1380.0,
+          "layout_y": 455.0,
+          "outcome": "context",
+          "reader_summary": "Lawful, secure, limited use of guest, device, and property data.",
+          "story_lane": "shared",
+          "story_layer": "condition-context"
+        },
+        "position": {
+          "x": 1380.0,
+          "y": 455.0
+        }
+      },
+      {
+        "data": {
+          "color": "#f29138",
+          "description": "Guest-facing access to property information, orders, bookings, and requests.",
+          "display_label": "Request services and help",
+          "entity_type": "technology",
+          "evidence_ids": "CLM-SAM-CONCIERGE-01|CLM-ORACLE-INTEGRATION-01",
+          "id": "ENT-DIGITAL-CONCIERGE",
+          "label": "Digital concierge and service channel",
+          "label_priority": "secondary",
+          "layout_x": 405.0,
+          "layout_y": 715.0,
+          "outcome": "feel-supported",
+          "reader_summary": "Digital service channels can make requests and help easier to reach.",
+          "story_lane": "supported",
+          "story_layer": "connected-system"
+        },
+        "position": {
+          "x": 405.0,
+          "y": 715.0
+        }
+      },
+      {
+        "data": {
+          "color": "#57d6a7",
+          "description": "Hardware, software, services, integration, support, subscriptions, and transactions.",
+          "display_label": "Ecosystem value",
+          "entity_type": "value",
+          "evidence_ids": "CLM-SAM-ARCH-01|CLM-ORACLE-INTEGRATION-01",
+          "id": "ENT-ECOSYSTEM-VALUE",
+          "label": "Ecosystem value",
+          "label_priority": "tertiary",
+          "layout_x": 1090.0,
+          "layout_y": 455.0,
+          "outcome": "value",
+          "reader_summary": "Hardware, software, services, integration, support, subscriptions, and transactions.",
+          "story_lane": "shared",
+          "story_layer": "value-pathway"
+        },
+        "position": {
+          "x": 1090.0,
+          "y": 455.0
+        }
+      },
+      {
+        "data": {
+          "color": "#57d6a7",
+          "description": "Property-specific avoided energy expense supported by verified performance.",
+          "display_label": "Energy efficiency",
+          "entity_type": "value",
+          "evidence_ids": "CLM-ENERGY-SCENARIO-01",
+          "id": "ENT-ENERGY-EFFICIENCY",
+          "label": "Energy efficiency",
+          "label_priority": "tertiary",
+          "layout_x": 1090.0,
+          "layout_y": 595.0,
+          "outcome": "value",
+          "reader_summary": "Property-specific avoided energy expense supported by verified performance.",
+          "story_lane": "shared",
+          "story_layer": "value-pathway"
+        },
+        "position": {
+          "x": 1090.0,
+          "y": 595.0
+        }
+      },
+      {
+        "data": {
+          "color": "#78d35d",
+          "description": "Adjust room conditions and connected functions.",
+          "display_label": "Feel in control",
+          "entity_type": "outcome",
+          "evidence_ids": "CLM-SAM-SMARTTHINGS-01|CLM-ENERGY-HVAC-01",
+          "id": "ENT-FEEL-CONTROL",
+          "label": "Feel in control",
+          "label_priority": "primary",
+          "layout_x": 750.0,
+          "layout_y": 335.0,
+          "outcome": "feel-in-control",
+          "reader_summary": "Guest outcome: feel in control.",
+          "story_lane": "control",
+          "story_layer": "guest-outcome"
+        },
+        "position": {
+          "x": 750.0,
+          "y": 335.0
+        }
+      },
+      {
+        "data": {
+          "color": "#4cb3ff",
+          "description": "Use familiar content and devices with less relearning.",
+          "display_label": "Feel at home",
+          "entity_type": "outcome",
+          "evidence_ids": "CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01",
+          "id": "ENT-FEEL-HOME",
+          "label": "Feel at home",
+          "label_priority": "primary",
+          "layout_x": 750.0,
+          "layout_y": 215.0,
+          "outcome": "feel-at-home",
+          "reader_summary": "Guest outcome: feel at home.",
+          "story_lane": "home",
+          "story_layer": "guest-outcome"
+        },
+        "position": {
+          "x": 750.0,
+          "y": 215.0
+        }
+      },
+      {
+        "data": {
+          "color": "#a986ef",
+          "description": "Reduce language, sensory, and interface barriers.",
+          "display_label": "Feel included",
+          "entity_type": "outcome",
+          "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01",
+          "id": "ENT-FEEL-INCLUDED",
+          "label": "Feel included",
+          "label_priority": "primary",
+          "layout_x": 750.0,
+          "layout_y": 575.0,
+          "outcome": "feel-included",
+          "reader_summary": "Guest outcome: feel included.",
+          "story_lane": "included",
+          "story_layer": "guest-outcome"
+        },
+        "position": {
+          "x": 750.0,
+          "y": 575.0
+        }
+      },
+      {
+        "data": {
+          "color": "#f4bd32",
+          "description": "Receive contextually relevant information and services.",
+          "display_label": "Feel recognized",
+          "entity_type": "outcome",
+          "evidence_ids": "CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01",
+          "id": "ENT-FEEL-RECOGNIZED",
+          "label": "Feel recognized",
+          "label_priority": "primary",
+          "layout_x": 750.0,
+          "layout_y": 455.0,
+          "outcome": "feel-recognized",
+          "reader_summary": "Guest outcome: feel recognized.",
+          "story_lane": "recognized",
+          "story_layer": "guest-outcome"
+        },
+        "position": {
+          "x": 750.0,
+          "y": 455.0
+        }
+      },
+      {
+        "data": {
+          "color": "#49c5ca",
+          "description": "Pair, use, and leave without exposing personal sessions.",
+          "display_label": "Feel secure",
+          "entity_type": "outcome",
+          "evidence_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
+          "id": "ENT-FEEL-SECURE",
+          "label": "Feel secure",
+          "label_priority": "primary",
+          "layout_x": 750.0,
+          "layout_y": 695.0,
+          "outcome": "feel-secure",
+          "reader_summary": "Guest outcome: feel secure.",
+          "story_lane": "secure",
+          "story_layer": "guest-outcome"
+        },
+        "position": {
+          "x": 750.0,
+          "y": 695.0
+        }
+      },
+      {
+        "data": {
+          "color": "#f29138",
+          "description": "Access services and resolve problems with less friction.",
+          "display_label": "Feel supported",
+          "entity_type": "outcome",
+          "evidence_ids": "CLM-SAM-CONCIERGE-01|CLM-JDP-FRICTION-01",
+          "id": "ENT-FEEL-SUPPORTED",
+          "label": "Feel supported",
+          "label_priority": "primary",
+          "layout_x": 750.0,
+          "layout_y": 815.0,
+          "outcome": "feel-supported",
+          "reader_summary": "Guest outcome: feel supported.",
+          "story_lane": "supported",
+          "story_layer": "guest-outcome"
+        },
+        "position": {
+          "x": 750.0,
+          "y": 815.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
-          "core_view": false,
+          "description": "Receives comfort, familiarity, control, accessibility, privacy, information, and service convenience.",
+          "display_label": "Guest",
+          "entity_type": "stakeholder",
+          "evidence_ids": "CLM-JDP-SAMPLE-01",
+          "id": "ENT-GUEST",
+          "label": "Guest",
+          "label_priority": "tertiary",
+          "layout_x": 100.0,
+          "layout_y": 170.0,
+          "outcome": "stakeholder",
+          "reader_summary": "Receives comfort, familiarity, control, accessibility, privacy, information, and service convenience.",
+          "story_lane": "shared",
+          "story_layer": "stakeholder"
+        },
+        "position": {
+          "x": 100.0,
+          "y": 170.0
+        }
+      },
+      {
+        "data": {
+          "color": "#f6f1e8",
+          "description": "The human reason connected hospitality technology exists.",
+          "display_label": "Human experience",
+          "entity_type": "human-experience",
+          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
+          "id": "ENT-HUMAN-EXPERIENCE",
+          "label": "Human experience",
+          "label_priority": "primary",
+          "layout_x": 750.0,
+          "layout_y": 65.0,
+          "outcome": "human-experience",
+          "reader_summary": "The human outcome framework that organizes the research.",
+          "story_lane": "shared",
+          "story_layer": "framework"
+        },
+        "position": {
+          "x": 750.0,
+          "y": 65.0
+        }
+      },
+      {
+        "data": {
+          "color": "#57d6a7",
+          "description": "Time, effort, familiarity, comfort, accessibility, control, and trust.",
+          "display_label": "Human value",
+          "entity_type": "value",
+          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
+          "id": "ENT-HUMAN-VALUE",
+          "label": "Human value",
+          "label_priority": "tertiary",
+          "layout_x": 1090.0,
+          "layout_y": 175.0,
+          "outcome": "value",
+          "reader_summary": "Time, effort, familiarity, comfort, accessibility, control, and trust.",
+          "story_lane": "shared",
+          "story_layer": "value-pathway"
+        },
+        "position": {
+          "x": 1090.0,
+          "y": 175.0
+        }
+      },
+      {
+        "data": {
+          "color": "#8aa2b8",
+          "description": "Designs, installs, configures, integrates, trains, and supports the system.",
+          "display_label": "Dealer and system integrator",
+          "entity_type": "stakeholder",
+          "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
+          "id": "ENT-INTEGRATOR",
+          "label": "Dealer and system integrator",
+          "label_priority": "tertiary",
+          "layout_x": 100.0,
+          "layout_y": 730.0,
+          "outcome": "stakeholder",
+          "reader_summary": "Designs, installs, configures, integrates, trains, and supports the system.",
+          "story_lane": "shared",
+          "story_layer": "stakeholder"
+        },
+        "position": {
+          "x": 100.0,
+          "y": 730.0
+        }
+      },
+      {
+        "data": {
+          "color": "#78d35d",
+          "description": "Connected control of compatible room and building devices.",
+          "display_label": "Control room settings",
+          "entity_type": "technology",
+          "evidence_ids": "CLM-SAM-SMARTTHINGS-01",
+          "id": "ENT-IOT-CONTROLS",
+          "label": "IoT room controls",
+          "label_priority": "secondary",
+          "layout_x": 405.0,
+          "layout_y": 315.0,
+          "outcome": "feel-in-control",
+          "reader_summary": "Room controls can make comfort settings easier to adjust.",
+          "story_lane": "control",
+          "story_layer": "connected-system"
+        },
+        "position": {
+          "x": 405.0,
+          "y": 315.0
+        }
+      },
+      {
+        "data": {
+          "color": "#a986ef",
+          "description": "Language support plus interfaces whose meaning does not rely on one visual channel.",
+          "display_label": "Present content accessibly",
+          "entity_type": "technology",
+          "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01",
+          "id": "ENT-LANGUAGE-ACCESS",
+          "label": "Language and accessible presentation",
+          "label_priority": "secondary",
+          "layout_x": 405.0,
+          "layout_y": 515.0,
+          "outcome": "feel-included",
+          "reader_summary": "Language and access features can reduce barriers to using content.",
+          "story_lane": "included",
+          "story_layer": "connected-system"
+        },
+        "position": {
+          "x": 405.0,
+          "y": 515.0
+        }
+      },
+      {
+        "data": {
+          "color": "#c7a86b",
+          "description": "Industry scale that is explicitly not attributable to connected screens.",
+          "display_label": "Economic context",
+          "entity_type": "context",
+          "evidence_ids": "CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01",
+          "id": "ENT-MACRO-CONTEXT",
+          "label": "Economic context",
+          "label_priority": "tertiary",
+          "layout_x": 1380.0,
+          "layout_y": 855.0,
+          "outcome": "context",
+          "reader_summary": "Industry scale that is explicitly not attributable to connected screens.",
+          "story_lane": "shared",
+          "story_layer": "condition-context"
+        },
+        "position": {
+          "x": 1380.0,
+          "y": 855.0
+        }
+      },
+      {
+        "data": {
+          "color": "#c7a86b",
+          "description": "Capabilities may fail or be unavailable without compatible networks and integrations.",
+          "display_label": "Network and integration dependency",
+          "entity_type": "risk",
+          "evidence_ids": "CLM-CAST-CROSSVENDOR-01",
+          "id": "ENT-NETWORK-DEPENDENCY",
+          "label": "Network and integration dependency",
+          "label_priority": "tertiary",
+          "layout_x": 1380.0,
+          "layout_y": 255.0,
+          "outcome": "context",
+          "reader_summary": "Capabilities may fail or be unavailable without compatible networks and integrations.",
+          "story_lane": "shared",
+          "story_layer": "condition-context"
+        },
+        "position": {
+          "x": 1380.0,
+          "y": 255.0
+        }
+      },
+      {
+        "data": {
+          "color": "#8aa2b8",
+          "description": "Provides hardware, software, cloud services, support, and upgrades.",
+          "display_label": "OEM and platform owner",
+          "entity_type": "stakeholder",
+          "evidence_ids": "CLM-SAM-ARCH-01",
+          "id": "ENT-OEM-PLATFORM",
+          "label": "OEM and platform owner",
+          "label_priority": "tertiary",
+          "layout_x": 100.0,
+          "layout_y": 590.0,
+          "outcome": "stakeholder",
+          "reader_summary": "Provides hardware, software, cloud services, support, and upgrades.",
+          "story_lane": "shared",
+          "story_layer": "stakeholder"
+        },
+        "position": {
+          "x": 100.0,
+          "y": 590.0
+        }
+      },
+      {
+        "data": {
+          "color": "#57d6a7",
+          "description": "Potential avoidance of selected on-site interventions through remote visibility.",
+          "display_label": "Operational support efficiency",
+          "entity_type": "value",
+          "evidence_ids": "CLM-REMOTE-SUPPORT-INFERENCE-01",
+          "id": "ENT-OPERATIONAL-SUPPORT",
+          "label": "Operational support efficiency",
+          "label_priority": "tertiary",
+          "layout_x": 1090.0,
+          "layout_y": 875.0,
+          "outcome": "value",
+          "reader_summary": "Potential avoidance of selected on-site interventions through remote visibility.",
+          "story_lane": "shared",
+          "story_layer": "value-pathway"
+        },
+        "position": {
+          "x": 1090.0,
+          "y": 875.0
+        }
+      },
+      {
+        "data": {
+          "color": "#f4bd32",
+          "description": "Exchange of stay, checkout, service, and guest-context events with property systems.",
+          "display_label": "Connect stay context",
+          "entity_type": "technology",
+          "evidence_ids": "CLM-ORACLE-INTEGRATION-01|CLM-SAM-PRIVACY-01",
+          "id": "ENT-PMS-INTEGRATION",
+          "label": "PMS integration",
+          "label_priority": "secondary",
+          "layout_x": 405.0,
+          "layout_y": 415.0,
+          "outcome": "feel-recognized",
+          "reader_summary": "Connected stay context can make information and services more relevant.",
+          "story_lane": "recognized",
+          "story_layer": "connected-system"
+        },
+        "position": {
+          "x": 405.0,
+          "y": 415.0
+        }
+      },
+      {
+        "data": {
+          "color": "#49c5ca",
+          "description": "Controls for pairing lifecycle, credentials, access, and monitoring.",
+          "display_label": "Protect sessions and data",
+          "entity_type": "technology",
+          "evidence_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
+          "id": "ENT-PRIVACY-CONTROLS",
+          "label": "Privacy and security controls",
+          "label_priority": "secondary",
+          "layout_x": 405.0,
+          "layout_y": 615.0,
+          "outcome": "feel-secure",
+          "reader_summary": "Session isolation and checkout deletion can reduce privacy risk.",
+          "story_lane": "secure",
+          "story_layer": "connected-system"
+        },
+        "position": {
+          "x": 405.0,
+          "y": 615.0
+        }
+      },
+      {
+        "data": {
+          "color": "#8aa2b8",
+          "description": "Operates the property and carries revenue, cost, service, and risk outcomes.",
+          "display_label": "Property owner and operator",
+          "entity_type": "stakeholder",
+          "evidence_ids": "CLM-AHLA-GOPPAR-01",
+          "id": "ENT-PROPERTY-OPERATOR",
+          "label": "Property owner and operator",
+          "label_priority": "tertiary",
+          "layout_x": 100.0,
+          "layout_y": 310.0,
+          "outcome": "stakeholder",
+          "reader_summary": "Operates the property and carries revenue, cost, service, and risk outcomes.",
+          "story_lane": "shared",
+          "story_layer": "stakeholder"
+        },
+        "position": {
+          "x": 100.0,
+          "y": 310.0
+        }
+      },
+      {
+        "data": {
+          "color": "#57d6a7",
+          "description": "Ancillary contribution, operating efficiency, support, energy, and experience indicators.",
+          "display_label": "Property value",
+          "entity_type": "value",
+          "evidence_ids": "CLM-AHLA-GOPPAR-01",
+          "id": "ENT-PROPERTY-VALUE",
+          "label": "Property value",
+          "label_priority": "tertiary",
+          "layout_x": 1090.0,
+          "layout_y": 315.0,
+          "outcome": "value",
+          "reader_summary": "Ancillary contribution, operating efficiency, support, energy, and experience indicators.",
+          "story_lane": "shared",
+          "story_layer": "value-pathway"
+        },
+        "position": {
+          "x": 1090.0,
+          "y": 315.0
+        }
+      },
+      {
+        "data": {
+          "color": "#7994ff",
+          "description": "A clearly labeled vendor-stated example, not HXG ownership or endorsement.",
+          "display_label": "Samsung reference architecture",
+          "entity_type": "technology",
+          "evidence_ids": "CLM-SAM-ARCH-01",
+          "id": "ENT-SAMSUNG-REFERENCE",
+          "label": "Samsung reference architecture",
+          "label_priority": "tertiary",
+          "layout_x": 405.0,
+          "layout_y": 915.0,
+          "outcome": "technology",
+          "reader_summary": "A clearly labeled vendor-stated example, not HXG ownership or endorsement.",
+          "story_lane": "shared",
+          "story_layer": "connected-system"
+        },
+        "position": {
+          "x": 405.0,
+          "y": 915.0
+        }
+      },
+      {
+        "data": {
+          "color": "#8aa2b8",
           "description": "Provide interoperable systems, content, transactions, and services.",
+          "display_label": "PMS, POS, IoT, content and service partners",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-ORACLE-INTEGRATION-01",
           "id": "ENT-TECH-PARTNERS",
           "label": "PMS, POS, IoT, content and service partners",
-          "label_priority": "secondary",
-          "layout_ring": "outer",
-          "layout_x": 175.0,
-          "layout_y": 980.0,
-          "outcome": "stakeholder"
+          "label_priority": "tertiary",
+          "layout_x": 100.0,
+          "layout_y": 870.0,
+          "outcome": "stakeholder",
+          "reader_summary": "Provide interoperable systems, content, transactions, and services.",
+          "story_lane": "shared",
+          "story_layer": "stakeholder"
         },
         "position": {
-          "x": 175.0,
-          "y": 980.0
+          "x": 100.0,
+          "y": 870.0
         }
       }
     ]
   },
+  "guided_pathways": [
+    {
+      "capability_id": "ENT-CASTING",
+      "outcome_id": "ENT-FEEL-HOME",
+      "relationship_id": "REL-CASTING-HOME",
+      "story_lane": "home"
+    },
+    {
+      "capability_id": "ENT-IOT-CONTROLS",
+      "outcome_id": "ENT-FEEL-CONTROL",
+      "relationship_id": "REL-IOT-CONTROL",
+      "story_lane": "control"
+    },
+    {
+      "capability_id": "ENT-PMS-INTEGRATION",
+      "outcome_id": "ENT-FEEL-RECOGNIZED",
+      "relationship_id": "REL-PMS-RECOGNIZED",
+      "story_lane": "recognized"
+    },
+    {
+      "capability_id": "ENT-LANGUAGE-ACCESS",
+      "outcome_id": "ENT-FEEL-INCLUDED",
+      "relationship_id": "REL-LANGUAGE-INCLUDED",
+      "story_lane": "included"
+    },
+    {
+      "capability_id": "ENT-PRIVACY-CONTROLS",
+      "outcome_id": "ENT-FEEL-SECURE",
+      "relationship_id": "REL-PRIVACY-SECURE",
+      "story_lane": "secure"
+    },
+    {
+      "capability_id": "ENT-DIGITAL-CONCIERGE",
+      "outcome_id": "ENT-FEEL-SUPPORTED",
+      "relationship_id": "REL-CONCIERGE-SUPPORTED",
+      "story_lane": "supported"
+    }
+  ],
   "layout": {
-    "algorithm": "semantic-rings",
-    "height": 1040,
+    "algorithm": "semantic-groups",
+    "height": 1000,
     "name": "preset",
     "seed": 42,
-    "width": 1400
+    "width": 1500
   },
-  "release": "hxg-v0.1.0",
+  "release": "hxg-v0.2.0",
   "schema_version": "1.0.0"
 }

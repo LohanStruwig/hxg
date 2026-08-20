@@ -1,4 +1,4 @@
-# HXG findings — release 0.1.0
+# HXG findings — release 0.2.0
 
 ## Thesis
 

@@ -105,14 +105,20 @@ def test_sensitive_file_types_and_environment_files_are_not_tracked() -> None:
                     assert not value, f"Credential-like placeholder is populated in {relative}: {key}"
 
 
-def test_publication_and_image_metadata_are_intentionally_anonymous() -> None:
+def test_publication_and_image_metadata_are_intentional_and_sanitized() -> None:
     for path in tracked_paths():
         suffix = path.suffix.lower()
         if suffix == ".pdf":
             with pymupdf.open(path) as document:
                 metadata = document.metadata
-            assert metadata.get("author") == "anonymous"
-            assert metadata.get("creator") == "anonymous"
+            if path.name in {"linkedin-carousel.pdf", "hxg-poster.pdf"}:
+                assert metadata.get("author") == "Hospitality Experience Graph (HXG)"
+                assert metadata.get("creator") == "HXG deterministic Python publication pipeline"
+                assert metadata.get("title")
+                assert metadata.get("subject")
+            else:
+                assert metadata.get("author") == "anonymous"
+                assert metadata.get("creator") == "anonymous"
             assert metadata.get("creationDate") == "D:20000101000000+00'00'"
             assert metadata.get("modDate") == "D:20000101000000+00'00'"
             assert_no_private_or_secret_text("\n".join(str(value) for value in metadata.values()), str(path))

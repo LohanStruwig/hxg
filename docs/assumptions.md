@@ -8,4 +8,4 @@
 - Property savings and ancillary contribution require local baselines, conversion, margin, and verified performance.
 - Product announcements may not equal universal availability.
 - Translation does not equal complete accessibility.
-- Release 0.1.0 is static and reproducible; there is no hosted API, live AI search, or backend graph database.
+- Release 0.2.0 is static and reproducible; there is no hosted API, live AI search, or backend graph database.

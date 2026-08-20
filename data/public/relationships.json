@@ -111,7 +111,7 @@
     "limitations": [
       "Usage supports relevance; the emotional label is an HXG interpretation."
     ],
-    "predicate": "enables",
+    "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-CASTING",
     "supporting_claim_ids": [
@@ -121,13 +121,13 @@
     "target_entity_id": "ENT-FEEL-HOME"
   },
   {
-    "confidence": 0.91,
-    "evidence_status": "direct",
+    "confidence": 0.82,
+    "evidence_status": "inferred",
     "id": "REL-IOT-CONTROL",
     "limitations": [
-      "Vendor-stated capability."
+      "Vendor-stated room-control capability; the evidence does not measure whether guests feel in control."
     ],
-    "predicate": "enables",
+    "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-IOT-CONTROLS",
     "supporting_claim_ids": [
@@ -142,7 +142,7 @@
     "limitations": [
       "Integration capability does not prove guest perception."
     ],
-    "predicate": "enables",
+    "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-PMS-INTEGRATION",
     "supporting_claim_ids": [
@@ -158,7 +158,7 @@
     "limitations": [
       "Translation is only one part of accessibility."
     ],
-    "predicate": "enables",
+    "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-LANGUAGE-ACCESS",
     "supporting_claim_ids": [
@@ -174,7 +174,7 @@
     "limitations": [
       "Controls reduce risk but do not eliminate it."
     ],
-    "predicate": "supports",
+    "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-PRIVACY-CONTROLS",
     "supporting_claim_ids": [
@@ -184,13 +184,13 @@
     "target_entity_id": "ENT-FEEL-SECURE"
   },
   {
-    "confidence": 0.89,
-    "evidence_status": "direct",
+    "confidence": 0.8,
+    "evidence_status": "inferred",
     "id": "REL-CONCIERGE-SUPPORTED",
     "limitations": [
-      "Vendor-stated capability; service quality is not measured."
+      "Vendor-stated service capability; the evidence does not measure service quality or whether guests feel supported."
     ],
-    "predicate": "enables",
+    "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-DIGITAL-CONCIERGE",
     "supporting_claim_ids": [
@@ -515,11 +515,11 @@
     "target_entity_id": "ENT-PROPERTY-VALUE"
   },
   {
-    "confidence": 0.9,
-    "evidence_status": "direct",
+    "confidence": 0.82,
+    "evidence_status": "inferred",
     "id": "REL-OPERATOR-PROPERTY",
     "limitations": [
-      "Value pathways differ by property."
+      "Industry operating performance provides context; it does not prove that a specific operator receives property value from this technology. Value pathways differ by property."
     ],
     "predicate": "receives",
     "schema_version": "1.0.0",

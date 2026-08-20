@@ -1,5 +1,5 @@
 [release]
-id = "hxg-v0.1.0"
+id = "hxg-v0.2.0"
 cutoff_date = "2026-08-19"
 start_date = "2024-01-01"
 historical_context_allowed = true

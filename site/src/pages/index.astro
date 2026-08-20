@@ -14,6 +14,12 @@ const entities = load("entities.json");
 const relationships = load("relationships.json");
 const contradictions = load("contradictions.json");
 const manifest = load("run-manifest.json");
+const graph = JSON.parse(readFileSync(resolve(process.cwd(), "..", "graphs", "hospitality-experience-graph.json"), "utf8"));
+const graphNodes = Object.fromEntries(graph.elements.nodes.map((node: any) => [node.data.id, node.data]));
+const guidedPreview = graph.guided_pathways.map((pathway: any) => ({
+  capability: graphNodes[pathway.capability_id],
+  outcome: graphNodes[pathway.outcome_id],
+}));
 const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
 ---
 
@@ -21,7 +27,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   <header class="site-header">
     <a class="brand" href={baseUrl} aria-label="Hospitality Experience Graph home"><span>HXG</span><small>Hospitality Experience Graph</small></a>
     <nav class="primary-nav" aria-label="Primary navigation">
-      <a href="#graph" data-section="graph">Graph</a>
+      <a href="#graph" data-section="graph">Map</a>
       <a href="#evidence" data-section="evidence">Evidence</a>
       <a href="#limits" data-section="limits">Limitations</a>
       <a href="#downloads" data-section="downloads">Downloads</a>
@@ -30,7 +36,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     <details class="mobile-nav">
       <summary>Sections</summary>
       <nav aria-label="Section navigation">
-        <a href="#graph" data-section="graph">Graph</a>
+        <a href="#graph" data-section="graph">Map</a>
         <a href="#evidence" data-section="evidence">Evidence</a>
         <a href="#limits" data-section="limits">Limitations</a>
         <a href="#downloads" data-section="downloads">Downloads</a>
@@ -43,23 +49,24 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   <main id="main-content">
     <section class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Independent research · Release 0.1.0</p>
+        <p class="eyebrow">Independent research · Release 0.2.0</p>
         <h1>From screen<br /><em>to stay.</em></h1>
         <p class="dek">An AI-led, evidence-audited map of connected hospitality experiences.</p>
         <p class="thesis">The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.</p>
         <div class="hero-actions">
-          <a href="#graph">Explore the graph</a>
+          <a href="#graph">Explore the pathways</a>
           <a href="#evidence" class="secondary">Audit the evidence</a>
         </div>
       </div>
-      <div class="hero-orbit" aria-label="Six human experience outcomes: feel at home, in control, recognized, included, secure and supported">
-        <span class="center">Human<br />experience</span>
-        <span class="orbit home">Feel at home</span>
-        <span class="orbit control">Feel in control</span>
-        <span class="orbit recognized">Feel recognized</span>
-        <span class="orbit included">Feel included</span>
-        <span class="orbit secure">Feel secure</span>
-        <span class="orbit supported">Feel supported</span>
+      <div class="hero-pathways" aria-label="Preview of six capability-to-outcome pathways">
+        <p><span>Capability</span><span>can support</span><span>Guest outcome</span></p>
+        {guidedPreview.map((pathway: any) => (
+          <div style={`--hero-accent:${pathway.outcome.color}`}>
+            <strong>{pathway.capability.display_label}</strong>
+            <i aria-hidden="true"></i>
+            <strong>{pathway.outcome.display_label}</strong>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -75,7 +82,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
       <p class="anchor-note">These figures show availability and use—not causal value. That distinction is carried through every HXG relationship.</p>
     </section>
 
-    <GraphExplorer claims={claims} sources={sources} entities={entities} relationships={relationships} />
+    <GraphExplorer claims={claims} sources={sources} entities={entities} relationships={relationships} graph={graph} />
 
     <section class="value-paths" aria-labelledby="value-title">
       <p class="eyebrow">Value without overclaiming</p>
@@ -125,7 +132,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
         <li><span>04</span><strong>Challenge</strong><p>Contradiction and citation audits search for friction, overreach and stale context.</p></li>
         <li><span>05</span><strong>Freeze</strong><p>Counts, graph exports, pages and publications derive from one manifest.</p></li>
       </ol>
-      <p class="disclosure">This release is an interactive Codex-assisted seed audit with disclosed human governance. The configured local API pipeline uses gpt-5.6-terra for discovery/extraction and gpt-5.6-sol for contradiction/final audit; that unattended run was not executed for v0.1.0.</p>
+      <p class="disclosure">This release is an interactive Codex-assisted seed audit with disclosed human governance. The configured local API pipeline uses gpt-5.6-terra for discovery/extraction and gpt-5.6-sol for contradiction/final audit; that unattended run was not executed for v0.2.0.</p>
     </section>
   </main>
 
@@ -196,12 +203,15 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
   .hero-actions { display: flex; gap: 10px; margin-top: 34px; }
   .hero-actions a { min-height: 48px; display: inline-flex; align-items: center; padding: 0 18px; background: var(--ink); color: var(--canvas); text-decoration: none; font-weight: 800; }
   .hero-actions .secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
-  .hero-orbit { position: relative; width: min(620px,44vw); aspect-ratio: 1; justify-self: center; border: 1px solid var(--line); border-radius: 50%; box-shadow: 0 0 90px rgba(76,196,217,.08), inset 0 0 90px rgba(76,196,217,.04); }
-  .hero-orbit::before { content: ""; position: absolute; inset: 17%; border: 1px solid var(--line); border-radius: 50%; }
-  .center, .orbit { position: absolute; display: grid; place-items: center; text-align: center; font-weight: 800; }
-  .center { left: 50%; top: 50%; width: 150px; height: 150px; transform: translate(-50%,-50%); border-radius: 50%; background: var(--ink); color: var(--canvas); font-size: 1.25rem; line-height: 1.05; }
-  .orbit { width: 104px; min-height: 54px; padding: 8px; color: var(--canvas); font-size: .72rem; border: 5px solid var(--canvas); box-shadow: 0 0 0 1px currentColor; }
-  .home { left: 50%; top: -18px; transform: translateX(-50%); background: var(--blue); } .control { right: 1%; top: 23%; background: var(--green); } .recognized { right: 2%; bottom: 20%; background: var(--amber); } .included { left: 50%; bottom: -18px; transform: translateX(-50%); background: var(--violet); } .secure { left: 2%; bottom: 20%; background: var(--cyan); } .supported { left: 1%; top: 23%; background: var(--orange); }
+  .hero-pathways { width: min(680px,48vw); justify-self: stretch; border-top: 1px solid var(--line); }
+  .hero-pathways > p, .hero-pathways > div { display: grid; grid-template-columns: minmax(0,1fr) 110px minmax(0,1fr); gap: 14px; align-items: center; }
+  .hero-pathways > p { margin: 0; padding: 0 14px 12px; color: var(--faint); font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+  .hero-pathways > p span:nth-child(2) { text-align: center; }
+  .hero-pathways > div { min-height: 74px; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+  .hero-pathways strong { min-width: 0; font-size: .82rem; line-height: 1.3; }
+  .hero-pathways > div strong:last-child { color: var(--hero-accent); }
+  .hero-pathways i { width: 100%; height: 1px; background: var(--muted); }
+  .hero-pathways i::after { content: ""; display: block; width: 8px; height: 8px; margin-left: auto; transform: translate(-2px,-4px) rotate(45deg); border-top: 1px solid var(--muted); border-right: 1px solid var(--muted); }
   .evidence-anchor { max-width: var(--max); margin: 0 auto; padding: 110px var(--page-gutter); display: grid; grid-template-columns: 1fr 1.1fr; gap: 70px; border-bottom: 1px solid var(--line); }
   .evidence-anchor h2, .value-paths h2, .limits h2, .methodology h2 { margin: 0; font-size: clamp(2.4rem,5vw,5.3rem); line-height: .98; letter-spacing: -.06em; }
   .anchor-stats { display: grid; grid-template-columns: repeat(3,1fr); border: 1px solid var(--line); }
@@ -253,7 +263,7 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     .mobile-nav nav a { min-height: 48px; display: flex; align-items: center; padding: 0 12px; border-left: 3px solid transparent; color: var(--muted); text-decoration: none; }
     .mobile-nav nav a[aria-current="location"] { border-left-color: var(--cyan); background: var(--surface-strong); color: var(--ink); }
     .hero { grid-template-columns: 1fr; }
-    .hero-orbit { width: min(620px,82vw); }
+    .hero-pathways { width: 100%; }
     .evidence-anchor, .limits, .methodology { grid-template-columns: 1fr; }
     .anchor-note, .disclosure { grid-column: 1; margin: 0; }
     .value-grid { grid-template-columns: repeat(2,1fr); }
@@ -269,9 +279,9 @@ const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_UR
     .repo-short { display: inline; }
     .hero { min-height: auto; padding-top: 70px; padding-bottom: 90px; gap: 80px; }
     h1 { font-size: clamp(4rem,21vw,7rem); }
-    .hero-orbit { width: 86vw; }
-    .center { width: 118px; height: 118px; font-size: 1rem; }
-    .orbit { width: 88px; font-size: .62rem; }
+    .hero-pathways > p { display: none; }
+    .hero-pathways > div { grid-template-columns: minmax(0,1fr) 56px minmax(0,1fr); gap: 8px; padding-inline: 4px; }
+    .hero-pathways strong { font-size: .72rem; }
     .evidence-anchor { padding-top: 80px; padding-bottom: 80px; }
     .anchor-stats { grid-template-columns: 1fr; }
     .anchor-stats article { border-right: 0; border-bottom: 1px solid var(--line); }

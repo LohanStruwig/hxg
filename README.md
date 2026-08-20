@@ -2,7 +2,7 @@
 
 HXG is independent, hospitality-focused research into how connected in-room screens can connect guest comfort, property operations, and ecosystem value.
 
-> **Release status:** `v0.1.0` is an AI-led, evidence-audited seed release produced with disclosed human governance. It is not an unattended API research run, and it does not imply Samsung sponsorship or endorsement.
+> **Release status:** `v0.2.0` is an AI-led, evidence-audited seed release produced with disclosed human governance. It is not an unattended API research run, and it does not imply Samsung sponsorship or endorsement.
 
 The research treats Samsung as one clearly labeled, vendor-stated reference architecture. Independent guest evidence, industry economics, public standards, and competing implementation examples remain separate evidence classes.
 
