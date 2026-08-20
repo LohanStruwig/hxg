@@ -552,555 +552,651 @@
       {
         "data": {
           "color": "#57d6a7",
+          "core_view": false,
           "description": "Property-specific contribution from service discovery and conversion.",
           "entity_type": "value",
           "evidence_ids": "CLM-ANCILLARY-SCENARIO-01",
           "id": "ENT-ANCILLARY-REVENUE",
           "label": "Ancillary contribution",
-          "layout_x": 416.836,
-          "layout_y": 680.0,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1315.0,
+          "layout_y": 930.0,
           "outcome": "value"
         },
         "position": {
-          "x": 416.836,
-          "y": 680.0
+          "x": 1315.0,
+          "y": 930.0
         }
       },
       {
         "data": {
           "color": "#c7a86b",
+          "core_view": false,
           "description": "Model, region, language, channel, software, and licensing constraints disclosed by vendors.",
           "entity_type": "risk",
           "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01",
           "id": "ENT-AVAILABILITY-LIMITS",
           "label": "Availability and licensing limits",
-          "layout_x": 722.1302,
-          "layout_y": 494.9145,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1190.0,
+          "layout_y": 1010.0,
           "outcome": "context"
         },
         "position": {
-          "x": 722.1302,
-          "y": 494.9145
+          "x": 1190.0,
+          "y": 1010.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
+          "core_view": false,
           "description": "Governs portfolio consistency, standards, content, and scalable experience.",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-JDP-FRICTION-01",
           "id": "ENT-BRAND",
           "label": "Brand and management company",
-          "layout_x": 362.5695,
-          "layout_y": 72.8072,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 80.0,
+          "layout_y": 570.0,
           "outcome": "stakeholder"
         },
         "position": {
-          "x": 362.5695,
-          "y": 72.8072
+          "x": 80.0,
+          "y": 570.0
         }
       },
       {
         "data": {
           "color": "#4cb3ff",
+          "core_view": true,
           "description": "Short-lived pairing from a guest device to an in-room display.",
           "entity_type": "technology",
           "evidence_ids": "CLM-CAST-CROSSVENDOR-01|CLM-SAM-PRIVACY-01",
           "id": "ENT-CASTING",
           "label": "Guest-device casting",
-          "layout_x": 184.9783,
-          "layout_y": 303.1537,
+          "label_priority": "secondary",
+          "layout_ring": "capability",
+          "layout_x": 300.0,
+          "layout_y": 290.0,
           "outcome": "feel-at-home"
         },
         "position": {
-          "x": 184.9783,
-          "y": 303.1537
+          "x": 300.0,
+          "y": 290.0
         }
       },
       {
         "data": {
           "color": "#7994ff",
+          "core_view": false,
           "description": "Central status, configuration, content, and service management.",
           "entity_type": "technology",
           "evidence_ids": "CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01",
           "id": "ENT-CLOUD-MANAGEMENT",
           "label": "Cloud content and device management",
-          "layout_x": 804.1157,
-          "layout_y": 582.7116,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1310.0,
+          "layout_y": 115.0,
           "outcome": "technology"
         },
         "position": {
-          "x": 804.1157,
-          "y": 582.7116
+          "x": 1310.0,
+          "y": 115.0
         }
       },
       {
         "data": {
           "color": "#7994ff",
+          "core_view": false,
           "description": "A managed display that connects content, guest devices, property systems, and services.",
           "entity_type": "technology",
           "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
           "id": "ENT-CONNECTED-DISPLAY",
           "label": "Connected hospitality display",
-          "layout_x": 216.3657,
-          "layout_y": 524.42,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 90.0,
+          "layout_y": 115.0,
           "outcome": "technology"
         },
         "position": {
-          "x": 216.3657,
-          "y": 524.42
+          "x": 90.0,
+          "y": 115.0
         }
       },
       {
         "data": {
           "color": "#c7a86b",
+          "core_view": false,
           "description": "Lawful, secure, limited use of guest, device, and property data.",
           "entity_type": "risk",
           "evidence_ids": "CLM-NIST-PMS-RISK-01",
           "id": "ENT-DATA-GOVERNANCE",
           "label": "Data governance",
-          "layout_x": 779.9435,
-          "layout_y": 452.1536,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 930.0,
+          "layout_y": 985.0,
           "outcome": "context"
         },
         "position": {
-          "x": 779.9435,
-          "y": 452.1536
+          "x": 930.0,
+          "y": 985.0
         }
       },
       {
         "data": {
           "color": "#f29138",
+          "core_view": true,
           "description": "Guest-facing access to property information, orders, bookings, and requests.",
           "entity_type": "technology",
           "evidence_ids": "CLM-SAM-CONCIERGE-01|CLM-ORACLE-INTEGRATION-01",
           "id": "ENT-DIGITAL-CONCIERGE",
           "label": "Digital concierge and service channel",
-          "layout_x": 660.2595,
-          "layout_y": 385.5661,
+          "label_priority": "secondary",
+          "layout_ring": "capability",
+          "layout_x": 300.0,
+          "layout_y": 750.0,
           "outcome": "feel-supported"
         },
         "position": {
-          "x": 660.2595,
-          "y": 385.5661
+          "x": 300.0,
+          "y": 750.0
         }
       },
       {
         "data": {
           "color": "#57d6a7",
+          "core_view": false,
           "description": "Hardware, software, services, integration, support, subscriptions, and transactions.",
           "entity_type": "value",
           "evidence_ids": "CLM-SAM-ARCH-01|CLM-ORACLE-INTEGRATION-01",
           "id": "ENT-ECOSYSTEM-VALUE",
           "label": "Ecosystem value",
-          "layout_x": 181.7451,
-          "layout_y": 517.387,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1315.0,
+          "layout_y": 780.0,
           "outcome": "value"
         },
         "position": {
-          "x": 181.7451,
-          "y": 517.387
+          "x": 1315.0,
+          "y": 780.0
         }
       },
       {
         "data": {
           "color": "#57d6a7",
+          "core_view": false,
           "description": "Property-specific avoided energy expense supported by verified performance.",
           "entity_type": "value",
           "evidence_ids": "CLM-ENERGY-SCENARIO-01",
           "id": "ENT-ENERGY-EFFICIENCY",
           "label": "Energy efficiency",
-          "layout_x": 387.6272,
-          "layout_y": 294.1971,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1190.0,
+          "layout_y": 860.0,
           "outcome": "value"
         },
         "position": {
-          "x": 387.6272,
-          "y": 294.1971
+          "x": 1190.0,
+          "y": 860.0
         }
       },
       {
         "data": {
           "color": "#78d35d",
+          "core_view": true,
           "description": "Adjust room conditions and connected functions.",
           "entity_type": "outcome",
           "evidence_ids": "CLM-SAM-SMARTTHINGS-01|CLM-ENERGY-HVAC-01",
           "id": "ENT-FEEL-CONTROL",
           "label": "Feel in control",
-          "layout_x": 744.9727,
-          "layout_y": 49.7832,
+          "label_priority": "primary",
+          "layout_ring": "outcome",
+          "layout_x": 700.0,
+          "layout_y": 260.0,
           "outcome": "feel-in-control"
         },
         "position": {
-          "x": 744.9727,
-          "y": 49.7832
+          "x": 700.0,
+          "y": 260.0
         }
       },
       {
         "data": {
           "color": "#4cb3ff",
+          "core_view": true,
           "description": "Use familiar content and devices with less relearning.",
           "entity_type": "outcome",
           "evidence_ids": "CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01",
           "id": "ENT-FEEL-HOME",
           "label": "Feel at home",
-          "layout_x": 344.0393,
-          "layout_y": 131.9151,
+          "label_priority": "primary",
+          "layout_ring": "outcome",
+          "layout_x": 475.0,
+          "layout_y": 390.0,
           "outcome": "feel-at-home"
         },
         "position": {
-          "x": 344.0393,
-          "y": 131.9151
+          "x": 475.0,
+          "y": 390.0
         }
       },
       {
         "data": {
           "color": "#a986ef",
+          "core_view": true,
           "description": "Reduce language, sensory, and interface barriers.",
           "entity_type": "outcome",
           "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01",
           "id": "ENT-FEEL-INCLUDED",
           "label": "Feel included",
-          "layout_x": 609.6485,
-          "layout_y": 266.3997,
+          "label_priority": "primary",
+          "layout_ring": "outcome",
+          "layout_x": 925.0,
+          "layout_y": 650.0,
           "outcome": "feel-included"
         },
         "position": {
-          "x": 609.6485,
-          "y": 266.3997
+          "x": 925.0,
+          "y": 650.0
         }
       },
       {
         "data": {
           "color": "#f4bd32",
+          "core_view": true,
           "description": "Receive contextually relevant information and services.",
           "entity_type": "outcome",
           "evidence_ids": "CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01",
           "id": "ENT-FEEL-RECOGNIZED",
           "label": "Feel recognized",
-          "layout_x": 374.4916,
-          "layout_y": 176.8628,
+          "label_priority": "primary",
+          "layout_ring": "outcome",
+          "layout_x": 925.0,
+          "layout_y": 390.0,
           "outcome": "feel-recognized"
         },
         "position": {
-          "x": 374.4916,
-          "y": 176.8628
+          "x": 925.0,
+          "y": 390.0
         }
       },
       {
         "data": {
           "color": "#49c5ca",
+          "core_view": true,
           "description": "Pair, use, and leave without exposing personal sessions.",
           "entity_type": "outcome",
           "evidence_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
           "id": "ENT-FEEL-SECURE",
           "label": "Feel secure",
-          "layout_x": 674.1733,
-          "layout_y": 30.2275,
+          "label_priority": "primary",
+          "layout_ring": "outcome",
+          "layout_x": 700.0,
+          "layout_y": 780.0,
           "outcome": "feel-secure"
         },
         "position": {
-          "x": 674.1733,
-          "y": 30.2275
+          "x": 700.0,
+          "y": 780.0
         }
       },
       {
         "data": {
           "color": "#f29138",
+          "core_view": true,
           "description": "Access services and resolve problems with less friction.",
           "entity_type": "outcome",
           "evidence_ids": "CLM-SAM-CONCIERGE-01|CLM-JDP-FRICTION-01",
           "id": "ENT-FEEL-SUPPORTED",
           "label": "Feel supported",
-          "layout_x": 796.5627,
-          "layout_y": 76.3208,
+          "label_priority": "primary",
+          "layout_ring": "outcome",
+          "layout_x": 475.0,
+          "layout_y": 650.0,
           "outcome": "feel-supported"
         },
         "position": {
-          "x": 796.5627,
-          "y": 76.3208
+          "x": 475.0,
+          "y": 650.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
+          "core_view": false,
           "description": "Receives comfort, familiarity, control, accessibility, privacy, information, and service convenience.",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-JDP-SAMPLE-01",
           "id": "ENT-GUEST",
           "label": "Guest",
-          "layout_x": 490.6879,
-          "layout_y": 262.339,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 80.0,
+          "layout_y": 430.0,
           "outcome": "stakeholder"
         },
         "position": {
-          "x": 490.6879,
-          "y": 262.339
+          "x": 80.0,
+          "y": 430.0
         }
       },
       {
         "data": {
           "color": "#f6f1e8",
+          "core_view": true,
           "description": "The human reason connected hospitality technology exists.",
           "entity_type": "human-experience",
           "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
           "id": "ENT-HUMAN-EXPERIENCE",
           "label": "Human experience",
-          "layout_x": 612.1229,
-          "layout_y": 181.7605,
+          "label_priority": "primary",
+          "layout_ring": "center",
+          "layout_x": 700.0,
+          "layout_y": 520.0,
           "outcome": "human-experience"
         },
         "position": {
-          "x": 612.1229,
-          "y": 181.7605
+          "x": 700.0,
+          "y": 520.0
         }
       },
       {
         "data": {
           "color": "#57d6a7",
+          "core_view": false,
           "description": "Time, effort, familiarity, comfort, accessibility, control, and trust.",
           "entity_type": "value",
           "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
           "id": "ENT-HUMAN-VALUE",
           "label": "Human value",
-          "layout_x": 534.6292,
-          "layout_y": 32.3556,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1315.0,
+          "layout_y": 280.0,
           "outcome": "value"
         },
         "position": {
-          "x": 534.6292,
-          "y": 32.3556
+          "x": 1315.0,
+          "y": 280.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
+          "core_view": false,
           "description": "Designs, installs, configures, integrates, trains, and supports the system.",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-ORCHESTRATION-THESIS-01",
           "id": "ENT-INTEGRATOR",
           "label": "Dealer and system integrator",
-          "layout_x": 543.735,
-          "layout_y": 526.5001,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 175.0,
+          "layout_y": 215.0,
           "outcome": "stakeholder"
         },
         "position": {
-          "x": 543.735,
-          "y": 526.5001
+          "x": 175.0,
+          "y": 215.0
         }
       },
       {
         "data": {
           "color": "#78d35d",
+          "core_view": true,
           "description": "Connected control of compatible room and building devices.",
           "entity_type": "technology",
           "evidence_ids": "CLM-SAM-SMARTTHINGS-01",
           "id": "ENT-IOT-CONTROLS",
           "label": "IoT room controls",
-          "layout_x": 596.116,
-          "layout_y": 146.2123,
+          "label_priority": "secondary",
+          "layout_ring": "capability",
+          "layout_x": 700.0,
+          "layout_y": 60.0,
           "outcome": "feel-in-control"
         },
         "position": {
-          "x": 596.116,
-          "y": 146.2123
+          "x": 700.0,
+          "y": 60.0
         }
       },
       {
         "data": {
           "color": "#a986ef",
+          "core_view": true,
           "description": "Language support plus interfaces whose meaning does not rely on one visual channel.",
           "entity_type": "technology",
           "evidence_ids": "CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01",
           "id": "ENT-LANGUAGE-ACCESS",
           "label": "Language and accessible presentation",
-          "layout_x": 441.5339,
-          "layout_y": 400.267,
+          "label_priority": "secondary",
+          "layout_ring": "capability",
+          "layout_x": 1100.0,
+          "layout_y": 750.0,
           "outcome": "feel-included"
         },
         "position": {
-          "x": 441.5339,
-          "y": 400.267
+          "x": 1100.0,
+          "y": 750.0
         }
       },
       {
         "data": {
           "color": "#c7a86b",
+          "core_view": false,
           "description": "Industry scale that is explicitly not attributable to connected screens.",
           "entity_type": "context",
           "evidence_ids": "CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01",
           "id": "ENT-MACRO-CONTEXT",
           "label": "Economic context",
-          "layout_x": 389.428,
-          "layout_y": 666.3124,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1310.0,
+          "layout_y": 490.0,
           "outcome": "context"
         },
         "position": {
-          "x": 389.428,
-          "y": 666.3124
+          "x": 1310.0,
+          "y": 490.0
         }
       },
       {
         "data": {
           "color": "#c7a86b",
+          "core_view": false,
           "description": "Capabilities may fail or be unavailable without compatible networks and integrations.",
           "entity_type": "risk",
           "evidence_ids": "CLM-CAST-CROSSVENDOR-01",
           "id": "ENT-NETWORK-DEPENDENCY",
           "label": "Network and integration dependency",
-          "layout_x": 325.2417,
-          "layout_y": 489.7124,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 360.0,
+          "layout_y": 985.0,
           "outcome": "context"
         },
         "position": {
-          "x": 325.2417,
-          "y": 489.7124
+          "x": 360.0,
+          "y": 985.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
+          "core_view": false,
           "description": "Provides hardware, software, cloud services, support, and upgrades.",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-SAM-ARCH-01",
           "id": "ENT-OEM-PLATFORM",
           "label": "OEM and platform owner",
-          "layout_x": 344.3744,
-          "layout_y": 357.5201,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 175.0,
+          "layout_y": 850.0,
           "outcome": "stakeholder"
         },
         "position": {
-          "x": 344.3744,
-          "y": 357.5201
+          "x": 175.0,
+          "y": 850.0
         }
       },
       {
         "data": {
           "color": "#57d6a7",
+          "core_view": false,
           "description": "Potential avoidance of selected on-site interventions through remote visibility.",
           "entity_type": "value",
           "evidence_ids": "CLM-REMOTE-SUPPORT-INFERENCE-01",
           "id": "ENT-OPERATIONAL-SUPPORT",
           "label": "Operational support efficiency",
-          "layout_x": 577.0874,
-          "layout_y": 479.5318,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1090.0,
+          "layout_y": 965.0,
           "outcome": "value"
         },
         "position": {
-          "x": 577.0874,
-          "y": 479.5318
+          "x": 1090.0,
+          "y": 965.0
         }
       },
       {
         "data": {
           "color": "#f4bd32",
+          "core_view": true,
           "description": "Exchange of stay, checkout, service, and guest-context events with property systems.",
           "entity_type": "technology",
           "evidence_ids": "CLM-ORACLE-INTEGRATION-01|CLM-SAM-PRIVACY-01",
           "id": "ENT-PMS-INTEGRATION",
           "label": "PMS integration",
-          "layout_x": 485.7229,
-          "layout_y": 414.1756,
+          "label_priority": "secondary",
+          "layout_ring": "capability",
+          "layout_x": 1100.0,
+          "layout_y": 290.0,
           "outcome": "feel-recognized"
         },
         "position": {
-          "x": 485.7229,
-          "y": 414.1756
+          "x": 1100.0,
+          "y": 290.0
         }
       },
       {
         "data": {
           "color": "#49c5ca",
+          "core_view": true,
           "description": "Controls for pairing lifecycle, credentials, access, and monitoring.",
           "entity_type": "technology",
           "evidence_ids": "CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01",
           "id": "ENT-PRIVACY-CONTROLS",
           "label": "Privacy and security controls",
-          "layout_x": 814.28,
-          "layout_y": 271.3043,
+          "label_priority": "secondary",
+          "layout_ring": "capability",
+          "layout_x": 700.0,
+          "layout_y": 980.0,
           "outcome": "feel-secure"
         },
         "position": {
-          "x": 814.28,
-          "y": 271.3043
+          "x": 700.0,
+          "y": 980.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
+          "core_view": false,
           "description": "Operates the property and carries revenue, cost, service, and risk outcomes.",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-AHLA-GOPPAR-01",
           "id": "ENT-PROPERTY-OPERATOR",
           "label": "Property owner and operator",
-          "layout_x": 229.2119,
-          "layout_y": 292.5491,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 80.0,
+          "layout_y": 710.0,
           "outcome": "stakeholder"
         },
         "position": {
-          "x": 229.2119,
-          "y": 292.5491
+          "x": 80.0,
+          "y": 710.0
         }
       },
       {
         "data": {
           "color": "#57d6a7",
+          "core_view": false,
           "description": "Ancillary contribution, operating efficiency, support, energy, and experience indicators.",
           "entity_type": "value",
           "evidence_ids": "CLM-AHLA-GOPPAR-01",
           "id": "ENT-PROPERTY-VALUE",
           "label": "Property value",
-          "layout_x": 294.0181,
-          "layout_y": 512.8051,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1315.0,
+          "layout_y": 640.0,
           "outcome": "value"
         },
         "position": {
-          "x": 294.0181,
-          "y": 512.8051
+          "x": 1315.0,
+          "y": 640.0
         }
       },
       {
         "data": {
           "color": "#7994ff",
+          "core_view": false,
           "description": "A clearly labeled vendor-stated example, not HXG ownership or endorsement.",
           "entity_type": "technology",
           "evidence_ids": "CLM-SAM-ARCH-01",
           "id": "ENT-SAMSUNG-REFERENCE",
           "label": "Samsung reference architecture",
-          "layout_x": 534.4096,
-          "layout_y": 374.6003,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 1280.0,
+          "layout_y": 510.0,
           "outcome": "technology"
         },
         "position": {
-          "x": 534.4096,
-          "y": 374.6003
+          "x": 1280.0,
+          "y": 510.0
         }
       },
       {
         "data": {
           "color": "#8aa2b8",
+          "core_view": false,
           "description": "Provide interoperable systems, content, transactions, and services.",
           "entity_type": "stakeholder",
           "evidence_ids": "CLM-ORACLE-INTEGRATION-01",
           "id": "ENT-TECH-PARTNERS",
           "label": "PMS, POS, IoT, content and service partners",
-          "layout_x": 526.9425,
-          "layout_y": 433.2347,
+          "label_priority": "secondary",
+          "layout_ring": "outer",
+          "layout_x": 175.0,
+          "layout_y": 980.0,
           "outcome": "stakeholder"
         },
         "position": {
-          "x": 526.9425,
-          "y": 433.2347
+          "x": 175.0,
+          "y": 980.0
         }
       }
     ]
   },
   "layout": {
-    "algorithm": "spring",
-    "height": 680,
+    "algorithm": "semantic-rings",
+    "height": 1040,
     "name": "preset",
     "seed": 42,
-    "width": 1000
+    "width": 1400
   },
   "release": "hxg-v0.1.0",
   "schema_version": "1.0.0"

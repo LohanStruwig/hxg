@@ -2,5 +2,6 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "types": ["astro/client", "node"]
-  }
+  },
+  "exclude": ["dist", "node_modules", "playwright-report", "test-results"]
 }

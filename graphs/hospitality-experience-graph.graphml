@@ -1,14 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
 <graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
-  <key id="d15" for="edge" attr.name="limitations" attr.type="string" />
-  <key id="d14" for="edge" attr.name="evidence_ids" attr.type="string" />
-  <key id="d13" for="edge" attr.name="supporting_claim_ids" attr.type="string" />
-  <key id="d12" for="edge" attr.name="confidence" attr.type="double" />
-  <key id="d11" for="edge" attr.name="evidence_status" attr.type="string" />
-  <key id="d10" for="edge" attr.name="predicate" attr.type="string" />
-  <key id="d9" for="edge" attr.name="id" attr.type="string" />
-  <key id="d8" for="node" attr.name="layout_y" attr.type="double" />
-  <key id="d7" for="node" attr.name="layout_x" attr.type="double" />
+  <key id="d18" for="edge" attr.name="limitations" attr.type="string" />
+  <key id="d17" for="edge" attr.name="evidence_ids" attr.type="string" />
+  <key id="d16" for="edge" attr.name="supporting_claim_ids" attr.type="string" />
+  <key id="d15" for="edge" attr.name="confidence" attr.type="double" />
+  <key id="d14" for="edge" attr.name="evidence_status" attr.type="string" />
+  <key id="d13" for="edge" attr.name="predicate" attr.type="string" />
+  <key id="d12" for="edge" attr.name="id" attr.type="string" />
+  <key id="d11" for="node" attr.name="layout_y" attr.type="double" />
+  <key id="d10" for="node" attr.name="layout_x" attr.type="double" />
+  <key id="d9" for="node" attr.name="layout_ring" attr.type="string" />
+  <key id="d8" for="node" attr.name="label_priority" attr.type="string" />
+  <key id="d7" for="node" attr.name="core_view" attr.type="boolean" />
   <key id="d6" for="node" attr.name="evidence_ids" attr.type="string" />
   <key id="d5" for="node" attr.name="color" attr.type="string" />
   <key id="d4" for="node" attr.name="outcome" attr.type="string" />
@@ -24,8 +27,11 @@
       <data key="d4">value</data>
       <data key="d5">#57d6a7</data>
       <data key="d6">CLM-ANCILLARY-SCENARIO-01</data>
-      <data key="d7">416.836</data>
-      <data key="d8">680.0</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1315.0</data>
+      <data key="d11">930.0</data>
     </node>
     <node id="ENT-AVAILABILITY-LIMITS">
       <data key="d1">Availability and licensing limits</data>
@@ -34,8 +40,11 @@
       <data key="d4">context</data>
       <data key="d5">#c7a86b</data>
       <data key="d6">CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01</data>
-      <data key="d7">722.1302</data>
-      <data key="d8">494.9145</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1190.0</data>
+      <data key="d11">1010.0</data>
     </node>
     <node id="ENT-BRAND">
       <data key="d1">Brand and management company</data>
@@ -44,8 +53,11 @@
       <data key="d4">stakeholder</data>
       <data key="d5">#8aa2b8</data>
       <data key="d6">CLM-JDP-FRICTION-01</data>
-      <data key="d7">362.5695</data>
-      <data key="d8">72.8072</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">80.0</data>
+      <data key="d11">570.0</data>
     </node>
     <node id="ENT-CASTING">
       <data key="d1">Guest-device casting</data>
@@ -54,8 +66,11 @@
       <data key="d4">feel-at-home</data>
       <data key="d5">#4cb3ff</data>
       <data key="d6">CLM-CAST-CROSSVENDOR-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d7">184.9783</data>
-      <data key="d8">303.1537</data>
+      <data key="d7">True</data>
+      <data key="d8">secondary</data>
+      <data key="d9">capability</data>
+      <data key="d10">300.0</data>
+      <data key="d11">290.0</data>
     </node>
     <node id="ENT-CLOUD-MANAGEMENT">
       <data key="d1">Cloud content and device management</data>
@@ -64,8 +79,11 @@
       <data key="d4">technology</data>
       <data key="d5">#7994ff</data>
       <data key="d6">CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01</data>
-      <data key="d7">804.1157</data>
-      <data key="d8">582.7116</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1310.0</data>
+      <data key="d11">115.0</data>
     </node>
     <node id="ENT-CONNECTED-DISPLAY">
       <data key="d1">Connected hospitality display</data>
@@ -74,8 +92,11 @@
       <data key="d4">technology</data>
       <data key="d5">#7994ff</data>
       <data key="d6">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d7">216.3657</data>
-      <data key="d8">524.42</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">90.0</data>
+      <data key="d11">115.0</data>
     </node>
     <node id="ENT-DATA-GOVERNANCE">
       <data key="d1">Data governance</data>
@@ -84,8 +105,11 @@
       <data key="d4">context</data>
       <data key="d5">#c7a86b</data>
       <data key="d6">CLM-NIST-PMS-RISK-01</data>
-      <data key="d7">779.9435</data>
-      <data key="d8">452.1536</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">930.0</data>
+      <data key="d11">985.0</data>
     </node>
     <node id="ENT-DIGITAL-CONCIERGE">
       <data key="d1">Digital concierge and service channel</data>
@@ -94,8 +118,11 @@
       <data key="d4">feel-supported</data>
       <data key="d5">#f29138</data>
       <data key="d6">CLM-SAM-CONCIERGE-01|CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d7">660.2595</data>
-      <data key="d8">385.5661</data>
+      <data key="d7">True</data>
+      <data key="d8">secondary</data>
+      <data key="d9">capability</data>
+      <data key="d10">300.0</data>
+      <data key="d11">750.0</data>
     </node>
     <node id="ENT-ECOSYSTEM-VALUE">
       <data key="d1">Ecosystem value</data>
@@ -104,8 +131,11 @@
       <data key="d4">value</data>
       <data key="d5">#57d6a7</data>
       <data key="d6">CLM-SAM-ARCH-01|CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d7">181.7451</data>
-      <data key="d8">517.387</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1315.0</data>
+      <data key="d11">780.0</data>
     </node>
     <node id="ENT-ENERGY-EFFICIENCY">
       <data key="d1">Energy efficiency</data>
@@ -114,8 +144,11 @@
       <data key="d4">value</data>
       <data key="d5">#57d6a7</data>
       <data key="d6">CLM-ENERGY-SCENARIO-01</data>
-      <data key="d7">387.6272</data>
-      <data key="d8">294.1971</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1190.0</data>
+      <data key="d11">860.0</data>
     </node>
     <node id="ENT-FEEL-CONTROL">
       <data key="d1">Feel in control</data>
@@ -124,8 +157,11 @@
       <data key="d4">feel-in-control</data>
       <data key="d5">#78d35d</data>
       <data key="d6">CLM-SAM-SMARTTHINGS-01|CLM-ENERGY-HVAC-01</data>
-      <data key="d7">744.9727</data>
-      <data key="d8">49.7832</data>
+      <data key="d7">True</data>
+      <data key="d8">primary</data>
+      <data key="d9">outcome</data>
+      <data key="d10">700.0</data>
+      <data key="d11">260.0</data>
     </node>
     <node id="ENT-FEEL-HOME">
       <data key="d1">Feel at home</data>
@@ -134,8 +170,11 @@
       <data key="d4">feel-at-home</data>
       <data key="d5">#4cb3ff</data>
       <data key="d6">CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01</data>
-      <data key="d7">344.0393</data>
-      <data key="d8">131.9151</data>
+      <data key="d7">True</data>
+      <data key="d8">primary</data>
+      <data key="d9">outcome</data>
+      <data key="d10">475.0</data>
+      <data key="d11">390.0</data>
     </node>
     <node id="ENT-FEEL-INCLUDED">
       <data key="d1">Feel included</data>
@@ -144,8 +183,11 @@
       <data key="d4">feel-included</data>
       <data key="d5">#a986ef</data>
       <data key="d6">CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01</data>
-      <data key="d7">609.6485</data>
-      <data key="d8">266.3997</data>
+      <data key="d7">True</data>
+      <data key="d8">primary</data>
+      <data key="d9">outcome</data>
+      <data key="d10">925.0</data>
+      <data key="d11">650.0</data>
     </node>
     <node id="ENT-FEEL-RECOGNIZED">
       <data key="d1">Feel recognized</data>
@@ -154,8 +196,11 @@
       <data key="d4">feel-recognized</data>
       <data key="d5">#f4bd32</data>
       <data key="d6">CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d7">374.4916</data>
-      <data key="d8">176.8628</data>
+      <data key="d7">True</data>
+      <data key="d8">primary</data>
+      <data key="d9">outcome</data>
+      <data key="d10">925.0</data>
+      <data key="d11">390.0</data>
     </node>
     <node id="ENT-FEEL-SECURE">
       <data key="d1">Feel secure</data>
@@ -164,8 +209,11 @@
       <data key="d4">feel-secure</data>
       <data key="d5">#49c5ca</data>
       <data key="d6">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
-      <data key="d7">674.1733</data>
-      <data key="d8">30.2275</data>
+      <data key="d7">True</data>
+      <data key="d8">primary</data>
+      <data key="d9">outcome</data>
+      <data key="d10">700.0</data>
+      <data key="d11">780.0</data>
     </node>
     <node id="ENT-FEEL-SUPPORTED">
       <data key="d1">Feel supported</data>
@@ -174,8 +222,11 @@
       <data key="d4">feel-supported</data>
       <data key="d5">#f29138</data>
       <data key="d6">CLM-SAM-CONCIERGE-01|CLM-JDP-FRICTION-01</data>
-      <data key="d7">796.5627</data>
-      <data key="d8">76.3208</data>
+      <data key="d7">True</data>
+      <data key="d8">primary</data>
+      <data key="d9">outcome</data>
+      <data key="d10">475.0</data>
+      <data key="d11">650.0</data>
     </node>
     <node id="ENT-GUEST">
       <data key="d1">Guest</data>
@@ -184,8 +235,11 @@
       <data key="d4">stakeholder</data>
       <data key="d5">#8aa2b8</data>
       <data key="d6">CLM-JDP-SAMPLE-01</data>
-      <data key="d7">490.6879</data>
-      <data key="d8">262.339</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">80.0</data>
+      <data key="d11">430.0</data>
     </node>
     <node id="ENT-HUMAN-EXPERIENCE">
       <data key="d1">Human experience</data>
@@ -194,8 +248,11 @@
       <data key="d4">human-experience</data>
       <data key="d5">#f6f1e8</data>
       <data key="d6">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d7">612.1229</data>
-      <data key="d8">181.7605</data>
+      <data key="d7">True</data>
+      <data key="d8">primary</data>
+      <data key="d9">center</data>
+      <data key="d10">700.0</data>
+      <data key="d11">520.0</data>
     </node>
     <node id="ENT-HUMAN-VALUE">
       <data key="d1">Human value</data>
@@ -204,8 +261,11 @@
       <data key="d4">value</data>
       <data key="d5">#57d6a7</data>
       <data key="d6">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d7">534.6292</data>
-      <data key="d8">32.3556</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1315.0</data>
+      <data key="d11">280.0</data>
     </node>
     <node id="ENT-INTEGRATOR">
       <data key="d1">Dealer and system integrator</data>
@@ -214,8 +274,11 @@
       <data key="d4">stakeholder</data>
       <data key="d5">#8aa2b8</data>
       <data key="d6">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d7">543.735</data>
-      <data key="d8">526.5001</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">175.0</data>
+      <data key="d11">215.0</data>
     </node>
     <node id="ENT-IOT-CONTROLS">
       <data key="d1">IoT room controls</data>
@@ -224,8 +287,11 @@
       <data key="d4">feel-in-control</data>
       <data key="d5">#78d35d</data>
       <data key="d6">CLM-SAM-SMARTTHINGS-01</data>
-      <data key="d7">596.116</data>
-      <data key="d8">146.2123</data>
+      <data key="d7">True</data>
+      <data key="d8">secondary</data>
+      <data key="d9">capability</data>
+      <data key="d10">700.0</data>
+      <data key="d11">60.0</data>
     </node>
     <node id="ENT-LANGUAGE-ACCESS">
       <data key="d1">Language and accessible presentation</data>
@@ -234,8 +300,11 @@
       <data key="d4">feel-included</data>
       <data key="d5">#a986ef</data>
       <data key="d6">CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01</data>
-      <data key="d7">441.5339</data>
-      <data key="d8">400.267</data>
+      <data key="d7">True</data>
+      <data key="d8">secondary</data>
+      <data key="d9">capability</data>
+      <data key="d10">1100.0</data>
+      <data key="d11">750.0</data>
     </node>
     <node id="ENT-MACRO-CONTEXT">
       <data key="d1">Economic context</data>
@@ -244,8 +313,11 @@
       <data key="d4">context</data>
       <data key="d5">#c7a86b</data>
       <data key="d6">CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01</data>
-      <data key="d7">389.428</data>
-      <data key="d8">666.3124</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1310.0</data>
+      <data key="d11">490.0</data>
     </node>
     <node id="ENT-NETWORK-DEPENDENCY">
       <data key="d1">Network and integration dependency</data>
@@ -254,8 +326,11 @@
       <data key="d4">context</data>
       <data key="d5">#c7a86b</data>
       <data key="d6">CLM-CAST-CROSSVENDOR-01</data>
-      <data key="d7">325.2417</data>
-      <data key="d8">489.7124</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">360.0</data>
+      <data key="d11">985.0</data>
     </node>
     <node id="ENT-OEM-PLATFORM">
       <data key="d1">OEM and platform owner</data>
@@ -264,8 +339,11 @@
       <data key="d4">stakeholder</data>
       <data key="d5">#8aa2b8</data>
       <data key="d6">CLM-SAM-ARCH-01</data>
-      <data key="d7">344.3744</data>
-      <data key="d8">357.5201</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">175.0</data>
+      <data key="d11">850.0</data>
     </node>
     <node id="ENT-OPERATIONAL-SUPPORT">
       <data key="d1">Operational support efficiency</data>
@@ -274,8 +352,11 @@
       <data key="d4">value</data>
       <data key="d5">#57d6a7</data>
       <data key="d6">CLM-REMOTE-SUPPORT-INFERENCE-01</data>
-      <data key="d7">577.0874</data>
-      <data key="d8">479.5318</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1090.0</data>
+      <data key="d11">965.0</data>
     </node>
     <node id="ENT-PMS-INTEGRATION">
       <data key="d1">PMS integration</data>
@@ -284,8 +365,11 @@
       <data key="d4">feel-recognized</data>
       <data key="d5">#f4bd32</data>
       <data key="d6">CLM-ORACLE-INTEGRATION-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d7">485.7229</data>
-      <data key="d8">414.1756</data>
+      <data key="d7">True</data>
+      <data key="d8">secondary</data>
+      <data key="d9">capability</data>
+      <data key="d10">1100.0</data>
+      <data key="d11">290.0</data>
     </node>
     <node id="ENT-PRIVACY-CONTROLS">
       <data key="d1">Privacy and security controls</data>
@@ -294,8 +378,11 @@
       <data key="d4">feel-secure</data>
       <data key="d5">#49c5ca</data>
       <data key="d6">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
-      <data key="d7">814.28</data>
-      <data key="d8">271.3043</data>
+      <data key="d7">True</data>
+      <data key="d8">secondary</data>
+      <data key="d9">capability</data>
+      <data key="d10">700.0</data>
+      <data key="d11">980.0</data>
     </node>
     <node id="ENT-PROPERTY-OPERATOR">
       <data key="d1">Property owner and operator</data>
@@ -304,8 +391,11 @@
       <data key="d4">stakeholder</data>
       <data key="d5">#8aa2b8</data>
       <data key="d6">CLM-AHLA-GOPPAR-01</data>
-      <data key="d7">229.2119</data>
-      <data key="d8">292.5491</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">80.0</data>
+      <data key="d11">710.0</data>
     </node>
     <node id="ENT-PROPERTY-VALUE">
       <data key="d1">Property value</data>
@@ -314,8 +404,11 @@
       <data key="d4">value</data>
       <data key="d5">#57d6a7</data>
       <data key="d6">CLM-AHLA-GOPPAR-01</data>
-      <data key="d7">294.0181</data>
-      <data key="d8">512.8051</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1315.0</data>
+      <data key="d11">640.0</data>
     </node>
     <node id="ENT-SAMSUNG-REFERENCE">
       <data key="d1">Samsung reference architecture</data>
@@ -324,8 +417,11 @@
       <data key="d4">technology</data>
       <data key="d5">#7994ff</data>
       <data key="d6">CLM-SAM-ARCH-01</data>
-      <data key="d7">534.4096</data>
-      <data key="d8">374.6003</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">1280.0</data>
+      <data key="d11">510.0</data>
     </node>
     <node id="ENT-TECH-PARTNERS">
       <data key="d1">PMS, POS, IoT, content and service partners</data>
@@ -334,386 +430,389 @@
       <data key="d4">stakeholder</data>
       <data key="d5">#8aa2b8</data>
       <data key="d6">CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d7">526.9425</data>
-      <data key="d8">433.2347</data>
+      <data key="d7">False</data>
+      <data key="d8">secondary</data>
+      <data key="d9">outer</data>
+      <data key="d10">175.0</data>
+      <data key="d11">980.0</data>
     </node>
     <edge source="ENT-ANCILLARY-REVENUE" target="ENT-PROPERTY-VALUE">
-      <data key="d9">REL-ANCILLARY-PROPERTY</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">scenario</data>
-      <data key="d12">0.62</data>
-      <data key="d13">CLM-ANCILLARY-SCENARIO-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">No universal uplift is claimed.</data>
+      <data key="d12">REL-ANCILLARY-PROPERTY</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">scenario</data>
+      <data key="d15">0.62</data>
+      <data key="d16">CLM-ANCILLARY-SCENARIO-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">No universal uplift is claimed.</data>
     </edge>
     <edge source="ENT-AVAILABILITY-LIMITS" target="ENT-SAMSUNG-REFERENCE">
-      <data key="d9">REL-LIMITS-SAMSUNG</data>
-      <data key="d10">conditions</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.92</data>
-      <data key="d13">CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d14">SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026</data>
-      <data key="d15">Feature availability varies by model, region, language, software and licensing.</data>
+      <data key="d12">REL-LIMITS-SAMSUNG</data>
+      <data key="d13">conditions</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.92</data>
+      <data key="d16">CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01|CLM-SAM-PRIVACY-01</data>
+      <data key="d17">SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026</data>
+      <data key="d18">Feature availability varies by model, region, language, software and licensing.</data>
     </edge>
     <edge source="ENT-CASTING" target="ENT-FEEL-HOME">
-      <data key="d9">REL-CASTING-HOME</data>
-      <data key="d10">enables</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.84</data>
-      <data key="d13">CLM-CAST-CROSSVENDOR-01|CLM-JDP-USAGE-01</data>
-      <data key="d14">SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Usage supports relevance; the emotional label is an HXG interpretation.</data>
+      <data key="d12">REL-CASTING-HOME</data>
+      <data key="d13">enables</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.84</data>
+      <data key="d16">CLM-CAST-CROSSVENDOR-01|CLM-JDP-USAGE-01</data>
+      <data key="d17">SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Usage supports relevance; the emotional label is an HXG interpretation.</data>
     </edge>
     <edge source="ENT-CLOUD-MANAGEMENT" target="ENT-OPERATIONAL-SUPPORT">
-      <data key="d9">REL-CLOUD-SUPPORT</data>
-      <data key="d10">supports</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.72</data>
-      <data key="d13">CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01</data>
-      <data key="d14">SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026</data>
-      <data key="d15">Avoided dispatches are not quantified.</data>
+      <data key="d12">REL-CLOUD-SUPPORT</data>
+      <data key="d13">supports</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.72</data>
+      <data key="d16">CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01</data>
+      <data key="d17">SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026</data>
+      <data key="d18">Avoided dispatches are not quantified.</data>
     </edge>
     <edge source="ENT-CONNECTED-DISPLAY" target="ENT-CASTING">
-      <data key="d9">REL-DISPLAY-CASTING</data>
-      <data key="d10">supports</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.95</data>
-      <data key="d13">CLM-CAST-CROSSVENDOR-01</data>
-      <data key="d14">SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Support varies by product and deployment.</data>
+      <data key="d12">REL-DISPLAY-CASTING</data>
+      <data key="d13">supports</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.95</data>
+      <data key="d16">CLM-CAST-CROSSVENDOR-01</data>
+      <data key="d17">SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Support varies by product and deployment.</data>
     </edge>
     <edge source="ENT-DATA-GOVERNANCE" target="ENT-PMS-INTEGRATION">
-      <data key="d9">REL-GOVERNANCE-PMS</data>
-      <data key="d10">conditions</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.84</data>
-      <data key="d13">CLM-NIST-PMS-RISK-01|CLM-SAM-BI-01</data>
-      <data key="d14">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d15">Compliance depends on jurisdiction and implementation.</data>
+      <data key="d12">REL-GOVERNANCE-PMS</data>
+      <data key="d13">conditions</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.84</data>
+      <data key="d16">CLM-NIST-PMS-RISK-01|CLM-SAM-BI-01</data>
+      <data key="d17">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
+      <data key="d18">Compliance depends on jurisdiction and implementation.</data>
     </edge>
     <edge source="ENT-DIGITAL-CONCIERGE" target="ENT-ANCILLARY-REVENUE">
-      <data key="d9">REL-CONCIERGE-ANCILLARY</data>
-      <data key="d10">may-create</data>
-      <data key="d11">scenario</data>
-      <data key="d12">0.62</data>
-      <data key="d13">CLM-ANCILLARY-SCENARIO-01|CLM-SAM-CONCIERGE-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d15">Conversion and incrementality require property data.</data>
+      <data key="d12">REL-CONCIERGE-ANCILLARY</data>
+      <data key="d13">may-create</data>
+      <data key="d14">scenario</data>
+      <data key="d15">0.62</data>
+      <data key="d16">CLM-ANCILLARY-SCENARIO-01|CLM-SAM-CONCIERGE-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
+      <data key="d18">Conversion and incrementality require property data.</data>
     </edge>
     <edge source="ENT-DIGITAL-CONCIERGE" target="ENT-FEEL-SUPPORTED">
-      <data key="d9">REL-CONCIERGE-SUPPORTED</data>
-      <data key="d10">enables</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.89</data>
-      <data key="d13">CLM-SAM-CONCIERGE-01</data>
-      <data key="d14">SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d15">Vendor-stated capability; service quality is not measured.</data>
+      <data key="d12">REL-CONCIERGE-SUPPORTED</data>
+      <data key="d13">enables</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.89</data>
+      <data key="d16">CLM-SAM-CONCIERGE-01</data>
+      <data key="d17">SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
+      <data key="d18">Vendor-stated capability; service quality is not measured.</data>
     </edge>
     <edge source="ENT-ENERGY-EFFICIENCY" target="ENT-PROPERTY-VALUE">
-      <data key="d9">REL-ENERGY-PROPERTY</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">scenario</data>
-      <data key="d12">0.66</data>
-      <data key="d13">CLM-ENERGY-COST-01|CLM-ENERGY-HVAC-01|CLM-ENERGY-SCENARIO-01</data>
-      <data key="d14">SRC-ENERGYSTAR-LODGING|SRC-ENERGYSTAR-SMALL-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">No universal savings rate is claimed.</data>
+      <data key="d12">REL-ENERGY-PROPERTY</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">scenario</data>
+      <data key="d15">0.66</data>
+      <data key="d16">CLM-ENERGY-COST-01|CLM-ENERGY-HVAC-01|CLM-ENERGY-SCENARIO-01</data>
+      <data key="d17">SRC-ENERGYSTAR-LODGING|SRC-ENERGYSTAR-SMALL-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">No universal savings rate is claimed.</data>
     </edge>
     <edge source="ENT-FEEL-CONTROL" target="ENT-HUMAN-VALUE">
-      <data key="d9">REL-CONTROL-HUMAN</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.69</data>
-      <data key="d13">CLM-SAM-SMARTTHINGS-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">No guest outcome estimate in cited vendor evidence.</data>
+      <data key="d12">REL-CONTROL-HUMAN</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.69</data>
+      <data key="d16">CLM-SAM-SMARTTHINGS-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">No guest outcome estimate in cited vendor evidence.</data>
     </edge>
     <edge source="ENT-FEEL-HOME" target="ENT-HUMAN-VALUE">
-      <data key="d9">REL-HOME-HUMAN</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.77</data>
-      <data key="d13">CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01</data>
-      <data key="d14">SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Usage does not measure perceived value directly.</data>
+      <data key="d12">REL-HOME-HUMAN</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.77</data>
+      <data key="d16">CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01</data>
+      <data key="d17">SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Usage does not measure perceived value directly.</data>
     </edge>
     <edge source="ENT-FEEL-INCLUDED" target="ENT-HUMAN-VALUE">
-      <data key="d9">REL-INCLUDED-HUMAN</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.8</data>
-      <data key="d13">CLM-WCAG-NONGRAPH-01|CLM-SAM-LIVE-TRANSLATE-01</data>
-      <data key="d14">SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22</data>
-      <data key="d15">Accessible outcomes require conformance testing.</data>
+      <data key="d12">REL-INCLUDED-HUMAN</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.8</data>
+      <data key="d16">CLM-WCAG-NONGRAPH-01|CLM-SAM-LIVE-TRANSLATE-01</data>
+      <data key="d17">SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22</data>
+      <data key="d18">Accessible outcomes require conformance testing.</data>
     </edge>
     <edge source="ENT-FEEL-RECOGNIZED" target="ENT-HUMAN-VALUE">
-      <data key="d9">REL-RECOGNIZED-HUMAN</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.67</data>
-      <data key="d13">CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d14">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d15">Personalization capability is not proof of positive reception.</data>
+      <data key="d12">REL-RECOGNIZED-HUMAN</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.67</data>
+      <data key="d16">CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01</data>
+      <data key="d17">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
+      <data key="d18">Personalization capability is not proof of positive reception.</data>
     </edge>
     <edge source="ENT-FEEL-SECURE" target="ENT-HUMAN-VALUE">
-      <data key="d9">REL-SECURE-HUMAN</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.78</data>
-      <data key="d13">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
-      <data key="d14">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
-      <data key="d15">Trust was not measured in cited sources.</data>
+      <data key="d12">REL-SECURE-HUMAN</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.78</data>
+      <data key="d16">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
+      <data key="d17">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
+      <data key="d18">Trust was not measured in cited sources.</data>
     </edge>
     <edge source="ENT-FEEL-SUPPORTED" target="ENT-HUMAN-VALUE">
-      <data key="d9">REL-SUPPORTED-HUMAN</data>
-      <data key="d10">contributes-to</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.74</data>
-      <data key="d13">CLM-JDP-FRICTION-01|CLM-SAM-CONCIERGE-01</data>
-      <data key="d14">SRC-JDP-2025-NAGSI|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d15">General hotel-problem evidence is not specific to display service channels.</data>
+      <data key="d12">REL-SUPPORTED-HUMAN</data>
+      <data key="d13">contributes-to</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.74</data>
+      <data key="d16">CLM-JDP-FRICTION-01|CLM-SAM-CONCIERGE-01</data>
+      <data key="d17">SRC-JDP-2025-NAGSI|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
+      <data key="d18">General hotel-problem evidence is not specific to display service channels.</data>
     </edge>
     <edge source="ENT-GUEST" target="ENT-HUMAN-VALUE">
-      <data key="d9">REL-GUEST-HUMAN</data>
-      <data key="d10">receives</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.79</data>
-      <data key="d13">CLM-JDP-USAGE-01|CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Human value is not monetized in this release.</data>
+      <data key="d12">REL-GUEST-HUMAN</data>
+      <data key="d13">receives</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.79</data>
+      <data key="d16">CLM-JDP-USAGE-01|CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Human value is not monetized in this release.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-CONTROL">
-      <data key="d9">REL-HXG-CONTROL</data>
-      <data key="d10">includes</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.83</data>
-      <data key="d13">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Research synthesis, not a measured construct.</data>
+      <data key="d12">REL-HXG-CONTROL</data>
+      <data key="d13">includes</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.83</data>
+      <data key="d16">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Research synthesis, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-HOME">
-      <data key="d9">REL-HXG-HOME</data>
-      <data key="d10">includes</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.83</data>
-      <data key="d13">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Research synthesis, not a measured construct.</data>
+      <data key="d12">REL-HXG-HOME</data>
+      <data key="d13">includes</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.83</data>
+      <data key="d16">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Research synthesis, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-INCLUDED">
-      <data key="d9">REL-HXG-INCLUDED</data>
-      <data key="d10">includes</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.83</data>
-      <data key="d13">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Research synthesis, not a measured construct.</data>
+      <data key="d12">REL-HXG-INCLUDED</data>
+      <data key="d13">includes</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.83</data>
+      <data key="d16">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Research synthesis, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-RECOGNIZED">
-      <data key="d9">REL-HXG-RECOGNIZED</data>
-      <data key="d10">includes</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.83</data>
-      <data key="d13">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Research synthesis, not a measured construct.</data>
+      <data key="d12">REL-HXG-RECOGNIZED</data>
+      <data key="d13">includes</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.83</data>
+      <data key="d16">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Research synthesis, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-SECURE">
-      <data key="d9">REL-HXG-SECURE</data>
-      <data key="d10">includes</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.83</data>
-      <data key="d13">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Research synthesis, not a measured construct.</data>
+      <data key="d12">REL-HXG-SECURE</data>
+      <data key="d13">includes</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.83</data>
+      <data key="d16">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Research synthesis, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-SUPPORTED">
-      <data key="d9">REL-HXG-SUPPORTED</data>
-      <data key="d10">includes</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.83</data>
-      <data key="d13">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Research synthesis, not a measured construct.</data>
+      <data key="d12">REL-HXG-SUPPORTED</data>
+      <data key="d13">includes</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.83</data>
+      <data key="d16">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Research synthesis, not a measured construct.</data>
     </edge>
     <edge source="ENT-INTEGRATOR" target="ENT-ECOSYSTEM-VALUE">
-      <data key="d9">REL-INTEGRATOR-ECOSYSTEM</data>
-      <data key="d10">participates-in</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.71</data>
-      <data key="d13">CLM-ORCHESTRATION-THESIS-01|CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d14">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Commercial terms are property- and partner-specific.</data>
+      <data key="d12">REL-INTEGRATOR-ECOSYSTEM</data>
+      <data key="d13">participates-in</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.71</data>
+      <data key="d16">CLM-ORCHESTRATION-THESIS-01|CLM-ORACLE-INTEGRATION-01</data>
+      <data key="d17">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Commercial terms are property- and partner-specific.</data>
     </edge>
     <edge source="ENT-IOT-CONTROLS" target="ENT-FEEL-CONTROL">
-      <data key="d9">REL-IOT-CONTROL</data>
-      <data key="d10">enables</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.91</data>
-      <data key="d13">CLM-SAM-SMARTTHINGS-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Vendor-stated capability.</data>
+      <data key="d12">REL-IOT-CONTROL</data>
+      <data key="d13">enables</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.91</data>
+      <data key="d16">CLM-SAM-SMARTTHINGS-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Vendor-stated capability.</data>
     </edge>
     <edge source="ENT-IOT-CONTROLS" target="ENT-ENERGY-EFFICIENCY">
-      <data key="d9">REL-IOT-ENERGY</data>
-      <data key="d10">may-create</data>
-      <data key="d11">scenario</data>
-      <data key="d12">0.66</data>
-      <data key="d13">CLM-ENERGY-SCENARIO-01</data>
-      <data key="d14">SRC-ENERGYSTAR-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Requires measured property baselines and verified reduction.</data>
+      <data key="d12">REL-IOT-ENERGY</data>
+      <data key="d13">may-create</data>
+      <data key="d14">scenario</data>
+      <data key="d15">0.66</data>
+      <data key="d16">CLM-ENERGY-SCENARIO-01</data>
+      <data key="d17">SRC-ENERGYSTAR-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Requires measured property baselines and verified reduction.</data>
     </edge>
     <edge source="ENT-LANGUAGE-ACCESS" target="ENT-FEEL-INCLUDED">
-      <data key="d9">REL-LANGUAGE-INCLUDED</data>
-      <data key="d10">enables</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.82</data>
-      <data key="d13">CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01</data>
-      <data key="d14">SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22</data>
-      <data key="d15">Translation is only one part of accessibility.</data>
+      <data key="d12">REL-LANGUAGE-INCLUDED</data>
+      <data key="d13">enables</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.82</data>
+      <data key="d16">CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01</data>
+      <data key="d17">SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22</data>
+      <data key="d18">Translation is only one part of accessibility.</data>
     </edge>
     <edge source="ENT-NETWORK-DEPENDENCY" target="ENT-CASTING">
-      <data key="d9">REL-NETWORK-CASTING</data>
-      <data key="d10">conditions</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.88</data>
-      <data key="d13">CLM-CAST-CROSSVENDOR-01|CLM-LG-IHG-DEPLOYMENT-01</data>
-      <data key="d14">SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d15">Gateway, network and PMS requirements vary.</data>
+      <data key="d12">REL-NETWORK-CASTING</data>
+      <data key="d13">conditions</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.88</data>
+      <data key="d16">CLM-CAST-CROSSVENDOR-01|CLM-LG-IHG-DEPLOYMENT-01</data>
+      <data key="d17">SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
+      <data key="d18">Gateway, network and PMS requirements vary.</data>
     </edge>
     <edge source="ENT-OEM-PLATFORM" target="ENT-ECOSYSTEM-VALUE">
-      <data key="d9">REL-OEM-ECOSYSTEM</data>
-      <data key="d10">participates-in</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.79</data>
-      <data key="d13">CLM-SAM-ARCH-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">No vendor revenue is estimated.</data>
+      <data key="d12">REL-OEM-ECOSYSTEM</data>
+      <data key="d13">participates-in</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.79</data>
+      <data key="d16">CLM-SAM-ARCH-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">No vendor revenue is estimated.</data>
     </edge>
     <edge source="ENT-OPERATIONAL-SUPPORT" target="ENT-PROPERTY-VALUE">
-      <data key="d9">REL-SUPPORT-PROPERTY</data>
-      <data key="d10">may-contribute-to</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.72</data>
-      <data key="d13">CLM-REMOTE-SUPPORT-INFERENCE-01</data>
-      <data key="d14">SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
-      <data key="d15">Avoided dispatch cost must be measured locally.</data>
+      <data key="d12">REL-SUPPORT-PROPERTY</data>
+      <data key="d13">may-contribute-to</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.72</data>
+      <data key="d16">CLM-REMOTE-SUPPORT-INFERENCE-01</data>
+      <data key="d17">SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
+      <data key="d18">Avoided dispatch cost must be measured locally.</data>
     </edge>
     <edge source="ENT-PMS-INTEGRATION" target="ENT-FEEL-RECOGNIZED">
-      <data key="d9">REL-PMS-RECOGNIZED</data>
-      <data key="d10">enables</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.8</data>
-      <data key="d13">CLM-ORACLE-INTEGRATION-01|CLM-SAM-BI-01</data>
-      <data key="d14">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d15">Integration capability does not prove guest perception.</data>
+      <data key="d12">REL-PMS-RECOGNIZED</data>
+      <data key="d13">enables</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.8</data>
+      <data key="d16">CLM-ORACLE-INTEGRATION-01|CLM-SAM-BI-01</data>
+      <data key="d17">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
+      <data key="d18">Integration capability does not prove guest perception.</data>
     </edge>
     <edge source="ENT-PRIVACY-CONTROLS" target="ENT-FEEL-SECURE">
-      <data key="d9">REL-PRIVACY-SECURE</data>
-      <data key="d10">supports</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.84</data>
-      <data key="d13">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
-      <data key="d14">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
-      <data key="d15">Controls reduce risk but do not eliminate it.</data>
+      <data key="d12">REL-PRIVACY-SECURE</data>
+      <data key="d13">supports</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.84</data>
+      <data key="d16">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
+      <data key="d17">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
+      <data key="d18">Controls reduce risk but do not eliminate it.</data>
     </edge>
     <edge source="ENT-PROPERTY-OPERATOR" target="ENT-PROPERTY-VALUE">
-      <data key="d9">REL-OPERATOR-PROPERTY</data>
-      <data key="d10">receives</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.9</data>
-      <data key="d13">CLM-AHLA-GOPPAR-01</data>
-      <data key="d14">SRC-AHLA-2026-SOTI</data>
-      <data key="d15">Value pathways differ by property.</data>
+      <data key="d12">REL-OPERATOR-PROPERTY</data>
+      <data key="d13">receives</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.9</data>
+      <data key="d16">CLM-AHLA-GOPPAR-01</data>
+      <data key="d17">SRC-AHLA-2026-SOTI</data>
+      <data key="d18">Value pathways differ by property.</data>
     </edge>
     <edge source="ENT-PROPERTY-VALUE" target="ENT-MACRO-CONTEXT">
-      <data key="d9">REL-AHLA-CONTEXT</data>
-      <data key="d10">operates-within</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.94</data>
-      <data key="d13">CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01</data>
-      <data key="d14">SRC-AHLA-2026-ONEPAGER|SRC-AHLA-2026-SOTI|SRC-WTTC-2025-IMPACT</data>
-      <data key="d15">Economic context is not attributable value.</data>
+      <data key="d12">REL-AHLA-CONTEXT</data>
+      <data key="d13">operates-within</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.94</data>
+      <data key="d16">CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01</data>
+      <data key="d17">SRC-AHLA-2026-ONEPAGER|SRC-AHLA-2026-SOTI|SRC-WTTC-2025-IMPACT</data>
+      <data key="d18">Economic context is not attributable value.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-CASTING">
-      <data key="d9">REL-SAM-CASTING</data>
-      <data key="d10">includes</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.91</data>
-      <data key="d13">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Model and regional availability vary.</data>
+      <data key="d12">REL-SAM-CASTING</data>
+      <data key="d13">includes</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.91</data>
+      <data key="d16">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Model and regional availability vary.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-CLOUD-MANAGEMENT">
-      <data key="d9">REL-SAM-CLOUD</data>
-      <data key="d10">includes</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.92</data>
-      <data key="d13">CLM-SAM-ARCH-01|CLM-SAM-LYNK-MANAGE-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">LYNK Cloud is sold separately.</data>
+      <data key="d12">REL-SAM-CLOUD</data>
+      <data key="d13">includes</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.92</data>
+      <data key="d16">CLM-SAM-ARCH-01|CLM-SAM-LYNK-MANAGE-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">LYNK Cloud is sold separately.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-DIGITAL-CONCIERGE">
-      <data key="d9">REL-SAM-CONCIERGE</data>
-      <data key="d10">includes</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.89</data>
-      <data key="d13">CLM-SAM-ARCH-01|CLM-SAM-CONCIERGE-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Property integrations and licensing required.</data>
+      <data key="d12">REL-SAM-CONCIERGE</data>
+      <data key="d13">includes</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.89</data>
+      <data key="d16">CLM-SAM-ARCH-01|CLM-SAM-CONCIERGE-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Property integrations and licensing required.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-CONNECTED-DISPLAY">
-      <data key="d9">REL-SAM-DISPLAY</data>
-      <data key="d10">includes</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.91</data>
-      <data key="d13">CLM-SAM-ARCH-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Vendor-stated reference case.</data>
+      <data key="d12">REL-SAM-DISPLAY</data>
+      <data key="d13">includes</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.91</data>
+      <data key="d16">CLM-SAM-ARCH-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Vendor-stated reference case.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-IOT-CONTROLS">
-      <data key="d9">REL-SAM-IOT</data>
-      <data key="d10">includes</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.9</data>
-      <data key="d13">CLM-SAM-ARCH-01|CLM-SAM-SMARTTHINGS-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Compatible devices and integrations vary.</data>
+      <data key="d12">REL-SAM-IOT</data>
+      <data key="d13">includes</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.9</data>
+      <data key="d16">CLM-SAM-ARCH-01|CLM-SAM-SMARTTHINGS-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Compatible devices and integrations vary.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-LANGUAGE-ACCESS">
-      <data key="d9">REL-SAM-LANGUAGE</data>
-      <data key="d10">includes</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.89</data>
-      <data key="d13">CLM-SAM-ARCH-01|CLM-SAM-LIVE-TRANSLATE-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Supported languages, channels and content are limited.</data>
+      <data key="d12">REL-SAM-LANGUAGE</data>
+      <data key="d13">includes</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.89</data>
+      <data key="d16">CLM-SAM-ARCH-01|CLM-SAM-LIVE-TRANSLATE-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Supported languages, channels and content are limited.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-PMS-INTEGRATION">
-      <data key="d9">REL-SAM-PMS</data>
-      <data key="d10">connects-to</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.88</data>
-      <data key="d13">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Property-specific integration required.</data>
+      <data key="d12">REL-SAM-PMS</data>
+      <data key="d13">connects-to</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.88</data>
+      <data key="d16">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Property-specific integration required.</data>
     </edge>
     <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-PRIVACY-CONTROLS">
-      <data key="d9">REL-SAM-PRIVACY</data>
-      <data key="d10">includes</data>
-      <data key="d11">direct</data>
-      <data key="d12">0.9</data>
-      <data key="d13">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d14">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">Security depends on full system configuration.</data>
+      <data key="d12">REL-SAM-PRIVACY</data>
+      <data key="d13">includes</data>
+      <data key="d14">direct</data>
+      <data key="d15">0.9</data>
+      <data key="d16">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
+      <data key="d17">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">Security depends on full system configuration.</data>
     </edge>
     <edge source="ENT-TECH-PARTNERS" target="ENT-ECOSYSTEM-VALUE">
-      <data key="d9">REL-PARTNERS-ECOSYSTEM</data>
-      <data key="d10">participates-in</data>
-      <data key="d11">inferred</data>
-      <data key="d12">0.78</data>
-      <data key="d13">CLM-ORACLE-INTEGRATION-01|CLM-SAM-ARCH-01</data>
-      <data key="d14">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d15">No partner revenue is estimated.</data>
+      <data key="d12">REL-PARTNERS-ECOSYSTEM</data>
+      <data key="d13">participates-in</data>
+      <data key="d14">inferred</data>
+      <data key="d15">0.78</data>
+      <data key="d16">CLM-ORACLE-INTEGRATION-01|CLM-SAM-ARCH-01</data>
+      <data key="d17">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d18">No partner revenue is estimated.</data>
     </edge>
     <data key="d0">Hospitality Experience Graph</data>
   </graph>
