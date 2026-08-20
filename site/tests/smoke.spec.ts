@@ -58,6 +58,31 @@ test("reads the landing introduction top to bottom on the shared content grid", 
   expect(geometry.textAlign).toBe("center");
 });
 
+test("aligns readable pathway headers with their content columns", async ({ page }) => {
+  test.skip((page.viewportSize()?.width || 0) <= 620, "The compact pathway view intentionally hides column headers.");
+  const geometry = await page.evaluate(() => {
+    const headers = [...document.querySelectorAll<HTMLElement>(".hero-pathways > p span")];
+    const firstRow = document.querySelector<HTMLElement>(".hero-pathways > div")!;
+    const capability = firstRow.querySelector<HTMLElement>("strong:first-child")!;
+    const arrow = firstRow.querySelector<HTMLElement>("i")!;
+    const outcome = firstRow.querySelector<HTMLElement>("strong:last-child")!;
+    const box = (element: HTMLElement) => element.getBoundingClientRect();
+    const center = (element: HTMLElement) => box(element).left + box(element).width / 2;
+    return {
+      headerFontSize: Number.parseFloat(getComputedStyle(headers[0]).fontSize),
+      headerHeight: box(headers[0].parentElement!).height,
+      capabilityLeftDelta: Math.abs(box(headers[0]).left - box(capability).left),
+      supportCenterDelta: Math.abs(center(headers[1]) - center(arrow)),
+      outcomeLeftDelta: Math.abs(box(headers[2]).left - box(outcome).left),
+    };
+  });
+  expect(geometry.headerFontSize).toBeGreaterThanOrEqual(13.5);
+  expect(geometry.headerHeight).toBeGreaterThanOrEqual(60);
+  expect(geometry.capabilityLeftDelta).toBeLessThanOrEqual(1);
+  expect(geometry.supportCenterDelta).toBeLessThanOrEqual(1);
+  expect(geometry.outcomeLeftDelta).toBeLessThanOrEqual(1);
+});
+
 test("keeps navigation sticky and anchors clear", async ({ page }, testInfo) => {
   const skipLink = page.getByRole("link", { name: "Skip to evidence" });
   if (testInfo.project.name === "desktop-webkit" || testInfo.project.name === "iphone-14") await skipLink.focus();
