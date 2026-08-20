@@ -22,7 +22,7 @@ Samsung appears as one clearly labeled, vendor-stated reference architecture—n
 
 HXG release 0.1.0 publishes the evidence register, limitations, contradictions, GraphML/JSON exports, methodology, and reproducible build pipeline.
 
-Explore and audit the evidence: **[LIVE_EXPLORER_URL_AFTER_VERIFICATION]**
+Explore and audit the evidence: **https://lohanstruwig.github.io/hxg/**
 
 #HospitalityTechnology #GuestExperience #GraphRAG #AIResearch #HotelOperations
 

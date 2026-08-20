@@ -27,7 +27,7 @@
     1800,
     2700
   ],
-  "qr_included": false,
+  "qr_included": true,
   "release": "hxg-v0.1.0",
-  "verified_url": null
+  "verified_url": "https://lohanstruwig.github.io/hxg/"
 }
