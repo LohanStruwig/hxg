@@ -1,5 +1,5 @@
 {
-  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/entity.schema.json",
+  "$id": "https://lohanstruwig.github.io/hxg/schemas/v1/entity.schema.json",
   "additionalProperties": false,
   "properties": {
     "aliases": {

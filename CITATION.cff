@@ -5,8 +5,8 @@ type: dataset
 version: 0.1.0
 date-released: 2026-08-19
 license: CC-BY-4.0
-repository-code: "https://github.com/hospitality-experience-graph/hxg"
-url: "https://hospitality-experience-graph.github.io/hxg/"
+repository-code: "https://github.com/LohanStruwig/hxg"
+url: "https://lohanstruwig.github.io/hxg/"
 abstract: "An AI-led, evidence-audited map of connected hospitality experiences with disclosed human governance."
 authors:
   - family-names: Struwig

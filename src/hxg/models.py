@@ -153,5 +153,5 @@ PUBLIC_MODELS: tuple[type[Record], ...] = (
 
 def model_schema(model: type[Record]) -> dict[str, Any]:
     schema = model.model_json_schema()
-    schema["$id"] = f"https://hospitality-experience-graph.github.io/hxg/schemas/v1/{model.__name__.lower()}.schema.json"
+    schema["$id"] = f"https://lohanstruwig.github.io/hxg/schemas/v1/{model.__name__.lower()}.schema.json"
     return schema

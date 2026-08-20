@@ -31,7 +31,7 @@ def _source_hash(record: dict[str, Any]) -> str:
 
 def retrieve_sources(source_records: list[dict[str, Any]], timeout: float = 20.0) -> list[dict[str, Any]]:
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
-    headers = {"User-Agent": "HXG-Research/0.1 (+https://github.com/hospitality-experience-graph/hxg)"}
+    headers = {"User-Agent": "HXG-Research/0.1 (+https://github.com/LohanStruwig/hxg)"}
     def retrieve(source: dict[str, Any]) -> dict[str, Any]:
         with httpx.Client(headers=headers, follow_redirects=True, timeout=timeout) as client:
             cache_path = CACHE_DIR / f"{source['id']}.html"

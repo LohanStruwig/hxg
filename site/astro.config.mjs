@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://hospitality-experience-graph.github.io",
+  site: "https://lohanstruwig.github.io",
   base: "/hxg",
   output: "static",
   build: {

@@ -20,7 +20,7 @@
       "type": "string"
     }
   },
-  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/claim.schema.json",
+  "$id": "https://lohanstruwig.github.io/hxg/schemas/v1/claim.schema.json",
   "additionalProperties": false,
   "properties": {
     "classification": {

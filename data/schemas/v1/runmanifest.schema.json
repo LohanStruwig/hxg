@@ -40,7 +40,7 @@
       "type": "object"
     }
   },
-  "$id": "https://hospitality-experience-graph.github.io/hxg/schemas/v1/runmanifest.schema.json",
+  "$id": "https://lohanstruwig.github.io/hxg/schemas/v1/runmanifest.schema.json",
   "additionalProperties": false,
   "properties": {
     "configuration_hash": {
