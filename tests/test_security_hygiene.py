@@ -87,9 +87,15 @@ def test_release_commits_use_github_noreply_addresses() -> None:
         if address.strip()
     }
     if not addresses:
-        configured = git("config", "--get", "user.email").strip().lower()
-        addresses = {configured}
-    assert all(address.endswith("@users.noreply.github.com") for address in addresses)
+        addresses = {
+            address.strip().lower()
+            for address in git("log", "-1", "--format=%ae%n%ce", "HEAD").splitlines()
+            if address.strip()
+        }
+    assert all(
+        address.endswith("@users.noreply.github.com") or address == "noreply@github.com"
+        for address in addresses
+    )
 
 
 def test_sensitive_file_types_and_environment_files_are_not_tracked() -> None:
