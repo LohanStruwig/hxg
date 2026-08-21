@@ -1,809 +1,500 @@
 [
   {
-    "classification": "fact",
-    "confidence": 0.98,
+    "classification": "supported-inference",
+    "confidence": 0.82,
     "evidence_ids": [
-      "SRC-JDP-2026-NAGSI"
+      "SRC-HXG-FRAMEWORK"
     ],
-    "excerpt": "Availability increasing to 74% and guest usage rising to 62%.",
+    "excerpt": "",
     "geography": [
-      "United States",
-      "Canada"
+      "Global"
     ],
-    "id": "CLM-JDP-AVAIL-01",
+    "id": "CLM-HXG-PROPOSITION-01",
     "limitations": [
-      "Survey covers branded hotels in North America, not every hotel room."
+      "This is an HXG analytical proposition, not a measured market or causal finding."
     ],
-    "locator": "Key findings, ‘Today’s extras are tomorrow’s expectations’",
-    "metric": "smart-TV availability",
-    "outcome": "feel-at-home",
-    "period": "stays from May 2025 through May 2026",
-    "review_state": "audited",
-    "schema_version": "1.0.0",
-    "stakeholder": "guest-behavior",
-    "text": "J.D. Power reported smart TVs with streaming capabilities were available in 74% of surveyed branded hotel guest rooms in its 2026 North America study.",
-    "unit": "percent",
-    "value": 74,
-    "value_type": "human"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.98,
-    "evidence_ids": [
-      "SRC-JDP-2026-NAGSI"
-    ],
-    "excerpt": "Availability increasing to 74% and guest usage rising to 62%.",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "id": "CLM-JDP-USAGE-01",
-    "limitations": [
-      "Usage is among respondents in the branded-hotel study and does not establish satisfaction impact."
-    ],
-    "locator": "Key findings, ‘Today’s extras are tomorrow’s expectations’",
-    "metric": "smart-TV guest usage",
-    "outcome": "feel-at-home",
-    "period": "stays from May 2025 through May 2026",
-    "review_state": "audited",
-    "schema_version": "1.0.0",
-    "stakeholder": "guest-behavior",
-    "text": "J.D. Power reported 62% guest usage of smart TVs with streaming capabilities in its 2026 North America study.",
-    "unit": "percent",
-    "value": 62,
-    "value_type": "human"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.99,
-    "evidence_ids": [
-      "SRC-JDP-2026-NAGSI"
-    ],
-    "excerpt": "Based on responses from 44,787 branded hotel guests.",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "id": "CLM-JDP-SAMPLE-01",
-    "limitations": [
-      "Respondents were branded hotel guests."
-    ],
-    "locator": "Study methodology paragraph",
-    "metric": "respondents",
-    "outcome": "feel-at-home",
-    "period": "past 30-day stays between May 2025 and May 2026",
-    "review_state": "audited",
-    "schema_version": "1.0.0",
-    "stakeholder": "guest-behavior",
-    "text": "The 2026 J.D. Power hotel guest satisfaction study was based on responses from 44,787 branded hotel guests.",
-    "unit": "people",
-    "value": 44787,
-    "value_type": "methodology"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.94,
-    "evidence_ids": [
-      "SRC-JDP-2025-NAGSI"
-    ],
-    "excerpt": "40% of guests say smart TV or streaming is a ‘need to have.’",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "id": "CLM-JDP-EXPECTATION-01",
-    "limitations": [
-      "The 2025 study was redesigned; historical comparisons should be treated cautiously."
-    ],
-    "locator": "Key findings, guest-room technology",
-    "metric": "need-to-have response",
-    "outcome": "feel-at-home",
-    "period": "2025 study with 2019 comparison",
-    "review_state": "limited",
-    "schema_version": "1.0.0",
-    "stakeholder": "guest-behavior",
-    "text": "In 2025, J.D. Power reported that 40% of guests called smart TV or streaming capability a need-to-have amenity, compared with 21% in 2019.",
-    "unit": "percent",
-    "value": 40,
-    "value_type": "human"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.94,
-    "evidence_ids": [
-      "SRC-JDP-2025-NAGSI"
-    ],
-    "excerpt": "Guests who encounter a problem have substantially lower satisfaction.",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "id": "CLM-JDP-FRICTION-01",
-    "limitations": [
-      "This is hotel-problem evidence generally, not a causal estimate for display or casting failures."
-    ],
-    "locator": "Key findings, problem incidence",
-    "metric": "satisfaction score difference",
-    "outcome": "feel-supported",
-    "period": "2025 study",
-    "review_state": "limited",
-    "schema_version": "1.0.0",
-    "stakeholder": "guest-behavior",
-    "text": "J.D. Power reported a 217-point satisfaction gap in 2025 between guests who experienced a hotel problem and those who did not.",
-    "unit": "points on 1,000-point scale",
-    "value": 217,
-    "value_type": "human"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.96,
-    "evidence_ids": [
-      "SRC-AHLA-2026-SOTI",
-      "SRC-AHLA-2026-ONEPAGER"
-    ],
-    "excerpt": "Hotel guest spending in 2026 is expected to reach nearly $805 billion.",
-    "geography": [
-      "United States"
-    ],
-    "id": "CLM-AHLA-SPEND-01",
-    "limitations": [
-      "Industry context only; no portion is attributable to connected screens."
-    ],
-    "locator": "Key findings, bullet 2",
-    "metric": "hotel guest spending",
+    "locator": "HXG framework, working proposition",
+    "metric": null,
     "outcome": null,
-    "period": "2026",
-    "review_state": "audited",
-    "schema_version": "1.0.0",
-    "stakeholder": "industry",
-    "text": "AHLA projects U.S. hotel guest spending will reach nearly $805 billion in 2026.",
-    "unit": "USD billions, projected",
-    "value": 805,
-    "value_type": "macro-context"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.95,
-    "evidence_ids": [
-      "SRC-AHLA-2026-SOTI"
-    ],
-    "excerpt": "GOPPAR at roughly 90% of 2019 levels.",
-    "geography": [
-      "United States"
-    ],
-    "id": "CLM-AHLA-GOPPAR-01",
-    "limitations": [
-      "Industry aggregate; individual property economics vary."
-    ],
-    "locator": "Key findings, bullet 3",
-    "metric": "gross operating profit per available room versus 2019",
-    "outcome": null,
-    "period": "2026 outlook versus 2019",
-    "review_state": "audited",
-    "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "AHLA reported rising operating expenses as a primary factor keeping 2026 GOPPAR at roughly 90% of 2019 levels.",
-    "unit": "percent",
-    "value": 90,
-    "value_type": "property"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.87,
-    "evidence_ids": [
-      "SRC-ENERGYSTAR-LODGING",
-      "SRC-ENERGYSTAR-SMALL-LODGING"
-    ],
-    "excerpt": "Lodging businesses spend approximately 6% of operating costs on energy.",
-    "geography": [
-      "United States"
-    ],
-    "id": "CLM-ENERGY-COST-01",
-    "limitations": [
-      "Current guidance cites benchmark context that may predate 2026; it is not a new 2026 measurement."
-    ],
-    "locator": "Lodging guidance, energy-use overview",
-    "metric": "energy share of lodging operating costs",
-    "outcome": "feel-in-control",
-    "period": "current agency guidance accessed 2026-08-19",
+    "period": null,
     "review_state": "limited",
     "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "ENERGY STAR lodging guidance says energy represents about 6% of lodging operating costs.",
-    "unit": "percent, approximately",
-    "value": 6,
-    "value_type": "property"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.87,
-    "evidence_ids": [
-      "SRC-ENERGYSTAR-LODGING",
-      "SRC-ENERGYSTAR-SMALL-LODGING"
-    ],
-    "excerpt": "Heating and cooling represent almost 40% of electricity use.",
-    "geography": [
-      "United States"
-    ],
-    "id": "CLM-ENERGY-HVAC-01",
-    "limitations": [
-      "Current guidance, not a newly measured 2026 industry average."
-    ],
-    "locator": "Lodging guidance, energy-use overview",
-    "metric": "heating and cooling share of electricity use",
-    "outcome": "feel-in-control",
-    "period": "current agency guidance accessed 2026-08-19",
-    "review_state": "limited",
-    "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "ENERGY STAR lodging guidance says heating and cooling account for almost 40% of hotel electricity use.",
-    "unit": "percent, almost",
-    "value": 40,
-    "value_type": "property"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.94,
-    "evidence_ids": [
-      "SRC-WTTC-2025-IMPACT"
-    ],
-    "excerpt": "Travel and Tourism contributed $11.6 trillion to global GDP in 2025.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-WTTC-GDP-01",
-    "limitations": [
-      "Macroeconomic context only; not attributable revenue for connected hospitality screens."
-    ],
-    "locator": "Economic Impact Research summary",
-    "metric": "Travel and Tourism GDP contribution",
-    "outcome": null,
-    "period": "2025",
-    "review_state": "audited",
-    "schema_version": "1.0.0",
-    "stakeholder": "industry",
-    "text": "WTTC estimates Travel and Tourism contributed $11.6 trillion to global GDP in 2025.",
-    "unit": "USD trillions",
-    "value": 11.6,
-    "value_type": "macro-context"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.95,
-    "evidence_ids": [
-      "SRC-SAM-FRAME-2026",
-      "SRC-SAM-AIRPLAY-2024",
-      "SRC-LG-AIRPLAY-IHG-2024",
-      "SRC-LG-GOOGLE-CAST-2025",
-      "SRC-APPLE-AIRPLAY-IHG-2024"
-    ],
-    "excerpt": "Hospitality TVs support guest-device casting through vendor-specific deployments.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-CAST-CROSSVENDOR-01",
-    "limitations": [
-      "Availability depends on model, region, software, property network, gateway, and PMS configuration."
-    ],
-    "locator": "Vendor capability and implementation announcements",
-    "metric": null,
-    "outcome": "feel-at-home",
-    "period": "2024-2026",
-    "review_state": "audited",
-    "schema_version": "1.0.0",
-    "stakeholder": "technology",
-    "text": "Current Samsung and LG hospitality offerings both describe guest-device casting or AirPlay capabilities for hotel-room televisions.",
+    "stakeholder": null,
+    "text": "HXG proposes that an in-room display can be treated as an experience-orchestration layer connecting guest-facing capabilities, operational systems, and property-specific value questions.",
     "unit": null,
     "value": null,
-    "value_type": "human"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.92,
-    "evidence_ids": [
-      "SRC-SAM-FRAME-2026",
-      "SRC-SAM-HITEC-2025"
-    ],
-    "excerpt": "No separate login is required, and device connection information is automatically deleted upon checkout.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-SAM-PRIVACY-01",
-    "limitations": [
-      "Vendor-stated; model, device, software, and regional availability vary.",
-      "Secure deployment still depends on property network and integration design."
-    ],
-    "locator": "Frame hospitality announcement, connected-experience section and footnote 3",
-    "metric": null,
-    "outcome": "feel-secure",
-    "period": "2025-2026 models",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "technology",
-    "text": "Samsung states that supported hotel TVs allow QR-based Google Cast or Apple AirPlay pairing without a separate login and automatically delete connection information at checkout.",
-    "unit": null,
-    "value": null,
-    "value_type": "human"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.94,
-    "evidence_ids": [
-      "SRC-SAM-FRAME-2026",
-      "SRC-SAM-PERSONALIZED-2026",
-      "SRC-SAM-LYNK-CATALOG"
-    ],
-    "excerpt": "Monitor TV status in real time, update on-screen services and distribute guest-facing content.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-SAM-LYNK-MANAGE-01",
-    "limitations": [
-      "Vendor-stated; LYNK Cloud is sold separately and feature availability varies by region and device."
-    ],
-    "locator": "Frame hospitality announcement, ‘Managing Hospitality Features From One Platform’",
-    "metric": null,
-    "outcome": "feel-supported",
-    "period": "current product documentation",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "Samsung states that LYNK Cloud can centrally monitor TV status, update on-screen services, and distribute guest-facing content across supported displays.",
-    "unit": null,
-    "value": null,
-    "value_type": "property"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.91,
-    "evidence_ids": [
-      "SRC-SAM-FRAME-2026",
-      "SRC-SAM-LYNK-CATALOG"
-    ],
-    "excerpt": "Guests can access digital concierge features, book hotel services and order room service.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-SAM-CONCIERGE-01",
-    "limitations": [
-      "Vendor-stated; availability depends on property integrations and local configuration.",
-      "No public evidence in this release quantifies incremental revenue."
-    ],
-    "locator": "Frame hospitality announcement, LYNK Cloud section",
-    "metric": null,
-    "outcome": "feel-supported",
-    "period": "current product documentation",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "technology",
-    "text": "Samsung states that LYNK Cloud can expose digital concierge functions, hotel-service booking, and room-service ordering through supported in-room TVs.",
-    "unit": null,
-    "value": null,
-    "value_type": "property"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.9,
-    "evidence_ids": [
-      "SRC-SAM-FRAME-2026",
-      "SRC-SAM-LYNK-CATALOG"
-    ],
-    "excerpt": "Understand how guests use in-room TV services, including frequently ordered menu items or popular TV channels.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-SAM-BI-01",
-    "limitations": [
-      "Vendor-stated; analytics availability and lawful data use depend on deployment and governance."
-    ],
-    "locator": "Frame hospitality announcement, Business Intelligence paragraph",
-    "metric": null,
-    "outcome": "feel-recognized",
-    "period": "current product documentation",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "Samsung states that LYNK Cloud Business Intelligence can show how guests use supported in-room TV services, including menu-item orders and channel popularity.",
-    "unit": null,
-    "value": null,
-    "value_type": "property"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.91,
-    "evidence_ids": [
-      "SRC-SAM-FRAME-2026"
-    ],
-    "excerpt": "Live Translate helps international travelers watch supported content with subtitles in a preferred language.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-SAM-LIVE-TRANSLATE-01",
-    "limitations": [
-      "Vendor-stated; requires supported closed-captioned content and varies by model, region, language, and channel.",
-      "Translation is not equivalent to full interface accessibility."
-    ],
-    "locator": "Frame hospitality announcement, paragraph 76 and footnote 2",
-    "metric": null,
-    "outcome": "feel-included",
-    "period": "announced June 2026",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "technology",
-    "text": "Samsung states that its 2026 Frame hospitality model supports Live Translate subtitles for specified languages and supported broadcast content.",
-    "unit": null,
-    "value": null,
-    "value_type": "human"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.92,
-    "evidence_ids": [
-      "SRC-SAM-AIRPLAY-2024",
-      "SRC-SAM-INF-COMM-2024",
-      "SRC-SAM-HVAC-2026",
-      "SRC-SAM-SMARTTHINGS-PRO"
-    ],
-    "excerpt": "Connect and control compatible hospitality TVs, signage, air conditioning and IoT devices through one dashboard.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-SAM-SMARTTHINGS-01",
-    "limitations": [
-      "Vendor-stated; compatible devices, integrations, and features vary by market and deployment."
-    ],
-    "locator": "AirPlay announcement, SmartThings Pro paragraphs and footnotes",
-    "metric": null,
-    "outcome": "feel-in-control",
-    "period": "2024-2026 documentation",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "Samsung states that SmartThings Pro can provide centralized monitoring and control of compatible displays, HVAC, and IoT devices, with APIs for existing systems.",
-    "unit": null,
-    "value": null,
-    "value_type": "property"
+    "value_type": null
   },
   {
     "classification": "supported-inference",
-    "confidence": 0.89,
+    "confidence": 0.8,
     "evidence_ids": [
-      "SRC-SAM-FRAME-2026",
-      "SRC-SAM-HITEC-2025",
-      "SRC-SAM-AIRPLAY-2024",
-      "SRC-SAM-SMARTTHINGS-PRO",
-      "SRC-SAM-LYNK-CATALOG"
+      "SRC-HXG-FRAMEWORK"
     ],
-    "excerpt": "Display hardware, casting, LYNK Cloud, SmartThings Pro, PMS integration, analytics and security controls appear as one documented stack.",
+    "excerpt": "",
     "geography": [
       "Global"
     ],
-    "id": "CLM-SAM-ARCH-01",
+    "id": "CLM-HXG-PATH-HOME-01",
     "limitations": [
-      "Reference architecture, not an independent performance comparison or endorsement.",
-      "Individual features have separate model, region, integration, and licensing constraints."
+      "This is an analytical pathway for evaluation, not an empirically proven guest preference or causal effect."
     ],
-    "locator": "Synthesis across cited Samsung primary sources",
+    "locator": "HXG framework, Feel at home pathway",
     "metric": null,
-    "outcome": null,
-    "period": "2024-2026 product documentation",
-    "review_state": "vendor-stated",
+    "outcome": "feel-at-home",
+    "period": null,
+    "review_state": "limited",
     "schema_version": "1.0.0",
-    "stakeholder": "oem-platform",
-    "text": "Samsung's documented hospitality stack is a vendor-stated example of a hybrid architecture combining displays, cloud management, casting, IoT control, security controls, analytics, and PMS-connected services.",
+    "stakeholder": null,
+    "text": "HXG maps the capability 'Cast from your device' to the guest outcome 'Feel at home' using the bounded relationship 'can support'.",
     "unit": null,
     "value": null,
-    "value_type": "ecosystem"
+    "value_type": null
+  },
+  {
+    "classification": "supported-inference",
+    "confidence": 0.8,
+    "evidence_ids": [
+      "SRC-HXG-FRAMEWORK"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-PATH-CONTROL-01",
+    "limitations": [
+      "This is an analytical pathway for evaluation, not an empirically proven guest preference or causal effect."
+    ],
+    "locator": "HXG framework, Feel in control pathway",
+    "metric": null,
+    "outcome": "feel-in-control",
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "HXG maps the capability 'Control room settings' to the guest outcome 'Feel in control' using the bounded relationship 'can support'.",
+    "unit": null,
+    "value": null,
+    "value_type": null
+  },
+  {
+    "classification": "supported-inference",
+    "confidence": 0.8,
+    "evidence_ids": [
+      "SRC-HXG-FRAMEWORK"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-PATH-RECOGNIZED-01",
+    "limitations": [
+      "This is an analytical pathway for evaluation, not an empirically proven guest preference or causal effect."
+    ],
+    "locator": "HXG framework, Feel recognized pathway",
+    "metric": null,
+    "outcome": "feel-recognized",
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "HXG maps the capability 'Connect stay context' to the guest outcome 'Feel recognized' using the bounded relationship 'can support'.",
+    "unit": null,
+    "value": null,
+    "value_type": null
+  },
+  {
+    "classification": "supported-inference",
+    "confidence": 0.8,
+    "evidence_ids": [
+      "SRC-HXG-FRAMEWORK"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-PATH-INCLUDED-01",
+    "limitations": [
+      "This is an analytical pathway for evaluation, not an empirically proven guest preference or causal effect."
+    ],
+    "locator": "HXG framework, Feel included pathway",
+    "metric": null,
+    "outcome": "feel-included",
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "HXG maps the capability 'Present content accessibly' to the guest outcome 'Feel included' using the bounded relationship 'can support'.",
+    "unit": null,
+    "value": null,
+    "value_type": null
+  },
+  {
+    "classification": "supported-inference",
+    "confidence": 0.8,
+    "evidence_ids": [
+      "SRC-HXG-FRAMEWORK"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-PATH-SECURE-01",
+    "limitations": [
+      "This is an analytical pathway for evaluation, not an empirically proven guest preference or causal effect."
+    ],
+    "locator": "HXG framework, Feel secure pathway",
+    "metric": null,
+    "outcome": "feel-secure",
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "HXG maps the capability 'Protect sessions and data' to the guest outcome 'Feel secure' using the bounded relationship 'can support'.",
+    "unit": null,
+    "value": null,
+    "value_type": null
+  },
+  {
+    "classification": "supported-inference",
+    "confidence": 0.8,
+    "evidence_ids": [
+      "SRC-HXG-FRAMEWORK"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-PATH-SUPPORTED-01",
+    "limitations": [
+      "This is an analytical pathway for evaluation, not an empirically proven guest preference or causal effect."
+    ],
+    "locator": "HXG framework, Feel supported pathway",
+    "metric": null,
+    "outcome": "feel-supported",
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "HXG maps the capability 'Request services and help' to the guest outcome 'Feel supported' using the bounded relationship 'can support'.",
+    "unit": null,
+    "value": null,
+    "value_type": null
   },
   {
     "classification": "fact",
     "confidence": 0.95,
-    "evidence_ids": [
-      "SRC-LG-AIRPLAY-IHG-2024",
-      "SRC-APPLE-AIRPLAY-IHG-2024"
-    ],
-    "excerpt": "Available at more than 60 IHG hotels in North America.",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "id": "CLM-LG-IHG-DEPLOYMENT-01",
-    "limitations": [
-      "Vendor and partner announcement; property count is deployment availability, not guest outcome evidence."
-    ],
-    "locator": "Launch announcement",
-    "metric": "hotel properties",
-    "outcome": "feel-at-home",
-    "period": "April 2024 launch",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "implementation",
-    "text": "LG and Apple announced AirPlay availability at more than 60 IHG hotels in North America in April 2024.",
-    "unit": "more than",
-    "value": 60,
-    "value_type": "ecosystem"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.91,
-    "evidence_ids": [
-      "SRC-ORACLE-ENGAGEMENT-2024",
-      "SRC-ORACLE-OPERA-DOCS",
-      "SRC-ORACLE-MGX-2024",
-      "SRC-ORACLE-OHIP-2025"
-    ],
-    "excerpt": "OPERA Cloud exposes guest-engagement, merchandising, mobile and integration capabilities.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-ORACLE-INTEGRATION-01",
-    "limitations": [
-      "Vendor-stated platform capability; actual screen integration requires property-specific implementation."
-    ],
-    "locator": "Product announcement and official user guides",
-    "metric": null,
-    "outcome": "feel-recognized",
-    "period": "2024-2026 documentation",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "technology-partner",
-    "text": "Oracle documentation describes OPERA Cloud guest-engagement, merchandising, mobile-experience, and integration capabilities that can connect PMS records with external hospitality services.",
-    "unit": null,
-    "value": null,
-    "value_type": "ecosystem"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.9,
-    "evidence_ids": [
-      "SRC-SAM-ROYAL-CARIBBEAN-2026"
-    ],
-    "excerpt": "More than 6,000 displays on Star of the Seas and more than 200,000 across 28 ships.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-ROYAL-CARIBBEAN-01",
-    "limitations": [
-      "Vendor-stated case study; counts are not independently audited in this release."
-    ],
-    "locator": "Implementation announcement",
-    "metric": "installed displays",
-    "outcome": "feel-supported",
-    "period": "reported January 2026",
-    "review_state": "vendor-stated",
-    "schema_version": "1.0.0",
-    "stakeholder": "implementation",
-    "text": "Samsung reports supplying more than 6,000 hospitality displays for Star of the Seas and more than 200,000 displays across 28 Royal Caribbean ships over the relationship.",
-    "unit": "more than across fleet",
-    "value": 200000,
-    "value_type": "ecosystem"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.99,
     "evidence_ids": [
       "SRC-W3C-WCAG22",
       "SRC-W3C-ACCESSIBILITY-PRINCIPLES"
     ],
-    "excerpt": "Information, structure and relationships conveyed through presentation can be programmatically determined or are available in text.",
+    "excerpt": "",
     "geography": [
       "Global"
     ],
-    "id": "CLM-WCAG-NONGRAPH-01",
+    "id": "CLM-W3C-ACCESS-01",
     "limitations": [
-      "WCAG conformance for the explorer requires implementation testing beyond citing the standard."
+      "Conformance must be evaluated against the applicable interface and content; the guidance does not certify HXG or a hospitality product."
     ],
-    "locator": "Success criteria 1.3.1 and 1.4.1",
+    "locator": "WCAG 2.2 principles; paraphrase only",
     "metric": null,
     "outcome": "feel-included",
-    "period": "WCAG 2.2 recommendation",
+    "period": null,
     "review_state": "audited",
     "schema_version": "1.0.0",
-    "stakeholder": "accessibility",
-    "text": "WCAG 2.2 requires that information and relationships conveyed visually also be programmatically determinable or available in text, and that color not be the only differentiator.",
+    "stakeholder": null,
+    "text": "W3C accessibility guidance provides established principles for making digital content perceivable, operable, understandable, and robust.",
     "unit": null,
     "value": null,
-    "value_type": "human"
+    "value_type": null
   },
   {
     "classification": "fact",
     "confidence": 0.94,
     "evidence_ids": [
-      "SRC-NIST-PMS-2020",
       "SRC-NIST-IOT-HANDBOOK-2024"
     ],
-    "excerpt": "Protect sensitive data, enforce role-based access control and monitor for anomalies.",
+    "excerpt": "",
     "geography": [
-      "United States"
+      "Global"
+    ],
+    "id": "CLM-NIST-IOT-LIFECYCLE-01",
+    "limitations": [
+      "General cybersecurity guidance does not certify any specific hospitality deployment."
+    ],
+    "locator": "NIST IoT handbook overview; paraphrase only",
+    "metric": null,
+    "outcome": "feel-secure",
+    "period": null,
+    "review_state": "audited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "NIST guidance treats cybersecurity as a lifecycle responsibility for IoT products and connected environments.",
+    "unit": null,
+    "value": null,
+    "value_type": null
+  },
+  {
+    "classification": "fact",
+    "confidence": 0.94,
+    "evidence_ids": [
+      "SRC-NIST-PMS-2020"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
     ],
     "id": "CLM-NIST-PMS-RISK-01",
     "limitations": [
-      "The PMS reference design is older historical context and is not a certification of any cited vendor implementation."
+      "Historical U.S. guidance; implementation and jurisdictional requirements vary."
     ],
-    "locator": "NIST SP 1800-27 abstract and principal recommendations",
+    "locator": "NIST SP 1800-27 overview; paraphrase only",
     "metric": null,
     "outcome": "feel-secure",
-    "period": "historical PMS reference design plus 2024 IoT guidance",
-    "review_state": "limited",
-    "schema_version": "1.0.0",
-    "stakeholder": "privacy-security",
-    "text": "NIST identifies hotel property-management systems as attractive attack surfaces and recommends access control, monitoring, tokenization, and zero-trust concepts in its hospitality reference design.",
-    "unit": null,
-    "value": null,
-    "value_type": "risk"
-  },
-  {
-    "classification": "fact",
-    "confidence": 0.98,
-    "evidence_ids": [
-      "SRC-OPENAI-ORCHESTRATION",
-      "SRC-OPENAI-TRACING"
-    ],
-    "excerpt": "A manager can retain control while invoking specialist agents as bounded tools.",
-    "geography": [
-      "Global"
-    ],
-    "id": "CLM-OPENAI-MANAGER-01",
-    "limitations": [
-      "Architecture guidance does not itself validate the quality of HXG evidence outputs."
-    ],
-    "locator": "Manager-style orchestration pattern",
-    "metric": null,
-    "outcome": null,
-    "period": "guidance accessed 2026-08-19",
+    "period": null,
     "review_state": "audited",
     "schema_version": "1.0.0",
-    "stakeholder": "methodology",
-    "text": "OpenAI's orchestration guidance supports a manager agent retaining responsibility while calling bounded specialist agents as tools.",
+    "stakeholder": null,
+    "text": "NIST documents security considerations for property management system environments and their connected components.",
     "unit": null,
     "value": null,
-    "value_type": "methodology"
+    "value_type": null
   },
   {
     "classification": "fact",
-    "confidence": 0.96,
+    "confidence": 0.93,
     "evidence_ids": [
       "SRC-MS-GRAPHRAG-REPO",
-      "SRC-MS-GRAPHRAG-PAPER",
-      "SRC-MS-GRAPHRAG-BLOG"
+      "SRC-MS-GRAPHRAG-PAPER"
     ],
-    "excerpt": "An entity knowledge graph and community summaries support global and local corpus questions.",
+    "excerpt": "",
     "geography": [
       "Global"
     ],
-    "id": "CLM-GRAPHRAG-01",
+    "id": "CLM-GRAPHRAG-METHOD-01",
     "limitations": [
-      "GraphRAG proposals still require deterministic validation and citation audit before publication."
+      "Method capability does not establish the correctness of any HXG claim; deterministic validation and human review remain required."
     ],
-    "locator": "Project overview and paper abstract",
+    "locator": "GraphRAG repository and paper overview; paraphrase only",
     "metric": null,
     "outcome": null,
-    "period": "2024-2026 project documentation",
+    "period": null,
     "review_state": "audited",
     "schema_version": "1.0.0",
-    "stakeholder": "methodology",
-    "text": "Microsoft GraphRAG extracts an entity graph and community summaries to support query-focused synthesis across a corpus.",
+    "stakeholder": null,
+    "text": "GraphRAG provides a graph-based approach for organizing entities, relationships, and community-level summaries from a source corpus.",
     "unit": null,
     "value": null,
-    "value_type": "methodology"
+    "value_type": null
+  },
+  {
+    "classification": "fact",
+    "confidence": 0.95,
+    "evidence_ids": [
+      "SRC-GITHUB-PAGES"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-GITHUB-PAGES-01",
+    "limitations": [
+      "This describes the publication mechanism, not evidence quality."
+    ],
+    "locator": "GitHub Pages overview; paraphrase only",
+    "metric": null,
+    "outcome": null,
+    "period": null,
+    "review_state": "audited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "GitHub Pages can publish a static site from repository content and an Actions-based build.",
+    "unit": null,
+    "value": null,
+    "value_type": null
   },
   {
     "classification": "supported-inference",
-    "confidence": 0.83,
+    "confidence": 0.84,
     "evidence_ids": [
-      "SRC-JDP-2026-NAGSI",
-      "SRC-SAM-FRAME-2026",
-      "SRC-LG-PROCENTRIC-2026",
-      "SRC-ORACLE-ENGAGEMENT-2024"
+      "SRC-HXG-FRAMEWORK"
     ],
-    "excerpt": "Guest usage is substantial while current platforms connect casting, content, services, data and operations.",
+    "excerpt": "",
     "geography": [
-      "Global",
-      "United States",
-      "Canada"
+      "Global"
     ],
-    "id": "CLM-ORCHESTRATION-THESIS-01",
+    "id": "CLM-HXG-STAKEHOLDERS-01",
     "limitations": [
-      "This is a cross-source interpretation, not a measured causal outcome.",
-      "Implementation quality, integration, adoption, privacy, and availability determine realized value."
+      "Roles and commercial arrangements vary by property and deployment."
     ],
-    "locator": "HXG synthesis across independent and vendor-primary evidence",
+    "locator": "HXG framework, stakeholder model",
     "metric": null,
     "outcome": null,
-    "period": "2024-2026",
-    "review_state": "audited",
+    "period": null,
+    "review_state": "limited",
     "schema_version": "1.0.0",
-    "stakeholder": "research-synthesis",
-    "text": "Taken together, independent guest usage data and cross-vendor platform capabilities support treating the in-room display as an experience-orchestration layer rather than only an entertainment device.",
+    "stakeholder": "hospitality-ecosystem",
+    "text": "HXG groups stakeholders by who experiences the interaction, who operates the property, who enables the systems, and who must validate any claimed value.",
     "unit": null,
     "value": null,
-    "value_type": "human-property-ecosystem"
+    "value_type": null
+  },
+  {
+    "classification": "modeled-scenario",
+    "confidence": 0.6,
+    "evidence_ids": [
+      "SRC-HXG-VALUE-MODEL"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-VALUE-ANCILLARY-01",
+    "limitations": [
+      "Every input must be measured locally; no universal rate, uplift, or ROI is supplied."
+    ],
+    "locator": "HXG value model, ancillary formula",
+    "metric": "eligible room nights x engagement x incremental conversion x contribution margin",
+    "outcome": null,
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "Potential ancillary contribution can be modeled as eligible occupied room nights multiplied by measured engagement, incremental conversion, and contribution margin.",
+    "unit": null,
+    "value": null,
+    "value_type": "ancillary-contribution"
+  },
+  {
+    "classification": "modeled-scenario",
+    "confidence": 0.6,
+    "evidence_ids": [
+      "SRC-HXG-VALUE-MODEL"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-VALUE-ENERGY-01",
+    "limitations": [
+      "Requires a property baseline, a defensible counterfactual, and verified measurement; no savings rate is supplied."
+    ],
+    "locator": "HXG value model, energy formula",
+    "metric": "verified baseline x controllable share x measured attributable reduction",
+    "outcome": null,
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "Potential energy value can be modeled as a verified baseline multiplied by controllable share and a measured reduction attributable to the intervention.",
+    "unit": null,
+    "value": null,
+    "value_type": "energy-value"
+  },
+  {
+    "classification": "modeled-scenario",
+    "confidence": 0.6,
+    "evidence_ids": [
+      "SRC-HXG-VALUE-MODEL"
+    ],
+    "excerpt": "",
+    "geography": [
+      "Global"
+    ],
+    "id": "CLM-HXG-VALUE-SUPPORT-01",
+    "limitations": [
+      "Remote resolution and avoided dispatches must be verified locally; no savings rate is supplied."
+    ],
+    "locator": "HXG value model, support formula",
+    "metric": "verified remote resolutions x measured avoided dispatch cost",
+    "outcome": null,
+    "period": null,
+    "review_state": "limited",
+    "schema_version": "1.0.0",
+    "stakeholder": null,
+    "text": "Potential operational-support value can be modeled as remotely resolved incidents multiplied by measured avoided dispatch cost.",
+    "unit": null,
+    "value": null,
+    "value_type": "operational-support"
   },
   {
     "classification": "supported-inference",
-    "confidence": 0.72,
+    "confidence": 0.82,
     "evidence_ids": [
-      "SRC-SAM-FRAME-2026",
-      "SRC-SAM-HITEC-2025",
-      "SRC-LG-PROCENTRIC-SMART"
+      "SRC-HXG-FRAMEWORK",
+      "SRC-NIST-IOT-HANDBOOK-2024"
     ],
-    "excerpt": "Remote monitoring creates a plausible path to fewer on-site interventions; the savings are unmeasured here.",
+    "excerpt": "",
     "geography": [
       "Global"
     ],
-    "id": "CLM-REMOTE-SUPPORT-INFERENCE-01",
+    "id": "CLM-HXG-NETWORK-CONDITION-01",
     "limitations": [
-      "No avoided-dispatch rate or cost is established by the cited sources.",
-      "Actual savings require property incident and labor data."
+      "Network requirements are deployment-specific."
     ],
-    "locator": "Inference from remote monitoring capabilities",
+    "locator": "HXG framework, network condition",
     "metric": null,
-    "outcome": "feel-supported",
-    "period": "current platform capabilities",
+    "outcome": null,
+    "period": null,
     "review_state": "limited",
     "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "Central device monitoring and error visibility may reduce some on-site support requirements when incidents can be diagnosed or resolved remotely.",
+    "stakeholder": null,
+    "text": "HXG treats network readiness as a condition that can change whether connected guest capabilities function as intended.",
     "unit": null,
     "value": null,
-    "value_type": "property"
+    "value_type": null
   },
   {
-    "classification": "modeled-scenario",
-    "confidence": 0.66,
+    "classification": "supported-inference",
+    "confidence": 0.84,
     "evidence_ids": [
-      "SRC-ENERGYSTAR-LODGING",
-      "SRC-SAM-HVAC-2026",
-      "SRC-SAM-SMARTTHINGS-PRO"
+      "SRC-HXG-FRAMEWORK",
+      "SRC-NIST-PMS-2020"
     ],
-    "excerpt": "Baseline energy spend × controllable share × verified reduction rate.",
+    "excerpt": "",
     "geography": [
       "Global"
     ],
-    "id": "CLM-ENERGY-SCENARIO-01",
+    "id": "CLM-HXG-GOVERNANCE-CONDITION-01",
     "limitations": [
-      "Requires property baselines, metering, controllable-load estimates, and verified before/after performance.",
-      "Vendor capability is not proof of savings."
+      "Applicable privacy, retention, and security obligations vary by jurisdiction and implementation."
     ],
-    "locator": "HXG scenario model",
-    "metric": "energy savings formula",
-    "outcome": "feel-in-control",
-    "period": "scenario",
+    "locator": "HXG framework, governance condition",
+    "metric": null,
+    "outcome": null,
+    "period": null,
     "review_state": "limited",
     "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "A property can model energy savings as baseline energy expenditure multiplied by the controllable share and a verified reduction rate; HXG does not assign a universal savings percentage.",
-    "unit": "property-specific USD",
+    "stakeholder": null,
+    "text": "HXG treats data governance as a condition on systems that exchange stay, identity, preference, or operational context.",
+    "unit": null,
     "value": null,
-    "value_type": "property"
+    "value_type": null
   },
   {
-    "classification": "modeled-scenario",
-    "confidence": 0.62,
+    "classification": "supported-inference",
+    "confidence": 0.86,
     "evidence_ids": [
-      "SRC-JDP-2026-NAGSI",
-      "SRC-SAM-FRAME-2026",
-      "SRC-ORACLE-ENGAGEMENT-2024"
+      "SRC-HXG-FRAMEWORK"
     ],
-    "excerpt": "Occupied room nights × screen engagement × offer conversion × contribution margin.",
+    "excerpt": "",
     "geography": [
       "Global"
     ],
-    "id": "CLM-ANCILLARY-SCENARIO-01",
+    "id": "CLM-HXG-AVAILABILITY-CONDITION-01",
     "limitations": [
-      "Requires property-level engagement, conversion, and margin data.",
-      "Capability evidence does not establish incremental revenue or causation."
+      "Availability cannot be inferred from a generic architecture map."
     ],
-    "locator": "HXG scenario model",
-    "metric": "ancillary contribution formula",
-    "outcome": "feel-recognized",
-    "period": "scenario",
+    "locator": "HXG framework, availability condition",
+    "metric": null,
+    "outcome": null,
+    "period": null,
     "review_state": "limited",
     "schema_version": "1.0.0",
-    "stakeholder": "property-operator",
-    "text": "A property can model screen-enabled ancillary contribution from occupied room nights, screen engagement, offer conversion, and contribution margin; this release provides no universal uplift.",
-    "unit": "property-specific USD",
+    "stakeholder": null,
+    "text": "HXG treats product, region, integration, language, and licensing availability as conditions that must be verified before a pathway is claimed in a real deployment.",
+    "unit": null,
     "value": null,
-    "value_type": "property"
+    "value_type": null
   }
 ]

@@ -1,65 +1,45 @@
 # Hospitality Experience Graph (HXG)
 
-HXG is independent, hospitality-focused research into how connected in-room screens can connect guest comfort, property operations, and ecosystem value.
+> **Release status:** `v0.3.0` is a deterministic, rights-aware rebuild with disclosed human governance. It is rights-clean under the project source policy; that is not legal clearance.
 
-> **Release status:** `v0.2.0` is an AI-led, evidence-audited seed release produced with disclosed human governance. It is not an unattended API research run, and it does not imply Samsung sponsorship or endorsement.
-
-The research treats Samsung as one clearly labeled, vendor-stated reference architecture. Independent guest evidence, industry economics, public standards, and competing implementation examples remain separate evidence classes.
+HXG is an independent framework for examining how connected hospitality capabilities can support guest outcomes and property-specific value questions. The six pathways are analytical propositions, not empirical guest preferences or causal findings.
 
 ## What is public
 
-- A versioned evidence register with source, claim, entity, relationship, and run-manifest records.
-- A reproducible Python CLI: `research`, `validate`, `build-graph`, and `build-publication`.
-- GraphML and Cytoscape-compatible JSON exports.
-- A static Astro/TypeScript evidence explorer with accessible table navigation.
-- A deterministic eight-page LinkedIn carousel, downloadable poster, and publication copy.
+- 10 reviewed evidence source records and machine-readable rights decisions;
+- 19 claims with zero public third-party excerpts;
+- 30 entities and 34 evidence-linked relationships;
+- four metadata-only Samsung product links outside the evidence graph;
+- GraphML, browser JSON, an accessible explorer, poster, and LinkedIn carousel;
+- a reproducible CLI: `research`, `validate`, `build-graph`, and `build-publication`.
 
-Retrieved third-party documents are cached locally and gitignored. The repository publishes metadata, hashes, short supporting excerpts, locators, and derived claims—not copied source documents.
+Generated counts are authoritative in `data/public/run-manifest.json`.
 
-## Quick start
+## Source policy
 
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -e ".[dev,research,publication]"
-hxg validate
+Sources fail closed before HTTP access unless current records approve automated acquisition, AI processing, and public republication. Unknown, denied, missing, conflicting, or expired rights stop the source. Vendor links cannot enter cache, model context, claims, or graph relationships.
+
+Read [SOURCE_POLICY.md](SOURCE_POLICY.md), [RIGHTS_MANIFEST.md](RIGHTS_MANIFEST.md), and [REMOVAL_REPORT.md](REMOVAL_REPORT.md).
+
+## Local build
+
+```bash
+python -m pip install -e ".[dev,publication]"
+hxg research --mode seed --cutoff 2026-08-19 --retrieve
 hxg build-graph
+hxg validate
 hxg build-publication
+cd site
+npm ci
+npm run check
+npm run build
+npm run test:e2e
 ```
 
-For a local model-backed run, copy `.env.example` to `.env`, provide an API key and a cost limit, then run:
+Model-backed research is local-only and requires separate secrets and budget approval. No model-backed research run was executed for v0.3.0.
 
-```powershell
-hxg research --mode agents --cutoff 2026-08-19 --cost-limit-usd 10
-```
+## Licensing
 
-The public GitHub Actions workflow never executes model-backed research and never requires an API key.
+Code is Apache-2.0. Original HXG documentation, structured data, and visuals are CC BY 4.0. Third-party material and trademarks are excluded from those grants.
 
-## Evidence rules
-
-- Every public relationship resolves to at least one claim and source.
-- Facts, supported inferences, and modeled scenarios are separate record types.
-- Vendor capabilities are labeled `vendor-stated` unless independently corroborated.
-- Guest-behavior and causal claims require independent evidence.
-- All publication counts are generated from the frozen run manifest.
-- No source may be newer than the release cutoff.
-
-## Repository map
-
-```text
-hxg/
-├── methodology/        Research protocol, orchestration, and scoring
-├── data/               Seed register, public records, and JSON schemas
-├── graphs/             Canonical GraphML, JSON, SVG, and PNG outputs
-├── reports/            Carousel, poster, findings, and LinkedIn copy
-├── src/hxg/            CLI, schemas, validation, graph, and publication code
-├── site/               Astro/TypeScript evidence explorer
-├── tests/              Schemas, integrity, parity, cutoff, and determinism
-└── .github/workflows/  Public validation and Pages deployment
-```
-
-## Licensing and trademarks
-
-Code is licensed under Apache-2.0. Original documentation, structured derived data, and visuals are licensed under CC BY 4.0. Third-party content and trademarks are excluded from those grants; see [NOTICE](NOTICE.md).
-
-Samsung and related marks belong to Samsung Electronics Co., Ltd. Their limited appearance here is solely descriptive of a reference case.
+Live explorer: <https://lohanstruwig.github.io/hxg/>

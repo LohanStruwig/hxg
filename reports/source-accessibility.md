@@ -1,11 +1,14 @@
-# Source accessibility check
+# Source access and permission check
 
-Check date: August 19, 2026
+Check date: August 20, 2026
+Review expiry: November 18, 2026
 
-- 56 source records tested.
-- 41 documents retrieved and hashed from content.
-- 15 URLs returned an automated-access limitation and use a transparently labeled metadata-record hash.
+- 10 public source records.
+- 7 approved third-party documents retrieved into the gitignored cache.
+- 3 original HXG records represented by metadata hashes.
+- 4 Samsung records restricted to metadata-only outbound links.
+- 0 public third-party excerpts.
 
-The limited group consists primarily of Samsung Newsroom pages that remained readable through normal web access during the evidence audit, plus two J.D. Power management-study URLs and one Oracle PDF. HXG does not treat an automated-fetch limitation as permission to bypass a publisher's controls. Those sources retain locators and public URLs; they should be rechecked manually at each release.
+The permission gateway preflights the complete candidate list before creating an HTTP client. Denied, unknown, missing, conflicting, or expired permissions fail closed.
 
-Public claims never redistribute the blocked pages. Full successfully retrieved documents remain in the gitignored `data/cache/` directory.
+This is a project risk-control record, not legal advice or legal clearance.

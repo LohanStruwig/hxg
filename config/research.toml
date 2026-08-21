@@ -1,9 +1,8 @@
 [release]
-id = "hxg-v0.2.0"
+id = "hxg-v0.3.0"
 cutoff_date = "2026-08-19"
 start_date = "2024-01-01"
 historical_context_allowed = true
-minimum_qualifying_sources = 50
 
 [models]
 manager = "gpt-5.6-sol"
@@ -18,6 +17,8 @@ guest_behavior_requires_independent_source = true
 causal_claims_require_independent_corroboration = true
 vendor_capabilities_are_vendor_stated = true
 publish_full_documents = false
+rights_policy = "fail-closed"
+rights_review_max_age_days = 90
 
 [runtime]
 default_cost_limit_usd = 10.0

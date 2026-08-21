@@ -27,8 +27,7 @@ export default defineConfig({
           { hash: "sha256-pgvDUBa4IjFA2yuSJ2cqcyxmNYJMborsd0ORcRv9vw8=", kind: "element" }
         ],
         resources: [
-          { resource: "'self'", kind: "element" },
-          { resource: "'unsafe-inline'", kind: "attribute" }
+          { resource: "'self'", kind: "element" }
         ]
       }
     }

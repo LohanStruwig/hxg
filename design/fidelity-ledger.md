@@ -1,18 +1,16 @@
-# HXG v0.2.0 explorer fidelity ledger
+# HXG v0.3.0 explorer fidelity ledger
 
-Accepted concepts:
+Legacy v0.1 and v0.2 concept screenshots were removed because their text included superseded source material or release language.
 
-- `design/concepts/hxg-v0.2-guided-desktop.png`
-- `design/concepts/hxg-v0.2-guided-mobile.png`
+The v0.3.0 implementation keeps the accepted interaction model:
 
-Latest rendered QA screenshots are stored outside the repository under the run-specific temporary QA directory.
+| Fidelity point | v0.3.0 implementation |
+|---|---|
+| Guided information model | Six paired capability → outcome rows using `can support` |
+| Grouped exploration | All 30 nodes appear without edges at rest |
+| Focused evidence | Selection shows one-hop relationships, confidence, claim IDs, sources, and limits |
+| Evidence alternatives | Searchable relationship list and evidence table remain complete |
+| Rights visibility | Rights records, policy, and link-only vendor handling are first-class sections |
+| Responsive reading | Mobile uses stacked paired cards, grouped accordions, and readable tables |
 
-| Fidelity point | Accepted concept | Implemented explorer |
-|---|---|---|
-| Guided information model | Six paired capability → outcome rows | Exact six approved one-to-one pathways with `can support` language |
-| Editorial hierarchy | Large thesis, compact modes, paired cards | Same hierarchy integrated into the existing HXG header and page grid |
-| Evidence workspace | Selected pathway opens a contextual evidence pane | Drawer shows canonical entity names, evidence state, confidence, limitations, claim IDs, and links |
-| Refined dark identity | Midnight navy, warm white, restrained cyan and six outcome colors | Preserved with existing HXG design tokens and WCAG-aware text contrast |
-| Responsive reading | Desktop pairs become vertical mobile pathway cards | Mobile stacks capability, direction, and outcome without canvas zoom or miniature labels |
-
-Intentional deviations: the generated concept used decorative line icons, while the implementation uses color markers so no unapproved icon meaning is introduced. The concept's sample evidence content was replaced with the canonical HXG records and frozen 2026-08-19 release data.
+Current QA screenshots are generated outside the repository and attached to the PR handoff rather than committed as design claims.

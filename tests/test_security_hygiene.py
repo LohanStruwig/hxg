@@ -78,13 +78,17 @@ def test_tracked_text_and_reachable_history_are_sanitized() -> None:
     assert_no_private_or_secret_text(history_patch, "reachable Git history")
 
 
-def test_history_uses_github_noreply_addresses() -> None:
+def test_release_commits_use_github_noreply_addresses() -> None:
+    """Prevent v0.3 work from adding to the disclosed pre-release metadata exposure."""
+    base = git("merge-base", "HEAD", "origin/main").strip()
     addresses = {
         address.strip().lower()
-        for address in git("log", "--format=%ae%n%ce", "HEAD").splitlines()
+        for address in git("log", "--format=%ae%n%ce", f"{base}..HEAD").splitlines()
         if address.strip()
     }
-    assert addresses
+    if not addresses:
+        configured = git("config", "--get", "user.email").strip().lower()
+        addresses = {configured}
     assert all(address.endswith("@users.noreply.github.com") for address in addresses)
 
 

@@ -8,7 +8,7 @@ import networkx as nx
 from hxg.io import GRAPH_DIR, PUBLIC_DIR, load_records, write_json
 from hxg.models import Claim, Entity, Relationship
 
-RELEASE = "hxg-v0.2.0"
+RELEASE = "hxg-v0.3.0"
 LAYOUT_SEED = 42
 LAYOUT_WIDTH = 1500
 LAYOUT_HEIGHT = 1000
@@ -45,7 +45,7 @@ GUIDED_PATHWAYS = (
     GuidedPathway("control", "REL-IOT-CONTROL", "ENT-IOT-CONTROLS", "Control room settings", "ENT-FEEL-CONTROL", "Feel in control", "Room controls can make comfort settings easier to adjust."),
     GuidedPathway("recognized", "REL-PMS-RECOGNIZED", "ENT-PMS-INTEGRATION", "Connect stay context", "ENT-FEEL-RECOGNIZED", "Feel recognized", "Connected stay context can make information and services more relevant."),
     GuidedPathway("included", "REL-LANGUAGE-INCLUDED", "ENT-LANGUAGE-ACCESS", "Present content accessibly", "ENT-FEEL-INCLUDED", "Feel included", "Language and access features can reduce barriers to using content."),
-    GuidedPathway("secure", "REL-PRIVACY-SECURE", "ENT-PRIVACY-CONTROLS", "Protect sessions and data", "ENT-FEEL-SECURE", "Feel secure", "Session isolation and checkout deletion can reduce privacy risk."),
+    GuidedPathway("secure", "REL-PRIVACY-SECURE", "ENT-PRIVACY-CONTROLS", "Protect sessions and data", "ENT-FEEL-SECURE", "Feel secure", "Session isolation and managed data lifecycles can reduce privacy risk."),
     GuidedPathway("supported", "REL-CONCIERGE-SUPPORTED", "ENT-DIGITAL-CONCIERGE", "Request services and help", "ENT-FEEL-SUPPORTED", "Feel supported", "Digital service channels can make requests and help easier to reach."),
 )
 
@@ -66,13 +66,13 @@ SEMANTIC_POSITIONS = {
     "ENT-OEM-PLATFORM": (100, 590), "ENT-INTEGRATOR": (100, 730), "ENT-TECH-PARTNERS": (100, 870),
     "ENT-CONNECTED-DISPLAY": (405, 115), "ENT-CASTING": (405, 215), "ENT-IOT-CONTROLS": (405, 315),
     "ENT-PMS-INTEGRATION": (405, 415), "ENT-LANGUAGE-ACCESS": (405, 515), "ENT-PRIVACY-CONTROLS": (405, 615),
-    "ENT-DIGITAL-CONCIERGE": (405, 715), "ENT-CLOUD-MANAGEMENT": (405, 815), "ENT-SAMSUNG-REFERENCE": (405, 915),
+    "ENT-DIGITAL-CONCIERGE": (405, 715), "ENT-CLOUD-MANAGEMENT": (405, 815),
     "ENT-FEEL-HOME": (750, 215), "ENT-FEEL-CONTROL": (750, 335), "ENT-FEEL-RECOGNIZED": (750, 455),
     "ENT-FEEL-INCLUDED": (750, 575), "ENT-FEEL-SECURE": (750, 695), "ENT-FEEL-SUPPORTED": (750, 815),
     "ENT-HUMAN-VALUE": (1090, 175), "ENT-PROPERTY-VALUE": (1090, 315), "ENT-ECOSYSTEM-VALUE": (1090, 455),
     "ENT-ENERGY-EFFICIENCY": (1090, 595), "ENT-ANCILLARY-REVENUE": (1090, 735), "ENT-OPERATIONAL-SUPPORT": (1090, 875),
     "ENT-NETWORK-DEPENDENCY": (1380, 255), "ENT-DATA-GOVERNANCE": (1380, 455),
-    "ENT-AVAILABILITY-LIMITS": (1380, 655), "ENT-MACRO-CONTEXT": (1380, 855),
+    "ENT-AVAILABILITY-LIMITS": (1380, 655),
 }
 
 
@@ -207,7 +207,7 @@ def _svg(graph: nx.DiGraph, width: int = 1600, height: int = 1180) -> str:
 <text x="90" y="158" fill="#4cc4d9" font-size="16" font-weight="700">CAPABILITY</text>
 <text x="950" y="158" fill="#4cc4d9" font-size="16" font-weight="700">GUEST OUTCOME</text>
 {''.join(rows)}
-<text x="90" y="1120" fill="#6f8492" font-size="16">HXG v0.2.0 · Evidence cutoff 19 August 2026 · Full 32-node graph available in GraphML and JSON.</text>
+<text x="90" y="1120" fill="#6f8492" font-size="16">HXG v0.3.0 · Evidence cutoff 19 August 2026 · Full {len(graph.nodes)}-node graph available in GraphML and JSON.</text>
 </svg>'''
 
 

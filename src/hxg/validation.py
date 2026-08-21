@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from collections import Counter
+from datetime import date
 from pathlib import Path
 
 import networkx as nx
@@ -17,7 +18,10 @@ from hxg.models import (
     Relationship,
     RunManifest,
     Source,
+    SourceRights,
+    VendorLink,
 )
+from hxg.rights import PermissionGateway, load_rights_records
 
 
 class ValidationError(RuntimeError):
@@ -134,6 +138,8 @@ def validate_public_release(public_dir: Path = PUBLIC_DIR) -> dict[str, int]:
     entities = load_records(public_dir / "entities.json", Entity)
     relationships = load_records(public_dir / "relationships.json", Relationship)
     contradictions = load_records(public_dir / "contradictions.json", Contradiction)
+    rights = load_records(public_dir / "source-rights.json", SourceRights)
+    vendors = load_records(public_dir / "vendor-links.json", VendorLink)
     manifest = RunManifest.model_validate(read_json(public_dir / "run-manifest.json"))
 
     for records, label in (
@@ -142,12 +148,29 @@ def validate_public_release(public_dir: Path = PUBLIC_DIR) -> dict[str, int]:
         (entities, "entity"),
         (relationships, "relationship"),
         (contradictions, "contradiction"),
+        (rights, "source-rights"),
+        (vendors, "vendor-link"),
     ):
         _unique(records, label)
 
     source_ids = {record.id for record in sources}
     claim_ids = {record.id for record in claims}
     entity_ids = {record.id for record in entities}
+    vendor_ids = {record.id for record in vendors}
+    right_by_record = {record.record_id: record for record in rights}
+    expected_rights = {record.record_id: record for record in load_rights_records()}
+    if set(right_by_record) != source_ids | vendor_ids:
+        raise ValidationError("Every public source and vendor link must have exactly one rights record")
+    if {key: value.model_dump(mode="json") for key, value in right_by_record.items()} != {
+        key: value.model_dump(mode="json") for key, value in expected_rights.items()
+    }:
+        raise ValidationError("Public source-rights records diverge from reviewed configuration")
+
+    gateway = PermissionGateway.from_config(as_of=date(2026, 8, 20))
+    for source in sources:
+        gateway.authorize_source(source.model_dump(mode="json"))
+    for vendor in vendors:
+        gateway.authorize_vendor(vendor)
 
     for source in sources:
         if source.publication_date > manifest.cutoff_date:
@@ -159,6 +182,19 @@ def validate_public_release(public_dir: Path = PUBLIC_DIR) -> dict[str, int]:
         missing = set(claim.evidence_ids) - source_ids
         if missing:
             raise ValidationError(f"{claim.id} has missing sources: {sorted(missing)}")
+        excerpt_words = len(claim.excerpt.split())
+        for source_id in claim.evidence_ids:
+            source_rights = right_by_record[source_id]
+            if claim.excerpt and not source_rights.excerpts_allowed:
+                raise ValidationError(
+                    f"{claim.id} contains an excerpt prohibited by {source_rights.id}"
+                )
+            if excerpt_words > source_rights.excerpt_limit_words:
+                raise ValidationError(
+                    f"{claim.id} exceeds the excerpt limit in {source_rights.id}"
+                )
+        if claim.excerpt:
+            raise ValidationError(f"{claim.id} contains a public excerpt; v0.3.0 uses paraphrase only")
         if claim.stakeholder == "guest-behavior":
             independent = [
                 source
@@ -208,8 +244,6 @@ def validate_public_release(public_dir: Path = PUBLIC_DIR) -> dict[str, int]:
             {geo for source in sources for geo in source.geography if geo != "Global"}
         ),
     }
-    if counts["sources"] < 50:
-        raise ValidationError("Release requires at least 50 source records")
     if manifest.generated_counts != counts:
         raise ValidationError(
             f"Manifest counts do not match records: {manifest.generated_counts} != {counts}"

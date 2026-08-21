@@ -34,7 +34,7 @@ AMBER = "#f5bc31"
 VIOLET = "#aa87ee"
 ORANGE = "#f28e37"
 RED = "#ff786c"
-RELEASE = "hxg-v0.2.0"
+RELEASE = "hxg-v0.3.0"
 LIVE_URL = "https://lohanstruwig.github.io/hxg/"
 FONT_REGULAR = "HXG-Regular"
 FONT_BOLD = "HXG-Bold"
@@ -261,7 +261,7 @@ def _draw_slide(pdf: canvas.Canvas, slide: dict[str, Any], manifest: RunManifest
                 color=PATHWAY_COLORS[pathway.lane],
                 compact=True,
             )
-        _text(pdf, H, 64, 1190, "Independent research. No Samsung sponsorship or endorsement.", size=13, width=700, color=AMBER, bold=True)
+        _text(pdf, H, 64, 1190, "Independent research. Rights-aware under the HXG source policy.", size=13, width=760, color=AMBER, bold=True)
 
     elif number == 2:
         y = _title(pdf, slide["title"], top=185, size=62, width=930)
@@ -272,10 +272,10 @@ def _draw_slide(pdf: canvas.Canvas, slide: dict[str, Any], manifest: RunManifest
             _text(pdf, H, x + 22, 555, stat["label"], size=20, width=238, color=INK, bold=True, leading=27, max_lines=3)
             _text(pdf, H, x + 22, 642, stat["evidence_id"], size=10, width=240, color=CYAN, bold=True)
         _rect(pdf, H, 64, 730, 952, 145, fill=SURFACE_2, stroke=LINE, radius=5)
-        _text(pdf, H, 88, 760, "SOURCE SCOPE", size=11, width=180, color=CYAN, bold=True)
+        _text(pdf, H, 88, 760, "FRAMEWORK SCOPE", size=11, width=220, color=CYAN, bold=True)
         _text(pdf, H, 88, 794, slide["scope"], size=18, width=880, color=INK, leading=27)
         _rect(pdf, H, 64, 925, 952, 170, fill=SURFACE, stroke=AMBER, radius=5)
-        _text(pdf, H, 88, 955, "CAUSATION CAVEAT", size=11, width=220, color=AMBER, bold=True)
+        _text(pdf, H, 88, 955, "INTERPRETATION CAVEAT", size=11, width=260, color=AMBER, bold=True)
         _text(pdf, H, 88, 994, slide["body"], size=24, width=875, color=INK, bold=True, leading=33)
 
     elif number == 3:
@@ -329,21 +329,18 @@ def _draw_slide(pdf: canvas.Canvas, slide: dict[str, Any], manifest: RunManifest
 
     elif number == 6:
         _title(pdf, slide["title"], top=185, size=54, width=930)
-        _rect(pdf, H, 64, 330, 952, 58, fill=AMBER, radius=4)
-        _text(pdf, H, 86, 347, "VENDOR-STATED REFERENCE ARCHITECTURE", size=13, width=700, color=BG, bold=True)
-        for index, layer in enumerate(slide["layers"]):
-            top = 420 + index * 165
-            _rect(pdf, H, 64, top, 952, 138, fill=SURFACE, stroke=LINE, radius=5)
-            _text(pdf, H, 86, top + 22, f"0{index + 1}", size=13, width=44, color=CYAN, bold=True)
-            _text(pdf, H, 142, top + 19, layer["name"], size=23, width=230, color=INK, bold=True)
-            x = 394
-            for item in layer["items"]:
-                item_width = min(260, max(155, pdfmetrics.stringWidth(item, _font(True), 14) + 32))
-                _rect(pdf, H, x, top + 32, item_width, 58, fill=SURFACE_2, stroke=LINE, radius=4)
-                _text(pdf, H, x + 14, top + 48, item, size=14, width=item_width - 28, color=MUTED, bold=True, leading=18, max_lines=2)
-                x += item_width + 12
-        _rect(pdf, H, 64, 1096, 952, 90, fill=SURFACE_2, stroke=AMBER, radius=5)
-        _text(pdf, H, 86, 1118, slide["limitations"], size=14, width=890, color=AMBER, bold=True, leading=20)
+        _rect(pdf, H, 64, 330, 952, 74, fill=AMBER, radius=4)
+        _text(pdf, H, 86, 350, "METADATA-ONLY OUTBOUND LINKS", size=13, width=700, color=BG, bold=True)
+        for index, item in enumerate(slide["links"]):
+            row, col = divmod(index, 2)
+            x, top = 64 + col * 486, 450 + row * 246
+            _rect(pdf, H, x, top, 458, 214, fill=SURFACE, stroke=LINE, radius=5)
+            _text(pdf, H, x + 22, top + 26, f"0{index + 1}", size=12, width=40, color=CYAN, bold=True)
+            _text(pdf, H, x + 22, top + 62, item["product"], size=22, width=410, color=INK, bold=True, leading=28)
+            _text(pdf, H, x + 22, top + 118, item["url"], size=11, width=410, color=MUTED, leading=16, max_lines=3)
+        _rect(pdf, H, 64, 992, 952, 176, fill=SURFACE_2, stroke=AMBER, radius=5)
+        _text(pdf, H, 86, 1018, "INDEPENDENCE DISCLOSURE", size=11, width=260, color=AMBER, bold=True)
+        _text(pdf, H, 86, 1056, slide["disclosure"], size=17, width=890, color=INK, bold=True, leading=25)
 
     elif number == 7:
         _title(pdf, slide["title"], top=185, size=62, width=930)
@@ -403,7 +400,7 @@ def _qr_reader(url: str) -> ImageReader:
 def _create_carousel(path: Path, content: dict[str, Any], manifest: RunManifest, url: str) -> None:
     pdf = canvas.Canvas(str(path), pagesize=(W, H), pageCompression=1, invariant=1)
     pdf.setTitle("From Screen to Stay - HXG LinkedIn Carousel")
-    pdf.setSubject("An AI-led, evidence-audited map of connected hospitality experiences")
+    pdf.setSubject("A rights-aware, evidence-audited framework for connected hospitality experiences")
     pdf.setAuthor("Hospitality Experience Graph (HXG)")
     pdf.setCreator("HXG deterministic Python publication pipeline")
     for slide in content["slides"]:
@@ -414,7 +411,7 @@ def _create_carousel(path: Path, content: dict[str, Any], manifest: RunManifest,
 def _create_poster(path: Path, manifest: RunManifest, url: str) -> None:
     pdf = canvas.Canvas(str(path), pagesize=(POSTER_W, POSTER_H), pageCompression=1, invariant=1)
     pdf.setTitle("From Screen to Stay - HXG Research Poster")
-    pdf.setSubject("Six evidence-linked capability-to-outcome pathways for connected hospitality")
+    pdf.setSubject("Six rights-aware capability-to-outcome pathways for connected hospitality")
     pdf.setAuthor("Hospitality Experience Graph (HXG)")
     pdf.setCreator("HXG deterministic Python publication pipeline")
     pdf.setFillColor(_color(BG))
@@ -423,14 +420,14 @@ def _create_poster(path: Path, manifest: RunManifest, url: str) -> None:
     _text(pdf, POSTER_H, 90, 72, "HXG", size=54, width=180, color=INK, bold=True)
     _text(pdf, POSTER_H, 275, 91, "HOSPITALITY EXPERIENCE GRAPH", size=18, width=520, color=MUTED, bold=True)
     _text(pdf, POSTER_H, 90, 178, "From Screen to Stay", size=78, width=1500, color=INK, bold=True, leading=86)
-    _text(pdf, POSTER_H, 90, 286, "An AI-led, evidence-audited map of connected hospitality experiences.", size=34, width=1510, color=CYAN, bold=True, leading=44)
-    _text(pdf, POSTER_H, 90, 360, "The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.", size=25, width=1510, color=MUTED, leading=36)
+    _text(pdf, POSTER_H, 90, 286, "A rights-aware, evidence-audited framework for connected hospitality experiences.", size=34, width=1510, color=CYAN, bold=True, leading=44)
+    _text(pdf, POSTER_H, 90, 360, "Working proposition: the in-room display can be treated as an orchestration layer connecting guest-facing capabilities, operational systems, and property-specific value questions.", size=25, width=1510, color=MUTED, leading=36)
 
-    _text(pdf, POSTER_H, 90, 510, "VERIFIED GUEST EVIDENCE", size=16, width=400, color=CYAN, bold=True)
+    _text(pdf, POSTER_H, 90, 510, "FRAMEWORK AT A GLANCE", size=16, width=400, color=CYAN, bold=True)
     evidence = [
-        ("74%", "smart-TV availability", "CLM-JDP-AVAIL-01"),
-        ("62%", "guest usage", "CLM-JDP-USAGE-01"),
-        ("44,787", "branded hotel guests", "CLM-JDP-SAMPLE-01"),
+        ("6", "experience pathways", "CLM-HXG-PROPOSITION-01"),
+        ("3", "evidence states", "CLM-GRAPHRAG-METHOD-01"),
+        ("1", "auditable framework", "CLM-HXG-PROPOSITION-01"),
     ]
     for index, (value, label, claim_id) in enumerate(evidence):
         x = 90 + index * 540
@@ -438,7 +435,7 @@ def _create_poster(path: Path, manifest: RunManifest, url: str) -> None:
         _text(pdf, POSTER_H, x + 28, 593, value, size=54, width=430, color=CYAN, bold=True)
         _text(pdf, POSTER_H, x + 28, 672, label, size=22, width=430, color=INK, bold=True)
         _text(pdf, POSTER_H, x + 28, 730, claim_id, size=16, width=430, color=MUTED, bold=True)
-    _text(pdf, POSTER_H, 90, 812, "Availability and use establish relevance - not causal satisfaction, loyalty, revenue, or a universal guest outcome.", size=20, width=1550, color=AMBER, bold=True)
+    _text(pdf, POSTER_H, 90, 812, "The six pathways are analytical propositions for testing - not empirical guest preferences, causal findings, or universal product claims.", size=20, width=1550, color=AMBER, bold=True)
     _line(pdf, POSTER_H, 90, 878, 1710, 878, width=2)
 
     _text(pdf, POSTER_H, 90, 925, "SIX GUIDED PATHWAYS", size=16, width=420, color=CYAN, bold=True)
@@ -483,7 +480,7 @@ def _create_poster(path: Path, manifest: RunManifest, url: str) -> None:
     count_text = "  |  ".join(f"{counts[key]} {key}" for key in ("sources", "claims", "entities", "relationships", "contradictions", "countries"))
     _text(pdf, POSTER_H, 90, 2540, count_text, size=17, width=1300, color=INK, bold=True)
     _text(pdf, POSTER_H, 90, 2590, url, size=22, width=1260, color=CYAN, bold=True)
-    _text(pdf, POSTER_H, 90, 2630, "Independent research  |  Evidence cutoff 2026-08-19  |  No Samsung sponsorship or endorsement", size=15, width=1300, color=FAINT, bold=True)
+    _text(pdf, POSTER_H, 90, 2630, "Independent research  |  Evidence cutoff 2026-08-19  |  Rights-aware under the HXG source policy", size=15, width=1300, color=FAINT, bold=True)
     pdf.drawImage(_qr_reader(url), 1460, POSTER_H - 2630, 190, 190, preserveAspectRatio=True, mask="auto")
     pdf.save()
 

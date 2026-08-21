@@ -1,13 +1,17 @@
 # Notices and exclusions
 
-Hospitality Experience Graph (HXG) is an independent research project. It is not sponsored, endorsed, or approved by Samsung, J.D. Power, AHLA, ENERGY STAR, WTTC, Microsoft, OpenAI, Google, Apple, LG, Oracle, or any other referenced organization.
+Hospitality Experience Graph (HXG) is an independent research project.
+
+Samsung is referenced descriptively through publicly available product links. HXG is independent and is not sponsored, endorsed, reviewed, or approved by Samsung.
 
 ## Third-party material
 
-Source titles, publisher names, URLs, very short supporting excerpts, and factual citations are included for research provenance. Copyright in third-party source material remains with its respective owner and is excluded from the repository's Apache-2.0 and CC BY 4.0 grants.
+HXG v0.3.0 publishes source metadata, rights records, paraphrased facts, and derived analysis. It publishes no third-party excerpts, logos, screenshots, source graphics, copied diagrams, or full documents.
 
-Full retrieved documents are stored only in a local, gitignored cache. They are not redistributed in this repository.
+Copyright in third-party material remains with its respective owner and is excluded from the repository's Apache-2.0 and CC BY 4.0 grants. The local gitignored cache contains only content that passed the project's current permission gateway.
 
 ## Trademarks
 
-All trademarks, service marks, product names, and company names remain the property of their respective owners. Their use is descriptive and does not imply affiliation.
+All trademarks, service marks, product names, and company names remain the property of their respective owners. Descriptive use does not imply affiliation.
+
+See `SOURCE_POLICY.md` and `REMOVAL_REPORT.md`.

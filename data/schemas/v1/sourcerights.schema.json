@@ -1,0 +1,147 @@
+{
+  "$defs": {
+    "RightsBasis": {
+      "enum": [
+        "public_domain",
+        "cc0",
+        "cc_by",
+        "other_explicit_open_license",
+        "explicit_machine_access_and_reuse_permission",
+        "original_hxg_content",
+        "metadata_link_only"
+      ],
+      "title": "RightsBasis",
+      "type": "string"
+    }
+  },
+  "$id": "https://lohanstruwig.github.io/hxg/schemas/v1/sourcerights.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "ai_processing_allowed": {
+      "title": "Ai Processing Allowed",
+      "type": "boolean"
+    },
+    "attribution_required": {
+      "title": "Attribution Required",
+      "type": "boolean"
+    },
+    "attribution_text": {
+      "title": "Attribution Text",
+      "type": "string"
+    },
+    "automation_allowed": {
+      "title": "Automation Allowed",
+      "type": "boolean"
+    },
+    "domain": {
+      "title": "Domain",
+      "type": "string"
+    },
+    "excerpt_limit_words": {
+      "minimum": 0,
+      "title": "Excerpt Limit Words",
+      "type": "integer"
+    },
+    "excerpts_allowed": {
+      "title": "Excerpts Allowed",
+      "type": "boolean"
+    },
+    "id": {
+      "pattern": "^RGT-[A-Z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "license_name": {
+      "title": "License Name",
+      "type": "string"
+    },
+    "license_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "License Url",
+      "type": "string"
+    },
+    "notes": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Notes"
+    },
+    "public_republication_allowed": {
+      "title": "Public Republication Allowed",
+      "type": "boolean"
+    },
+    "record_id": {
+      "pattern": "^(SRC|VND)-[A-Z0-9-]+$",
+      "title": "Record Id",
+      "type": "string"
+    },
+    "review_expires_at": {
+      "format": "date",
+      "title": "Review Expires At",
+      "type": "string"
+    },
+    "reviewer": {
+      "title": "Reviewer",
+      "type": "string"
+    },
+    "rights_basis": {
+      "$ref": "#/$defs/RightsBasis"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "terms_reviewed_at": {
+      "format": "date",
+      "title": "Terms Reviewed At",
+      "type": "string"
+    },
+    "terms_url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Terms Url",
+      "type": "string"
+    },
+    "use_mode": {
+      "enum": [
+        "ingest",
+        "link-only"
+      ],
+      "title": "Use Mode",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "record_id",
+    "use_mode",
+    "domain",
+    "rights_basis",
+    "automation_allowed",
+    "ai_processing_allowed",
+    "public_republication_allowed",
+    "license_name",
+    "license_url",
+    "terms_url",
+    "attribution_required",
+    "attribution_text",
+    "excerpts_allowed",
+    "excerpt_limit_words",
+    "terms_reviewed_at",
+    "review_expires_at",
+    "reviewer"
+  ],
+  "title": "SourceRights",
+  "type": "object"
+}
