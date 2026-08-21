@@ -65,7 +65,9 @@ test("publishes metadata-only vendor links with the independence disclosure", as
   await expect(page.locator(".vendor-links a")).toHaveCount(4);
   await expect(page.locator(".vendor blockquote")).toContainText("not sponsored, endorsed, reviewed, or approved by Samsung");
   const hrefs = await page.locator(".vendor-links a").evaluateAll((links) => links.map((link) => (link as HTMLAnchorElement).href));
-  expect(hrefs.every((href) => href.includes("samsung.com"))).toBeTruthy();
+  expect(new Set(hrefs.map((href) => new URL(href).origin))).toEqual(
+    new Set(["https://www.samsung.com", "https://news.samsung.com"]),
+  );
 });
 
 test("serves the rights-aware release artifacts and manifests", async ({ request }) => {
