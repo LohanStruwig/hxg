@@ -1,16 +1,13 @@
 # Reference register
 
-The canonical, machine-readable register is `data/public/sources.json`. The explorer links each claim directly to its source URL. Major evidence anchors include:
+The canonical machine-readable registers are:
 
-- J.D. Power 2026 North America Hotel Guest Satisfaction Index Study.
-- AHLA 2026 State of the Industry.
-- ENERGY STAR lodging guidance.
-- Samsung 2026 Frame hospitality announcement.
-- LG and Apple AirPlay hospitality implementation announcements.
-- Oracle OPERA Cloud hospitality documentation.
-- W3C WCAG 2.2.
-- NIST IoT cybersecurity guidance and historical PMS reference design.
-- OpenAI manager-style agent orchestration guidance.
-- Microsoft GraphRAG project and paper.
+- `data/public/sources.json`
+- `data/public/source-rights.json`
+- `data/public/vendor-links.json`
 
-Do not edit publication counts or evidence IDs in this file; use the frozen register.
+The v0.3.0 evidence set contains W3C accessibility guidance, NIST IoT and historical PMS security guidance, Microsoft GraphRAG resources, GitHub Pages documentation, and original HXG framework, methodology, and value-model records.
+
+Samsung Hospitality Solutions, The Frame Hospitality, SmartThings Pro, and LYNK Cloud are link-only vendor records. They are not evidence sources.
+
+Do not type publication counts or evidence IDs into documents manually; use the frozen run manifest and generated artifacts.

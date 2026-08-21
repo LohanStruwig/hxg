@@ -1,103 +1,103 @@
 {
   "schema_version": "1.0.0",
-  "release": "hxg-v0.2.0",
+  "release": "hxg-v0.3.0",
   "slides": [
     {
       "number": 1,
       "eyebrow": "HXG | INDEPENDENT RESEARCH",
       "title": "From Screen\nto Stay",
-      "subtitle": "An AI-led, evidence-audited map of connected hospitality experiences.",
-      "body": "The in-room display is becoming an experience-orchestration layer connecting guest comfort, property operations, and ecosystem value.",
-      "evidence_ids": ["CLM-ORCHESTRATION-THESIS-01"],
-      "alt_text": "HXG title slide with a preview of six capability-to-guest-outcome pathways."
+      "subtitle": "A rights-aware, evidence-audited framework for connected hospitality experiences.",
+      "body": "Working proposition: the in-room display can be treated as an orchestration layer connecting guest-facing capabilities, operational systems, and property-specific value questions.",
+      "evidence_ids": ["CLM-HXG-PROPOSITION-01"],
+      "alt_text": "HXG title slide presents a working proposition and previews six capability-to-outcome pathways."
     },
     {
       "number": 2,
-      "eyebrow": "INDEPENDENT GUEST EVIDENCE",
-      "title": "The screen is already a consequential touchpoint.",
-      "subtitle": "J.D. Power | 2026 North America Hotel Guest Satisfaction Index Study",
+      "eyebrow": "THE RIGHTS-AWARE RELEASE",
+      "title": "A smaller evidence set. A stronger audit trail.",
+      "subtitle": "HXG v0.3.0 removes restricted statistics, commercial-research claims, and vendor evidence edges.",
       "stats": [
-        {"value": "74%", "label": "smart-TV availability", "evidence_id": "CLM-JDP-AVAIL-01"},
-        {"value": "62%", "label": "guest usage", "evidence_id": "CLM-JDP-USAGE-01"},
-        {"value": "44,787", "label": "branded hotel guests", "evidence_id": "CLM-JDP-SAMPLE-01"}
+        {"value": "6", "label": "experience pathways", "evidence_id": "CLM-HXG-PROPOSITION-01"},
+        {"value": "3", "label": "evidence states", "evidence_id": "CLM-GRAPHRAG-METHOD-01"},
+        {"value": "1", "label": "auditable framework", "evidence_id": "CLM-HXG-PROPOSITION-01"}
       ],
-      "scope": "North America, branded hotels, stays from May 2025 through May 2026. The sample is not every hotel room or every guest segment.",
-      "body": "Availability and use establish relevance - not causal satisfaction, loyalty, revenue, or a universal guest outcome.",
-      "evidence_ids": ["CLM-JDP-AVAIL-01", "CLM-JDP-USAGE-01", "CLM-JDP-SAMPLE-01"],
-      "alt_text": "J.D. Power evidence: 74 percent availability, 62 percent usage, and 44,787 branded hotel guests, with source scope and a causation caveat."
+      "scope": "Original HXG analysis plus reviewed open-license and public-information sources. Every public source has a current machine-readable rights record.",
+      "body": "The pathways are analytical propositions for evaluation - not empirical guest preferences, causal findings, or universal product claims.",
+      "evidence_ids": ["CLM-HXG-PROPOSITION-01", "CLM-GRAPHRAG-METHOD-01"],
+      "alt_text": "Six experience pathways, three evidence states, and one auditable framework, with an analytical-not-empirical caveat."
     },
     {
       "number": 3,
       "eyebrow": "THE GUIDED EXPERIENCE MAP",
-      "title": "Six capabilities. Six guest outcomes.",
-      "body": "Each one-to-one pathway uses the deliberately bounded verb can support. Select the evidence IDs in the live explorer to inspect confidence and limitations.",
-      "evidence_ids": ["CLM-CAST-CROSSVENDOR-01", "CLM-SAM-SMARTTHINGS-01", "CLM-SAM-BI-01", "CLM-SAM-LIVE-TRANSLATE-01", "CLM-SAM-PRIVACY-01", "CLM-SAM-CONCIERGE-01"],
-      "alt_text": "Six rows connect Cast from your device to Feel at home, Control room settings to Feel in control, Connect stay context to Feel recognized, Present content accessibly to Feel included, Protect sessions and data to Feel secure, and Request services and help to Feel supported."
+      "title": "Six capabilities. Six questions to validate.",
+      "body": "Each one-to-one pathway uses the bounded verb can support. The relationship IDs resolve to original HXG analytical claims and explicit limitations.",
+      "evidence_ids": ["CLM-HXG-PATH-HOME-01", "CLM-HXG-PATH-CONTROL-01", "CLM-HXG-PATH-RECOGNIZED-01", "CLM-HXG-PATH-INCLUDED-01", "CLM-HXG-PATH-SECURE-01", "CLM-HXG-PATH-SUPPORTED-01"],
+      "alt_text": "Six rows connect guest-facing capabilities to six guest outcomes using the bounded phrase can support."
     },
     {
       "number": 4,
-      "eyebrow": "VALUE PATHWAYS",
-      "title": "Human value first. Property value must be measured.",
+      "eyebrow": "PROPERTY-SPECIFIC VALUE",
+      "title": "Use formulas to expose assumptions - not to imply ROI.",
       "formulae": [
-        {"heading": "Ancillary contribution", "body": "Occupied room nights x engagement x conversion x margin. Incrementality must be tested locally."},
-        {"heading": "Energy savings", "body": "Baseline spend x controllable share x verified reduction. No universal savings rate is claimed."},
-        {"heading": "Support savings", "body": "Remotely resolved incidents x avoided dispatch cost. Avoided visits must be measured."}
+        {"heading": "Ancillary contribution", "body": "Eligible occupied room nights x measured engagement x incremental conversion x contribution margin."},
+        {"heading": "Energy value", "body": "Verified baseline x controllable share x measured attributable reduction."},
+        {"heading": "Operational support", "body": "Verified remote resolutions x measured avoided dispatch cost."}
       ],
-      "context": "ENERGY STAR reports energy at about 6% of lodging operating costs and heating/cooling at almost 40% of electricity use. This is current agency guidance, not new 2026 measurement.",
-      "evidence_ids": ["CLM-ENERGY-COST-01", "CLM-ENERGY-HVAC-01", "CLM-ENERGY-SCENARIO-01", "CLM-ANCILLARY-SCENARIO-01", "CLM-REMOTE-SUPPORT-INFERENCE-01"],
-      "alt_text": "Human outcomes flow through measurement into three property-specific value scenarios for ancillary contribution, energy, and remote support."
+      "context": "No universal rate, uplift, saving, conversion, or ROI is supplied. Every input, counterfactual, and attribution decision belongs to the property.",
+      "evidence_ids": ["CLM-HXG-VALUE-ANCILLARY-01", "CLM-HXG-VALUE-ENERGY-01", "CLM-HXG-VALUE-SUPPORT-01"],
+      "alt_text": "Three variable-based value formulas for ancillary contribution, energy, and operational support, all requiring local measurement."
     },
     {
       "number": 5,
-      "eyebrow": "STAKEHOLDER AND ECOSYSTEM VALUE",
-      "title": "Value changes depending on who is looking.",
+      "eyebrow": "STAKEHOLDERS AND VALIDATION",
+      "title": "Every stakeholder owns a different proof burden.",
       "groups": [
-        {"heading": "WHO EXPERIENCES", "title": "Guest", "items": ["Comfort and control", "Inclusion and privacy", "Convenient access to help"]},
-        {"heading": "WHO OPERATES", "title": "Owner, operator, brand", "items": ["Experience consistency", "Cost and support visibility", "Measured property scenarios"]},
-        {"heading": "WHO ENABLES", "title": "Technology ecosystem", "items": ["OEM and platform", "Dealer and integrator", "PMS, POS, IoT, content, services"]},
-        {"heading": "WHO CAPTURES VALUE", "title": "Different mechanisms", "items": ["Human outcomes", "Property-specific economics", "Hardware, software, service, support"]}
+        {"heading": "WHO EXPERIENCES", "title": "Guest", "items": ["Can people use it?", "Does it reduce friction?", "Are privacy and access clear?"]},
+        {"heading": "WHO OPERATES", "title": "Owner, operator, brand", "items": ["Does it fit service standards?", "Can teams support it?", "What changed locally?"]},
+        {"heading": "WHO ENABLES", "title": "Technology ecosystem", "items": ["What is actually available?", "How is it integrated?", "Who governs lifecycle risk?"]},
+        {"heading": "WHO VALIDATES VALUE", "title": "Property and guest research", "items": ["Baseline and counterfactual", "Attribution and incrementality", "Direct outcome measurement"]}
       ],
-      "context": "Nearly $805B in projected 2026 U.S. hotel guest spending is economic context - not revenue attributable to in-room screens.",
-      "evidence_ids": ["CLM-AHLA-SPEND-01", "CLM-SAM-ARCH-01", "CLM-ORACLE-INTEGRATION-01"],
-      "alt_text": "Stakeholders are grouped by who experiences, operates, enables, and captures value, with an economic-context caveat."
+      "context": "HXG maps questions and responsibilities. It does not assign revenue, savings, or guest outcomes to a stakeholder without local evidence.",
+      "evidence_ids": ["CLM-HXG-STAKEHOLDERS-01", "CLM-HXG-PROPOSITION-01"],
+      "alt_text": "Stakeholders are grouped by who experiences, operates, enables, and validates value."
     },
     {
       "number": 6,
-      "eyebrow": "SAMSUNG REFERENCE CASE",
-      "title": "One vendor-stated architecture. Four clear layers.",
-      "layers": [
-        {"name": "Display", "items": ["Hospitality display"]},
-        {"name": "Experience", "items": ["Google Cast / AirPlay", "Content and apps", "Digital concierge"]},
-        {"name": "Integration", "items": ["LYNK Cloud", "SmartThings Pro", "PMS / POS"]},
-        {"name": "Governance", "items": ["Security controls", "Checkout deletion", "Analytics and limits"]}
+      "eyebrow": "PUBLICLY DOCUMENTED VENDOR EXAMPLE",
+      "title": "Samsung Hospitality - links, not evidence.",
+      "links": [
+        {"product": "Samsung Hospitality Solutions", "url": "samsung.com/us/business/solutions/industries/hospitality/"},
+        {"product": "The Frame Hospitality", "url": "news.samsung.com/us/.../frame-hospitality-model-hitec-2026"},
+        {"product": "SmartThings Pro", "url": "samsung.com/us/business/industries/smartthings-pro/"},
+        {"product": "LYNK Cloud", "url": "samsung.com/us/business/solutions/industries/hospitality/lynk-cloud/"}
       ],
-      "limitations": "Availability varies by model, region, language, channel, device, software, integration, and licensing. Capability evidence does not establish guest or financial outcomes.",
-      "evidence_ids": ["CLM-SAM-ARCH-01", "CLM-SAM-PRIVACY-01", "CLM-SAM-LYNK-MANAGE-01", "CLM-SAM-SMARTTHINGS-01"],
-      "alt_text": "Samsung is shown as a vendor-stated reference architecture organized into display, experience, integration, and governance layers."
+      "disclosure": "Samsung is referenced descriptively through publicly available product links. HXG is independent and is not sponsored, endorsed, reviewed, or approved by Samsung.",
+      "evidence_ids": ["CLM-HXG-AVAILABILITY-CONDITION-01"],
+      "alt_text": "Four metadata-only Samsung product links appear beside a clear independence disclosure; none is used as evidence."
     },
     {
       "number": 7,
-      "eyebrow": "CONFIDENCE AND CONTRADICTION AUDIT",
-      "title": "Confidence is part of the finding.",
+      "eyebrow": "RIGHTS POLICY AND LIMITS",
+      "title": "Confidence includes permission to use the source.",
       "states": [
-        {"name": "Direct fact", "example": "LYNK Cloud supports central device management."},
-        {"name": "Supported inference", "example": "Room controls can support a sense of control."},
-        {"name": "Modeled scenario", "example": "Avoided visits x local dispatch cost = potential savings."}
+        {"name": "Direct fact", "example": "A paraphrased statement from a reviewed open source."},
+        {"name": "Supported inference", "example": "An HXG proposition linked to evidence and limitations."},
+        {"name": "Modeled scenario", "example": "A transparent formula awaiting property inputs."}
       ],
-      "contradictions": ["Usage is not satisfaction or causal value", "Announcement is not universal availability", "Translation is not complete accessibility", "Industry scale is not attributable revenue"],
-      "limitations": "Vendor capability evidence can support a bounded pathway, but it does not prove the guest's perception or the property's financial result.",
-      "evidence_ids": ["CLM-SAM-LYNK-MANAGE-01", "CLM-REMOTE-SUPPORT-INFERENCE-01", "CLM-WCAG-NONGRAPH-01", "CLM-WTTC-GDP-01"],
-      "alt_text": "Three evidence states, four contradiction findings, and the major limit that capability evidence does not prove perception or financial outcomes."
+      "contradictions": ["Analytical pathway is not preference evidence", "A formula is not ROI", "Accessible intent is not conformance", "Security controls do not guarantee perception"],
+      "limitations": "Unknown, denied, missing, or expired rights fail closed before retrieval. Vendor links stay outside cache, model context, claims, and graph relationships.",
+      "evidence_ids": ["CLM-W3C-ACCESS-01", "CLM-NIST-IOT-LIFECYCLE-01", "CLM-HXG-PROPOSITION-01"],
+      "alt_text": "Three evidence states, four major limitations, and the fail-closed source-rights policy."
     },
     {
       "number": 8,
-      "eyebrow": "METHOD AND OPEN EVIDENCE",
-      "title": "Audit the chain. Reuse the graph.",
-      "method": ["Discover", "Extract", "Resolve", "Connect", "Challenge", "Audit", "Freeze", "Publish"],
+      "eyebrow": "METHOD AND OPEN AUDIT",
+      "title": "Audit the chain. Challenge the framework.",
+      "method": ["Review rights", "Retrieve", "Extract", "Resolve", "Connect", "Challenge", "Freeze", "Publish"],
       "counts": ["sources", "claims", "entities", "relationships", "contradictions", "countries"],
-      "body": "Release 0.2.0 is an interactive Codex-assisted seed audit with disclosed human governance. Deterministic Python owns validation, counts, graph exports, and publication files.",
-      "evidence_ids": ["CLM-OPENAI-MANAGER-01", "CLM-GRAPHRAG-01"],
-      "alt_text": "Eight research stages, frozen release counts, the live HXG explorer URL, QR code, and an invitation to audit the evidence."
+      "body": "Release 0.3.0 is a deterministic rights-policy rebuild with disclosed human governance. Models did not run. Python owns validation, counts, graph exports, and publication files.",
+      "evidence_ids": ["CLM-GRAPHRAG-METHOD-01", "CLM-GITHUB-PAGES-01", "CLM-HXG-PROPOSITION-01"],
+      "alt_text": "Eight rights-aware research stages, generated release counts, the live HXG URL, QR code, and an invitation to audit the framework."
     }
   ]
 }

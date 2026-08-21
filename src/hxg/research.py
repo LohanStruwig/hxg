@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-from concurrent.futures import ThreadPoolExecutor
 from datetime import date
 from typing import Any, Literal
 
@@ -16,7 +15,8 @@ from hxg.io import (
     sha256_text,
     write_json,
 )
-from hxg.models import HumanReviewAction, RunManifest
+from hxg.models import HumanReviewAction, RightsBasis, RunManifest, VendorLink
+from hxg.rights import PermissionGateway, load_rights_records
 
 CACHE_DIR = ROOT / "data" / "cache"
 
@@ -30,10 +30,18 @@ def _source_hash(record: dict[str, Any]) -> str:
 
 
 def retrieve_sources(source_records: list[dict[str, Any]], timeout: float = 20.0) -> list[dict[str, Any]]:
+    gateway = PermissionGateway.from_config(as_of=date(2026, 8, 20))
+    approvals = gateway.preflight_sources(source_records)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     headers = {"User-Agent": "HXG-Research/0.1 (+https://github.com/LohanStruwig/hxg)"}
-    def retrieve(source: dict[str, Any]) -> dict[str, Any]:
-        with httpx.Client(headers=headers, follow_redirects=True, timeout=timeout) as client:
+    with httpx.Client(headers=headers, follow_redirects=True, timeout=timeout) as client:
+        for source in source_records:
+            approval = approvals[source["id"]]
+            if approval.rights_basis == RightsBasis.ORIGINAL:
+                source["content_hash"] = _source_hash(source)
+                source["hash_basis"] = "metadata-record"
+                source["access_status"] = "accessible"
+                continue
             cache_path = CACHE_DIR / f"{source['id']}.html"
             try:
                 response = client.get(source["url"])
@@ -46,10 +54,6 @@ def retrieve_sources(source_records: list[dict[str, Any]], timeout: float = 20.0
                 source["content_hash"] = _source_hash(source)
                 source["hash_basis"] = "metadata-record"
                 source["access_status"] = "limited"
-        return source
-
-    with ThreadPoolExecutor(max_workers=8, thread_name_prefix="hxg-source") as executor:
-        source_records = list(executor.map(retrieve, source_records))
     return source_records
 
 
@@ -72,13 +76,26 @@ def freeze_seed_release(
         "entities.json",
         "relationships.json",
         "contradictions.json",
+        "vendor-links.json",
     )
     PUBLIC_DIR.mkdir(parents=True, exist_ok=True)
     write_json(PUBLIC_DIR / "sources.json", sources)
     for filename in filenames:
         write_json(PUBLIC_DIR / filename, read_json(SEED_DIR / filename))
+    rights_records = load_rights_records()
+    write_json(
+        PUBLIC_DIR / "source-rights.json",
+        [record.model_dump(mode="json") for record in rights_records],
+    )
+    gateway = PermissionGateway.from_config(as_of=date(2026, 8, 20))
+    for vendor in [VendorLink.model_validate(item) for item in read_json(PUBLIC_DIR / "vendor-links.json")]:
+        gateway.authorize_vendor(vendor)
 
-    records = {filename.removesuffix(".json"): read_json(PUBLIC_DIR / filename) for filename in filenames}
+    records = {
+        filename.removesuffix(".json"): read_json(PUBLIC_DIR / filename)
+        for filename in filenames
+        if filename != "vendor-links.json"
+    }
     geographies = {
         geography
         for source in sources
@@ -96,12 +113,12 @@ def freeze_seed_release(
     config_hash = sha256_file(ROOT / "config" / "research.toml")
     source_hashes = {source["id"]: source["content_hash"] for source in sources}
     manifest = RunManifest(
-        id="RUN-HXG-2026-08-19-SEED",
-        release_version="0.2.0",
+        id="RUN-HXG-2026-08-20-RIGHTS",
+        release_version="0.3.0",
         mode="interactive-codex-seed",
         status="frozen",
-        started_at="2026-08-19T09:00:00-05:00",
-        frozen_at="2026-08-19T17:00:00-05:00",
+        started_at="2026-08-20T09:00:00-05:00",
+        frozen_at="2026-08-20T17:00:00-05:00",
         cutoff_date=cutoff,
         research_start_date="2024-01-01",
         model_versions={
@@ -109,13 +126,13 @@ def freeze_seed_release(
             "configured-extraction": "gpt-5.6-terra",
             "configured-contradiction": "gpt-5.6-sol",
             "configured-final-audit": "gpt-5.6-sol",
-            "executed-mode": "interactive Codex-assisted seed audit; standalone API run not executed",
+            "executed-mode": "deterministic rights-policy rebuild; standalone API run not executed",
         },
         prompt_versions={
-            "research-charter": "1.0.0",
-            "evidence-extraction": "1.0.0",
-            "contradiction-audit": "1.0.0",
-            "publisher": "1.0.0",
+            "research-charter": "1.1.0",
+            "evidence-extraction": "1.1.0",
+            "contradiction-audit": "1.1.0",
+            "publisher": "1.1.0",
         },
         configuration_hash=config_hash,
         estimated_cost_usd=0,
@@ -123,22 +140,22 @@ def freeze_seed_release(
         source_hashes=source_hashes,
         human_review_actions=[
             HumanReviewAction(
-                timestamp="2026-08-19T09:00:00-05:00",
-                action="Research charter approved",
-                rationale="Scope, release gates, and publication positioning supplied by project owner.",
+                timestamp="2026-08-20T09:00:00-05:00",
+                action="Fail-closed source-rights policy approved",
+                rationale="Only reviewed open-license, public information, and original HXG records may enter evidence or model context.",
             ),
             HumanReviewAction(
-                timestamp="2026-08-19T16:30:00-05:00",
-                action="Evidence audit and language review",
-                rationale="Removed implied Samsung ownership, unreal URL, unsupported causal wording, and ungenerated counts.",
-                record_ids=["CLM-SAM-ARCH-01", "CLM-JDP-AVAIL-01", "CLM-AHLA-SPEND-01"],
+                timestamp="2026-08-20T16:30:00-05:00",
+                action="Rights-clean evidence and publication review",
+                rationale="Removed restricted statistics, commercial-research claims, third-party excerpts, and vendor evidence edges.",
+                record_ids=["CLM-HXG-PROPOSITION-01", "CLM-HXG-VALUE-ANCILLARY-01"],
             ),
         ],
         generated_counts=counts,
         notes=[
-            "This is a governed seed release, not an unattended model-backed run.",
-            "Sources with metadata-record hashes should be refreshed with --retrieve before a later release.",
-            "Product capabilities remain vendor-stated unless a claim record names independent corroboration.",
+            "This is a deterministic rights-policy rebuild, not an unattended model-backed run.",
+            "HXG v0.3.0 is rights-aware and rights-clean under the project source policy; it is not legal clearance.",
+            "Vendor links are metadata-only and cannot enter claims, graph relationships, cache, or model context.",
         ],
     )
     write_json(PUBLIC_DIR / "run-manifest.json", manifest)

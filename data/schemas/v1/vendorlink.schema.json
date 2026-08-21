@@ -1,0 +1,45 @@
+{
+  "$id": "https://lohanstruwig.github.io/hxg/schemas/v1/vendorlink.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "pattern": "^VND-[A-Z0-9-]+$",
+      "title": "Id",
+      "type": "string"
+    },
+    "page_title": {
+      "title": "Page Title",
+      "type": "string"
+    },
+    "product_name": {
+      "title": "Product Name",
+      "type": "string"
+    },
+    "publisher": {
+      "title": "Publisher",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0.0",
+      "default": "1.0.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "url": {
+      "format": "uri",
+      "maxLength": 2083,
+      "minLength": 1,
+      "title": "Url",
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "publisher",
+    "page_title",
+    "product_name",
+    "url"
+  ],
+  "title": "VendorLink",
+  "type": "object"
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "VND-SAM-HOSPITALITY",
+    "page_title": "Hospitality and Hotel Technology & Solutions",
+    "product_name": "Samsung Hospitality Solutions",
+    "publisher": "Samsung Electronics",
+    "schema_version": "1.0.0",
+    "url": "https://www.samsung.com/us/business/solutions/industries/hospitality/"
+  },
+  {
+    "id": "VND-SAM-FRAME-HOSPITALITY",
+    "page_title": "Samsung Launches The Frame Hospitality Model at HITEC 2026",
+    "product_name": "The Frame Hospitality",
+    "publisher": "Samsung Electronics",
+    "schema_version": "1.0.0",
+    "url": "https://news.samsung.com/us/samsung-launches-frame-hospitality-model-hitec-2026"
+  },
+  {
+    "id": "VND-SAM-SMARTTHINGS-PRO",
+    "page_title": "SmartThings Pro",
+    "product_name": "SmartThings Pro",
+    "publisher": "Samsung Electronics",
+    "schema_version": "1.0.0",
+    "url": "https://www.samsung.com/us/business/industries/smartthings-pro/"
+  },
+  {
+    "id": "VND-SAM-LYNK-CLOUD",
+    "page_title": "Samsung LYNK Cloud",
+    "product_name": "LYNK Cloud",
+    "publisher": "Samsung Electronics",
+    "schema_version": "1.0.0",
+    "url": "https://www.samsung.com/us/business/solutions/industries/hospitality/lynk-cloud/"
+  }
+]

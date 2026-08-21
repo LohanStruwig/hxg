@@ -25,16 +25,16 @@
   <key id="d2" for="node" attr.name="display_label" attr.type="string" />
   <key id="d1" for="node" attr.name="label" attr.type="string" />
   <key id="d0" for="graph" attr.name="label" attr.type="string" />
-  <graph edgedefault="directed" id="hxg-v0.2.0">
+  <graph edgedefault="directed" id="hxg-v0.3.0">
     <node id="ENT-ANCILLARY-REVENUE">
-      <data key="d1">Ancillary contribution</data>
-      <data key="d2">Ancillary contribution</data>
-      <data key="d3">Property-specific contribution from service discovery and conversion.</data>
+      <data key="d1">Measured ancillary contribution</data>
+      <data key="d2">Measured ancillary contribution</data>
+      <data key="d3">A property-specific scenario based on measured incremental behavior and contribution margin.</data>
       <data key="d4">value</data>
-      <data key="d5">Property-specific contribution from service discovery and conversion.</data>
+      <data key="d5">A property-specific scenario based on measured incremental behavior and contribution margin.</data>
       <data key="d6">value</data>
       <data key="d7">#57d6a7</data>
-      <data key="d8">CLM-ANCILLARY-SCENARIO-01</data>
+      <data key="d8">SRC-HXG-VALUE-MODEL</data>
       <data key="d9">shared</data>
       <data key="d10">value-pathway</data>
       <data key="d11">tertiary</data>
@@ -44,12 +44,12 @@
     <node id="ENT-AVAILABILITY-LIMITS">
       <data key="d1">Availability and licensing limits</data>
       <data key="d2">Availability and licensing limits</data>
-      <data key="d3">Model, region, language, channel, software, and licensing constraints disclosed by vendors.</data>
+      <data key="d3">Product, region, language, integration, and licensing conditions.</data>
       <data key="d4">risk</data>
-      <data key="d5">Model, region, language, channel, software, and licensing constraints disclosed by vendors.</data>
-      <data key="d6">context</data>
+      <data key="d5">Product, region, language, integration, and licensing conditions.</data>
+      <data key="d6">risk</data>
       <data key="d7">#c7a86b</data>
-      <data key="d8">CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">condition-context</data>
       <data key="d11">tertiary</data>
@@ -57,14 +57,14 @@
       <data key="d13">655.0</data>
     </node>
     <node id="ENT-BRAND">
-      <data key="d1">Brand and management company</data>
-      <data key="d2">Brand and management company</data>
-      <data key="d3">Governs portfolio consistency, standards, content, and scalable experience.</data>
+      <data key="d1">Brand or management company</data>
+      <data key="d2">Brand or management company</data>
+      <data key="d3">The organization shaping experience standards and portfolio consistency.</data>
       <data key="d4">stakeholder</data>
-      <data key="d5">Governs portfolio consistency, standards, content, and scalable experience.</data>
+      <data key="d5">The organization shaping experience standards and portfolio consistency.</data>
       <data key="d6">stakeholder</data>
       <data key="d7">#8aa2b8</data>
-      <data key="d8">CLM-JDP-FRICTION-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">stakeholder</data>
       <data key="d11">tertiary</data>
@@ -72,14 +72,14 @@
       <data key="d13">450.0</data>
     </node>
     <node id="ENT-CASTING">
-      <data key="d1">Guest-device casting</data>
+      <data key="d1">Personal-device casting</data>
       <data key="d2">Cast from your device</data>
       <data key="d3">Familiar personal content can reduce friction in the room.</data>
       <data key="d4">technology</data>
-      <data key="d5">Short-lived pairing from a guest device to an in-room display.</data>
-      <data key="d6">feel-at-home</data>
-      <data key="d7">#4cb3ff</data>
-      <data key="d8">CLM-CAST-CROSSVENDOR-01|CLM-SAM-PRIVACY-01</data>
+      <data key="d5">A capability for presenting guest-selected content from a personal device.</data>
+      <data key="d6">technology</data>
+      <data key="d7">#7994ff</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">home</data>
       <data key="d10">connected-system</data>
       <data key="d11">secondary</data>
@@ -87,14 +87,14 @@
       <data key="d13">215.0</data>
     </node>
     <node id="ENT-CLOUD-MANAGEMENT">
-      <data key="d1">Cloud content and device management</data>
-      <data key="d2">Cloud content and device management</data>
-      <data key="d3">Central status, configuration, content, and service management.</data>
+      <data key="d1">Remote device management</data>
+      <data key="d2">Remote device management</data>
+      <data key="d3">A management capability for monitoring and supporting connected endpoints.</data>
       <data key="d4">technology</data>
-      <data key="d5">Central status, configuration, content, and service management.</data>
+      <data key="d5">A management capability for monitoring and supporting connected endpoints.</data>
       <data key="d6">technology</data>
       <data key="d7">#7994ff</data>
-      <data key="d8">CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-NIST-IOT-HANDBOOK-2024</data>
       <data key="d9">shared</data>
       <data key="d10">connected-system</data>
       <data key="d11">tertiary</data>
@@ -102,14 +102,14 @@
       <data key="d13">815.0</data>
     </node>
     <node id="ENT-CONNECTED-DISPLAY">
-      <data key="d1">Connected hospitality display</data>
-      <data key="d2">Connected hospitality display</data>
-      <data key="d3">A managed display that connects content, guest devices, property systems, and services.</data>
+      <data key="d1">Connected in-room display</data>
+      <data key="d2">Connected in-room display</data>
+      <data key="d3">A guest-facing interface within a wider property system.</data>
       <data key="d4">technology</data>
-      <data key="d5">A managed display that connects content, guest devices, property systems, and services.</data>
+      <data key="d5">A guest-facing interface within a wider property system.</data>
       <data key="d6">technology</data>
       <data key="d7">#7994ff</data>
-      <data key="d8">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">connected-system</data>
       <data key="d11">tertiary</data>
@@ -119,12 +119,12 @@
     <node id="ENT-DATA-GOVERNANCE">
       <data key="d1">Data governance</data>
       <data key="d2">Data governance</data>
-      <data key="d3">Lawful, secure, limited use of guest, device, and property data.</data>
+      <data key="d3">Purpose, access, security, retention, and jurisdictional controls.</data>
       <data key="d4">risk</data>
-      <data key="d5">Lawful, secure, limited use of guest, device, and property data.</data>
-      <data key="d6">context</data>
+      <data key="d5">Purpose, access, security, retention, and jurisdictional controls.</data>
+      <data key="d6">risk</data>
       <data key="d7">#c7a86b</data>
-      <data key="d8">CLM-NIST-PMS-RISK-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-NIST-PMS-2020</data>
       <data key="d9">shared</data>
       <data key="d10">condition-context</data>
       <data key="d11">tertiary</data>
@@ -132,14 +132,14 @@
       <data key="d13">455.0</data>
     </node>
     <node id="ENT-DIGITAL-CONCIERGE">
-      <data key="d1">Digital concierge and service channel</data>
+      <data key="d1">Service-request channel</data>
       <data key="d2">Request services and help</data>
       <data key="d3">Digital service channels can make requests and help easier to reach.</data>
       <data key="d4">technology</data>
-      <data key="d5">Guest-facing access to property information, orders, bookings, and requests.</data>
-      <data key="d6">feel-supported</data>
-      <data key="d7">#f29138</data>
-      <data key="d8">CLM-SAM-CONCIERGE-01|CLM-ORACLE-INTEGRATION-01</data>
+      <data key="d5">A guest-facing channel for requests, information, and help.</data>
+      <data key="d6">technology</data>
+      <data key="d7">#7994ff</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">supported</data>
       <data key="d10">connected-system</data>
       <data key="d11">secondary</data>
@@ -147,14 +147,14 @@
       <data key="d13">715.0</data>
     </node>
     <node id="ENT-ECOSYSTEM-VALUE">
-      <data key="d1">Ecosystem value</data>
-      <data key="d2">Ecosystem value</data>
-      <data key="d3">Hardware, software, services, integration, support, subscriptions, and transactions.</data>
+      <data key="d1">Ecosystem participation</data>
+      <data key="d2">Ecosystem participation</data>
+      <data key="d3">Potential hardware, software, integration, and service roles without revenue estimates.</data>
       <data key="d4">value</data>
-      <data key="d5">Hardware, software, services, integration, support, subscriptions, and transactions.</data>
+      <data key="d5">Potential hardware, software, integration, and service roles without revenue estimates.</data>
       <data key="d6">value</data>
       <data key="d7">#57d6a7</data>
-      <data key="d8">CLM-SAM-ARCH-01|CLM-ORACLE-INTEGRATION-01</data>
+      <data key="d8">SRC-HXG-VALUE-MODEL</data>
       <data key="d9">shared</data>
       <data key="d10">value-pathway</data>
       <data key="d11">tertiary</data>
@@ -162,14 +162,14 @@
       <data key="d13">455.0</data>
     </node>
     <node id="ENT-ENERGY-EFFICIENCY">
-      <data key="d1">Energy efficiency</data>
-      <data key="d2">Energy efficiency</data>
-      <data key="d3">Property-specific avoided energy expense supported by verified performance.</data>
+      <data key="d1">Measured energy value</data>
+      <data key="d2">Measured energy value</data>
+      <data key="d3">A property-specific scenario based on verified baseline and attributable reduction.</data>
       <data key="d4">value</data>
-      <data key="d5">Property-specific avoided energy expense supported by verified performance.</data>
+      <data key="d5">A property-specific scenario based on verified baseline and attributable reduction.</data>
       <data key="d6">value</data>
       <data key="d7">#57d6a7</data>
-      <data key="d8">CLM-ENERGY-SCENARIO-01</data>
+      <data key="d8">SRC-HXG-VALUE-MODEL</data>
       <data key="d9">shared</data>
       <data key="d10">value-pathway</data>
       <data key="d11">tertiary</data>
@@ -181,10 +181,10 @@
       <data key="d2">Feel in control</data>
       <data key="d3">Guest outcome: feel in control.</data>
       <data key="d4">outcome</data>
-      <data key="d5">Adjust room conditions and connected functions.</data>
+      <data key="d5">Clear, usable control over relevant room settings.</data>
       <data key="d6">feel-in-control</data>
       <data key="d7">#78d35d</data>
-      <data key="d8">CLM-SAM-SMARTTHINGS-01|CLM-ENERGY-HVAC-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">control</data>
       <data key="d10">guest-outcome</data>
       <data key="d11">primary</data>
@@ -196,10 +196,10 @@
       <data key="d2">Feel at home</data>
       <data key="d3">Guest outcome: feel at home.</data>
       <data key="d4">outcome</data>
-      <data key="d5">Use familiar content and devices with less relearning.</data>
+      <data key="d5">Familiarity and reduced friction in the room.</data>
       <data key="d6">feel-at-home</data>
       <data key="d7">#4cb3ff</data>
-      <data key="d8">CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">home</data>
       <data key="d10">guest-outcome</data>
       <data key="d11">primary</data>
@@ -211,10 +211,10 @@
       <data key="d2">Feel included</data>
       <data key="d3">Guest outcome: feel included.</data>
       <data key="d4">outcome</data>
-      <data key="d5">Reduce language, sensory, and interface barriers.</data>
+      <data key="d5">Content and interaction designed to reduce access barriers.</data>
       <data key="d6">feel-included</data>
       <data key="d7">#a986ef</data>
-      <data key="d8">CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-W3C-WCAG22</data>
       <data key="d9">included</data>
       <data key="d10">guest-outcome</data>
       <data key="d11">primary</data>
@@ -226,10 +226,10 @@
       <data key="d2">Feel recognized</data>
       <data key="d3">Guest outcome: feel recognized.</data>
       <data key="d4">outcome</data>
-      <data key="d5">Receive contextually relevant information and services.</data>
+      <data key="d5">Stay context can make information and service more relevant.</data>
       <data key="d6">feel-recognized</data>
       <data key="d7">#f4bd32</data>
-      <data key="d8">CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">recognized</data>
       <data key="d10">guest-outcome</data>
       <data key="d11">primary</data>
@@ -241,10 +241,10 @@
       <data key="d2">Feel secure</data>
       <data key="d3">Guest outcome: feel secure.</data>
       <data key="d4">outcome</data>
-      <data key="d5">Pair, use, and leave without exposing personal sessions.</data>
+      <data key="d5">Trust supported by visible, effective privacy and security controls.</data>
       <data key="d6">feel-secure</data>
       <data key="d7">#49c5ca</data>
-      <data key="d8">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-NIST-IOT-HANDBOOK-2024</data>
       <data key="d9">secure</data>
       <data key="d10">guest-outcome</data>
       <data key="d11">primary</data>
@@ -256,10 +256,10 @@
       <data key="d2">Feel supported</data>
       <data key="d3">Guest outcome: feel supported.</data>
       <data key="d4">outcome</data>
-      <data key="d5">Access services and resolve problems with less friction.</data>
+      <data key="d5">Timely access to service and help.</data>
       <data key="d6">feel-supported</data>
       <data key="d7">#f29138</data>
-      <data key="d8">CLM-SAM-CONCIERGE-01|CLM-JDP-FRICTION-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">supported</data>
       <data key="d10">guest-outcome</data>
       <data key="d11">primary</data>
@@ -269,12 +269,12 @@
     <node id="ENT-GUEST">
       <data key="d1">Guest</data>
       <data key="d2">Guest</data>
-      <data key="d3">Receives comfort, familiarity, control, accessibility, privacy, information, and service convenience.</data>
+      <data key="d3">The person experiencing the stay.</data>
       <data key="d4">stakeholder</data>
-      <data key="d5">Receives comfort, familiarity, control, accessibility, privacy, information, and service convenience.</data>
+      <data key="d5">The person experiencing the stay.</data>
       <data key="d6">stakeholder</data>
       <data key="d7">#8aa2b8</data>
-      <data key="d8">CLM-JDP-SAMPLE-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">stakeholder</data>
       <data key="d11">tertiary</data>
@@ -286,10 +286,10 @@
       <data key="d2">Human experience</data>
       <data key="d3">The human outcome framework that organizes the research.</data>
       <data key="d4">human-experience</data>
-      <data key="d5">The human reason connected hospitality technology exists.</data>
+      <data key="d5">The HXG organizing framework for six guest outcomes.</data>
       <data key="d6">human-experience</data>
       <data key="d7">#f6f1e8</data>
-      <data key="d8">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">framework</data>
       <data key="d11">primary</data>
@@ -299,12 +299,12 @@
     <node id="ENT-HUMAN-VALUE">
       <data key="d1">Human value</data>
       <data key="d2">Human value</data>
-      <data key="d3">Time, effort, familiarity, comfort, accessibility, control, and trust.</data>
+      <data key="d3">Time, effort, familiarity, access, control, and trust considered without automatic monetization.</data>
       <data key="d4">value</data>
-      <data key="d5">Time, effort, familiarity, comfort, accessibility, control, and trust.</data>
+      <data key="d5">Time, effort, familiarity, access, control, and trust considered without automatic monetization.</data>
       <data key="d6">value</data>
       <data key="d7">#57d6a7</data>
-      <data key="d8">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d8">SRC-HXG-VALUE-MODEL</data>
       <data key="d9">shared</data>
       <data key="d10">value-pathway</data>
       <data key="d11">tertiary</data>
@@ -312,14 +312,14 @@
       <data key="d13">175.0</data>
     </node>
     <node id="ENT-INTEGRATOR">
-      <data key="d1">Dealer and system integrator</data>
-      <data key="d2">Dealer and system integrator</data>
-      <data key="d3">Designs, installs, configures, integrates, trains, and supports the system.</data>
+      <data key="d1">Dealer or integrator</data>
+      <data key="d2">Dealer or integrator</data>
+      <data key="d3">A party that designs, installs, integrates, and supports a deployment.</data>
       <data key="d4">stakeholder</data>
-      <data key="d5">Designs, installs, configures, integrates, trains, and supports the system.</data>
+      <data key="d5">A party that designs, installs, integrates, and supports a deployment.</data>
       <data key="d6">stakeholder</data>
       <data key="d7">#8aa2b8</data>
-      <data key="d8">CLM-ORCHESTRATION-THESIS-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">stakeholder</data>
       <data key="d11">tertiary</data>
@@ -327,14 +327,14 @@
       <data key="d13">730.0</data>
     </node>
     <node id="ENT-IOT-CONTROLS">
-      <data key="d1">IoT room controls</data>
+      <data key="d1">Room controls</data>
       <data key="d2">Control room settings</data>
       <data key="d3">Room controls can make comfort settings easier to adjust.</data>
       <data key="d4">technology</data>
-      <data key="d5">Connected control of compatible room and building devices.</data>
-      <data key="d6">feel-in-control</data>
-      <data key="d7">#78d35d</data>
-      <data key="d8">CLM-SAM-SMARTTHINGS-01</data>
+      <data key="d5">Interfaces and integrations for eligible room settings.</data>
+      <data key="d6">technology</data>
+      <data key="d7">#7994ff</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-NIST-IOT-HANDBOOK-2024</data>
       <data key="d9">control</data>
       <data key="d10">connected-system</data>
       <data key="d11">secondary</data>
@@ -342,44 +342,29 @@
       <data key="d13">315.0</data>
     </node>
     <node id="ENT-LANGUAGE-ACCESS">
-      <data key="d1">Language and accessible presentation</data>
+      <data key="d1">Accessible content presentation</data>
       <data key="d2">Present content accessibly</data>
       <data key="d3">Language and access features can reduce barriers to using content.</data>
       <data key="d4">technology</data>
-      <data key="d5">Language support plus interfaces whose meaning does not rely on one visual channel.</data>
-      <data key="d6">feel-included</data>
-      <data key="d7">#a986ef</data>
-      <data key="d8">CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01</data>
+      <data key="d5">Language, captioning, navigation, and presentation choices that reduce barriers.</data>
+      <data key="d6">technology</data>
+      <data key="d7">#7994ff</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-W3C-WCAG22</data>
       <data key="d9">included</data>
       <data key="d10">connected-system</data>
       <data key="d11">secondary</data>
       <data key="d12">405.0</data>
       <data key="d13">515.0</data>
     </node>
-    <node id="ENT-MACRO-CONTEXT">
-      <data key="d1">Economic context</data>
-      <data key="d2">Economic context</data>
-      <data key="d3">Industry scale that is explicitly not attributable to connected screens.</data>
-      <data key="d4">context</data>
-      <data key="d5">Industry scale that is explicitly not attributable to connected screens.</data>
-      <data key="d6">context</data>
-      <data key="d7">#c7a86b</data>
-      <data key="d8">CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01</data>
-      <data key="d9">shared</data>
-      <data key="d10">condition-context</data>
-      <data key="d11">tertiary</data>
-      <data key="d12">1380.0</data>
-      <data key="d13">855.0</data>
-    </node>
     <node id="ENT-NETWORK-DEPENDENCY">
-      <data key="d1">Network and integration dependency</data>
-      <data key="d2">Network and integration dependency</data>
-      <data key="d3">Capabilities may fail or be unavailable without compatible networks and integrations.</data>
+      <data key="d1">Network readiness</data>
+      <data key="d2">Network readiness</data>
+      <data key="d3">Connectivity, segmentation, capacity, and support conditions.</data>
       <data key="d4">risk</data>
-      <data key="d5">Capabilities may fail or be unavailable without compatible networks and integrations.</data>
-      <data key="d6">context</data>
+      <data key="d5">Connectivity, segmentation, capacity, and support conditions.</data>
+      <data key="d6">risk</data>
       <data key="d7">#c7a86b</data>
-      <data key="d8">CLM-CAST-CROSSVENDOR-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-NIST-IOT-HANDBOOK-2024</data>
       <data key="d9">shared</data>
       <data key="d10">condition-context</data>
       <data key="d11">tertiary</data>
@@ -387,14 +372,14 @@
       <data key="d13">255.0</data>
     </node>
     <node id="ENT-OEM-PLATFORM">
-      <data key="d1">OEM and platform owner</data>
-      <data key="d2">OEM and platform owner</data>
-      <data key="d3">Provides hardware, software, cloud services, support, and upgrades.</data>
+      <data key="d1">OEM or platform owner</data>
+      <data key="d2">OEM or platform owner</data>
+      <data key="d3">A provider of hardware, software, or platform capabilities.</data>
       <data key="d4">stakeholder</data>
-      <data key="d5">Provides hardware, software, cloud services, support, and upgrades.</data>
+      <data key="d5">A provider of hardware, software, or platform capabilities.</data>
       <data key="d6">stakeholder</data>
       <data key="d7">#8aa2b8</data>
-      <data key="d8">CLM-SAM-ARCH-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">stakeholder</data>
       <data key="d11">tertiary</data>
@@ -402,14 +387,14 @@
       <data key="d13">590.0</data>
     </node>
     <node id="ENT-OPERATIONAL-SUPPORT">
-      <data key="d1">Operational support efficiency</data>
-      <data key="d2">Operational support efficiency</data>
-      <data key="d3">Potential avoidance of selected on-site interventions through remote visibility.</data>
+      <data key="d1">Measured operational support</data>
+      <data key="d2">Measured operational support</data>
+      <data key="d3">A property-specific scenario based on verified remote resolutions and avoided dispatches.</data>
       <data key="d4">value</data>
-      <data key="d5">Potential avoidance of selected on-site interventions through remote visibility.</data>
+      <data key="d5">A property-specific scenario based on verified remote resolutions and avoided dispatches.</data>
       <data key="d6">value</data>
       <data key="d7">#57d6a7</data>
-      <data key="d8">CLM-REMOTE-SUPPORT-INFERENCE-01</data>
+      <data key="d8">SRC-HXG-VALUE-MODEL</data>
       <data key="d9">shared</data>
       <data key="d10">value-pathway</data>
       <data key="d11">tertiary</data>
@@ -417,14 +402,14 @@
       <data key="d13">875.0</data>
     </node>
     <node id="ENT-PMS-INTEGRATION">
-      <data key="d1">PMS integration</data>
+      <data key="d1">Stay-context integration</data>
       <data key="d2">Connect stay context</data>
       <data key="d3">Connected stay context can make information and services more relevant.</data>
       <data key="d4">technology</data>
-      <data key="d5">Exchange of stay, checkout, service, and guest-context events with property systems.</data>
-      <data key="d6">feel-recognized</data>
-      <data key="d7">#f4bd32</data>
-      <data key="d8">CLM-ORACLE-INTEGRATION-01|CLM-SAM-PRIVACY-01</data>
+      <data key="d5">A controlled exchange of relevant stay context between property systems.</data>
+      <data key="d6">technology</data>
+      <data key="d7">#7994ff</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-NIST-PMS-2020</data>
       <data key="d9">recognized</data>
       <data key="d10">connected-system</data>
       <data key="d11">secondary</data>
@@ -432,14 +417,14 @@
       <data key="d13">415.0</data>
     </node>
     <node id="ENT-PRIVACY-CONTROLS">
-      <data key="d1">Privacy and security controls</data>
+      <data key="d1">Session and data protection</data>
       <data key="d2">Protect sessions and data</data>
-      <data key="d3">Session isolation and checkout deletion can reduce privacy risk.</data>
+      <data key="d3">Session isolation and managed data lifecycles can reduce privacy risk.</data>
       <data key="d4">technology</data>
-      <data key="d5">Controls for pairing lifecycle, credentials, access, and monitoring.</data>
-      <data key="d6">feel-secure</data>
-      <data key="d7">#49c5ca</data>
-      <data key="d8">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
+      <data key="d5">Controls for session isolation, data handling, and secure lifecycle management.</data>
+      <data key="d6">technology</data>
+      <data key="d7">#7994ff</data>
+      <data key="d8">SRC-HXG-FRAMEWORK|SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020</data>
       <data key="d9">secure</data>
       <data key="d10">connected-system</data>
       <data key="d11">secondary</data>
@@ -447,14 +432,14 @@
       <data key="d13">615.0</data>
     </node>
     <node id="ENT-PROPERTY-OPERATOR">
-      <data key="d1">Property owner and operator</data>
-      <data key="d2">Property owner and operator</data>
-      <data key="d3">Operates the property and carries revenue, cost, service, and risk outcomes.</data>
+      <data key="d1">Property owner or operator</data>
+      <data key="d2">Property owner or operator</data>
+      <data key="d3">The organization accountable for service, operations, and local performance.</data>
       <data key="d4">stakeholder</data>
-      <data key="d5">Operates the property and carries revenue, cost, service, and risk outcomes.</data>
+      <data key="d5">The organization accountable for service, operations, and local performance.</data>
       <data key="d6">stakeholder</data>
       <data key="d7">#8aa2b8</data>
-      <data key="d8">CLM-AHLA-GOPPAR-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">stakeholder</data>
       <data key="d11">tertiary</data>
@@ -462,44 +447,29 @@
       <data key="d13">310.0</data>
     </node>
     <node id="ENT-PROPERTY-VALUE">
-      <data key="d1">Property value</data>
-      <data key="d2">Property value</data>
-      <data key="d3">Ancillary contribution, operating efficiency, support, energy, and experience indicators.</data>
+      <data key="d1">Property-specific value</data>
+      <data key="d2">Property-specific value</data>
+      <data key="d3">A locally measured operational or financial result.</data>
       <data key="d4">value</data>
-      <data key="d5">Ancillary contribution, operating efficiency, support, energy, and experience indicators.</data>
+      <data key="d5">A locally measured operational or financial result.</data>
       <data key="d6">value</data>
       <data key="d7">#57d6a7</data>
-      <data key="d8">CLM-AHLA-GOPPAR-01</data>
+      <data key="d8">SRC-HXG-VALUE-MODEL</data>
       <data key="d9">shared</data>
       <data key="d10">value-pathway</data>
       <data key="d11">tertiary</data>
       <data key="d12">1090.0</data>
       <data key="d13">315.0</data>
     </node>
-    <node id="ENT-SAMSUNG-REFERENCE">
-      <data key="d1">Samsung reference architecture</data>
-      <data key="d2">Samsung reference architecture</data>
-      <data key="d3">A clearly labeled vendor-stated example, not HXG ownership or endorsement.</data>
-      <data key="d4">technology</data>
-      <data key="d5">A clearly labeled vendor-stated example, not HXG ownership or endorsement.</data>
-      <data key="d6">technology</data>
-      <data key="d7">#7994ff</data>
-      <data key="d8">CLM-SAM-ARCH-01</data>
-      <data key="d9">shared</data>
-      <data key="d10">connected-system</data>
-      <data key="d11">tertiary</data>
-      <data key="d12">405.0</data>
-      <data key="d13">915.0</data>
-    </node>
     <node id="ENT-TECH-PARTNERS">
-      <data key="d1">PMS, POS, IoT, content and service partners</data>
-      <data key="d2">PMS, POS, IoT, content and service partners</data>
-      <data key="d3">Provide interoperable systems, content, transactions, and services.</data>
+      <data key="d1">Technology partners</data>
+      <data key="d2">Technology partners</data>
+      <data key="d3">Providers of connected systems, content, and services.</data>
       <data key="d4">stakeholder</data>
-      <data key="d5">Provide interoperable systems, content, transactions, and services.</data>
+      <data key="d5">Providers of connected systems, content, and services.</data>
       <data key="d6">stakeholder</data>
       <data key="d7">#8aa2b8</data>
-      <data key="d8">CLM-ORACLE-INTEGRATION-01</data>
+      <data key="d8">SRC-HXG-FRAMEWORK</data>
       <data key="d9">shared</data>
       <data key="d10">stakeholder</data>
       <data key="d11">tertiary</data>
@@ -514,23 +484,36 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">scenario</data>
-      <data key="d21">0.62</data>
-      <data key="d22">CLM-ANCILLARY-SCENARIO-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">No universal uplift is claimed.</data>
+      <data key="d21">0.6</data>
+      <data key="d22">CLM-HXG-VALUE-ANCILLARY-01</data>
+      <data key="d23">SRC-HXG-VALUE-MODEL</data>
+      <data key="d24">No universal conversion rate, uplift, or ROI is claimed.</data>
     </edge>
-    <edge source="ENT-AVAILABILITY-LIMITS" target="ENT-SAMSUNG-REFERENCE">
-      <data key="d14">REL-LIMITS-SAMSUNG</data>
+    <edge source="ENT-AVAILABILITY-LIMITS" target="ENT-CONNECTED-DISPLAY">
+      <data key="d14">REL-AVAILABILITY-DISPLAY</data>
       <data key="d15">conditions</data>
       <data key="d16">conditions</data>
       <data key="d17">condition</data>
       <data key="d18">shared</data>
       <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.92</data>
-      <data key="d22">CLM-SAM-LIVE-TRANSLATE-01|CLM-SAM-LYNK-MANAGE-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d23">SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026</data>
-      <data key="d24">Feature availability varies by model, region, language, software and licensing.</data>
+      <data key="d20">inferred</data>
+      <data key="d21">0.86</data>
+      <data key="d22">CLM-HXG-AVAILABILITY-CONDITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Specific product and licensing availability must be checked.</data>
+    </edge>
+    <edge source="ENT-BRAND" target="ENT-PROPERTY-VALUE">
+      <data key="d14">REL-BRAND-PROPERTY</data>
+      <data key="d15">governs</data>
+      <data key="d16">governs</data>
+      <data key="d17">value-pathway</data>
+      <data key="d18">shared</data>
+      <data key="d19">False</data>
+      <data key="d20">inferred</data>
+      <data key="d21">0.76</data>
+      <data key="d22">CLM-HXG-STAKEHOLDERS-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Brand and management responsibilities vary.</data>
     </edge>
     <edge source="ENT-CASTING" target="ENT-FEEL-HOME">
       <data key="d14">REL-CASTING-HOME</data>
@@ -540,36 +523,36 @@
       <data key="d18">home</data>
       <data key="d19">True</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.84</data>
-      <data key="d22">CLM-CAST-CROSSVENDOR-01|CLM-JDP-USAGE-01</data>
-      <data key="d23">SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Usage supports relevance; the emotional label is an HXG interpretation.</data>
+      <data key="d21">0.8</data>
+      <data key="d22">CLM-HXG-PATH-HOME-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Analytical pathway; it does not prove guest preference, perception, or causation.</data>
     </edge>
     <edge source="ENT-CLOUD-MANAGEMENT" target="ENT-OPERATIONAL-SUPPORT">
       <data key="d14">REL-CLOUD-SUPPORT</data>
-      <data key="d15">supports</data>
-      <data key="d16">supports</data>
-      <data key="d17">value-pathway</data>
+      <data key="d15">may-create</data>
+      <data key="d16">may create</data>
+      <data key="d17">modeled-scenario</data>
       <data key="d18">shared</data>
       <data key="d19">False</data>
-      <data key="d20">inferred</data>
-      <data key="d21">0.72</data>
-      <data key="d22">CLM-SAM-LYNK-MANAGE-01|CLM-REMOTE-SUPPORT-INFERENCE-01</data>
-      <data key="d23">SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026</data>
-      <data key="d24">Avoided dispatches are not quantified.</data>
+      <data key="d20">scenario</data>
+      <data key="d21">0.6</data>
+      <data key="d22">CLM-HXG-VALUE-SUPPORT-01</data>
+      <data key="d23">SRC-HXG-VALUE-MODEL</data>
+      <data key="d24">Remote resolution must be verified locally.</data>
     </edge>
     <edge source="ENT-CONNECTED-DISPLAY" target="ENT-CASTING">
       <data key="d14">REL-DISPLAY-CASTING</data>
-      <data key="d15">supports</data>
-      <data key="d16">supports</data>
+      <data key="d15">can-enable</data>
+      <data key="d16">can enable</data>
       <data key="d17">system-connection</data>
       <data key="d18">shared</data>
       <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.95</data>
-      <data key="d22">CLM-CAST-CROSSVENDOR-01</data>
-      <data key="d23">SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Support varies by product and deployment.</data>
+      <data key="d20">inferred</data>
+      <data key="d21">0.76</data>
+      <data key="d22">CLM-HXG-PATH-HOME-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Actual support depends on the selected display, network, and integration.</data>
     </edge>
     <edge source="ENT-DATA-GOVERNANCE" target="ENT-PMS-INTEGRATION">
       <data key="d14">REL-GOVERNANCE-PMS</data>
@@ -580,9 +563,9 @@
       <data key="d19">False</data>
       <data key="d20">inferred</data>
       <data key="d21">0.84</data>
-      <data key="d22">CLM-NIST-PMS-RISK-01|CLM-SAM-BI-01</data>
-      <data key="d23">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d24">Compliance depends on jurisdiction and implementation.</data>
+      <data key="d22">CLM-HXG-GOVERNANCE-CONDITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK|SRC-NIST-PMS-2020</data>
+      <data key="d24">Jurisdiction and implementation determine required controls.</data>
     </edge>
     <edge source="ENT-DIGITAL-CONCIERGE" target="ENT-ANCILLARY-REVENUE">
       <data key="d14">REL-CONCIERGE-ANCILLARY</data>
@@ -592,10 +575,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">scenario</data>
-      <data key="d21">0.62</data>
-      <data key="d22">CLM-ANCILLARY-SCENARIO-01|CLM-SAM-CONCIERGE-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d24">Conversion and incrementality require property data.</data>
+      <data key="d21">0.6</data>
+      <data key="d22">CLM-HXG-VALUE-ANCILLARY-01</data>
+      <data key="d23">SRC-HXG-VALUE-MODEL</data>
+      <data key="d24">Incrementality and contribution margin require property data.</data>
     </edge>
     <edge source="ENT-DIGITAL-CONCIERGE" target="ENT-FEEL-SUPPORTED">
       <data key="d14">REL-CONCIERGE-SUPPORTED</data>
@@ -606,9 +589,9 @@
       <data key="d19">True</data>
       <data key="d20">inferred</data>
       <data key="d21">0.8</data>
-      <data key="d22">CLM-SAM-CONCIERGE-01</data>
-      <data key="d23">SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d24">Vendor-stated service capability; the evidence does not measure service quality or whether guests feel supported.</data>
+      <data key="d22">CLM-HXG-PATH-SUPPORTED-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Analytical pathway; it does not prove guest preference, perception, or causation.</data>
     </edge>
     <edge source="ENT-ENERGY-EFFICIENCY" target="ENT-PROPERTY-VALUE">
       <data key="d14">REL-ENERGY-PROPERTY</data>
@@ -618,10 +601,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">scenario</data>
-      <data key="d21">0.66</data>
-      <data key="d22">CLM-ENERGY-COST-01|CLM-ENERGY-HVAC-01|CLM-ENERGY-SCENARIO-01</data>
-      <data key="d23">SRC-ENERGYSTAR-LODGING|SRC-ENERGYSTAR-SMALL-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">No universal savings rate is claimed.</data>
+      <data key="d21">0.6</data>
+      <data key="d22">CLM-HXG-VALUE-ENERGY-01</data>
+      <data key="d23">SRC-HXG-VALUE-MODEL</data>
+      <data key="d24">No universal savings rate or ROI is claimed.</data>
     </edge>
     <edge source="ENT-FEEL-CONTROL" target="ENT-HUMAN-VALUE">
       <data key="d14">REL-CONTROL-HUMAN</data>
@@ -631,10 +614,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.69</data>
-      <data key="d22">CLM-SAM-SMARTTHINGS-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">No guest outcome estimate in cited vendor evidence.</data>
+      <data key="d21">0.72</data>
+      <data key="d22">CLM-HXG-PATH-CONTROL-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Human value is an evaluation category, not a monetized result.</data>
     </edge>
     <edge source="ENT-FEEL-HOME" target="ENT-HUMAN-VALUE">
       <data key="d14">REL-HOME-HUMAN</data>
@@ -644,10 +627,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.77</data>
-      <data key="d22">CLM-JDP-USAGE-01|CLM-CAST-CROSSVENDOR-01</data>
-      <data key="d23">SRC-APPLE-AIRPLAY-IHG-2024|SRC-JDP-2026-NAGSI|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Usage does not measure perceived value directly.</data>
+      <data key="d21">0.72</data>
+      <data key="d22">CLM-HXG-PATH-HOME-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Human value is an evaluation category, not a monetized result.</data>
     </edge>
     <edge source="ENT-FEEL-INCLUDED" target="ENT-HUMAN-VALUE">
       <data key="d14">REL-INCLUDED-HUMAN</data>
@@ -657,10 +640,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.8</data>
-      <data key="d22">CLM-WCAG-NONGRAPH-01|CLM-SAM-LIVE-TRANSLATE-01</data>
-      <data key="d23">SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22</data>
-      <data key="d24">Accessible outcomes require conformance testing.</data>
+      <data key="d21">0.72</data>
+      <data key="d22">CLM-HXG-PATH-INCLUDED-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Human value is an evaluation category, not a monetized result.</data>
     </edge>
     <edge source="ENT-FEEL-RECOGNIZED" target="ENT-HUMAN-VALUE">
       <data key="d14">REL-RECOGNIZED-HUMAN</data>
@@ -670,10 +653,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.67</data>
-      <data key="d22">CLM-SAM-BI-01|CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d23">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d24">Personalization capability is not proof of positive reception.</data>
+      <data key="d21">0.72</data>
+      <data key="d22">CLM-HXG-PATH-RECOGNIZED-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Human value is an evaluation category, not a monetized result.</data>
     </edge>
     <edge source="ENT-FEEL-SECURE" target="ENT-HUMAN-VALUE">
       <data key="d14">REL-SECURE-HUMAN</data>
@@ -683,10 +666,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.78</data>
-      <data key="d22">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
-      <data key="d23">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
-      <data key="d24">Trust was not measured in cited sources.</data>
+      <data key="d21">0.72</data>
+      <data key="d22">CLM-HXG-PATH-SECURE-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Human value is an evaluation category, not a monetized result.</data>
     </edge>
     <edge source="ENT-FEEL-SUPPORTED" target="ENT-HUMAN-VALUE">
       <data key="d14">REL-SUPPORTED-HUMAN</data>
@@ -696,23 +679,23 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.74</data>
-      <data key="d22">CLM-JDP-FRICTION-01|CLM-SAM-CONCIERGE-01</data>
-      <data key="d23">SRC-JDP-2025-NAGSI|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d24">General hotel-problem evidence is not specific to display service channels.</data>
+      <data key="d21">0.72</data>
+      <data key="d22">CLM-HXG-PATH-SUPPORTED-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Human value is an evaluation category, not a monetized result.</data>
     </edge>
     <edge source="ENT-GUEST" target="ENT-HUMAN-VALUE">
       <data key="d14">REL-GUEST-HUMAN</data>
-      <data key="d15">receives</data>
-      <data key="d16">receives</data>
+      <data key="d15">evaluates</data>
+      <data key="d16">evaluates</data>
       <data key="d17">value-pathway</data>
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.79</data>
-      <data key="d22">CLM-JDP-USAGE-01|CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Human value is not monetized in this release.</data>
+      <data key="d21">0.78</data>
+      <data key="d22">CLM-HXG-STAKEHOLDERS-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Guest outcomes require direct validation in the intended population.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-CONTROL">
       <data key="d14">REL-HXG-CONTROL</data>
@@ -722,10 +705,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.83</data>
-      <data key="d22">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Research synthesis, not a measured construct.</data>
+      <data key="d21">0.82</data>
+      <data key="d22">CLM-HXG-PROPOSITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Framework organization, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-HOME">
       <data key="d14">REL-HXG-HOME</data>
@@ -735,10 +718,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.83</data>
-      <data key="d22">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Research synthesis, not a measured construct.</data>
+      <data key="d21">0.82</data>
+      <data key="d22">CLM-HXG-PROPOSITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Framework organization, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-INCLUDED">
       <data key="d14">REL-HXG-INCLUDED</data>
@@ -748,10 +731,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.83</data>
-      <data key="d22">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Research synthesis, not a measured construct.</data>
+      <data key="d21">0.82</data>
+      <data key="d22">CLM-HXG-PROPOSITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Framework organization, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-RECOGNIZED">
       <data key="d14">REL-HXG-RECOGNIZED</data>
@@ -761,10 +744,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.83</data>
-      <data key="d22">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Research synthesis, not a measured construct.</data>
+      <data key="d21">0.82</data>
+      <data key="d22">CLM-HXG-PROPOSITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Framework organization, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-SECURE">
       <data key="d14">REL-HXG-SECURE</data>
@@ -774,10 +757,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.83</data>
-      <data key="d22">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Research synthesis, not a measured construct.</data>
+      <data key="d21">0.82</data>
+      <data key="d22">CLM-HXG-PROPOSITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Framework organization, not a measured construct.</data>
     </edge>
     <edge source="ENT-HUMAN-EXPERIENCE" target="ENT-FEEL-SUPPORTED">
       <data key="d14">REL-HXG-SUPPORTED</data>
@@ -787,10 +770,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.83</data>
-      <data key="d22">CLM-ORCHESTRATION-THESIS-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Research synthesis, not a measured construct.</data>
+      <data key="d21">0.82</data>
+      <data key="d22">CLM-HXG-PROPOSITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Framework organization, not a measured construct.</data>
     </edge>
     <edge source="ENT-INTEGRATOR" target="ENT-ECOSYSTEM-VALUE">
       <data key="d14">REL-INTEGRATOR-ECOSYSTEM</data>
@@ -800,10 +783,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.71</data>
-      <data key="d22">CLM-ORCHESTRATION-THESIS-01|CLM-ORACLE-INTEGRATION-01</data>
-      <data key="d23">SRC-JDP-2026-NAGSI|SRC-LG-PROCENTRIC-2026|SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Commercial terms are property- and partner-specific.</data>
+      <data key="d21">0.74</data>
+      <data key="d22">CLM-HXG-STAKEHOLDERS-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Commercial terms are deployment-specific.</data>
     </edge>
     <edge source="ENT-IOT-CONTROLS" target="ENT-FEEL-CONTROL">
       <data key="d14">REL-IOT-CONTROL</data>
@@ -813,10 +796,10 @@
       <data key="d18">control</data>
       <data key="d19">True</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.82</data>
-      <data key="d22">CLM-SAM-SMARTTHINGS-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Vendor-stated room-control capability; the evidence does not measure whether guests feel in control.</data>
+      <data key="d21">0.8</data>
+      <data key="d22">CLM-HXG-PATH-CONTROL-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Analytical pathway; it does not prove guest preference, perception, or causation.</data>
     </edge>
     <edge source="ENT-IOT-CONTROLS" target="ENT-ENERGY-EFFICIENCY">
       <data key="d14">REL-IOT-ENERGY</data>
@@ -826,10 +809,10 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">scenario</data>
-      <data key="d21">0.66</data>
-      <data key="d22">CLM-ENERGY-SCENARIO-01</data>
-      <data key="d23">SRC-ENERGYSTAR-LODGING|SRC-SAM-HVAC-2026|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Requires measured property baselines and verified reduction.</data>
+      <data key="d21">0.6</data>
+      <data key="d22">CLM-HXG-VALUE-ENERGY-01</data>
+      <data key="d23">SRC-HXG-VALUE-MODEL</data>
+      <data key="d24">Requires local baseline, attribution, and measurement.</data>
     </edge>
     <edge source="ENT-LANGUAGE-ACCESS" target="ENT-FEEL-INCLUDED">
       <data key="d14">REL-LANGUAGE-INCLUDED</data>
@@ -839,10 +822,10 @@
       <data key="d18">included</data>
       <data key="d19">True</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.82</data>
-      <data key="d22">CLM-SAM-LIVE-TRANSLATE-01|CLM-WCAG-NONGRAPH-01</data>
-      <data key="d23">SRC-SAM-FRAME-2026|SRC-W3C-ACCESSIBILITY-PRINCIPLES|SRC-W3C-WCAG22</data>
-      <data key="d24">Translation is only one part of accessibility.</data>
+      <data key="d21">0.8</data>
+      <data key="d22">CLM-HXG-PATH-INCLUDED-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Analytical pathway; it does not prove guest preference, perception, or causation.</data>
     </edge>
     <edge source="ENT-NETWORK-DEPENDENCY" target="ENT-CASTING">
       <data key="d14">REL-NETWORK-CASTING</data>
@@ -851,11 +834,11 @@
       <data key="d17">condition</data>
       <data key="d18">shared</data>
       <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.88</data>
-      <data key="d22">CLM-CAST-CROSSVENDOR-01|CLM-LG-IHG-DEPLOYMENT-01</data>
-      <data key="d23">SRC-APPLE-AIRPLAY-IHG-2024|SRC-LG-AIRPLAY-IHG-2024|SRC-LG-GOOGLE-CAST-2025|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026</data>
-      <data key="d24">Gateway, network and PMS requirements vary.</data>
+      <data key="d20">inferred</data>
+      <data key="d21">0.82</data>
+      <data key="d22">CLM-HXG-NETWORK-CONDITION-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK|SRC-NIST-IOT-HANDBOOK-2024</data>
+      <data key="d24">Network readiness must be verified for the deployment.</data>
     </edge>
     <edge source="ENT-OEM-PLATFORM" target="ENT-ECOSYSTEM-VALUE">
       <data key="d14">REL-OEM-ECOSYSTEM</data>
@@ -865,23 +848,23 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.79</data>
-      <data key="d22">CLM-SAM-ARCH-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d21">0.76</data>
+      <data key="d22">CLM-HXG-STAKEHOLDERS-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
       <data key="d24">No vendor revenue is estimated.</data>
     </edge>
     <edge source="ENT-OPERATIONAL-SUPPORT" target="ENT-PROPERTY-VALUE">
       <data key="d14">REL-SUPPORT-PROPERTY</data>
-      <data key="d15">may-contribute-to</data>
-      <data key="d16">may contribute to</data>
-      <data key="d17">value-pathway</data>
+      <data key="d15">contributes-to</data>
+      <data key="d16">contributes to</data>
+      <data key="d17">modeled-scenario</data>
       <data key="d18">shared</data>
       <data key="d19">False</data>
-      <data key="d20">inferred</data>
-      <data key="d21">0.72</data>
-      <data key="d22">CLM-REMOTE-SUPPORT-INFERENCE-01</data>
-      <data key="d23">SRC-LG-PROCENTRIC-SMART|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
-      <data key="d24">Avoided dispatch cost must be measured locally.</data>
+      <data key="d20">scenario</data>
+      <data key="d21">0.6</data>
+      <data key="d22">CLM-HXG-VALUE-SUPPORT-01</data>
+      <data key="d23">SRC-HXG-VALUE-MODEL</data>
+      <data key="d24">No universal avoided-cost rate or ROI is claimed.</data>
     </edge>
     <edge source="ENT-PMS-INTEGRATION" target="ENT-FEEL-RECOGNIZED">
       <data key="d14">REL-PMS-RECOGNIZED</data>
@@ -892,9 +875,9 @@
       <data key="d19">True</data>
       <data key="d20">inferred</data>
       <data key="d21">0.8</data>
-      <data key="d22">CLM-ORACLE-INTEGRATION-01|CLM-SAM-BI-01</data>
-      <data key="d23">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-FRAME-2026|SRC-SAM-LYNK-CATALOG</data>
-      <data key="d24">Integration capability does not prove guest perception.</data>
+      <data key="d22">CLM-HXG-PATH-RECOGNIZED-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Analytical pathway; it does not prove guest preference, perception, or causation.</data>
     </edge>
     <edge source="ENT-PRIVACY-CONTROLS" target="ENT-FEEL-SECURE">
       <data key="d14">REL-PRIVACY-SECURE</data>
@@ -904,140 +887,23 @@
       <data key="d18">secure</data>
       <data key="d19">True</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.84</data>
-      <data key="d22">CLM-SAM-PRIVACY-01|CLM-NIST-PMS-RISK-01</data>
-      <data key="d23">SRC-NIST-IOT-HANDBOOK-2024|SRC-NIST-PMS-2020|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025</data>
-      <data key="d24">Controls reduce risk but do not eliminate it.</data>
+      <data key="d21">0.8</data>
+      <data key="d22">CLM-HXG-PATH-SECURE-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Analytical pathway; it does not prove guest preference, perception, or causation.</data>
     </edge>
     <edge source="ENT-PROPERTY-OPERATOR" target="ENT-PROPERTY-VALUE">
       <data key="d14">REL-OPERATOR-PROPERTY</data>
-      <data key="d15">receives</data>
-      <data key="d16">receives</data>
+      <data key="d15">evaluates</data>
+      <data key="d16">evaluates</data>
       <data key="d17">value-pathway</data>
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
       <data key="d21">0.82</data>
-      <data key="d22">CLM-AHLA-GOPPAR-01</data>
-      <data key="d23">SRC-AHLA-2026-SOTI</data>
-      <data key="d24">Industry operating performance provides context; it does not prove that a specific operator receives property value from this technology. Value pathways differ by property.</data>
-    </edge>
-    <edge source="ENT-PROPERTY-VALUE" target="ENT-MACRO-CONTEXT">
-      <data key="d14">REL-AHLA-CONTEXT</data>
-      <data key="d15">operates-within</data>
-      <data key="d16">operates within</data>
-      <data key="d17">value-pathway</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.94</data>
-      <data key="d22">CLM-AHLA-SPEND-01|CLM-WTTC-GDP-01</data>
-      <data key="d23">SRC-AHLA-2026-ONEPAGER|SRC-AHLA-2026-SOTI|SRC-WTTC-2025-IMPACT</data>
-      <data key="d24">Economic context is not attributable value.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-CASTING">
-      <data key="d14">REL-SAM-CASTING</data>
-      <data key="d15">includes</data>
-      <data key="d16">includes</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.91</data>
-      <data key="d22">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Model and regional availability vary.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-CLOUD-MANAGEMENT">
-      <data key="d14">REL-SAM-CLOUD</data>
-      <data key="d15">includes</data>
-      <data key="d16">includes</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.92</data>
-      <data key="d22">CLM-SAM-ARCH-01|CLM-SAM-LYNK-MANAGE-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-PERSONALIZED-2026|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">LYNK Cloud is sold separately.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-DIGITAL-CONCIERGE">
-      <data key="d14">REL-SAM-CONCIERGE</data>
-      <data key="d15">includes</data>
-      <data key="d16">includes</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.89</data>
-      <data key="d22">CLM-SAM-ARCH-01|CLM-SAM-CONCIERGE-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Property integrations and licensing required.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-CONNECTED-DISPLAY">
-      <data key="d14">REL-SAM-DISPLAY</data>
-      <data key="d15">includes</data>
-      <data key="d16">includes</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.91</data>
-      <data key="d22">CLM-SAM-ARCH-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Vendor-stated reference case.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-IOT-CONTROLS">
-      <data key="d14">REL-SAM-IOT</data>
-      <data key="d15">includes</data>
-      <data key="d16">includes</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.9</data>
-      <data key="d22">CLM-SAM-ARCH-01|CLM-SAM-SMARTTHINGS-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-HVAC-2026|SRC-SAM-INF-COMM-2024|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Compatible devices and integrations vary.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-LANGUAGE-ACCESS">
-      <data key="d14">REL-SAM-LANGUAGE</data>
-      <data key="d15">includes</data>
-      <data key="d16">includes</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.89</data>
-      <data key="d22">CLM-SAM-ARCH-01|CLM-SAM-LIVE-TRANSLATE-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Supported languages, channels and content are limited.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-PMS-INTEGRATION">
-      <data key="d14">REL-SAM-PMS</data>
-      <data key="d15">connects-to</data>
-      <data key="d16">connects to</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.88</data>
-      <data key="d22">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Property-specific integration required.</data>
-    </edge>
-    <edge source="ENT-SAMSUNG-REFERENCE" target="ENT-PRIVACY-CONTROLS">
-      <data key="d14">REL-SAM-PRIVACY</data>
-      <data key="d15">includes</data>
-      <data key="d16">includes</data>
-      <data key="d17">system-connection</data>
-      <data key="d18">shared</data>
-      <data key="d19">False</data>
-      <data key="d20">direct</data>
-      <data key="d21">0.9</data>
-      <data key="d22">CLM-SAM-ARCH-01|CLM-SAM-PRIVACY-01</data>
-      <data key="d23">SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
-      <data key="d24">Security depends on full system configuration.</data>
+      <data key="d22">CLM-HXG-STAKEHOLDERS-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
+      <data key="d24">Property value must be measured with local inputs.</data>
     </edge>
     <edge source="ENT-TECH-PARTNERS" target="ENT-ECOSYSTEM-VALUE">
       <data key="d14">REL-PARTNERS-ECOSYSTEM</data>
@@ -1047,9 +913,9 @@
       <data key="d18">shared</data>
       <data key="d19">False</data>
       <data key="d20">inferred</data>
-      <data key="d21">0.78</data>
-      <data key="d22">CLM-ORACLE-INTEGRATION-01|CLM-SAM-ARCH-01</data>
-      <data key="d23">SRC-ORACLE-ENGAGEMENT-2024|SRC-ORACLE-MGX-2024|SRC-ORACLE-OHIP-2025|SRC-ORACLE-OPERA-DOCS|SRC-SAM-AIRPLAY-2024|SRC-SAM-FRAME-2026|SRC-SAM-HITEC-2025|SRC-SAM-LYNK-CATALOG|SRC-SAM-SMARTTHINGS-PRO</data>
+      <data key="d21">0.74</data>
+      <data key="d22">CLM-HXG-STAKEHOLDERS-01</data>
+      <data key="d23">SRC-HXG-FRAMEWORK</data>
       <data key="d24">No partner revenue is estimated.</data>
     </edge>
     <data key="d0">Hospitality Experience Graph</data>

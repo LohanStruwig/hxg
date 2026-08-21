@@ -56,6 +56,64 @@ class Source(Record):
     notes: str | None = None
 
 
+class RightsBasis(StrEnum):
+    PUBLIC_DOMAIN = "public_domain"
+    CC0 = "cc0"
+    CC_BY = "cc_by"
+    OPEN_LICENSE = "other_explicit_open_license"
+    EXPLICIT_PERMISSION = "explicit_machine_access_and_reuse_permission"
+    ORIGINAL = "original_hxg_content"
+    LINK_ONLY = "metadata_link_only"
+
+
+class SourceRights(Record):
+    id: str = Field(pattern=r"^RGT-[A-Z0-9-]+$")
+    record_id: str = Field(pattern=r"^(SRC|VND)-[A-Z0-9-]+$")
+    use_mode: Literal["ingest", "link-only"]
+    domain: str
+    rights_basis: RightsBasis
+    automation_allowed: bool
+    ai_processing_allowed: bool
+    public_republication_allowed: bool
+    license_name: str
+    license_url: HttpUrl
+    terms_url: HttpUrl
+    attribution_required: bool
+    attribution_text: str
+    excerpts_allowed: bool
+    excerpt_limit_words: int = Field(ge=0)
+    terms_reviewed_at: date
+    review_expires_at: date
+    reviewer: str
+    notes: str | None = None
+
+    @model_validator(mode="after")
+    def validate_use_mode(self) -> SourceRights:
+        if self.use_mode == "ingest":
+            if self.rights_basis == RightsBasis.LINK_ONLY:
+                raise ValueError("Ingest records cannot use link-only rights")
+            if not (
+                self.automation_allowed
+                and self.ai_processing_allowed
+                and self.public_republication_allowed
+            ):
+                raise ValueError("Ingest records require all processing permissions")
+        else:
+            if self.rights_basis != RightsBasis.LINK_ONLY:
+                raise ValueError("Link-only records must use metadata_link_only")
+            if self.automation_allowed or self.ai_processing_allowed:
+                raise ValueError("Link-only records cannot authorize retrieval or AI processing")
+        return self
+
+
+class VendorLink(Record):
+    id: str = Field(pattern=r"^VND-[A-Z0-9-]+$")
+    publisher: str
+    page_title: str
+    product_name: str
+    url: HttpUrl
+
+
 class Claim(Record):
     id: str = Field(pattern=r"^CLM-[A-Z0-9-]+$")
     text: str
@@ -143,6 +201,8 @@ class RunManifest(Record):
 
 PUBLIC_MODELS: tuple[type[Record], ...] = (
     Source,
+    SourceRights,
+    VendorLink,
     Claim,
     Entity,
     Relationship,

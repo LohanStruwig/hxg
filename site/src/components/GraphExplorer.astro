@@ -38,7 +38,7 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
       <p class="eyebrow">Experience map</p>
       <h2 id="graph-title">Start with six pathways.<br />Explore one relationship at a time.</h2>
     </div>
-    <p>Capabilities can support a guest outcome; they do not prove perception, satisfaction, or value. The full research graph remains searchable without showing all 42 connections at once.</p>
+    <p>Capabilities can support a guest outcome; they do not prove preference, perception, or value. The complete research graph remains searchable without rendering every relationship at once.</p>
   </div>
 
   <div
@@ -68,9 +68,8 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
             {guided.map((pathway: any, index: number) => (
               <button
                 type="button"
-                class:list={["pathway-row", index === 0 && "is-selected"]}
+                class:list={["pathway-row", `tone-${index + 1}`, index === 0 && "is-selected"]}
                 data-relationship-id={pathway.relationship_id}
-                style={`--pathway-color:${pathway.outcome.color}`}
                 aria-pressed={index === 0 ? "true" : "false"}
               >
                 <span class="pathway-node capability-node">
@@ -94,7 +93,7 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
             <input id="node-search" type="search" placeholder="Try Data governance or Guest" autocomplete="off" />
             <button id="clear-focus" type="button" hidden>Clear focused map</button>
           </div>
-          <p id="node-search-help" class="tool-help">At rest, the 32 nodes are grouped without connecting lines. Select a node to see only its first-degree relationships.</p>
+          <p id="node-search-help" class="tool-help">At rest, all nodes are grouped without connecting lines. Select a node to see only its first-degree relationships.</p>
           <div id="node-overview" class="node-groups">
             {groups.map((group) => (
               <details class="node-group" data-group={group.key} open>
@@ -102,7 +101,7 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
                 <div>
                   {group.nodes.map((node: any) => (
                     <button type="button" class="node-button" data-node-id={node.id} data-search={`${node.display_label} ${node.label} ${node.reader_summary}`.toLowerCase()}>
-                      <i style={`--node-color:${node.color}`} aria-hidden="true"></i>
+                      <i data-color={node.color} aria-hidden="true"></i>
                       <span><strong>{node.display_label}</strong><small>{node.reader_summary}</small></span>
                     </button>
                   ))}
@@ -288,6 +287,25 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
     drawerLimits.append(item);
     renderClaims(claimIds);
   };
+  const renderOverviewDrawer = (
+    title: string,
+    canonical: string,
+    summary: string,
+    rows: Array<[string, string]>,
+    limitation: string,
+  ) => {
+    setText(drawerTitle, title);
+    setText(drawerCanonical, canonical);
+    drawerPath.hidden = true;
+    drawerPath.replaceChildren();
+    setText(drawerSummary, summary);
+    drawerMeta.replaceChildren(...rows.map(([label, value]) => makeMetaRow(label, value)));
+    drawerLimits.replaceChildren();
+    const item = document.createElement("li");
+    setText(item, limitation);
+    drawerLimits.append(item);
+    renderClaims([]);
+  };
   const selectMode = (mode: string, focusTab = false) => {
     modeButtons.forEach((button) => {
       const selected = button.dataset.mode === mode;
@@ -297,17 +315,29 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
     });
     panels.forEach((panel) => { panel.hidden = panel.id !== `panel-${mode}`; });
     if (mode === "guided") {
+      renderRelationship(data.graph.guided_pathways[0].relationship_id);
       setTestState("guided", 12, 6, 18);
       setText(status, "Guided pathways ready: 6 pathways, 12 nodes.");
     } else if (mode === "explore") {
-      const focusMap = document.querySelector<HTMLElement>("#focus-map")!;
-      if (focusMap.hidden) {
-        setTestState("explore", 32, 0, 32);
-        setText(status, "Grouped explorer ready: 32 nodes and no relationships shown at rest.");
-      }
+      resetOverview();
+      renderOverviewDrawer(
+        "Explore all nodes",
+        `${data.entities.length} canonical entities in five groups`,
+        "Select or search for one node to open a focused, one-hop view with relationship verbs, confidence, and linked evidence.",
+        [["Nodes", String(data.entities.length)], ["Relationships at rest", "0"], ["Groups", "5"]],
+        "The grouped overview intentionally hides relationships until a node is selected.",
+      );
+      setText(status, `Grouped explorer ready: ${data.entities.length} nodes and no relationships shown at rest.`);
     } else {
+      renderOverviewDrawer(
+        "Relationship list",
+        `${data.graph.elements.edges.length} canonical relationship records`,
+        "Search by ID, node, or verb, then choose a record to inspect its evidence state, confidence, claims, and limitations.",
+        [["Records", String(data.graph.elements.edges.length)], ["Evidence states", "3"]],
+        "Filtering changes only the visible list; it does not change the canonical graph.",
+      );
       setTestState("relationships", 0, 0, 0);
-      setText(status, "Relationship list ready: 42 searchable records.");
+      setText(status, `Relationship list ready: ${data.graph.elements.edges.length} searchable records.`);
     }
   };
   modeButtons.forEach((button, index) => {
@@ -384,8 +414,8 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
     focusMap.hidden = true;
     clearFocus.hidden = true;
     nodeEmpty.hidden = true;
-    setTestState("explore", 32, 0, 32);
-    setText(status, "Grouped explorer reset: 32 nodes and no relationships shown at rest.");
+    setTestState("explore", data.entities.length, 0, data.entities.length);
+    setText(status, `Grouped explorer reset: ${data.entities.length} nodes and no relationships shown at rest.`);
   };
   clearFocus.addEventListener("click", resetOverview);
   nodeSearch.addEventListener("input", () => {
@@ -450,6 +480,12 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
   .pathway-legend span:nth-child(2) { text-align: center; }
   .pathway-list { display: grid; border-top: 1px solid var(--line); }
   .pathway-row { --pathway-color: var(--cyan); width: 100%; min-height: 104px; display: grid; grid-template-columns: minmax(0,1fr) 180px minmax(0,1fr); gap: 18px; align-items: stretch; padding: 10px 0; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: var(--ink); text-align: left; cursor: pointer; }
+  .pathway-row.tone-1 { --pathway-color: #4cb3ff; }
+  .pathway-row.tone-2 { --pathway-color: #78d35d; }
+  .pathway-row.tone-3 { --pathway-color: #f4bd32; }
+  .pathway-row.tone-4 { --pathway-color: #a986ef; }
+  .pathway-row.tone-5 { --pathway-color: #49c5ca; }
+  .pathway-row.tone-6 { --pathway-color: #f29138; }
   .pathway-row:hover, .pathway-row.is-selected { background: rgba(76,196,217,.055); }
   .pathway-row.is-selected { box-shadow: inset 3px 0 var(--pathway-color); }
   .pathway-node { min-width: 0; display: grid; grid-template-columns: 16px minmax(0,1fr); gap: 14px; align-items: center; padding: 14px 18px; border: 1px solid var(--line); }
@@ -479,6 +515,17 @@ const serializable = JSON.stringify({ claims, sources, entities, graph }).replac
   .node-button[hidden] { display: none; }
   .node-button:hover { background: rgba(76,196,217,.05); }
   .node-button > i { width: 10px; height: 10px; margin-top: 5px; border-radius: 50%; background: var(--node-color); }
+  .node-button > i[data-color="#8aa2b8"] { --node-color: #8aa2b8; }
+  .node-button > i[data-color="#7994ff"] { --node-color: #7994ff; }
+  .node-button > i[data-color="#f6f1e8"] { --node-color: #f6f1e8; }
+  .node-button > i[data-color="#4cb3ff"] { --node-color: #4cb3ff; }
+  .node-button > i[data-color="#78d35d"] { --node-color: #78d35d; }
+  .node-button > i[data-color="#f4bd32"] { --node-color: #f4bd32; }
+  .node-button > i[data-color="#a986ef"] { --node-color: #a986ef; }
+  .node-button > i[data-color="#49c5ca"] { --node-color: #49c5ca; }
+  .node-button > i[data-color="#f29138"] { --node-color: #f29138; }
+  .node-button > i[data-color="#57d6a7"] { --node-color: #57d6a7; }
+  .node-button > i[data-color="#c7a86b"] { --node-color: #c7a86b; }
   .node-button strong { display: block; font-size: .88rem; line-height: 1.3; }
   .node-button small { display: block; margin-top: 4px; color: var(--muted); font-size: .7rem; line-height: 1.35; }
   .focus-map { margin-top: 24px; border-top: 1px solid var(--line); }

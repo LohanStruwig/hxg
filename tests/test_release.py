@@ -18,7 +18,7 @@ def digest(path: Path) -> str:
 
 def test_release_integrity() -> None:
     counts = validate_public_release()
-    assert counts["sources"] >= 50
+    assert counts["sources"] == 10
     assert counts["relationships"] > 0
 
 
@@ -72,7 +72,7 @@ def test_graph_exports_include_preset_layout() -> None:
         for _, _, data in graph.edges(data=True)
     )
     assert all("position" in node for node in browser_graph["elements"]["nodes"])
-    assert browser_graph["release"] == "hxg-v0.2.0"
+    assert browser_graph["release"] == "hxg-v0.3.0"
     assert len(browser_graph["guided_pathways"]) == 6
     assert sum(edge["data"]["primary_path"] for edge in browser_graph["elements"]["edges"]) == 6
 
@@ -99,7 +99,7 @@ def test_relationship_reclassifications() -> None:
         for record in load_records(PUBLIC_DIR / "relationships.json", Relationship)
     }
     expected = {
-        "REL-IOT-CONTROL": 0.82,
+        "REL-IOT-CONTROL": 0.80,
         "REL-CONCIERGE-SUPPORTED": 0.80,
         "REL-OPERATOR-PROPERTY": 0.82,
     }

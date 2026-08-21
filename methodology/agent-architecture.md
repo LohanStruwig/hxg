@@ -6,6 +6,9 @@ HXG follows a manager-style orchestration pattern: the manager retains responsib
 Research charter
       │
       ▼
+Permission gateway ── rights record + domain + review age + fail closed
+      │
+      ▼
 HXG manager ── budget + cutoff + tracing + publication authority
       │
       ├── source discovery
@@ -23,12 +26,12 @@ Deterministic validation → frozen run manifest → graph/site/publications
 
 ## Specialist boundaries
 
-- Discovery returns source candidates and metadata, not final findings.
+- Discovery returns source candidates and metadata, not final findings. Candidates remain blocked until a human-reviewed rights record approves them.
 - Perspective research separates guest, operator, IT, revenue, integrator, sustainability, privacy, and accessibility lenses.
-- Extraction emits versioned schema records and preserves short locators.
+- Extraction receives only approved cached material and emits paraphrased schema records with locators.
 - GraphRAG proposes connections; it does not bypass referential-integrity checks.
 - Contradiction review is intentionally adversarial.
 - Citation audit can reject any claim or relationship.
 - Publisher can only use frozen, audited records and generated counts.
 
-The model-backed workflow runs locally with secrets and an explicit cost limit. GitHub Actions never receives research credentials and executes deterministic validation and publication builds only.
+The model-backed workflow runs locally with secrets and an explicit cost limit. Vendor-link-only records cannot enter agent or GraphRAG context. GitHub Actions never receives research credentials and executes deterministic validation and publication builds only. No model-backed run was executed for v0.3.0.

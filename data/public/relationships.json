@@ -1,137 +1,121 @@
 [
   {
-    "confidence": 0.83,
+    "confidence": 0.82,
     "evidence_status": "inferred",
     "id": "REL-HXG-HOME",
     "limitations": [
-      "Research synthesis, not a measured construct."
+      "Framework organization, not a measured construct."
     ],
     "predicate": "includes",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-HUMAN-EXPERIENCE",
     "supporting_claim_ids": [
-      "CLM-ORCHESTRATION-THESIS-01"
-    ],
-    "target_entity_id": "ENT-FEEL-HOME"
-  },
-  {
-    "confidence": 0.83,
-    "evidence_status": "inferred",
-    "id": "REL-HXG-CONTROL",
-    "limitations": [
-      "Research synthesis, not a measured construct."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
-    "supporting_claim_ids": [
-      "CLM-ORCHESTRATION-THESIS-01"
-    ],
-    "target_entity_id": "ENT-FEEL-CONTROL"
-  },
-  {
-    "confidence": 0.83,
-    "evidence_status": "inferred",
-    "id": "REL-HXG-RECOGNIZED",
-    "limitations": [
-      "Research synthesis, not a measured construct."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
-    "supporting_claim_ids": [
-      "CLM-ORCHESTRATION-THESIS-01"
-    ],
-    "target_entity_id": "ENT-FEEL-RECOGNIZED"
-  },
-  {
-    "confidence": 0.83,
-    "evidence_status": "inferred",
-    "id": "REL-HXG-INCLUDED",
-    "limitations": [
-      "Research synthesis, not a measured construct."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
-    "supporting_claim_ids": [
-      "CLM-ORCHESTRATION-THESIS-01"
-    ],
-    "target_entity_id": "ENT-FEEL-INCLUDED"
-  },
-  {
-    "confidence": 0.83,
-    "evidence_status": "inferred",
-    "id": "REL-HXG-SECURE",
-    "limitations": [
-      "Research synthesis, not a measured construct."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
-    "supporting_claim_ids": [
-      "CLM-ORCHESTRATION-THESIS-01"
-    ],
-    "target_entity_id": "ENT-FEEL-SECURE"
-  },
-  {
-    "confidence": 0.83,
-    "evidence_status": "inferred",
-    "id": "REL-HXG-SUPPORTED",
-    "limitations": [
-      "Research synthesis, not a measured construct."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
-    "supporting_claim_ids": [
-      "CLM-ORCHESTRATION-THESIS-01"
-    ],
-    "target_entity_id": "ENT-FEEL-SUPPORTED"
-  },
-  {
-    "confidence": 0.95,
-    "evidence_status": "direct",
-    "id": "REL-DISPLAY-CASTING",
-    "limitations": [
-      "Support varies by product and deployment."
-    ],
-    "predicate": "supports",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-CONNECTED-DISPLAY",
-    "supporting_claim_ids": [
-      "CLM-CAST-CROSSVENDOR-01"
-    ],
-    "target_entity_id": "ENT-CASTING"
-  },
-  {
-    "confidence": 0.84,
-    "evidence_status": "inferred",
-    "id": "REL-CASTING-HOME",
-    "limitations": [
-      "Usage supports relevance; the emotional label is an HXG interpretation."
-    ],
-    "predicate": "can-support",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-CASTING",
-    "supporting_claim_ids": [
-      "CLM-CAST-CROSSVENDOR-01",
-      "CLM-JDP-USAGE-01"
+      "CLM-HXG-PROPOSITION-01"
     ],
     "target_entity_id": "ENT-FEEL-HOME"
   },
   {
     "confidence": 0.82,
     "evidence_status": "inferred",
+    "id": "REL-HXG-CONTROL",
+    "limitations": [
+      "Framework organization, not a measured construct."
+    ],
+    "predicate": "includes",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
+    "supporting_claim_ids": [
+      "CLM-HXG-PROPOSITION-01"
+    ],
+    "target_entity_id": "ENT-FEEL-CONTROL"
+  },
+  {
+    "confidence": 0.82,
+    "evidence_status": "inferred",
+    "id": "REL-HXG-RECOGNIZED",
+    "limitations": [
+      "Framework organization, not a measured construct."
+    ],
+    "predicate": "includes",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
+    "supporting_claim_ids": [
+      "CLM-HXG-PROPOSITION-01"
+    ],
+    "target_entity_id": "ENT-FEEL-RECOGNIZED"
+  },
+  {
+    "confidence": 0.82,
+    "evidence_status": "inferred",
+    "id": "REL-HXG-INCLUDED",
+    "limitations": [
+      "Framework organization, not a measured construct."
+    ],
+    "predicate": "includes",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
+    "supporting_claim_ids": [
+      "CLM-HXG-PROPOSITION-01"
+    ],
+    "target_entity_id": "ENT-FEEL-INCLUDED"
+  },
+  {
+    "confidence": 0.82,
+    "evidence_status": "inferred",
+    "id": "REL-HXG-SECURE",
+    "limitations": [
+      "Framework organization, not a measured construct."
+    ],
+    "predicate": "includes",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
+    "supporting_claim_ids": [
+      "CLM-HXG-PROPOSITION-01"
+    ],
+    "target_entity_id": "ENT-FEEL-SECURE"
+  },
+  {
+    "confidence": 0.82,
+    "evidence_status": "inferred",
+    "id": "REL-HXG-SUPPORTED",
+    "limitations": [
+      "Framework organization, not a measured construct."
+    ],
+    "predicate": "includes",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-HUMAN-EXPERIENCE",
+    "supporting_claim_ids": [
+      "CLM-HXG-PROPOSITION-01"
+    ],
+    "target_entity_id": "ENT-FEEL-SUPPORTED"
+  },
+  {
+    "confidence": 0.8,
+    "evidence_status": "inferred",
+    "id": "REL-CASTING-HOME",
+    "limitations": [
+      "Analytical pathway; it does not prove guest preference, perception, or causation."
+    ],
+    "predicate": "can-support",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-CASTING",
+    "supporting_claim_ids": [
+      "CLM-HXG-PATH-HOME-01"
+    ],
+    "target_entity_id": "ENT-FEEL-HOME"
+  },
+  {
+    "confidence": 0.8,
+    "evidence_status": "inferred",
     "id": "REL-IOT-CONTROL",
     "limitations": [
-      "Vendor-stated room-control capability; the evidence does not measure whether guests feel in control."
+      "Analytical pathway; it does not prove guest preference, perception, or causation."
     ],
     "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-IOT-CONTROLS",
     "supporting_claim_ids": [
-      "CLM-SAM-SMARTTHINGS-01"
+      "CLM-HXG-PATH-CONTROL-01"
     ],
     "target_entity_id": "ENT-FEEL-CONTROL"
   },
@@ -140,46 +124,43 @@
     "evidence_status": "inferred",
     "id": "REL-PMS-RECOGNIZED",
     "limitations": [
-      "Integration capability does not prove guest perception."
+      "Analytical pathway; it does not prove guest preference, perception, or causation."
     ],
     "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-PMS-INTEGRATION",
     "supporting_claim_ids": [
-      "CLM-ORACLE-INTEGRATION-01",
-      "CLM-SAM-BI-01"
+      "CLM-HXG-PATH-RECOGNIZED-01"
     ],
     "target_entity_id": "ENT-FEEL-RECOGNIZED"
   },
   {
-    "confidence": 0.82,
+    "confidence": 0.8,
     "evidence_status": "inferred",
     "id": "REL-LANGUAGE-INCLUDED",
     "limitations": [
-      "Translation is only one part of accessibility."
+      "Analytical pathway; it does not prove guest preference, perception, or causation."
     ],
     "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-LANGUAGE-ACCESS",
     "supporting_claim_ids": [
-      "CLM-SAM-LIVE-TRANSLATE-01",
-      "CLM-WCAG-NONGRAPH-01"
+      "CLM-HXG-PATH-INCLUDED-01"
     ],
     "target_entity_id": "ENT-FEEL-INCLUDED"
   },
   {
-    "confidence": 0.84,
+    "confidence": 0.8,
     "evidence_status": "inferred",
     "id": "REL-PRIVACY-SECURE",
     "limitations": [
-      "Controls reduce risk but do not eliminate it."
+      "Analytical pathway; it does not prove guest preference, perception, or causation."
     ],
     "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-PRIVACY-CONTROLS",
     "supporting_claim_ids": [
-      "CLM-SAM-PRIVACY-01",
-      "CLM-NIST-PMS-RISK-01"
+      "CLM-HXG-PATH-SECURE-01"
     ],
     "target_entity_id": "ENT-FEEL-SECURE"
   },
@@ -188,365 +169,258 @@
     "evidence_status": "inferred",
     "id": "REL-CONCIERGE-SUPPORTED",
     "limitations": [
-      "Vendor-stated service capability; the evidence does not measure service quality or whether guests feel supported."
+      "Analytical pathway; it does not prove guest preference, perception, or causation."
     ],
     "predicate": "can-support",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-DIGITAL-CONCIERGE",
     "supporting_claim_ids": [
-      "CLM-SAM-CONCIERGE-01"
+      "CLM-HXG-PATH-SUPPORTED-01"
     ],
     "target_entity_id": "ENT-FEEL-SUPPORTED"
   },
   {
     "confidence": 0.72,
     "evidence_status": "inferred",
-    "id": "REL-CLOUD-SUPPORT",
-    "limitations": [
-      "Avoided dispatches are not quantified."
-    ],
-    "predicate": "supports",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-CLOUD-MANAGEMENT",
-    "supporting_claim_ids": [
-      "CLM-SAM-LYNK-MANAGE-01",
-      "CLM-REMOTE-SUPPORT-INFERENCE-01"
-    ],
-    "target_entity_id": "ENT-OPERATIONAL-SUPPORT"
-  },
-  {
-    "confidence": 0.91,
-    "evidence_status": "direct",
-    "id": "REL-SAM-DISPLAY",
-    "limitations": [
-      "Vendor-stated reference case."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01"
-    ],
-    "target_entity_id": "ENT-CONNECTED-DISPLAY"
-  },
-  {
-    "confidence": 0.91,
-    "evidence_status": "direct",
-    "id": "REL-SAM-CASTING",
-    "limitations": [
-      "Model and regional availability vary."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01",
-      "CLM-SAM-PRIVACY-01"
-    ],
-    "target_entity_id": "ENT-CASTING"
-  },
-  {
-    "confidence": 0.9,
-    "evidence_status": "direct",
-    "id": "REL-SAM-IOT",
-    "limitations": [
-      "Compatible devices and integrations vary."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01",
-      "CLM-SAM-SMARTTHINGS-01"
-    ],
-    "target_entity_id": "ENT-IOT-CONTROLS"
-  },
-  {
-    "confidence": 0.88,
-    "evidence_status": "direct",
-    "id": "REL-SAM-PMS",
-    "limitations": [
-      "Property-specific integration required."
-    ],
-    "predicate": "connects-to",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01",
-      "CLM-SAM-PRIVACY-01"
-    ],
-    "target_entity_id": "ENT-PMS-INTEGRATION"
-  },
-  {
-    "confidence": 0.89,
-    "evidence_status": "direct",
-    "id": "REL-SAM-LANGUAGE",
-    "limitations": [
-      "Supported languages, channels and content are limited."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01",
-      "CLM-SAM-LIVE-TRANSLATE-01"
-    ],
-    "target_entity_id": "ENT-LANGUAGE-ACCESS"
-  },
-  {
-    "confidence": 0.9,
-    "evidence_status": "direct",
-    "id": "REL-SAM-PRIVACY",
-    "limitations": [
-      "Security depends on full system configuration."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01",
-      "CLM-SAM-PRIVACY-01"
-    ],
-    "target_entity_id": "ENT-PRIVACY-CONTROLS"
-  },
-  {
-    "confidence": 0.89,
-    "evidence_status": "direct",
-    "id": "REL-SAM-CONCIERGE",
-    "limitations": [
-      "Property integrations and licensing required."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01",
-      "CLM-SAM-CONCIERGE-01"
-    ],
-    "target_entity_id": "ENT-DIGITAL-CONCIERGE"
-  },
-  {
-    "confidence": 0.92,
-    "evidence_status": "direct",
-    "id": "REL-SAM-CLOUD",
-    "limitations": [
-      "LYNK Cloud is sold separately."
-    ],
-    "predicate": "includes",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-SAMSUNG-REFERENCE",
-    "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01",
-      "CLM-SAM-LYNK-MANAGE-01"
-    ],
-    "target_entity_id": "ENT-CLOUD-MANAGEMENT"
-  },
-  {
-    "confidence": 0.77,
-    "evidence_status": "inferred",
     "id": "REL-HOME-HUMAN",
     "limitations": [
-      "Usage does not measure perceived value directly."
+      "Human value is an evaluation category, not a monetized result."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-FEEL-HOME",
     "supporting_claim_ids": [
-      "CLM-JDP-USAGE-01",
-      "CLM-CAST-CROSSVENDOR-01"
+      "CLM-HXG-PATH-HOME-01"
     ],
     "target_entity_id": "ENT-HUMAN-VALUE"
   },
   {
-    "confidence": 0.69,
+    "confidence": 0.72,
     "evidence_status": "inferred",
     "id": "REL-CONTROL-HUMAN",
     "limitations": [
-      "No guest outcome estimate in cited vendor evidence."
+      "Human value is an evaluation category, not a monetized result."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-FEEL-CONTROL",
     "supporting_claim_ids": [
-      "CLM-SAM-SMARTTHINGS-01"
+      "CLM-HXG-PATH-CONTROL-01"
     ],
     "target_entity_id": "ENT-HUMAN-VALUE"
   },
   {
-    "confidence": 0.67,
+    "confidence": 0.72,
     "evidence_status": "inferred",
     "id": "REL-RECOGNIZED-HUMAN",
     "limitations": [
-      "Personalization capability is not proof of positive reception."
+      "Human value is an evaluation category, not a monetized result."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-FEEL-RECOGNIZED",
     "supporting_claim_ids": [
-      "CLM-SAM-BI-01",
-      "CLM-ORACLE-INTEGRATION-01"
+      "CLM-HXG-PATH-RECOGNIZED-01"
     ],
     "target_entity_id": "ENT-HUMAN-VALUE"
   },
   {
-    "confidence": 0.8,
+    "confidence": 0.72,
     "evidence_status": "inferred",
     "id": "REL-INCLUDED-HUMAN",
     "limitations": [
-      "Accessible outcomes require conformance testing."
+      "Human value is an evaluation category, not a monetized result."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-FEEL-INCLUDED",
     "supporting_claim_ids": [
-      "CLM-WCAG-NONGRAPH-01",
-      "CLM-SAM-LIVE-TRANSLATE-01"
+      "CLM-HXG-PATH-INCLUDED-01"
     ],
     "target_entity_id": "ENT-HUMAN-VALUE"
   },
   {
-    "confidence": 0.78,
+    "confidence": 0.72,
     "evidence_status": "inferred",
     "id": "REL-SECURE-HUMAN",
     "limitations": [
-      "Trust was not measured in cited sources."
+      "Human value is an evaluation category, not a monetized result."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-FEEL-SECURE",
     "supporting_claim_ids": [
-      "CLM-SAM-PRIVACY-01",
-      "CLM-NIST-PMS-RISK-01"
+      "CLM-HXG-PATH-SECURE-01"
     ],
     "target_entity_id": "ENT-HUMAN-VALUE"
   },
   {
-    "confidence": 0.74,
+    "confidence": 0.72,
     "evidence_status": "inferred",
     "id": "REL-SUPPORTED-HUMAN",
     "limitations": [
-      "General hotel-problem evidence is not specific to display service channels."
+      "Human value is an evaluation category, not a monetized result."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-FEEL-SUPPORTED",
     "supporting_claim_ids": [
-      "CLM-JDP-FRICTION-01",
-      "CLM-SAM-CONCIERGE-01"
+      "CLM-HXG-PATH-SUPPORTED-01"
     ],
     "target_entity_id": "ENT-HUMAN-VALUE"
   },
   {
-    "confidence": 0.66,
+    "confidence": 0.76,
+    "evidence_status": "inferred",
+    "id": "REL-DISPLAY-CASTING",
+    "limitations": [
+      "Actual support depends on the selected display, network, and integration."
+    ],
+    "predicate": "can-enable",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-CONNECTED-DISPLAY",
+    "supporting_claim_ids": [
+      "CLM-HXG-PATH-HOME-01"
+    ],
+    "target_entity_id": "ENT-CASTING"
+  },
+  {
+    "confidence": 0.6,
     "evidence_status": "scenario",
     "id": "REL-IOT-ENERGY",
     "limitations": [
-      "Requires measured property baselines and verified reduction."
+      "Requires local baseline, attribution, and measurement."
     ],
     "predicate": "may-create",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-IOT-CONTROLS",
     "supporting_claim_ids": [
-      "CLM-ENERGY-SCENARIO-01"
+      "CLM-HXG-VALUE-ENERGY-01"
     ],
     "target_entity_id": "ENT-ENERGY-EFFICIENCY"
   },
   {
-    "confidence": 0.66,
+    "confidence": 0.6,
     "evidence_status": "scenario",
     "id": "REL-ENERGY-PROPERTY",
     "limitations": [
-      "No universal savings rate is claimed."
+      "No universal savings rate or ROI is claimed."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-ENERGY-EFFICIENCY",
     "supporting_claim_ids": [
-      "CLM-ENERGY-COST-01",
-      "CLM-ENERGY-HVAC-01",
-      "CLM-ENERGY-SCENARIO-01"
+      "CLM-HXG-VALUE-ENERGY-01"
     ],
     "target_entity_id": "ENT-PROPERTY-VALUE"
   },
   {
-    "confidence": 0.62,
+    "confidence": 0.6,
     "evidence_status": "scenario",
     "id": "REL-CONCIERGE-ANCILLARY",
     "limitations": [
-      "Conversion and incrementality require property data."
+      "Incrementality and contribution margin require property data."
     ],
     "predicate": "may-create",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-DIGITAL-CONCIERGE",
     "supporting_claim_ids": [
-      "CLM-ANCILLARY-SCENARIO-01",
-      "CLM-SAM-CONCIERGE-01"
+      "CLM-HXG-VALUE-ANCILLARY-01"
     ],
     "target_entity_id": "ENT-ANCILLARY-REVENUE"
   },
   {
-    "confidence": 0.62,
+    "confidence": 0.6,
     "evidence_status": "scenario",
     "id": "REL-ANCILLARY-PROPERTY",
     "limitations": [
-      "No universal uplift is claimed."
+      "No universal conversion rate, uplift, or ROI is claimed."
     ],
     "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-ANCILLARY-REVENUE",
     "supporting_claim_ids": [
-      "CLM-ANCILLARY-SCENARIO-01"
+      "CLM-HXG-VALUE-ANCILLARY-01"
     ],
     "target_entity_id": "ENT-PROPERTY-VALUE"
   },
   {
-    "confidence": 0.72,
-    "evidence_status": "inferred",
+    "confidence": 0.6,
+    "evidence_status": "scenario",
+    "id": "REL-CLOUD-SUPPORT",
+    "limitations": [
+      "Remote resolution must be verified locally."
+    ],
+    "predicate": "may-create",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-CLOUD-MANAGEMENT",
+    "supporting_claim_ids": [
+      "CLM-HXG-VALUE-SUPPORT-01"
+    ],
+    "target_entity_id": "ENT-OPERATIONAL-SUPPORT"
+  },
+  {
+    "confidence": 0.6,
+    "evidence_status": "scenario",
     "id": "REL-SUPPORT-PROPERTY",
     "limitations": [
-      "Avoided dispatch cost must be measured locally."
+      "No universal avoided-cost rate or ROI is claimed."
     ],
-    "predicate": "may-contribute-to",
+    "predicate": "contributes-to",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-OPERATIONAL-SUPPORT",
     "supporting_claim_ids": [
-      "CLM-REMOTE-SUPPORT-INFERENCE-01"
+      "CLM-HXG-VALUE-SUPPORT-01"
     ],
     "target_entity_id": "ENT-PROPERTY-VALUE"
+  },
+  {
+    "confidence": 0.78,
+    "evidence_status": "inferred",
+    "id": "REL-GUEST-HUMAN",
+    "limitations": [
+      "Guest outcomes require direct validation in the intended population."
+    ],
+    "predicate": "evaluates",
+    "schema_version": "1.0.0",
+    "source_entity_id": "ENT-GUEST",
+    "supporting_claim_ids": [
+      "CLM-HXG-STAKEHOLDERS-01"
+    ],
+    "target_entity_id": "ENT-HUMAN-VALUE"
   },
   {
     "confidence": 0.82,
     "evidence_status": "inferred",
     "id": "REL-OPERATOR-PROPERTY",
     "limitations": [
-      "Industry operating performance provides context; it does not prove that a specific operator receives property value from this technology. Value pathways differ by property."
+      "Property value must be measured with local inputs."
     ],
-    "predicate": "receives",
+    "predicate": "evaluates",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-PROPERTY-OPERATOR",
     "supporting_claim_ids": [
-      "CLM-AHLA-GOPPAR-01"
+      "CLM-HXG-STAKEHOLDERS-01"
     ],
     "target_entity_id": "ENT-PROPERTY-VALUE"
   },
   {
-    "confidence": 0.79,
+    "confidence": 0.76,
     "evidence_status": "inferred",
-    "id": "REL-GUEST-HUMAN",
+    "id": "REL-BRAND-PROPERTY",
     "limitations": [
-      "Human value is not monetized in this release."
+      "Brand and management responsibilities vary."
     ],
-    "predicate": "receives",
+    "predicate": "governs",
     "schema_version": "1.0.0",
-    "source_entity_id": "ENT-GUEST",
+    "source_entity_id": "ENT-BRAND",
     "supporting_claim_ids": [
-      "CLM-JDP-USAGE-01",
-      "CLM-ORCHESTRATION-THESIS-01"
+      "CLM-HXG-STAKEHOLDERS-01"
     ],
-    "target_entity_id": "ENT-HUMAN-VALUE"
+    "target_entity_id": "ENT-PROPERTY-VALUE"
   },
   {
-    "confidence": 0.79,
+    "confidence": 0.76,
     "evidence_status": "inferred",
     "id": "REL-OEM-ECOSYSTEM",
     "limitations": [
@@ -556,28 +430,27 @@
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-OEM-PLATFORM",
     "supporting_claim_ids": [
-      "CLM-SAM-ARCH-01"
+      "CLM-HXG-STAKEHOLDERS-01"
     ],
     "target_entity_id": "ENT-ECOSYSTEM-VALUE"
   },
   {
-    "confidence": 0.71,
+    "confidence": 0.74,
     "evidence_status": "inferred",
     "id": "REL-INTEGRATOR-ECOSYSTEM",
     "limitations": [
-      "Commercial terms are property- and partner-specific."
+      "Commercial terms are deployment-specific."
     ],
     "predicate": "participates-in",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-INTEGRATOR",
     "supporting_claim_ids": [
-      "CLM-ORCHESTRATION-THESIS-01",
-      "CLM-ORACLE-INTEGRATION-01"
+      "CLM-HXG-STAKEHOLDERS-01"
     ],
     "target_entity_id": "ENT-ECOSYSTEM-VALUE"
   },
   {
-    "confidence": 0.78,
+    "confidence": 0.74,
     "evidence_status": "inferred",
     "id": "REL-PARTNERS-ECOSYSTEM",
     "limitations": [
@@ -587,40 +460,22 @@
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-TECH-PARTNERS",
     "supporting_claim_ids": [
-      "CLM-ORACLE-INTEGRATION-01",
-      "CLM-SAM-ARCH-01"
+      "CLM-HXG-STAKEHOLDERS-01"
     ],
     "target_entity_id": "ENT-ECOSYSTEM-VALUE"
   },
   {
-    "confidence": 0.94,
-    "evidence_status": "direct",
-    "id": "REL-AHLA-CONTEXT",
-    "limitations": [
-      "Economic context is not attributable value."
-    ],
-    "predicate": "operates-within",
-    "schema_version": "1.0.0",
-    "source_entity_id": "ENT-PROPERTY-VALUE",
-    "supporting_claim_ids": [
-      "CLM-AHLA-SPEND-01",
-      "CLM-WTTC-GDP-01"
-    ],
-    "target_entity_id": "ENT-MACRO-CONTEXT"
-  },
-  {
-    "confidence": 0.88,
-    "evidence_status": "direct",
+    "confidence": 0.82,
+    "evidence_status": "inferred",
     "id": "REL-NETWORK-CASTING",
     "limitations": [
-      "Gateway, network and PMS requirements vary."
+      "Network readiness must be verified for the deployment."
     ],
     "predicate": "conditions",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-NETWORK-DEPENDENCY",
     "supporting_claim_ids": [
-      "CLM-CAST-CROSSVENDOR-01",
-      "CLM-LG-IHG-DEPLOYMENT-01"
+      "CLM-HXG-NETWORK-CONDITION-01"
     ],
     "target_entity_id": "ENT-CASTING"
   },
@@ -629,32 +484,29 @@
     "evidence_status": "inferred",
     "id": "REL-GOVERNANCE-PMS",
     "limitations": [
-      "Compliance depends on jurisdiction and implementation."
+      "Jurisdiction and implementation determine required controls."
     ],
     "predicate": "conditions",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-DATA-GOVERNANCE",
     "supporting_claim_ids": [
-      "CLM-NIST-PMS-RISK-01",
-      "CLM-SAM-BI-01"
+      "CLM-HXG-GOVERNANCE-CONDITION-01"
     ],
     "target_entity_id": "ENT-PMS-INTEGRATION"
   },
   {
-    "confidence": 0.92,
-    "evidence_status": "direct",
-    "id": "REL-LIMITS-SAMSUNG",
+    "confidence": 0.86,
+    "evidence_status": "inferred",
+    "id": "REL-AVAILABILITY-DISPLAY",
     "limitations": [
-      "Feature availability varies by model, region, language, software and licensing."
+      "Specific product and licensing availability must be checked."
     ],
     "predicate": "conditions",
     "schema_version": "1.0.0",
     "source_entity_id": "ENT-AVAILABILITY-LIMITS",
     "supporting_claim_ids": [
-      "CLM-SAM-LIVE-TRANSLATE-01",
-      "CLM-SAM-LYNK-MANAGE-01",
-      "CLM-SAM-PRIVACY-01"
+      "CLM-HXG-AVAILABILITY-CONDITION-01"
     ],
-    "target_entity_id": "ENT-SAMSUNG-REFERENCE"
+    "target_entity_id": "ENT-CONNECTED-DISPLAY"
   }
 ]

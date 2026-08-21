@@ -1,805 +1,18 @@
 [
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:8d8ddc6d5efed125461145e69ffafeb70eb6222366e97626c847f01c6a193c6b",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-JDP-2026-NAGSI",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2026-07-14",
-    "publisher": "J.D. Power",
-    "schema_version": "1.0.0",
-    "title": "2026 North America Hotel Guest Satisfaction Index Study",
-    "url": "https://www.jdpower.com/business/press-releases/2026-north-america-hotel-guest-satisfaction-study/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:f8b86d9c3af2ce1975b9aea23312872e9ed643e8a27602b0e31bfa408ea12d8c",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-JDP-2025-NAGSI",
-    "licensing_status": "citation and short excerpt only",
-    "notes": "Trend context; the study was redesigned in 2025.",
-    "publication_date": "2025-07-15",
-    "publisher": "J.D. Power",
-    "schema_version": "1.0.0",
-    "title": "2025 North America Hotel Guest Satisfaction Index Study",
-    "url": "https://www.jdpower.com/business/press-releases/2025-north-america-hotel-guest-satisfaction-index-nagsi-study"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:4db97cacc1934fc0ee7c8275eabc7c251e30e7ea19ff22f00fb1dbc90d3d84cc",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-JDP-2025-MGMT",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2025-09-03",
-    "publisher": "J.D. Power",
-    "schema_version": "1.0.0",
-    "title": "2025 North America Third-Party Hotel Management Guest Satisfaction Benchmark",
-    "url": "https://www.jdpower.com/business/press-releases/2025-north-america-third-party-hotel-management-guest-satisfaction-benchmark"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:d7f0bf67e87f5b5eff806e606b8b022c689157cf6d213493ecec155cdd736158",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-JDP-2024-MGMT",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2024-09-04",
-    "publisher": "J.D. Power",
-    "schema_version": "1.0.0",
-    "title": "2024 North America Third-Party Hotel Management Guest Satisfaction Benchmark",
-    "url": "https://www.jdpower.com/business/press-releases/2024-north-america-third-party-hotel-management-guest-satisfaction-benchmark"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:e7940b4546f22e1c8f6ad184fc56bf23047c38774e49d2a24072ba16bb4228d8",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-AHLA-2026-SOTI",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2026-01-27",
-    "publisher": "American Hotel & Lodging Association",
-    "schema_version": "1.0.0",
-    "title": "2026 State of the Industry",
-    "url": "https://www.ahla.com/resource/2026-state-industry"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:a9c3a7f54c33364084a9f9394e585994bd561ff2699685035691ced82cc875a9",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-AHLA-2026-ONEPAGER",
-    "licensing_status": "citation only",
-    "publication_date": "2026-01-27",
-    "publisher": "American Hotel & Lodging Association",
-    "schema_version": "1.0.0",
-    "title": "2026 State of the Industry One-Pager",
-    "url": "https://www.ahla.com/sites/default/files/State-of-the-Industry_2026_One-Pager.pdf"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:bad252b5c80ed0516a2206fc4f8d1d3c9f81fd8dbbe2bf584a292d487d239840",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-AHLA-2025-SOTI",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2025-02-03",
-    "publisher": "American Hotel & Lodging Association",
-    "schema_version": "1.0.0",
-    "title": "2025 State of the Industry Report",
-    "url": "https://www.ahla.com/resource/2025-state-industry-report"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:bad252b5c80ed0516a2206fc4f8d1d3c9f81fd8dbbe2bf584a292d487d239840",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-AHLA-2025-REPORT",
-    "licensing_status": "citation only",
-    "publication_date": "2025-02-03",
-    "publisher": "American Hotel & Lodging Association",
-    "schema_version": "1.0.0",
-    "title": "2025 State of the Hotel Industry Report",
-    "url": "https://www.ahla.com/sites/default/files/25_SOTI.pdf"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:e0a16da7a178bdee63b3e20755d11251465641013173f146115a3dd91e8c0dd0",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-AHLA-2024-TRAVEL-INTENT",
-    "licensing_status": "citation only",
-    "notes": "AHLA survey fielded among 2,202 U.S. adults.",
-    "publication_date": "2024-01-30",
-    "publisher": "American Hotel & Lodging Association",
-    "schema_version": "1.0.0",
-    "title": "2024 Outlook: Travel Intent and Preferences",
-    "url": "https://www.ahla.com/sites/default/files/2025-12/AHLA.Travel.Intent.PreferencesJan23.1.30.2024.pdf"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:7fb886da3f0a68e335f23c5249491cd7b25169d68ebf28c1b6e56e7a6e39b79d",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-AHLA-2024-SOTI",
-    "licensing_status": "citation only",
-    "publication_date": "2024-01-29",
-    "publisher": "American Hotel & Lodging Association",
-    "schema_version": "1.0.0",
-    "title": "2024 State of the Hotel Industry",
-    "url": "https://www.ahla.com/sites/default/files/2025-12/SOTI.2024.Final_.pdf"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "standard-or-government",
-    "content_hash": "sha256:fb566fbf3e5351a4389d62dc7f89614a71b3288727a3cc8b275fb4d854d5a749",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-ENERGYSTAR-LODGING",
-    "licensing_status": "U.S. government guidance; verify embedded third-party data",
-    "notes": "Current agency guidance, not a newly measured 2026 dataset.",
-    "publication_date": "2026-08-19",
-    "publisher": "U.S. Environmental Protection Agency ENERGY STAR",
-    "schema_version": "1.0.0",
-    "title": "ENERGY STAR Guidance for Lodging",
-    "url": "https://www.energystar.gov/buildings/resources-audience/small-biz/lodging"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "standard-or-government",
-    "content_hash": "sha256:b2929b8afcc1ea33ca5d84188fa119d52bb50c3613c54574b1d0b44009fc91fd",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-ENERGYSTAR-SMALL-LODGING",
-    "licensing_status": "U.S. government guidance",
-    "notes": "Publication date reflects the research window label used for current guidance; underlying benchmarks may be older.",
-    "publication_date": "2024-01-01",
-    "publisher": "U.S. Environmental Protection Agency ENERGY STAR",
-    "schema_version": "1.0.0",
-    "title": "ENERGY STAR Small Business Action Workbook: Lodging",
-    "url": "https://www.energystar.gov/sites/default/files/tools/Small_Business_Lodging_0.pdf"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:f39d46af81f8e0bc5625a120e10df7e6f32e68e0b1ce766b4b8c39b1968dfbe9",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-WTTC-2025-IMPACT",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2026-04-18",
-    "publisher": "World Travel & Tourism Council",
-    "schema_version": "1.0.0",
-    "title": "Economic Impact Research",
-    "url": "https://wttc.org/research/economic-impact?pubDate=20260418"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:ca9b2f2f1c96f146cb715457d8069ce93195c59a3bb5f897708b774b3835a9dc",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-WTTC-2026-OUTLOOK",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2026-04-21",
-    "publisher": "World Travel & Tourism Council",
-    "schema_version": "1.0.0",
-    "title": "Global Travel and Tourism Growth to Outpace Wider Economy",
-    "url": "https://wttc.org/news/global-travel-tourism-growth-to-outpace-wider-economy-by-1-5-times-over-the-next-decade"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:738d5f1601ddb2b45f74bc05b0b55e3db3c87930f90dc50039f617a9add02928",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-FRAME-2026",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2026-06-16",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Launches The Frame Hospitality Model at HITEC 2026",
-    "url": "https://news.samsung.com/us/samsung-launches-frame-hospitality-model-hitec-2026"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:b2e105b48ffb2ac968590a127c40c100339ca0beae8c562a46d136c8cd09f2a6",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-PERSONALIZED-2026",
-    "licensing_status": "citation and short excerpt only; embedded media excluded",
-    "publication_date": "2026-04-09",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Hotel TV: Personalized In-Room Experiences Made Simple",
-    "url": "https://news.samsung.com/us/samsung-hotel-tv-personalized-room-experiences-made-simple/"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:f83f7ee58f501f5181c7dde406de17595a80f9fd741afd9de74c5505ebff26ac",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-HITEC-2025",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2025-06-16",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Debuts New Hotel TV Lineup at HITEC 2025",
-    "url": "https://news.samsung.com/us/samsung-debuts-new-hotel-tv-lineup-hitec-2025-elevate-connected-guest-journey/"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:0b0c3a15bef9e256857fb290c8e90af12e482b91640fd0f102876d44d22e5843",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-AIRPLAY-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-06-25",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung and Apple AirPlay Enhance Hotel TVs",
-    "url": "https://news.samsung.com/us/samsung-enhances-hotel-stays-with-apple-airplay-on-hospitality-tvs/"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:d114d1544042a3ba98343d0f3f33724e306229788f2961e0c4570c13fbbcd27a",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-INF-COMM-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-06-12",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Showcases SmartThings Pro and Next-Gen Display Technologies at InfoComm 2024",
-    "url": "https://news.samsung.com/us/samsung-smartthings-pro-and-next-gen-display-technologies-at-infocomm-2024"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:37999c7d9d5141ebdb013b16bb5e4d5246ea077e7f2b56721dc1a2baede27c0c",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-HVAC-2026",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2026-02-03",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Launches SmartThings Pro HVAC Offerings at AHR 2026",
-    "url": "https://news.samsung.com/us/samsung-launches-smartthings-pro-hvac-offerings-ahr-2026"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:c20ca8097b9822644e7e4e3a413361db1175f858339efecef28591a3cff48001",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-GLOBAL-HITEC-2025",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2025-06-17",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung 2025 Hotel TV Lineup Brings The Frame and Google Cast to Hospitality",
-    "url": "https://news.samsung.com/global/samsungs-2025-hotel-tv-lineup-brings-award-winning-the-frame-and-google-cast-to-hospitality-redefining-luxury-and-innovation"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:29b9f21bb98ea73722aedf3db6735e3cfcb0cd46170dd36bff9ad0d042ce9a6f",
-    "geography": [
-      "Indonesia"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-SAM-APURVA-2025",
-    "licensing_status": "citation and short excerpt only; embedded media excluded",
-    "publication_date": "2025-06-18",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Inside a Seamless Luxury Stay at The Apurva Kempinski Bali",
-    "url": "https://news.samsung.com/global/video-inside-a-seamless-luxury-stay-at-the-apurva-kempinski-bali-with-samsung-hospitality-tvs"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:5b09a85875e99bd1ecf6090989de592223145a499fc762936364227ea0bf8fdb",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-ISO-CLOUD-2025",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2025-03-18",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Receives ISO 27001 and ISO 27701 Certifications for Cloud Systems",
-    "url": "https://news.samsung.com/us/samsung-electronics-receives-iso-27001-27701-certifications-vxt-magicinfo-lynk-cloud-systems/"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:ec47f5005388cb1ff138832f4aa008e55c0dccf03de3fd85ad7280f9d1bdeb04",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-VOCO-2026",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2026-04-15",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Powers the Modern Guest Experience at voco Times Square",
-    "url": "https://news.samsung.com/us/samsung-powers-modern-guest-experience-voco-times-square"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:0e50c7b8ef7b39203900e29b8018b54ae4089e96bc7310f17176c2ecc7e88f76",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-ROYAL-CARIBBEAN-2026",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2026-01-08",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Equips Royal Caribbean's Star of the Seas with Hospitality TVs and Smart Signage",
-    "url": "https://news.samsung.com/us/samsung-equips-royal-caribbeans-star-seas-6000-hospitality-tvs-smart-signage/"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:bb28d3e9d8b8323b241cc59b2f1eff0a8cd19822dbf7177128b14168ac92e7d4",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-ISE-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-01-30",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Showcases Innovative Display Solutions Beyond Boundaries at ISE 2024",
-    "url": "https://news.samsung.com/us/samsung-showcases-innovative-display-solutions-beyond-boundaries-ise-2024"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:6ac7f9c57ea4f53bfd882c4d83b6a5a3e5c94beace991d3959d49ef6862bd42c",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-SAM-UPSCALING-2026",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2026-06-17",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Upscales Hospitality at HITEC 2026",
-    "url": "https://news.samsung.com/us/samsung-upscales-hospitality-hitec-2026"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:50610b072f42b27ed0a233dab9a08331c5853befaa5a002deb75df464c77db05",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-SAM-HOSPITALITY-SOLUTIONS",
-    "licensing_status": "citation only; trademarks and product media excluded",
-    "notes": "Continuously maintained product page; date is access-date snapshot.",
-    "publication_date": "2026-08-19",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Hospitality Display Solutions",
-    "url": "https://www.samsung.com/us/business/solutions/industries/hospitality/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:82f0e4a4e8b96dbd7217cf58b650b6dd2a70e64d51b72662bae717ce7172be6c",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-SAM-SMARTTHINGS-PRO",
-    "licensing_status": "citation only; trademarks and product media excluded",
-    "notes": "Continuously maintained product page; date is access-date snapshot.",
-    "publication_date": "2026-08-19",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "SmartThings Pro",
-    "url": "https://www.samsung.com/us/business/industries/smartthings-pro/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:b779344cad9919d82415bcb58fa18986967dd046d4e4e7f18fafe81f0a7ebae4",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-SAM-LYNK-CATALOG",
-    "licensing_status": "citation only; document and trademarks excluded",
-    "publication_date": "2024-01-01",
-    "publisher": "Samsung Electronics",
-    "schema_version": "1.0.0",
-    "title": "Samsung Smart Hospitality Displays Catalog",
-    "url": "https://images.samsung.com/is/content/samsung/assets/nl/business/industries/hospitality/Samsung_Smart_Hospitality_Displays_Catalog_WEB.pdf"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:fc0d328866802f2ce490de1a513bf48946670e850a83230b629dfa9dd8b134e5",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-GOOGLE-CAST-LG-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-01-09",
-    "publisher": "Google",
-    "schema_version": "1.0.0",
-    "title": "New Android Features Announced at CES 2024",
-    "url": "https://blog.google/products-and-platforms/platforms/android/ces-2024-android-updates/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:20c52b5022de1501f60a813208c582633e7b426fd6246f3e5e017d64183b473c",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-LG-PROCENTRIC-2026",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2026-06-16",
-    "publisher": "LG Electronics",
-    "schema_version": "1.0.0",
-    "title": "LG Debuts Pro:Centric to Transform Hotel TVs into Business-Driving Platforms",
-    "url": "https://www.lg.com/us/business/press-release/lg-debuts-procentric-to-transform-hotel-tvs-into-business-driving-platforms"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:0a2f5ec125b04d7bb57c9bf8e06034e28a2eafca5e6ce765344bb8955adfbd4b",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-LG-PROCENTRIC-SMART",
-    "licensing_status": "citation only; trademarks and product media excluded",
-    "notes": "Continuously maintained product page; date is access-date snapshot.",
-    "publication_date": "2026-08-19",
-    "publisher": "LG Electronics",
-    "schema_version": "1.0.0",
-    "title": "Pro:Centric Smart Hospitality Platform",
-    "url": "https://www.lg.com/us/business/hospitality-tvs/hotel-tvs/pro-centric-smart"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:d198613f6ca63d124ec99a35865efd5c859583d86b31152bb51010129b30dec9",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-LG-AIRPLAY-IHG-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-04-18",
-    "publisher": "LG Electronics",
-    "schema_version": "1.0.0",
-    "title": "Apple AirPlay Launches on LG Hotel TVs at Select IHG Hotels and Resorts",
-    "url": "https://www.lg.com/us/press-release/apple-airplay-launches-on-lg-hotel-tvs-at-select-ihg-hotels-and-resorts"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:ffba8776754cd0acf8efb018b61c7ade3f3685c01c17016fc1ceaaab3a49abc0",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-LG-HITEC-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-06-24",
-    "publisher": "LG Electronics",
-    "schema_version": "1.0.0",
-    "title": "LG Hospitality Technologies Featured at HITEC 2024",
-    "url": "https://www.lg.com/us/business/press-release/lg-hotel-tvs-google-cast-airplay-cloi-robots-dvled-displays-ev-chargers-featured-at-hitec-2024"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:37a601cb6a3a8f27eabe39f30483eb9b1b913739cc32452b4b89d4cb729c49af",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-LG-AIRPLAY-HOSPITALITY",
-    "licensing_status": "citation only; trademarks and product media excluded",
-    "publication_date": "2024-04-18",
-    "publisher": "LG Electronics",
-    "schema_version": "1.0.0",
-    "title": "AirPlay for Hospitality",
-    "url": "https://www.lg.com/us/business/airplay-for-hospitality"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:8761b75ab54689519c66d1cf1b23137a8a9979072f39bdf39e6e8cfa9220918c",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-LG-GOOGLE-CAST-2025",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2025-01-13",
-    "publisher": "LG Electronics",
-    "schema_version": "1.0.0",
-    "title": "LG Hotel TVs Add Google Cast",
-    "url": "https://www.lg.com/us/press-release/lg_google_cast"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:a332211424cc9ca6248cafbf3e675930ceed54e80c34356cfc1282a212babcbc",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-LG-HITEC-2025",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2025-06-16",
-    "publisher": "LG Electronics",
-    "schema_version": "1.0.0",
-    "title": "LG Showcases Hospitality TV Innovation at HITEC 2025",
-    "url": "https://www.lg.com/us/business/press-release/lg-showcases-across-the-board-innovation-in-hospitality-tv-at-hitec-2025"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:fac298aea5c8a8c72dc1f7c8f75534dec575211165f069b373ee72757c873284",
-    "geography": [
-      "United States",
-      "Canada"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-APPLE-AIRPLAY-IHG-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-04-18",
-    "publisher": "Apple",
-    "schema_version": "1.0.0",
-    "title": "AirPlay Is Now Available in Select IHG Hotels and Resorts Properties",
-    "url": "https://www.apple.com/us-es/newsroom/2024/04/airplay-is-now-available-in-select-ihg-hotels-and-resorts-properties/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:643026426de78ef93cb3543dc0faa78062300ec9d79a4335675273ee8a215e62",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-ORACLE-ENGAGEMENT-2024",
-    "licensing_status": "citation and short excerpt only; trademarks excluded",
-    "publication_date": "2024-10-29",
-    "publisher": "Oracle",
-    "schema_version": "1.0.0",
-    "title": "Guest Engagement and Merchandising Capabilities in OPERA Cloud",
-    "url": "https://www.oracle.com/news/announcement/guest-engagement-and-merchandising-capabilities-now-available-in-oracle-opera-cloud-hospitality-platform-2024-10-29/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:6e0c6d70e6c9a4ab40b3035875be125d552a3a781ef3745e0c9abb39de92f766",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-ORACLE-OPERA-DOCS",
-    "licensing_status": "citation only; documentation excluded",
-    "notes": "Continuously maintained documentation; date is access-date snapshot.",
-    "publication_date": "2026-08-19",
-    "publisher": "Oracle",
-    "schema_version": "1.0.0",
-    "title": "OPERA Cloud Hospitality Documentation",
-    "url": "https://docs.oracle.com/cd/E94148_01/docs/opera-cloud-distribution/hospitality/opera-cloud/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:3981e234413982673707e5686fb05deb6735759cd06e9d2a4ec3d51af8d85410",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-ORACLE-MGX-2024",
-    "licensing_status": "citation only; documentation excluded",
-    "publication_date": "2024-09-01",
-    "publisher": "Oracle",
-    "schema_version": "1.0.0",
-    "title": "Oracle Hospitality Mobile Guest Experience Release Notes 24.3",
-    "url": "https://docs.oracle.com/en/industries/hospitality/mobile-guest-experience/24.3/ogxrn/G14448_01.pdf"
-  },
-  {
-    "access_status": "limited",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "vendor-primary",
-    "content_hash": "sha256:d93b6c127a0897d5cc88550a758ed4f5f679543408aec50c7eb06de0937d272c",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "metadata-record",
-    "historical_context": false,
-    "id": "SRC-ORACLE-OHIP-2025",
-    "licensing_status": "citation only; documentation excluded",
-    "publication_date": "2025-01-01",
-    "publisher": "Oracle",
-    "schema_version": "1.0.0",
-    "title": "Oracle Hospitality Integration Platform User Guide",
-    "url": "https://docs.oracle.com/en/industries/hospitality/integration-platform/ohipu/G16625_02.pdf"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
+    "accessed_date": "2026-08-20",
     "authority_tier": "standard-or-government",
     "content_hash": "sha256:6e3c5fe397257cae509a2fb4752b73062cf8cbeb92c2cec618989b17e4cf7057",
     "geography": [
       "Global"
     ],
     "hash_basis": "retrieved-content",
-    "historical_context": false,
+    "historical_context": true,
     "id": "SRC-W3C-WCAG22",
-    "licensing_status": "W3C document license applies",
-    "publication_date": "2024-12-12",
+    "licensing_status": "W3C Document License 2023",
+    "notes": "Open standards context; v0.3 public claims contain no excerpt.",
+    "publication_date": "2023-10-05",
     "publisher": "World Wide Web Consortium",
     "schema_version": "1.0.0",
     "title": "Web Content Accessibility Guidelines 2.2",
@@ -807,17 +20,37 @@
   },
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
+    "accessed_date": "2026-08-20",
     "authority_tier": "standard-or-government",
-    "content_hash": "sha256:76e81a402f92883e0346c9b83893578f2301cbaa889bb49b1dfd1bbeb91262d7",
+    "content_hash": "sha256:3a24020967523131866e44f2ead938e03e977b67b315d8081ffdc8b868c46df3",
+    "geography": [
+      "Global"
+    ],
+    "hash_basis": "retrieved-content",
+    "historical_context": true,
+    "id": "SRC-W3C-ACCESSIBILITY-PRINCIPLES",
+    "licensing_status": "W3C Document License 2023",
+    "notes": "Open accessibility context; v0.3 public claims contain no excerpt.",
+    "publication_date": "2019-05-04",
+    "publisher": "World Wide Web Consortium",
+    "schema_version": "1.0.0",
+    "title": "Accessibility Principles",
+    "url": "https://www.w3.org/WAI/fundamentals/accessibility-principles/"
+  },
+  {
+    "access_status": "accessible",
+    "accessed_date": "2026-08-20",
+    "authority_tier": "standard-or-government",
+    "content_hash": "sha256:9625032ead8c5578a2e547ecb9daa90e723dfd1f5e17435f106befb6bd313789",
     "geography": [
       "United States"
     ],
     "hash_basis": "retrieved-content",
     "historical_context": false,
     "id": "SRC-NIST-IOT-HANDBOOK-2024",
-    "licensing_status": "U.S. government publication",
-    "publication_date": "2024-04-03",
+    "licensing_status": "NIST public information policy",
+    "notes": "No item-specific copyright notice identified in the rights review.",
+    "publication_date": "2024-11-19",
     "publisher": "National Institute of Standards and Technology",
     "schema_version": "1.0.0",
     "title": "Product Development Cybersecurity Handbook for IoT Product Manufacturers",
@@ -825,18 +58,18 @@
   },
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "historical-context",
-    "content_hash": "sha256:b807630f50464ddf8e6731c0f29cddcfa4a7eddbc656d217dddf91d9df8ee7b0",
+    "accessed_date": "2026-08-20",
+    "authority_tier": "standard-or-government",
+    "content_hash": "sha256:6cda4bec68e52d962ea6cac097028138665c131a8504e86deaa7d5df526ce2cb",
     "geography": [
       "United States"
     ],
     "hash_basis": "retrieved-content",
     "historical_context": true,
     "id": "SRC-NIST-PMS-2020",
-    "licensing_status": "U.S. government publication",
-    "notes": "Older material retained only as explicitly labeled hospitality-security context.",
-    "publication_date": "2020-10-29",
+    "licensing_status": "NIST public information policy",
+    "notes": "Historical security reference; v0.3 public claims contain no excerpt.",
+    "publication_date": "2020-10-01",
     "publisher": "National Institute of Standards and Technology",
     "schema_version": "1.0.0",
     "title": "Securing Property Management Systems",
@@ -844,74 +77,18 @@
   },
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
+    "accessed_date": "2026-08-20",
     "authority_tier": "primary",
-    "content_hash": "sha256:1f0eee00e83063c8b31225ce94b4e04d9d44d90913028a786a0df8be4d8e1189",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-OPENAI-ORCHESTRATION",
-    "licensing_status": "citation and short excerpt only",
-    "notes": "Continuously maintained official guidance; date is access-date snapshot.",
-    "publication_date": "2026-08-19",
-    "publisher": "OpenAI",
-    "schema_version": "1.0.0",
-    "title": "Orchestrating Multiple Agents",
-    "url": "https://developers.openai.com/api/docs/guides/agents/orchestration"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:edc943cf5a188f128d72c03b9293989d6943fbb41b046788ac39e1f8a20add44",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-OPENAI-MODELS",
-    "licensing_status": "citation and short excerpt only",
-    "notes": "Continuously maintained official guidance; date is access-date snapshot.",
-    "publication_date": "2026-08-19",
-    "publisher": "OpenAI",
-    "schema_version": "1.0.0",
-    "title": "Latest Model Guide",
-    "url": "https://developers.openai.com/api/docs/guides/latest-model"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:6b1b4982a6d18b1564d2af27df700019c1d41d26c313d9cbacef1c13b8eb144f",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-OPENAI-TRACING",
-    "licensing_status": "citation and short excerpt only",
-    "notes": "Continuously maintained official guidance; date is access-date snapshot.",
-    "publication_date": "2026-08-19",
-    "publisher": "OpenAI",
-    "schema_version": "1.0.0",
-    "title": "Agents SDK Tracing",
-    "url": "https://developers.openai.com/api/docs/guides/agents/integrations-observability"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:98d67a95402a3e499cf49dacbe9d5900430c9ea0a4f400088dc21caa057e8b88",
+    "content_hash": "sha256:8ddea77764e2debdcf346b6a1ef892b4d3ce5e2b58a940046da1966457c3ee19",
     "geography": [
       "Global"
     ],
     "hash_basis": "retrieved-content",
     "historical_context": false,
     "id": "SRC-MS-GRAPHRAG-REPO",
-    "licensing_status": "MIT license for repository code; linked content may differ",
-    "publication_date": "2024-07-02",
+    "licensing_status": "MIT License",
+    "notes": "Repository method reference; code is not redistributed.",
+    "publication_date": "2024-07-01",
     "publisher": "Microsoft",
     "schema_version": "1.0.0",
     "title": "Microsoft GraphRAG",
@@ -919,7 +96,7 @@
   },
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
+    "accessed_date": "2026-08-20",
     "authority_tier": "independent-research",
     "content_hash": "sha256:855117eeed1d12d807df77154b203ba20a1664fd6f17891395557b379989add7",
     "geography": [
@@ -928,7 +105,8 @@
     "hash_basis": "retrieved-content",
     "historical_context": false,
     "id": "SRC-MS-GRAPHRAG-PAPER",
-    "licensing_status": "arXiv paper license applies",
+    "licensing_status": "CC BY 4.0",
+    "notes": "Method reference; public claim is paraphrased.",
     "publication_date": "2024-04-24",
     "publisher": "Microsoft Research",
     "schema_version": "1.0.0",
@@ -937,35 +115,17 @@
   },
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
+    "accessed_date": "2026-08-20",
     "authority_tier": "primary",
-    "content_hash": "sha256:f313875d4f959c2a3db00308ed39e047bbbe81524f7ef4cceb69433c777d8139",
-    "geography": [
-      "Global"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-MS-GRAPHRAG-BLOG",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2024-07-02",
-    "publisher": "Microsoft Research",
-    "schema_version": "1.0.0",
-    "title": "GraphRAG: Unlocking LLM Discovery on Narrative Private Data",
-    "url": "https://www.microsoft.com/en-us/research/project/graphrag/"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "primary",
-    "content_hash": "sha256:8e1afcee870da3a8a10b970df112b06196242944e0999b9e1e6a9dca5a74c23a",
+    "content_hash": "sha256:c3997a686113554592cd999216ec6507d698ab9c232be9bbcefc522fb58c28dd",
     "geography": [
       "Global"
     ],
     "hash_basis": "retrieved-content",
     "historical_context": false,
     "id": "SRC-GITHUB-PAGES",
-    "licensing_status": "GitHub documentation license applies",
-    "notes": "Continuously maintained official documentation; date is access-date snapshot.",
+    "licensing_status": "GitHub Docs CC BY 4.0",
+    "notes": "Static publication mechanism only.",
     "publication_date": "2026-08-19",
     "publisher": "GitHub",
     "schema_version": "1.0.0",
@@ -974,57 +134,59 @@
   },
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
+    "accessed_date": "2026-08-20",
     "authority_tier": "primary",
-    "content_hash": "sha256:a357f7720c339f9a1a24018862d3aff2b89b63d9b19cc05f3c5d75310a10a77a",
+    "content_hash": "sha256:48360f3daad78309452f2c15b01cf2fb427d8b5ef9b11678a73cfc25949e7e2e",
     "geography": [
       "Global"
     ],
-    "hash_basis": "retrieved-content",
+    "hash_basis": "metadata-record",
     "historical_context": false,
-    "id": "SRC-LINKEDIN-DOCUMENTS",
-    "licensing_status": "citation and short excerpt only",
-    "notes": "Continuously maintained official guidance; date is access-date snapshot.",
+    "id": "SRC-HXG-FRAMEWORK",
+    "licensing_status": "Original HXG content, CC BY 4.0",
+    "notes": "Original analytical framework; not empirical guest-preference evidence.",
     "publication_date": "2026-08-19",
-    "publisher": "LinkedIn",
+    "publisher": "Hospitality Experience Graph",
     "schema_version": "1.0.0",
-    "title": "Share Documents on LinkedIn",
-    "url": "https://www.linkedin.com/help/linkedin/answer/a518909"
+    "title": "HXG Six-Pathway Experience Framework",
+    "url": "https://github.com/LohanStruwig/hxg/blob/main/docs/hxg-framework.md"
   },
   {
     "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "independent-research",
-    "content_hash": "sha256:78911429e9cb6a025521dc7ddeae8bf4255b6754d794e60c7dfbdc3f979b82fe",
-    "geography": [
-      "United States"
-    ],
-    "hash_basis": "retrieved-content",
-    "historical_context": false,
-    "id": "SRC-AHLA-2024-POLL",
-    "licensing_status": "citation and short excerpt only",
-    "publication_date": "2024-01-29",
-    "publisher": "American Hotel & Lodging Association",
-    "schema_version": "1.0.0",
-    "title": "72% of Americans Likely to Maintain or Increase Hotel Stays in 2024",
-    "url": "https://www.ahla.com/news/72-americans-likely-maintain-or-increase-hotel-stays-2024"
-  },
-  {
-    "access_status": "accessible",
-    "accessed_date": "2026-08-19",
-    "authority_tier": "standard-or-government",
-    "content_hash": "sha256:3a24020967523131866e44f2ead938e03e977b67b315d8081ffdc8b868c46df3",
+    "accessed_date": "2026-08-20",
+    "authority_tier": "primary",
+    "content_hash": "sha256:a83c818fb0a8af2839644d4600c3ae9478ca2f005bccac2af8184f96b3b98091",
     "geography": [
       "Global"
     ],
-    "hash_basis": "retrieved-content",
+    "hash_basis": "metadata-record",
     "historical_context": false,
-    "id": "SRC-W3C-ACCESSIBILITY-PRINCIPLES",
-    "licensing_status": "W3C document license applies",
-    "publication_date": "2024-07-01",
-    "publisher": "World Wide Web Consortium",
+    "id": "SRC-HXG-METHODOLOGY",
+    "licensing_status": "Original HXG content, CC BY 4.0",
+    "notes": "Original methodology and governance record.",
+    "publication_date": "2026-08-19",
+    "publisher": "Hospitality Experience Graph",
     "schema_version": "1.0.0",
-    "title": "Accessibility Principles",
-    "url": "https://www.w3.org/WAI/fundamentals/accessibility-principles/"
+    "title": "HXG Rights-Aware Research Methodology",
+    "url": "https://github.com/LohanStruwig/hxg/blob/main/methodology/research-methodology.md"
+  },
+  {
+    "access_status": "accessible",
+    "accessed_date": "2026-08-20",
+    "authority_tier": "primary",
+    "content_hash": "sha256:679792eba3f8b1d2aef5d5aecb7986ec021baba6d3174f2fc509e554e4525e31",
+    "geography": [
+      "Global"
+    ],
+    "hash_basis": "metadata-record",
+    "historical_context": false,
+    "id": "SRC-HXG-VALUE-MODEL",
+    "licensing_status": "Original HXG content, CC BY 4.0",
+    "notes": "Variable-based scenarios only; no universal rate, uplift, savings, or ROI.",
+    "publication_date": "2026-08-19",
+    "publisher": "Hospitality Experience Graph",
+    "schema_version": "1.0.0",
+    "title": "HXG Property-Specific Value Model",
+    "url": "https://github.com/LohanStruwig/hxg/blob/main/docs/value-model.md"
   }
 ]

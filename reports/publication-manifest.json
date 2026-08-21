@@ -1,13 +1,13 @@
 {
   "alt_text": {
-    "1": "HXG title slide with a preview of six capability-to-guest-outcome pathways.",
-    "2": "J.D. Power evidence: 74 percent availability, 62 percent usage, and 44,787 branded hotel guests, with source scope and a causation caveat.",
-    "3": "Six rows connect Cast from your device to Feel at home, Control room settings to Feel in control, Connect stay context to Feel recognized, Present content accessibly to Feel included, Protect sessions and data to Feel secure, and Request services and help to Feel supported.",
-    "4": "Human outcomes flow through measurement into three property-specific value scenarios for ancillary contribution, energy, and remote support.",
-    "5": "Stakeholders are grouped by who experiences, operates, enables, and captures value, with an economic-context caveat.",
-    "6": "Samsung is shown as a vendor-stated reference architecture organized into display, experience, integration, and governance layers.",
-    "7": "Three evidence states, four contradiction findings, and the major limit that capability evidence does not prove perception or financial outcomes.",
-    "8": "Eight research stages, frozen release counts, the live HXG explorer URL, QR code, and an invitation to audit the evidence."
+    "1": "HXG title slide presents a working proposition and previews six capability-to-outcome pathways.",
+    "2": "Six experience pathways, three evidence states, and one auditable framework, with an analytical-not-empirical caveat.",
+    "3": "Six rows connect guest-facing capabilities to six guest outcomes using the bounded phrase can support.",
+    "4": "Three variable-based value formulas for ancillary contribution, energy, and operational support, all requiring local measurement.",
+    "5": "Stakeholders are grouped by who experiences, operates, enables, and validates value.",
+    "6": "Four metadata-only Samsung product links appear beside a clear independence disclosure; none is used as evidence.",
+    "7": "Three evidence states, four major limitations, and the fail-closed source-rights policy.",
+    "8": "Eight rights-aware research stages, generated release counts, the live HXG URL, QR code, and an invitation to audit the framework."
   },
   "carousel_pages": 8,
   "carousel_size": [
@@ -16,25 +16,25 @@
   ],
   "evidence_cutoff": "2026-08-19",
   "generated_counts": {
-    "claims": 29,
-    "contradictions": 6,
-    "countries": 3,
-    "entities": 32,
-    "relationships": 42,
-    "sources": 56
+    "claims": 19,
+    "contradictions": 4,
+    "countries": 1,
+    "entities": 30,
+    "relationships": 34,
+    "sources": 10
   },
   "output_hashes": {
-    "carousel_pdf": "sha256:6612fe5eb1893a671ed94ebedc85c18b5c47a812e94fd82b6d6a5fa27767823c",
-    "graph_graphml": "sha256:cccdd814575c7c1cdc6d3533bdb7174bada4c174d4b31aac48129281fdd68b59",
-    "graph_json": "sha256:4b58454c8528109ffcc5087cccfc9ca470a5c5e8f0c498b43904c0847defc3c3",
-    "guided_map_svg": "sha256:fb2b9223fc999e9f02e39d5400a26a460282757f35399c8d040ce12fb747f0bc",
-    "poster_pdf": "sha256:f2e6b68dce04187791901c1904bbc0434db54f4ca4944f425348445c384cd15d"
+    "carousel_pdf": "sha256:ae99fd68f945db0c28417b1c5f0e5a22dfc7625d21c36113ef0cf44706726499",
+    "graph_graphml": "sha256:64316a68805f6741486a1f072f7d676bcfa95df5be345131a558855f7f49417b",
+    "graph_json": "sha256:a47b4f6aec5a5518b85a75b7d883c569ea1f01c8a8ca4e116a134b25dcd05ebb",
+    "guided_map_svg": "sha256:96ffc92ccf64e8b3e5720803c10eee6b9af961ade4284dd230250c4840b99584",
+    "poster_pdf": "sha256:2777d2a62d7041bbd6b5a7a68793d599dec38108b8e41c7d5e0586572525b8d6"
   },
   "poster_size": [
     1800,
     2700
   ],
   "qr_included": true,
-  "release": "hxg-v0.2.0",
+  "release": "hxg-v0.3.0",
   "verified_url": "https://lohanstruwig.github.io/hxg/"
 }

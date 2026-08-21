@@ -1,104 +1,216 @@
 ---
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import EvidenceTable from "../components/EvidenceTable.astro";
+import GraphExplorer from "../components/GraphExplorer.astro";
+import MetricStrip from "../components/MetricStrip.astro";
 
+const publicDir = resolve(process.cwd(), "..", "data", "public");
+const load = (name: string) => JSON.parse(readFileSync(resolve(publicDir, name), "utf8"));
+const claims = load("claims.json");
+const sources = load("sources.json");
+const entities = load("entities.json");
+const relationships = load("relationships.json");
+const contradictions = load("contradictions.json");
+const vendors = load("vendor-links.json");
+const rights = load("source-rights.json");
+const manifest = load("run-manifest.json");
+const graph = JSON.parse(readFileSync(resolve(process.cwd(), "..", "graphs", "hospitality-experience-graph.json"), "utf8"));
+const graphNodes = Object.fromEntries(graph.elements.nodes.map((node: any) => [node.data.id, node.data]));
+const guidedPreview = graph.guided_pathways.map((pathway: any) => ({
+  capability: graphNodes[pathway.capability_id],
+  outcome: graphNodes[pathway.outcome_id],
+}));
 const baseUrl = import.meta.env.BASE_URL.endsWith("/") ? import.meta.env.BASE_URL : `${import.meta.env.BASE_URL}/`;
+const ingestRights = rights.filter((record: any) => record.use_mode === "ingest");
 ---
 
-<BaseLayout
-  title="HXG - Source-rights review"
-  description="The Hospitality Experience Graph is temporarily unavailable while its source-rights policy is reviewed."
->
-  <main id="main-content" class="maintenance-shell">
-    <section class="maintenance-card" aria-labelledby="maintenance-title">
-      <a class="brand" href={baseUrl} aria-label="Hospitality Experience Graph home">HXG</a>
-      <p class="eyebrow">Independent research · Release review</p>
-      <h1 id="maintenance-title">HXG is under<br /><em>source-rights review.</em></h1>
-      <p class="summary">
-        The explorer, evidence records, graph exports, poster, and LinkedIn carousel are temporarily unavailable while the project is rebuilt under a stricter source policy.
-      </p>
-      <div class="status" role="status">
-        <span aria-hidden="true"></span>
-        <p><strong>Review in progress</strong><br />A rights-aware v0.3.0 release is being prepared.</p>
+<BaseLayout title="Hospitality Experience Graph" description="A rights-aware, evidence-audited framework for connected hospitality experiences.">
+  <header class="site-header">
+    <a class="brand" href={baseUrl} aria-label="Hospitality Experience Graph home"><span>HXG</span><small>Hospitality Experience Graph</small></a>
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a href="#graph" data-section="graph">Map</a>
+      <a href="#evidence" data-section="evidence">Evidence</a>
+      <a href="#rights" data-section="rights">Rights</a>
+      <a href="#downloads" data-section="downloads">Downloads</a>
+      <a href={`${baseUrl}data/evidence/run-manifest.json`}>Manifest</a>
+    </nav>
+    <details class="mobile-nav">
+      <summary>Sections</summary>
+      <nav aria-label="Section navigation">
+        <a href="#graph" data-section="graph">Map</a>
+        <a href="#evidence" data-section="evidence">Evidence</a>
+        <a href="#rights" data-section="rights">Rights</a>
+        <a href="#downloads" data-section="downloads">Downloads</a>
+        <a href={`${baseUrl}data/evidence/run-manifest.json`}>Manifest</a>
+      </nav>
+    </details>
+    <a class="repo-link" href="https://github.com/LohanStruwig/hxg"><span>Repository</span></a>
+  </header>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Independent research · Release 0.3.0</p>
+        <h1>From screen<br /><em>to stay.</em></h1>
+        <p class="dek">A rights-aware, evidence-audited framework for connected hospitality experiences.</p>
+        <p class="thesis"><strong>Working proposition:</strong> the in-room display can be treated as an orchestration layer connecting guest-facing capabilities, operational systems, and property-specific value questions.</p>
+        <div class="hero-actions"><a href="#graph">Explore the pathways</a><a href="#rights" class="secondary">Review source rights</a></div>
       </div>
-      <p class="note">HXG is independent research. No vendor sponsors, endorses, reviews, or approves this work.</p>
-      <a class="repo-link" href="https://github.com/LohanStruwig/hxg">View the public repository</a>
+      <div class="hero-pathways" aria-label="Preview of six capability-to-outcome pathways">
+        <p><span>Capability</span><span>can support</span><span>Guest outcome</span></p>
+        {guidedPreview.map((pathway: any, index: number) => (
+          <div class={`tone-${index + 1}`}>
+            <strong>{pathway.capability.display_label}</strong><i aria-hidden="true"></i><strong>{pathway.outcome.display_label}</strong>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <MetricStrip counts={manifest.generated_counts} cutoff={manifest.cutoff_date} />
+
+    <section class="framework-anchor" aria-labelledby="framework-title">
+      <div><p class="eyebrow">A framework, not a market claim</p><h2 id="framework-title">Six pathways. Three evidence states. One auditable framework.</h2></div>
+      <div class="framework-stats">
+        <article><strong>6</strong><h3>Experience pathways</h3><p>Each capability-to-outcome link is an analytical proposition for direct validation.</p></article>
+        <article><strong>3</strong><h3>Evidence states</h3><p>Facts, supported inferences, and modeled scenarios carry different proof burdens.</p></article>
+        <article><strong>1</strong><h3>Auditable framework</h3><p>Every public relationship resolves to claims, sources, permissions, and limitations.</p></article>
+      </div>
+      <p class="framework-note">HXG v0.3.0 intentionally supplies no universal demand statistic, causal guest finding, uplift, saving, conversion rate, or ROI.</p>
+    </section>
+
+    <GraphExplorer claims={claims} sources={sources} entities={entities} relationships={relationships} graph={graph} />
+
+    <section class="value-paths" aria-labelledby="value-title">
+      <p class="eyebrow">Value without implied ROI</p>
+      <h2 id="value-title">Transparent formulas. Property-owned inputs.</h2>
+      <div class="formula-grid">
+        <article><span>01</span><h3>Ancillary contribution</h3><p>Eligible occupied room nights × measured engagement × incremental conversion × contribution margin.</p><small>CLM-HXG-VALUE-ANCILLARY-01</small></article>
+        <article><span>02</span><h3>Energy value</h3><p>Verified baseline × controllable share × measured attributable reduction.</p><small>CLM-HXG-VALUE-ENERGY-01</small></article>
+        <article><span>03</span><h3>Operational support</h3><p>Verified remote resolutions × measured avoided dispatch cost.</p><small>CLM-HXG-VALUE-SUPPORT-01</small></article>
+      </div>
+      <p class="formula-note">A formula exposes assumptions; it does not produce a result without local baselines, counterfactuals, attribution, and verification.</p>
+    </section>
+
+    <section class="vendor" aria-labelledby="vendor-title">
+      <div><p class="eyebrow">Metadata-only vendor example</p><h2 id="vendor-title">Publicly documented vendor example: Samsung Hospitality</h2><p>These outbound links are descriptive navigation only. They are never fetched, cached, quoted, hashed from page content, sent to model context, or used in evidence relationships.</p></div>
+      <div class="vendor-links">
+        {vendors.map((vendor: any) => <a href={vendor.url} target="_blank" rel="noreferrer"><small>{vendor.publisher}</small><strong>{vendor.product_name}</strong><span>{vendor.page_title}</span></a>)}
+      </div>
+      <blockquote>Samsung is referenced descriptively through publicly available product links. HXG is independent and is not sponsored, endorsed, reviewed, or approved by Samsung.</blockquote>
+    </section>
+
+    <section id="limits" class="limits" aria-labelledby="limits-title">
+      <div><p class="eyebrow">Contradiction audit</p><h2 id="limits-title">The limits belong in the finding.</h2><p>A useful map distinguishes what is documented, what is inferred, and what still has to be measured.</p></div>
+      <div class="limits-list">{contradictions.map((item: any) => <article><span>{item.severity}</span><h3>{item.title}</h3><p>{item.assessment}</p><small>{item.id}</small></article>)}</div>
+    </section>
+
+    <EvidenceTable claims={claims} sources={sources} />
+
+    <section id="rights" class="rights" aria-labelledby="rights-title">
+      <div><p class="eyebrow">Fail-closed source policy</p><h2 id="rights-title">Permission is part of evidence quality.</h2><p>Unknown, denied, missing, or expired rights stop retrieval before a network client is created.</p></div>
+      <div class="rights-grid">
+        <article><strong>{ingestRights.length}</strong><h3>Approved evidence records</h3><p>Open-license, public information, or original HXG content only.</p></article>
+        <article><strong>0</strong><h3>Public excerpts</h3><p>Every third-party claim is paraphrased; no supporting excerpt is republished.</p></article>
+        <article><strong>90</strong><h3>Day review window</h3><p>Terms and licence decisions expire and must be reviewed again.</p></article>
+      </div>
+      <div class="rights-actions"><a href={`${baseUrl}data/evidence/source-rights.json`}>Open rights records</a><a href="https://github.com/LohanStruwig/hxg/blob/main/SOURCE_POLICY.md">Read source policy</a><a href="https://github.com/LohanStruwig/hxg/blob/main/REMOVAL_REPORT.md">Read removal report</a></div>
+    </section>
+
+    <section id="downloads" class="downloads" aria-labelledby="downloads-title">
+      <div><p class="eyebrow">Release artifacts</p><h2 id="downloads-title">One frozen release. Four auditable outputs.</h2><p>Counts, graph exports, site data, poster, and carousel derive from the same v0.3.0 manifest.</p></div>
+      <div class="download-grid">
+        <a href={`${baseUrl}downloads/hxg-linkedin-carousel.pdf`} download><span>01 · PDF</span><strong>LinkedIn carousel</strong><small>Eight flattened 1080 × 1350 pages</small></a>
+        <a href={`${baseUrl}downloads/hxg-poster.pdf`} download><span>02 · PDF</span><strong>Research poster</strong><small>Rights-aware 1800 × 2700 reference</small></a>
+        <a href={`${baseUrl}data/hospitality-experience-graph.graphml`} download><span>03 · GraphML</span><strong>Canonical graph</strong><small>Portable entities and relationships</small></a>
+        <a href={`${baseUrl}data/evidence/run-manifest.json`}><span>04 · JSON</span><strong>Run manifest</strong><small>Counts, hashes, models, and review actions</small></a>
+      </div>
+    </section>
+
+    <section class="methodology" aria-labelledby="method-title">
+      <div><p class="eyebrow">Methodology</p><h2 id="method-title">Rights first. Evidence next. Claims last.</h2></div>
+      <ol>
+        <li><span>01</span><strong>Review rights</strong><p>Record licence, terms, permissions, attribution, excerpt limits, review date, and reviewer.</p></li>
+        <li><span>02</span><strong>Retrieve</strong><p>Only approved domains reach the HTTP client; link-only vendor records cannot enter the cache.</p></li>
+        <li><span>03</span><strong>Connect</strong><p>Claims, entities, and relationships are resolved deterministically after source approval.</p></li>
+        <li><span>04</span><strong>Challenge</strong><p>Contradictions and limitations keep analytical propositions separate from empirical findings.</p></li>
+        <li><span>05</span><strong>Freeze</strong><p>Counts, exports, pages, and publications derive from one manifest.</p></li>
+      </ol>
+      <p class="disclosure">Release 0.3.0 is a deterministic rights-policy rebuild with disclosed human governance. No model-backed research run was executed. “Rights-aware” and “rights-clean under the project source policy” are process descriptions, not legal clearance.</p>
     </section>
   </main>
+
+  <footer><div><strong>HXG</strong><p>Hospitality Experience Graph</p></div><p>Independent research · rights-aware under the HXG source policy</p><p>Code: Apache-2.0 · Original docs/data/visuals: CC BY 4.0</p></footer>
 </BaseLayout>
 
+<script>
+  const mobileMenu = document.querySelector<HTMLDetailsElement>(".mobile-nav")!;
+  const summary = mobileMenu.querySelector<HTMLElement>("summary")!;
+  mobileMenu.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => mobileMenu.removeAttribute("open")));
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape" && mobileMenu.open) { mobileMenu.open = false; summary.focus(); } });
+  const links = Array.from(document.querySelectorAll<HTMLAnchorElement>("[data-section]"));
+  const sections = ["graph", "evidence", "rights", "downloads"].map((id) => document.getElementById(id)).filter((item): item is HTMLElement => Boolean(item));
+  const observer = new IntersectionObserver((entries) => {
+    const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]?.target.id;
+    if (!active) return;
+    links.forEach((link) => link.dataset.section === active ? link.setAttribute("aria-current", "location") : link.removeAttribute("aria-current"));
+  }, { rootMargin: "-96px 0px -58% 0px", threshold: [0, .05, .2] });
+  sections.forEach((section) => observer.observe(section));
+</script>
+
 <style>
-  .maintenance-shell {
-    min-height: 100vh;
-    display: grid;
-    place-items: center;
-    padding: clamp(24px, 6vw, 80px) var(--page-gutter);
-    background:
-      radial-gradient(circle at 82% 12%, rgba(76, 196, 217, .12), transparent 34%),
-      linear-gradient(135deg, #061522 0%, #081b2a 100%);
-  }
-  .maintenance-card {
-    width: min(100%, 880px);
-    padding: clamp(32px, 7vw, 88px);
-    border: 1px solid var(--line);
-    background: rgba(6, 21, 34, .88);
-    box-shadow: 0 28px 90px rgba(0, 0, 0, .28);
-  }
-  .brand {
-    display: inline-flex;
-    min-width: 52px;
-    min-height: 52px;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: clamp(56px, 9vw, 96px);
-    background: var(--ink);
-    color: var(--canvas);
-    font-weight: 950;
-    letter-spacing: -.06em;
-    text-decoration: none;
-  }
-  h1 {
-    max-width: 760px;
-    margin: 0;
-    font-size: clamp(3.1rem, 8vw, 7.4rem);
-    line-height: .89;
-    letter-spacing: -.075em;
-  }
-  h1 em { color: var(--cyan); font-style: normal; font-weight: inherit; }
-  .summary {
-    max-width: 680px;
-    margin: clamp(30px, 5vw, 48px) 0 0;
-    color: var(--muted);
-    font-size: clamp(1.05rem, 2vw, 1.35rem);
-    line-height: 1.58;
-  }
-  .status {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 16px;
-    align-items: center;
-    margin-top: 36px;
-    padding: 20px 22px;
-    border: 1px solid var(--line);
-    background: var(--surface);
-  }
-  .status > span { width: 11px; height: 11px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 6px rgba(245, 188, 49, .1); }
-  .status p { margin: 0; color: var(--muted); line-height: 1.5; }
-  .status strong { color: var(--ink); }
-  .note { max-width: 660px; margin: 30px 0 0; color: var(--faint); font-size: .88rem; line-height: 1.6; }
-  .repo-link {
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    margin-top: 28px;
-    padding: 0 18px;
-    background: var(--ink);
-    color: var(--canvas);
-    font-weight: 850;
-    text-decoration: none;
-  }
-  @media (max-width: 520px) {
-    .maintenance-card { padding: 28px 22px 34px; }
-    .brand { margin-bottom: 48px; }
-    h1 { font-size: clamp(2.55rem, 12vw, 3.6rem); letter-spacing: -.065em; }
-  }
+  .site-header { position: sticky; top: 0; z-index: 50; height: var(--header-height); padding-inline: max(var(--page-gutter), calc((100vw - var(--max)) / 2 + var(--page-gutter))); display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 1px solid var(--line); background: rgba(6,21,34,.95); backdrop-filter: blur(18px); box-shadow: 0 10px 30px rgba(0,0,0,.16); }
+  .brand { display: inline-flex; align-items: center; gap: 12px; width: max-content; text-decoration: none; }
+  .brand span { font-size: 1.25rem; font-weight: 950; letter-spacing: -.05em; } .brand small { color: var(--muted); }
+  .primary-nav { display: flex; gap: 24px; } .primary-nav a { min-height: 44px; display: inline-flex; align-items: center; border-bottom: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: .84rem; }
+  .primary-nav a:hover, .primary-nav a[aria-current="location"] { color: var(--ink); border-bottom-color: var(--cyan); }
+  .mobile-nav { display: none; } .repo-link { min-height: 44px; justify-self: end; display: inline-flex; align-items: center; padding: 0 14px; background: var(--ink); color: var(--canvas); font-size: .78rem; font-weight: 850; text-decoration: none; }
+  .hero { max-width: var(--max); margin: 0 auto; padding: 96px var(--page-gutter) 88px; display: flex; flex-direction: column; align-items: center; gap: 72px; overflow: hidden; }
+  .hero-copy { width: min(100%, 980px); text-align: center; display: flex; flex-direction: column; align-items: center; }
+  h1 { margin: 0; font-size: clamp(4.8rem,8.8vw,9.4rem); line-height: .78; letter-spacing: -.085em; } h1 em { color: var(--cyan); font-style: normal; }
+  .dek { max-width: 760px; margin: 36px auto 0; font-size: clamp(1.35rem,2.2vw,2.25rem); line-height: 1.18; letter-spacing: -.03em; }
+  .thesis { max-width: 800px; margin: 24px auto 0; color: var(--muted); line-height: 1.65; } .thesis strong { color: var(--ink); }
+  .hero-actions { display: flex; gap: 10px; margin-top: 34px; } .hero-actions a { min-height: 48px; display: inline-flex; align-items: center; padding: 0 18px; background: var(--ink); color: var(--canvas); font-weight: 850; text-decoration: none; }
+  .hero-actions .secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .hero-pathways { --middle: 156px; --gap: 24px; width: min(100%,980px); border-top: 1px solid var(--line); }
+  .hero-pathways > p, .hero-pathways > div { display: grid; grid-template-columns: minmax(0,1fr) var(--middle) minmax(0,1fr); gap: var(--gap); align-items: center; }
+  .hero-pathways > p { min-height: 60px; margin: 0; padding: 0 18px; border-bottom: 1px solid var(--line); background: #081a28; color: var(--muted); font-size: .86rem; font-weight: 900; letter-spacing: .11em; text-transform: uppercase; }
+  .hero-pathways > p span:nth-child(2) { color: var(--cyan); text-align: center; } .hero-pathways > div { min-height: 78px; padding: 14px 18px; border-bottom: 1px solid var(--line); }
+  .hero-pathways strong { min-width: 0; font-size: .9rem; line-height: 1.3; } .hero-pathways > div strong:last-child { color: var(--hero-accent); }
+  .hero-pathways .tone-1 { --hero-accent: #4cb3ff; }
+  .hero-pathways .tone-2 { --hero-accent: #78d35d; }
+  .hero-pathways .tone-3 { --hero-accent: #f4bd32; }
+  .hero-pathways .tone-4 { --hero-accent: #a986ef; }
+  .hero-pathways .tone-5 { --hero-accent: #49c5ca; }
+  .hero-pathways .tone-6 { --hero-accent: #f29138; }
+  .hero-pathways i { width: 100%; height: 1px; background: var(--muted); } .hero-pathways i::after { content: ""; display: block; width: 8px; height: 8px; margin-left: auto; transform: translate(-2px,-4px) rotate(45deg); border-top: 1px solid var(--muted); border-right: 1px solid var(--muted); }
+  .framework-anchor, .value-paths, .vendor, .limits, .rights, .downloads, .methodology { max-width: var(--max); margin: 0 auto; padding: 100px var(--page-gutter); }
+  h2 { margin: 0; font-size: clamp(2.5rem,5vw,5.3rem); line-height: .98; letter-spacing: -.06em; }
+  .framework-anchor > div:first-child { max-width: 1050px; } .framework-stats, .rights-grid { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 48px; border: 1px solid var(--line); }
+  .framework-stats article, .rights-grid article { min-height: 250px; padding: 28px; border-right: 1px solid var(--line); } .framework-stats article:last-child, .rights-grid article:last-child { border-right: 0; }
+  .framework-stats strong, .rights-grid strong { color: var(--cyan); font-size: 3.8rem; letter-spacing: -.06em; } .framework-stats h3, .rights-grid h3 { margin: 22px 0 10px; font-size: 1.25rem; }
+  .framework-stats p, .rights-grid p, .framework-note, .formula-note, .vendor > div:first-child > p:last-child, .limits > div:first-child > p:last-child, .rights > div:first-child > p:last-child, .downloads > div:first-child > p:last-child { color: var(--muted); line-height: 1.6; }
+  .framework-note, .formula-note { margin-top: 24px; color: var(--faint); }
+  .value-paths { border-top: 1px solid var(--line); } .formula-grid { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 48px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .formula-grid article { min-height: 330px; display: flex; flex-direction: column; padding: 30px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); } .formula-grid span, .formula-grid small { color: var(--cyan); font-size: .72rem; }
+  .formula-grid h3 { margin: 70px 0 14px; font-size: 1.35rem; } .formula-grid p { color: var(--muted); line-height: 1.6; } .formula-grid small { margin-top: auto; }
+  .vendor { display: grid; grid-template-columns: .72fr 1.28fr; gap: 64px; border-top: 1px solid var(--line); } .vendor-links { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .vendor-links a { min-height: 190px; display: flex; flex-direction: column; padding: 24px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-decoration: none; } .vendor-links small { color: var(--cyan); } .vendor-links strong { margin-top: auto; font-size: 1.2rem; } .vendor-links span { margin-top: 8px; color: var(--muted); font-size: .8rem; line-height: 1.4; }
+  .vendor blockquote { grid-column: 1 / -1; margin: 0; padding: 24px 28px; border-left: 4px solid var(--amber); background: var(--surface); color: var(--ink); font-weight: 750; line-height: 1.6; }
+  .limits { display: grid; grid-template-columns: .72fr 1.28fr; gap: 64px; } .limits-list { border-top: 1px solid var(--line); }
+  .limits-list article { position: relative; padding: 24px 0 24px 108px; border-bottom: 1px solid var(--line); } .limits-list span { position: absolute; left: 0; top: 27px; color: var(--red); font-size: .68rem; text-transform: uppercase; }
+  .limits-list h3 { margin: 0 0 8px; } .limits-list p { margin: 0; color: var(--muted); line-height: 1.55; } .limits-list small { display: block; margin-top: 8px; color: var(--faint); }
+  .rights { border-top: 1px solid var(--line); } .rights > div:first-child { max-width: 980px; } .rights-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  .rights-actions a { min-height: 46px; display: inline-flex; align-items: center; padding: 0 16px; border: 1px solid var(--line); font-weight: 800; text-decoration: none; }
+  .downloads { border-top: 1px solid var(--line); } .downloads > div:first-child { display: grid; grid-template-columns: .7fr 1.3fr; gap: 60px; align-items: end; } .downloads > div:first-child > p:last-child { grid-column: 2; }
+  .download-grid { display: grid; grid-template-columns: repeat(4,1fr); margin-top: 44px; border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+  .download-grid a { min-height: 230px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); text-decoration: none; } .download-grid span { margin-bottom: auto; color: var(--cyan); font-size: .72rem; } .download-grid strong { font-size: 1.25rem; } .download-grid small { margin-top: 9px; color: var(--muted); line-height: 1.45; }
+  .methodology { border-top: 1px solid var(--line); display: grid; grid-template-columns: .75fr 1.25fr; gap: 64px; } .methodology ol { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+  .methodology li { display: grid; grid-template-columns: 56px 126px 1fr; gap: 12px; padding: 18px 0; border-bottom: 1px solid var(--line); } .methodology li span { color: var(--cyan); } .methodology li p { margin: 0; color: var(--muted); line-height: 1.5; }
+  .disclosure { grid-column: 2; color: var(--faint); font-size: .84rem; line-height: 1.6; }
+  footer { max-width: var(--max); margin: 0 auto; padding: 40px var(--page-gutter); display: grid; grid-template-columns: 1fr auto auto; gap: 26px; align-items: center; border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem; } footer strong { color: var(--ink); font-size: 1.2rem; } footer p { margin: 4px 0 0; }
+  @media (max-width: 1120px) { .site-header { grid-template-columns: 1fr auto 1fr; } .primary-nav { display: none; } .mobile-nav { display: block; position: relative; } .mobile-nav summary { min-width: 90px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); cursor: pointer; } .mobile-nav nav { position: absolute; top: calc(100% + 12px); left: 50%; width: min(280px,90vw); transform: translateX(-50%); padding: 8px; background: var(--surface-strong); border: 1px solid var(--line); box-shadow: 0 16px 34px rgba(0,0,0,.34); } .mobile-nav nav a { min-height: 46px; display: flex; align-items: center; padding: 0 14px; text-decoration: none; } .download-grid { grid-template-columns: repeat(2,1fr); } footer { grid-template-columns: 1fr; } }
+  @media (max-width: 780px) { .framework-stats, .rights-grid, .formula-grid { grid-template-columns: 1fr; } .framework-stats article, .rights-grid article { border-right: 0; border-bottom: 1px solid var(--line); } .vendor, .limits, .methodology, .downloads > div:first-child { grid-template-columns: 1fr; } .vendor-links { grid-template-columns: 1fr; } .vendor blockquote, .disclosure, .downloads > div:first-child > p:last-child { grid-column: 1; } .methodology li { grid-template-columns: 44px 1fr; } .methodology li p { grid-column: 2; } }
+  @media (max-width: 620px) { .brand small { display: none; } .repo-link { padding: 0 11px; font-size: .7rem; } .hero { padding-top: 70px; gap: 60px; } h1 { font-size: clamp(4rem,21vw,7rem); } .hero-actions { flex-direction: column; width: 100%; } .hero-actions a { justify-content: center; } .hero-pathways > p { display: none; } .hero-pathways > div { grid-template-columns: minmax(0,1fr) 56px minmax(0,1fr); gap: 8px; padding-inline: 4px; } .hero-pathways strong { font-size: .72rem; } .framework-anchor, .value-paths, .vendor, .limits, .rights, .downloads, .methodology { padding-top: 78px; padding-bottom: 78px; } .vendor-links, .download-grid { grid-template-columns: 1fr; } }
 </style>

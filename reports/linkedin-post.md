@@ -1,44 +1,42 @@
 # LinkedIn document-post copy
 
-**From screen to stay: what if the hotel-room TV is becoming an experience-orchestration layer?**
+**From screen to stay: a framework for asking better questions about connected hospitality**
 
-J.D. Power's 2026 North America study reports smart TVs with streaming capabilities in 74% of surveyed branded hotel rooms—and 62% guest usage—across a 44,787-person sample.
+What if the in-room display is not just a screen, but an orchestration point connecting guest-facing capabilities, operational systems, and property-specific value questions?
 
-That does not prove a screen causes satisfaction, loyalty, or revenue.
+I built the Hospitality Experience Graph (HXG) to make that proposition easier to inspect - and harder to overclaim.
 
-But it does make the screen a consequential guest touchpoint.
+HXG starts with six testable pathways:
 
-I built the Hospitality Experience Graph (HXG) to make those connections easier to audit. It starts with six plain-language pathways:
+- Cast from your device → can support feeling at home.
+- Control room settings → can support feeling in control.
+- Connect stay context → can support feeling recognized.
+- Present content accessibly → can support feeling included.
+- Protect sessions and data → can support feeling secure.
+- Request services and help → can support feeling supported.
 
-- Cast from your device → feel at home.
-- Control room settings → feel in control.
-- Connect stay context → feel recognized.
-- Present content accessibly → feel included.
-- Protect sessions and data → feel secure.
-- Request services and help → feel supported.
+The words **can support** matter. These are analytical propositions, not empirical guest preferences or causal findings.
 
-Each arrow says “can support”—not “causes.” Selecting a node in the explorer opens only its immediate relationships, confidence state, limitations, and evidence links. The complete 42-relationship research graph remains searchable without becoming an unreadable web.
+Release 0.3.0 also changes how the research handles sources. Every evidence record now needs a current machine-readable rights review before retrieval. Unknown, denied, missing, or expired permissions fail closed. Public claims use paraphrase only. Vendor product pages stay outside the evidence graph as metadata-only outbound links.
 
-The graph keeps three evidence states separate:
+The value layer is equally bounded. HXG publishes three variable-based formulas - ancillary contribution, energy value, and operational support - but supplies no universal rate, uplift, saving, conversion, or ROI. The property owns the inputs, baseline, counterfactual, attribution, and verification.
 
-- Solid: directly stated facts or capabilities.
-- Dashed: supported interpretations across multiple facts.
-- Dotted: property-specific scenarios that still need local inputs and validation.
+The goal is not to prove that more technology creates a better stay. It is to give hospitality leaders a clearer way to ask:
 
-The central finding is not “more features are better.” It is that the in-room display is becoming an experience-orchestration layer—and value depends on reliable operations, interoperability, governance, and property-specific measurement.
+- Which capability is meant to support which human outcome?
+- What is documented, inferred, or still modeled?
+- What conditions could break the pathway?
+- What would we need to measure locally before claiming value?
 
-Samsung appears as one clearly labeled, vendor-stated reference architecture—not the owner of the research and not an endorsement. Independent guest evidence, public standards, competitor implementations, and industry context remain separate evidence classes.
+Explore the graph, source permissions, limitations, and release artifacts:
+**https://lohanstruwig.github.io/hxg/**
 
-HXG release 0.2.0 publishes the evidence register, limitations, contradictions, GraphML/JSON exports, methodology, and reproducible build pipeline.
-
-Explore and audit the evidence: **https://lohanstruwig.github.io/hxg/**
-
-#HospitalityTechnology #GuestExperience #GraphRAG #AIResearch #HotelOperations
+#HospitalityTechnology #GuestExperience #ResponsibleAI #KnowledgeGraph #HotelOperations
 
 ## Suggested document title
 
-From Screen to Stay: The Hospitality Experience Graph
+From Screen to Stay: Six Testable Pathways for Connected Hospitality
 
 ## Alt text for the document post
 
-Eight-page HXG carousel: thesis; J.D. Power guest evidence; six capability-to-outcome pathways; human and property value pathways; ecosystem stakeholders; a vendor-stated Samsung reference architecture; evidence states and contradictions; and the AI-led, evidence-audited methodology with a link to the public explorer.
+Eight-page HXG carousel: working proposition; rights-aware release; six capability-to-outcome pathways; property-specific formulas; stakeholder proof responsibilities; metadata-only Samsung links with an independence disclosure; evidence states and limitations; and the auditable method with generated counts and a live URL.

@@ -1,11 +1,12 @@
 # Assumptions and boundaries
 
-- HXG is independent and does not imply Samsung sponsorship or endorsement.
-- Samsung is a vendor-stated reference architecture, not the project owner or research subject.
-- Smart-TV availability and usage establish relevance of a guest touchpoint, not causal value.
-- `$805B` and ENERGY STAR figures are contextual; no share is attributed to screens.
-- `$11.6T` remains explorer context rather than a headline carousel figure.
-- Property savings and ancillary contribution require local baselines, conversion, margin, and verified performance.
-- Product announcements may not equal universal availability.
-- Translation does not equal complete accessibility.
-- Release 0.2.0 is static and reproducible; there is no hosted API, live AI search, or backend graph database.
+- HXG is independent and does not imply vendor sponsorship or endorsement.
+- Samsung appears only through metadata-only outbound links and is not an evidence source.
+- The six pathways are analytical propositions, not empirical guest preferences or causal findings.
+- Property scenarios require local baselines, counterfactuals, attribution, and verification.
+- No universal rate, uplift, saving, conversion, or ROI is supplied.
+- Product, region, language, integration, and licensing availability must be checked for the intended deployment.
+- Accessibility intent does not establish conformance.
+- Security controls reduce risk but do not guarantee system security or human perception.
+- Release 0.3.0 is static and reproducible; there is no hosted API, live AI search, or backend graph database.
+- “Rights-aware” and “rights-clean under the project source policy” are process descriptions, not legal clearance.

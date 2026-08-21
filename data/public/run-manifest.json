@@ -1,140 +1,78 @@
 {
-  "configuration_hash": "sha256:274a7db542b3cf666d86654b48e9a3778e2819e3d126b56ba91e401b8dd64719",
+  "configuration_hash": "sha256:21397adc4a64b2a7d4a572773b70f03ce168595985c15575980f2194a54d92f7",
   "cost_limit_usd": 10.0,
   "cutoff_date": "2026-08-19",
   "estimated_cost_usd": 0.0,
   "frozen_at": "2026-08-20T17:00:00-05:00",
   "generated_counts": {
-    "claims": 29,
-    "contradictions": 6,
-    "countries": 3,
-    "entities": 32,
-    "relationships": 42,
-    "sources": 56
+    "claims": 19,
+    "contradictions": 4,
+    "countries": 1,
+    "entities": 30,
+    "relationships": 34,
+    "sources": 10
   },
   "human_review_actions": [
     {
-      "action": "Research charter approved",
-      "rationale": "Scope, release gates, and publication positioning supplied by project owner.",
+      "action": "Fail-closed source-rights policy approved",
+      "rationale": "Only reviewed open-license, public information, and original HXG records may enter evidence or model context.",
       "record_ids": [],
       "schema_version": "1.0.0",
-      "timestamp": "2026-08-19T09:00:00-05:00"
+      "timestamp": "2026-08-20T09:00:00-05:00"
     },
     {
-      "action": "Evidence audit and language review",
-      "rationale": "Removed implied Samsung ownership, unreal URL, unsupported causal wording, and ungenerated counts.",
+      "action": "Rights-clean evidence and publication review",
+      "rationale": "Removed restricted statistics, commercial-research claims, third-party excerpts, and vendor evidence edges.",
       "record_ids": [
-        "CLM-SAM-ARCH-01",
-        "CLM-JDP-AVAIL-01",
-        "CLM-AHLA-SPEND-01"
+        "CLM-HXG-PROPOSITION-01",
+        "CLM-HXG-VALUE-ANCILLARY-01"
       ],
       "schema_version": "1.0.0",
-      "timestamp": "2026-08-19T16:30:00-05:00"
-    },
-    {
-      "action": "Guided-pathway semantic and publication audit",
-      "rationale": "Replaced causal-sounding technology-to-outcome relationships with bounded can-support inferences and aligned the explorer, graph exports, carousel, and poster to one six-pathway model.",
-      "record_ids": [
-        "REL-CASTING-HOME",
-        "REL-IOT-CONTROL",
-        "REL-PMS-RECOGNIZED",
-        "REL-LANGUAGE-INCLUDED",
-        "REL-PRIVACY-SECURE",
-        "REL-CONCIERGE-SUPPORTED",
-        "REL-OPERATOR-PROPERTY"
-      ],
-      "schema_version": "1.0.0",
-      "timestamp": "2026-08-20T16:45:00-05:00"
+      "timestamp": "2026-08-20T16:30:00-05:00"
     }
   ],
-  "id": "RUN-HXG-2026-08-19-SEED",
+  "id": "RUN-HXG-2026-08-20-RIGHTS",
   "mode": "interactive-codex-seed",
   "model_versions": {
     "configured-contradiction": "gpt-5.6-sol",
     "configured-discovery": "gpt-5.6-terra",
     "configured-extraction": "gpt-5.6-terra",
     "configured-final-audit": "gpt-5.6-sol",
-    "executed-mode": "interactive Codex-assisted seed audit; standalone API run not executed"
+    "executed-mode": "deterministic rights-policy rebuild; standalone API run not executed"
   },
   "notes": [
-    "This is a governed seed release, not an unattended model-backed run.",
-    "Sources with metadata-record hashes should be refreshed with --retrieve before a later release.",
-    "Product capabilities remain vendor-stated unless a claim record names independent corroboration."
+    "This is a deterministic rights-policy rebuild, not an unattended model-backed run.",
+    "HXG v0.3.0 is rights-aware and rights-clean under the project source policy; it is not legal clearance.",
+    "Vendor links are metadata-only and cannot enter claims, graph relationships, cache, or model context."
   ],
   "output_hashes": {
-    "carousel_pdf": "sha256:6612fe5eb1893a671ed94ebedc85c18b5c47a812e94fd82b6d6a5fa27767823c",
-    "graph_graphml": "sha256:cccdd814575c7c1cdc6d3533bdb7174bada4c174d4b31aac48129281fdd68b59",
-    "graph_json": "sha256:4b58454c8528109ffcc5087cccfc9ca470a5c5e8f0c498b43904c0847defc3c3",
-    "guided_map_svg": "sha256:fb2b9223fc999e9f02e39d5400a26a460282757f35399c8d040ce12fb747f0bc",
-    "poster_pdf": "sha256:f2e6b68dce04187791901c1904bbc0434db54f4ca4944f425348445c384cd15d"
+    "carousel_pdf": "sha256:ae99fd68f945db0c28417b1c5f0e5a22dfc7625d21c36113ef0cf44706726499",
+    "graph_graphml": "sha256:64316a68805f6741486a1f072f7d676bcfa95df5be345131a558855f7f49417b",
+    "graph_json": "sha256:a47b4f6aec5a5518b85a75b7d883c569ea1f01c8a8ca4e116a134b25dcd05ebb",
+    "guided_map_svg": "sha256:96ffc92ccf64e8b3e5720803c10eee6b9af961ade4284dd230250c4840b99584",
+    "poster_pdf": "sha256:2777d2a62d7041bbd6b5a7a68793d599dec38108b8e41c7d5e0586572525b8d6"
   },
   "prompt_versions": {
-    "contradiction-audit": "1.0.0",
-    "evidence-extraction": "1.0.0",
-    "publisher": "1.0.0",
-    "research-charter": "1.0.0"
+    "contradiction-audit": "1.1.0",
+    "evidence-extraction": "1.1.0",
+    "publisher": "1.1.0",
+    "research-charter": "1.1.0"
   },
-  "release_version": "0.2.0",
+  "release_version": "0.3.0",
   "research_start_date": "2024-01-01",
   "schema_version": "1.0.0",
   "source_hashes": {
-    "SRC-AHLA-2024-POLL": "sha256:78911429e9cb6a025521dc7ddeae8bf4255b6754d794e60c7dfbdc3f979b82fe",
-    "SRC-AHLA-2024-SOTI": "sha256:7fb886da3f0a68e335f23c5249491cd7b25169d68ebf28c1b6e56e7a6e39b79d",
-    "SRC-AHLA-2024-TRAVEL-INTENT": "sha256:e0a16da7a178bdee63b3e20755d11251465641013173f146115a3dd91e8c0dd0",
-    "SRC-AHLA-2025-REPORT": "sha256:bad252b5c80ed0516a2206fc4f8d1d3c9f81fd8dbbe2bf584a292d487d239840",
-    "SRC-AHLA-2025-SOTI": "sha256:bad252b5c80ed0516a2206fc4f8d1d3c9f81fd8dbbe2bf584a292d487d239840",
-    "SRC-AHLA-2026-ONEPAGER": "sha256:a9c3a7f54c33364084a9f9394e585994bd561ff2699685035691ced82cc875a9",
-    "SRC-AHLA-2026-SOTI": "sha256:e7940b4546f22e1c8f6ad184fc56bf23047c38774e49d2a24072ba16bb4228d8",
-    "SRC-APPLE-AIRPLAY-IHG-2024": "sha256:fac298aea5c8a8c72dc1f7c8f75534dec575211165f069b373ee72757c873284",
-    "SRC-ENERGYSTAR-LODGING": "sha256:fb566fbf3e5351a4389d62dc7f89614a71b3288727a3cc8b275fb4d854d5a749",
-    "SRC-ENERGYSTAR-SMALL-LODGING": "sha256:b2929b8afcc1ea33ca5d84188fa119d52bb50c3613c54574b1d0b44009fc91fd",
-    "SRC-GITHUB-PAGES": "sha256:8e1afcee870da3a8a10b970df112b06196242944e0999b9e1e6a9dca5a74c23a",
-    "SRC-GOOGLE-CAST-LG-2024": "sha256:fc0d328866802f2ce490de1a513bf48946670e850a83230b629dfa9dd8b134e5",
-    "SRC-JDP-2024-MGMT": "sha256:d7f0bf67e87f5b5eff806e606b8b022c689157cf6d213493ecec155cdd736158",
-    "SRC-JDP-2025-MGMT": "sha256:4db97cacc1934fc0ee7c8275eabc7c251e30e7ea19ff22f00fb1dbc90d3d84cc",
-    "SRC-JDP-2025-NAGSI": "sha256:f8b86d9c3af2ce1975b9aea23312872e9ed643e8a27602b0e31bfa408ea12d8c",
-    "SRC-JDP-2026-NAGSI": "sha256:8d8ddc6d5efed125461145e69ffafeb70eb6222366e97626c847f01c6a193c6b",
-    "SRC-LG-AIRPLAY-HOSPITALITY": "sha256:37a601cb6a3a8f27eabe39f30483eb9b1b913739cc32452b4b89d4cb729c49af",
-    "SRC-LG-AIRPLAY-IHG-2024": "sha256:d198613f6ca63d124ec99a35865efd5c859583d86b31152bb51010129b30dec9",
-    "SRC-LG-GOOGLE-CAST-2025": "sha256:8761b75ab54689519c66d1cf1b23137a8a9979072f39bdf39e6e8cfa9220918c",
-    "SRC-LG-HITEC-2024": "sha256:ffba8776754cd0acf8efb018b61c7ade3f3685c01c17016fc1ceaaab3a49abc0",
-    "SRC-LG-HITEC-2025": "sha256:a332211424cc9ca6248cafbf3e675930ceed54e80c34356cfc1282a212babcbc",
-    "SRC-LG-PROCENTRIC-2026": "sha256:20c52b5022de1501f60a813208c582633e7b426fd6246f3e5e017d64183b473c",
-    "SRC-LG-PROCENTRIC-SMART": "sha256:0a2f5ec125b04d7bb57c9bf8e06034e28a2eafca5e6ce765344bb8955adfbd4b",
-    "SRC-LINKEDIN-DOCUMENTS": "sha256:a357f7720c339f9a1a24018862d3aff2b89b63d9b19cc05f3c5d75310a10a77a",
-    "SRC-MS-GRAPHRAG-BLOG": "sha256:f313875d4f959c2a3db00308ed39e047bbbe81524f7ef4cceb69433c777d8139",
+    "SRC-GITHUB-PAGES": "sha256:c3997a686113554592cd999216ec6507d698ab9c232be9bbcefc522fb58c28dd",
+    "SRC-HXG-FRAMEWORK": "sha256:48360f3daad78309452f2c15b01cf2fb427d8b5ef9b11678a73cfc25949e7e2e",
+    "SRC-HXG-METHODOLOGY": "sha256:a83c818fb0a8af2839644d4600c3ae9478ca2f005bccac2af8184f96b3b98091",
+    "SRC-HXG-VALUE-MODEL": "sha256:679792eba3f8b1d2aef5d5aecb7986ec021baba6d3174f2fc509e554e4525e31",
     "SRC-MS-GRAPHRAG-PAPER": "sha256:855117eeed1d12d807df77154b203ba20a1664fd6f17891395557b379989add7",
-    "SRC-MS-GRAPHRAG-REPO": "sha256:98d67a95402a3e499cf49dacbe9d5900430c9ea0a4f400088dc21caa057e8b88",
-    "SRC-NIST-IOT-HANDBOOK-2024": "sha256:76e81a402f92883e0346c9b83893578f2301cbaa889bb49b1dfd1bbeb91262d7",
-    "SRC-NIST-PMS-2020": "sha256:b807630f50464ddf8e6731c0f29cddcfa4a7eddbc656d217dddf91d9df8ee7b0",
-    "SRC-OPENAI-MODELS": "sha256:edc943cf5a188f128d72c03b9293989d6943fbb41b046788ac39e1f8a20add44",
-    "SRC-OPENAI-ORCHESTRATION": "sha256:1f0eee00e83063c8b31225ce94b4e04d9d44d90913028a786a0df8be4d8e1189",
-    "SRC-OPENAI-TRACING": "sha256:6b1b4982a6d18b1564d2af27df700019c1d41d26c313d9cbacef1c13b8eb144f",
-    "SRC-ORACLE-ENGAGEMENT-2024": "sha256:643026426de78ef93cb3543dc0faa78062300ec9d79a4335675273ee8a215e62",
-    "SRC-ORACLE-MGX-2024": "sha256:3981e234413982673707e5686fb05deb6735759cd06e9d2a4ec3d51af8d85410",
-    "SRC-ORACLE-OHIP-2025": "sha256:d93b6c127a0897d5cc88550a758ed4f5f679543408aec50c7eb06de0937d272c",
-    "SRC-ORACLE-OPERA-DOCS": "sha256:6e0c6d70e6c9a4ab40b3035875be125d552a3a781ef3745e0c9abb39de92f766",
-    "SRC-SAM-AIRPLAY-2024": "sha256:0b0c3a15bef9e256857fb290c8e90af12e482b91640fd0f102876d44d22e5843",
-    "SRC-SAM-APURVA-2025": "sha256:29b9f21bb98ea73722aedf3db6735e3cfcb0cd46170dd36bff9ad0d042ce9a6f",
-    "SRC-SAM-FRAME-2026": "sha256:738d5f1601ddb2b45f74bc05b0b55e3db3c87930f90dc50039f617a9add02928",
-    "SRC-SAM-GLOBAL-HITEC-2025": "sha256:c20ca8097b9822644e7e4e3a413361db1175f858339efecef28591a3cff48001",
-    "SRC-SAM-HITEC-2025": "sha256:f83f7ee58f501f5181c7dde406de17595a80f9fd741afd9de74c5505ebff26ac",
-    "SRC-SAM-HOSPITALITY-SOLUTIONS": "sha256:50610b072f42b27ed0a233dab9a08331c5853befaa5a002deb75df464c77db05",
-    "SRC-SAM-HVAC-2026": "sha256:37999c7d9d5141ebdb013b16bb5e4d5246ea077e7f2b56721dc1a2baede27c0c",
-    "SRC-SAM-INF-COMM-2024": "sha256:d114d1544042a3ba98343d0f3f33724e306229788f2961e0c4570c13fbbcd27a",
-    "SRC-SAM-ISE-2024": "sha256:bb28d3e9d8b8323b241cc59b2f1eff0a8cd19822dbf7177128b14168ac92e7d4",
-    "SRC-SAM-ISO-CLOUD-2025": "sha256:5b09a85875e99bd1ecf6090989de592223145a499fc762936364227ea0bf8fdb",
-    "SRC-SAM-LYNK-CATALOG": "sha256:b779344cad9919d82415bcb58fa18986967dd046d4e4e7f18fafe81f0a7ebae4",
-    "SRC-SAM-PERSONALIZED-2026": "sha256:b2e105b48ffb2ac968590a127c40c100339ca0beae8c562a46d136c8cd09f2a6",
-    "SRC-SAM-ROYAL-CARIBBEAN-2026": "sha256:0e50c7b8ef7b39203900e29b8018b54ae4089e96bc7310f17176c2ecc7e88f76",
-    "SRC-SAM-SMARTTHINGS-PRO": "sha256:82f0e4a4e8b96dbd7217cf58b650b6dd2a70e64d51b72662bae717ce7172be6c",
-    "SRC-SAM-UPSCALING-2026": "sha256:6ac7f9c57ea4f53bfd882c4d83b6a5a3e5c94beace991d3959d49ef6862bd42c",
-    "SRC-SAM-VOCO-2026": "sha256:ec47f5005388cb1ff138832f4aa008e55c0dccf03de3fd85ad7280f9d1bdeb04",
+    "SRC-MS-GRAPHRAG-REPO": "sha256:8ddea77764e2debdcf346b6a1ef892b4d3ce5e2b58a940046da1966457c3ee19",
+    "SRC-NIST-IOT-HANDBOOK-2024": "sha256:9625032ead8c5578a2e547ecb9daa90e723dfd1f5e17435f106befb6bd313789",
+    "SRC-NIST-PMS-2020": "sha256:6cda4bec68e52d962ea6cac097028138665c131a8504e86deaa7d5df526ce2cb",
     "SRC-W3C-ACCESSIBILITY-PRINCIPLES": "sha256:3a24020967523131866e44f2ead938e03e977b67b315d8081ffdc8b868c46df3",
-    "SRC-W3C-WCAG22": "sha256:6e3c5fe397257cae509a2fb4752b73062cf8cbeb92c2cec618989b17e4cf7057",
-    "SRC-WTTC-2025-IMPACT": "sha256:f39d46af81f8e0bc5625a120e10df7e6f32e68e0b1ce766b4b8c39b1968dfbe9",
-    "SRC-WTTC-2026-OUTLOOK": "sha256:ca9b2f2f1c96f146cb715457d8069ce93195c59a3bb5f897708b774b3835a9dc"
+    "SRC-W3C-WCAG22": "sha256:6e3c5fe397257cae509a2fb4752b73062cf8cbeb92c2cec618989b17e4cf7057"
   },
-  "started_at": "2026-08-19T09:00:00-05:00",
+  "started_at": "2026-08-20T09:00:00-05:00",
   "status": "frozen"
 }

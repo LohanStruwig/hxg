@@ -2,12 +2,12 @@
 
 ## Executive summary
 
-Connected hospitality displays now sit at the intersection of familiar guest entertainment, property systems, room controls, service channels, cloud operations, security, and analytics. HXG maps those connections around a human center rather than a vendor or device category.
+HXG v0.3.0 is a rights-aware framework for organizing connected hospitality questions around human outcomes rather than a vendor or device category.
 
-Independent guest evidence makes the screen consequential: J.D. Power's 2026 North America study reports smart-TV streaming capability in 74% of surveyed branded rooms and 62% guest usage, based on 44,787 branded hotel guests. Those figures are direct evidence of availability and use; they do not establish causal satisfaction or financial value.
+The six capability-to-outcome pathways are analytical propositions. Each uses `can-support`, carries an explicit limitation, and requires direct validation before anyone claims guest preference, causation, or value.
 
-The graph separates three levels of proof. Direct facts are drawn as solid relationships. Supported interpretations are dashed. Property-specific financial scenarios are dotted. Every public relationship resolves through a claim record to a source, and contradictions are published alongside positive pathways.
+The release uses reviewed open sources and original HXG records. Unknown or unapproved sources fail before HTTP access. Public claims contain no third-party excerpts. Samsung is present only as four metadata-only outbound product links with a clear independence disclosure.
 
-Samsung appears as one vendor-stated reference architecture showing how display hardware, casting, LYNK Cloud, SmartThings Pro, PMS-connected services, security controls, analytics, and a service channel can operate as a hybrid stack. Model, region, language, channel, software, integration, and licensing limitations remain attached to those records. HXG is independent and does not imply Samsung sponsorship or endorsement.
+Property value is modeled through transparent variables for ancillary contribution, energy, and operational support. HXG supplies no universal rate, uplift, saving, conversion, or ROI.
 
-Release 0.2.0 contains generated statistics from one frozen manifest: see `data/public/run-manifest.json`. The explorer, GraphML/JSON exports, poster, carousel, and LinkedIn copy use the same evidence cutoff of August 19, 2026.
+The evidence cutoff remains August 19, 2026. Release metadata is dated August 20, 2026. The explorer, GraphML/JSON, poster, carousel, and LinkedIn copy derive from the same frozen manifest.

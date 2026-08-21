@@ -5,11 +5,11 @@ Confidence is a reviewable signal, not a probability of truth. Scores combine au
 | Dimension | High signal | Confidence reduction |
 |---|---|---|
 | Authority | Original study, government standard, official product record | Secondary or unattributed summary |
-| Independence | Independent guest or market study | Vendor describing its own outcomes |
+| Rights | Current explicit permission for intended processing and publication | Unknown, denied, conflicting, or expired terms fail closed |
 | Recency | Inside the current evidence window | Historical context |
 | Specificity | Named metric, period, geography, and sample | Broad or ambiguous language |
 | Corroboration | Independent or cross-vendor support | Single-source assertion |
-| Traceability | Stable URL, short excerpt, and locator | Inaccessible or missing locator |
+| Traceability | Stable URL, content or metadata hash, rights record, and locator | Inaccessible or missing provenance |
 | Limitations | Material constraints disclosed | Universal wording or hidden assumptions |
 
 Suggested interpretation:
@@ -19,4 +19,4 @@ Suggested interpretation:
 - `0.60–0.74`: useful inference or scenario requiring local validation.
 - `<0.60`: not publication-ready without additional review.
 
-Vendor-stated records may score highly for the narrow question “does the vendor state this capability?” They must not be reinterpreted as independent performance or outcome evidence.
+Vendor product pages are metadata-only links in v0.3.0. They are not scored as evidence and cannot support claims or graph relationships.

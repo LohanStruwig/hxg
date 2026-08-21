@@ -1,0 +1,174 @@
+schema_version: "1.0.0"
+records:
+  - &w3c
+    schema_version: "1.0.0"
+    id: RGT-W3C-WCAG22
+    record_id: SRC-W3C-WCAG22
+    use_mode: ingest
+    domain: www.w3.org
+    rights_basis: other_explicit_open_license
+    automation_allowed: true
+    ai_processing_allowed: true
+    public_republication_allowed: true
+    license_name: W3C Document License 2023
+    license_url: https://www.w3.org/copyright/document-license-2023/
+    terms_url: https://www.w3.org/copyright/document-license-2023/
+    attribution_required: true
+    attribution_text: Copyright W3C; used under the W3C Document License 2023.
+    excerpts_allowed: true
+    excerpt_limit_words: 25
+    terms_reviewed_at: 2026-08-20
+    review_expires_at: 2026-11-18
+    reviewer: HXG human governance review
+    notes: Public claims use paraphrase and no excerpt.
+  - <<: *w3c
+    id: RGT-W3C-ACCESSIBILITY-PRINCIPLES
+    record_id: SRC-W3C-ACCESSIBILITY-PRINCIPLES
+
+  - &nist
+    schema_version: "1.0.0"
+    id: RGT-NIST-IOT-HANDBOOK-2024
+    record_id: SRC-NIST-IOT-HANDBOOK-2024
+    use_mode: ingest
+    domain: csrc.nist.gov
+    rights_basis: public_domain
+    automation_allowed: true
+    ai_processing_allowed: true
+    public_republication_allowed: true
+    license_name: NIST public information policy
+    license_url: https://www.nist.gov/copyrights-disclaimers
+    terms_url: https://www.nist.gov/copyrights-disclaimers
+    attribution_required: true
+    attribution_text: Source credited to the National Institute of Standards and Technology.
+    excerpts_allowed: true
+    excerpt_limit_words: 25
+    terms_reviewed_at: 2026-08-20
+    review_expires_at: 2026-11-18
+    reviewer: HXG human governance review
+    notes: No item-specific copyright notice identified during review; block if one appears.
+  - <<: *nist
+    id: RGT-NIST-PMS-2020
+    record_id: SRC-NIST-PMS-2020
+
+  - schema_version: "1.0.0"
+    id: RGT-MS-GRAPHRAG-REPO
+    record_id: SRC-MS-GRAPHRAG-REPO
+    use_mode: ingest
+    domain: github.com
+    rights_basis: other_explicit_open_license
+    automation_allowed: true
+    ai_processing_allowed: true
+    public_republication_allowed: true
+    license_name: MIT License
+    license_url: https://github.com/microsoft/graphrag/blob/main/LICENSE
+    terms_url: https://docs.github.com/en/site-policy/github-terms/github-terms-of-service
+    attribution_required: true
+    attribution_text: Microsoft GraphRAG project, MIT License.
+    excerpts_allowed: true
+    excerpt_limit_words: 25
+    terms_reviewed_at: 2026-08-20
+    review_expires_at: 2026-11-18
+    reviewer: HXG human governance review
+    notes: Public claim is paraphrased; repository code is not republished.
+
+  - schema_version: "1.0.0"
+    id: RGT-MS-GRAPHRAG-PAPER
+    record_id: SRC-MS-GRAPHRAG-PAPER
+    use_mode: ingest
+    domain: arxiv.org
+    rights_basis: cc_by
+    automation_allowed: true
+    ai_processing_allowed: true
+    public_republication_allowed: true
+    license_name: Creative Commons Attribution 4.0 International
+    license_url: https://creativecommons.org/licenses/by/4.0/
+    terms_url: https://info.arxiv.org/help/license/index.html
+    attribution_required: true
+    attribution_text: Edge et al., From Local to Global, CC BY 4.0.
+    excerpts_allowed: true
+    excerpt_limit_words: 25
+    terms_reviewed_at: 2026-08-20
+    review_expires_at: 2026-11-18
+    reviewer: HXG human governance review
+    notes: Public claim is paraphrased and the paper license is recorded.
+
+  - schema_version: "1.0.0"
+    id: RGT-GITHUB-PAGES
+    record_id: SRC-GITHUB-PAGES
+    use_mode: ingest
+    domain: docs.github.com
+    rights_basis: cc_by
+    automation_allowed: true
+    ai_processing_allowed: true
+    public_republication_allowed: true
+    license_name: Creative Commons Attribution 4.0 International
+    license_url: https://github.com/github/docs/blob/main/LICENSE
+    terms_url: https://docs.github.com/en/site-policy/github-terms/github-terms-of-service
+    attribution_required: true
+    attribution_text: GitHub Docs, CC BY 4.0.
+    excerpts_allowed: true
+    excerpt_limit_words: 25
+    terms_reviewed_at: 2026-08-20
+    review_expires_at: 2026-11-18
+    reviewer: HXG human governance review
+    notes: Used to document the static publication mechanism.
+
+  - &hxg_original
+    schema_version: "1.0.0"
+    id: RGT-HXG-FRAMEWORK
+    record_id: SRC-HXG-FRAMEWORK
+    use_mode: ingest
+    domain: github.com
+    rights_basis: original_hxg_content
+    automation_allowed: true
+    ai_processing_allowed: true
+    public_republication_allowed: true
+    license_name: Creative Commons Attribution 4.0 International
+    license_url: https://github.com/LohanStruwig/hxg/blob/main/LICENSE-DATA.md
+    terms_url: https://github.com/LohanStruwig/hxg/blob/main/SOURCE_POLICY.md
+    attribution_required: true
+    attribution_text: Hospitality Experience Graph (HXG), CC BY 4.0.
+    excerpts_allowed: true
+    excerpt_limit_words: 100
+    terms_reviewed_at: 2026-08-20
+    review_expires_at: 2026-11-18
+    reviewer: HXG project owner
+    notes: Original analytical framework; not empirical guest-preference evidence.
+  - <<: *hxg_original
+    id: RGT-HXG-METHODOLOGY
+    record_id: SRC-HXG-METHODOLOGY
+  - <<: *hxg_original
+    id: RGT-HXG-VALUE-MODEL
+    record_id: SRC-HXG-VALUE-MODEL
+
+  - &samsung_link
+    schema_version: "1.0.0"
+    id: RGT-VND-SAM-HOSPITALITY
+    record_id: VND-SAM-HOSPITALITY
+    use_mode: link-only
+    domain: www.samsung.com
+    rights_basis: metadata_link_only
+    automation_allowed: false
+    ai_processing_allowed: false
+    public_republication_allowed: true
+    license_name: No content reuse asserted; outbound metadata link only
+    license_url: https://www.samsung.com/us/terms-and-conditions/
+    terms_url: https://www.samsung.com/us/terms-and-conditions/
+    attribution_required: false
+    attribution_text: Samsung product names and trademarks belong to Samsung.
+    excerpts_allowed: false
+    excerpt_limit_words: 0
+    terms_reviewed_at: 2026-08-20
+    review_expires_at: 2026-11-18
+    reviewer: HXG human governance review
+    notes: Never retrieve, cache, quote, hash page content, or send to model context.
+  - <<: *samsung_link
+    id: RGT-VND-SAM-FRAME-HOSPITALITY
+    record_id: VND-SAM-FRAME-HOSPITALITY
+    domain: news.samsung.com
+  - <<: *samsung_link
+    id: RGT-VND-SAM-SMARTTHINGS-PRO
+    record_id: VND-SAM-SMARTTHINGS-PRO
+  - <<: *samsung_link
+    id: RGT-VND-SAM-LYNK-CLOUD
+    record_id: VND-SAM-LYNK-CLOUD

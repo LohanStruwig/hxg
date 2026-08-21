@@ -1,0 +1,4 @@
+# Explicitly blocked by the HXG v0.3.0 source policy.
+jdpower.com
+ahla.com
+wttc.org
