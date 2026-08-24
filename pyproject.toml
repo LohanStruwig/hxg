@@ -13,7 +13,7 @@ authors = [{ name = "Hospitality Experience Graph contributors" }]
 dependencies = [
   "pydantic>=2.10,<3",
   "typer>=0.15,<1",
-  "rich>=13.9,<15",
+  "rich>=13.9,<16",
   "networkx>=3.4,<4",
   "numpy>=2,<3",
   "httpx>=0.28,<1",
@@ -24,16 +24,16 @@ dependencies = [
 [project.optional-dependencies]
 research = [
   "openai-agents>=0.2,<1",
-  "graphrag>=2.4,<3",
+  "graphrag>=2.4,<4",
 ]
 publication = [
   "Pillow>=11,<13",
-  "reportlab>=4.2,<5",
+  "reportlab>=4.2,<6",
   "qrcode>=8,<9",
 ]
 dev = [
   "pytest>=9.0.3,<10",
-  "pytest-cov>=6,<7",
+  "pytest-cov>=6,<8",
   "PyMuPDF>=1.27,<2",
   "pip-audit>=2.9,<3",
   "ruff>=0.9,<1",
